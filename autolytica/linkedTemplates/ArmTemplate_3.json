@@ -13,6 +13,53 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vDealers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Marque",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DMS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vDealers"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vDealersRegions')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1966,169 +2013,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "Autotrader Competitors Extended"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SQLAutotraderCompetitorsTest')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "autolytica",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "AdvertText",
-						"type": "varchar"
-					},
-					{
-						"name": "AdvertURL",
-						"type": "varchar"
-					},
-					{
-						"name": "AttentionGrabber",
-						"type": "varchar"
-					},
-					{
-						"name": "Bodystyle",
-						"type": "varchar"
-					},
-					{
-						"name": "Colour",
-						"type": "varchar"
-					},
-					{
-						"name": "CompetitorReg",
-						"type": "varchar"
-					},
-					{
-						"name": "Date",
-						"type": "datetime2",
-						"scale": 7
-					},
-					{
-						"name": "DaysinStock",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Derivative",
-						"type": "varchar"
-					},
-					{
-						"name": "Fuel",
-						"type": "varchar"
-					},
-					{
-						"name": "Id",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "MainImage",
-						"type": "varchar"
-					},
-					{
-						"name": "Make",
-						"type": "varchar"
-					},
-					{
-						"name": "Mileage",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Model",
-						"type": "varchar"
-					},
-					{
-						"name": "Owners",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Plate",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Price",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "PriceIndicator",
-						"type": "varchar"
-					},
-					{
-						"name": "PricePosition",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "Reg_No",
-						"type": "varchar"
-					},
-					{
-						"name": "SellerName",
-						"type": "varchar"
-					},
-					{
-						"name": "SellerSegment",
-						"type": "varchar"
-					},
-					{
-						"name": "SellerTown",
-						"type": "varchar"
-					},
-					{
-						"name": "StockNumber",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "TaxRate",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Transmission",
-						"type": "varchar"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UniqueID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CurrentRecord",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "RecordID",
-						"type": "varchar"
-					},
-					{
-						"name": "PriceIndicatorV2",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Autotrader Competitors Test"
 				}
 			},
 			"dependsOn": []

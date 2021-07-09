@@ -13,6 +13,75 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/DetailedSales')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DetailedSalesCSV",
+								"type": "DatasetReference"
+							},
+							"name": "DetailedSales"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLDMSVehicleSales",
+								"type": "DatasetReference"
+							},
+							"name": "SQLDMSDetailedSales"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\t{Client ID} as string,\n\t\tDealer as string,\n\t\t{Cust ID} as string,\n\t\tTitle as string,\n\t\tforename as string,\n\t\tSurname as string,\n\t\temail as string,\n\t\t{home phone} as string,\n\t\tmobile as string,\n\t\t{add 1} as string,\n\t\t{add 2} as string,\n\t\t{add 3} as string,\n\t\t{add 4} as string,\n\t\tpostcode as string,\n\t\t{New or Used} as string,\n\t\ttype as string,\n\t\t{Veh Magic} as string,\n\t\t{stock no} as string,\n\t\tchassis as string,\n\t\t{reg no} as string,\n\t\t{reg date} as string,\n\t\t{date in stock} as string,\n\t\t{CAP VIN} as string,\n\t\t{CAP code} as string,\n\t\tmake as string,\n\t\tmodel as string,\n\t\tderivative as string,\n\t\t{engine size} as string,\n\t\tbodystyle as string,\n\t\tmileage as string,\n\t\tfuel as string,\n\t\ttransmission as string,\n\t\t{generic colour} as string,\n\t\t{specific colour} as string,\n\t\tdoors as string,\n\t\tSIV as string,\n\t\t{sale date} as string,\n\t\t{inv number} as string,\n\t\t{sales exec} as string,\n\t\t{full inv value} as string,\n\t\tpaint as string,\n\t\twarr as string,\n\t\tGAP as string,\n\t\tAcc as string,\n\t\trecon as string,\n\t\t{Finance commission} as string,\n\t\tprofit as string,\n\t\t{Sale type} as string,\n\t\tPX1 as string,\n\t\tPX2 as string,\n\t\tPX3 as string,\n\t\tSource as string,\n\t\t{Model Analysis Code} as string,\n\t\tPurchaser as string,\n\t\t{Supplier Name2} as string,\n\t\t{Purchase Invoice Date} as string,\n\t\t{Available Date} as string,\n\t\t{Accessory Profit} as string,\n\t\t{Paint Profit} as string,\n\t\t{Warr Profit} as string,\n\t\t{Gap Profit} as string,\n\t\t{Other Profit} as string,\n\t\t{Volume Bonus} as string,\n\t\tBonus as string,\n\t\t{RFL Profit} as string,\n\t\t{Metal Profit} as string,\n\t\t{Vehicle Invoice Value} as string,\n\t\t{Delivery Date} as string,\n\t\t{Group Purchase Date} as string,\n\t\t{Received Date} as string,\n\t\t{Date In Group} as string,\n\t\t{Purchase Account} as string,\n\t\t{Supplier Name} as string,\n\t\t{Fuel Type} as string,\n\t\t{Sales Account ID} as string,\n\t\t{Sales Account Name} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy'],\n\twildcardPaths:['DetailedVehSales*.csv']) ~> DetailedSales\nDetailedSales sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealer as string,\n\t\tCustId as string,\n\t\tTitle as string,\n\t\tForename as string,\n\t\tSurname as string,\n\t\tEmail as string,\n\t\tHomePhone as string,\n\t\tMobile as string,\n\t\tAdd1 as string,\n\t\tAdd2 as string,\n\t\tAdd3 as string,\n\t\tAdd4 as string,\n\t\tPostcode as string,\n\t\tNewOrUsed as string,\n\t\tType as string,\n\t\tVehMagic as string,\n\t\tStockNo as string,\n\t\tChassis as string,\n\t\tRegistrationNo as string,\n\t\tRegistrationDate as date,\n\t\tDateInStock as date,\n\t\tCapVin as string,\n\t\tCapCode as string,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuel as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as string,\n\t\tSiv as double,\n\t\tSaleDate as date,\n\t\tInvNumber as integer,\n\t\tSalesExec as string,\n\t\tFullInvValue as double,\n\t\tPaint as double,\n\t\tWarr as double,\n\t\tGap as double,\n\t\tAcc as double,\n\t\tRecon as double,\n\t\tFinanceCommission as double,\n\t\tProfit as double,\n\t\tSaleType as string,\n\t\tPx1 as string,\n\t\tPx2 as string,\n\t\tPx3 as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tAccessoryProfit as double,\n\t\tPaintProfit as double,\n\t\tWarrProfit as double,\n\t\tGapProfit as double,\n\t\tOtherProfit as double,\n\t\tVolumeBonus as double,\n\t\tBonus as double,\n\t\tRflProfit as double,\n\t\tMetalProfit as double,\n\t\tVehicleInvoiceValue as double,\n\t\tDeliveryDate as date,\n\t\tGroupPurchaseDate as date,\n\t\tReceivedDate as date,\n\t\tDateInGroup as date,\n\t\tPurchaseAccount as string,\n\t\tFuelTypeID as string,\n\t\tSalesAccountID as string,\n\t\tSalesAccountName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpreSQLs:['truncate table dbo.DMSVehicleSales'],\n\tpostSQLs:['update dbo.DMSVehicleSales set ClientID = 10000 where ClientID is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tDealer,\n\t\tCustId = {Cust ID},\n\t\tTitle,\n\t\tForename = forename,\n\t\tSurname,\n\t\tEmail = email,\n\t\tHomePhone = {home phone},\n\t\tMobile = mobile,\n\t\tAdd1 = {add 1},\n\t\tAdd2 = {add 2},\n\t\tAdd3 = {add 3},\n\t\tAdd4 = {add 4},\n\t\tPostcode = postcode,\n\t\tNewOrUsed = {New or Used},\n\t\tType = type,\n\t\tVehMagic = {Veh Magic},\n\t\tStockNo = {stock no},\n\t\tChassis = chassis,\n\t\tRegistrationNo = {reg no},\n\t\tRegistrationDate = {reg date},\n\t\tDateInStock = {date in stock},\n\t\tCapVin = {CAP VIN},\n\t\tCapCode = {CAP code},\n\t\tMake = make,\n\t\tModel = model,\n\t\tDerivative = derivative,\n\t\tEngineSize = {engine size},\n\t\tBodystyle = bodystyle,\n\t\tMileage = mileage,\n\t\tFuel = fuel,\n\t\tTransmission = transmission,\n\t\tGenericColour = {generic colour},\n\t\tSpecificColour = {specific colour},\n\t\tDoors = doors,\n\t\tSiv = SIV,\n\t\tSaleDate = {sale date},\n\t\tInvNumber = {inv number},\n\t\tSalesExec = {sales exec},\n\t\tFullInvValue = {full inv value},\n\t\tPaint = paint,\n\t\tWarr = warr,\n\t\tGap = GAP,\n\t\tAcc,\n\t\tRecon = recon,\n\t\tFinanceCommission = {Finance commission},\n\t\tProfit = profit,\n\t\tSaleType = {Sale type},\n\t\tPx1 = PX1,\n\t\tPx2 = PX2,\n\t\tPx3 = PX3,\n\t\tSource,\n\t\tModelAnalysisCode = {Model Analysis Code},\n\t\tPurchaser,\n\t\tPurchaseInvoiceDate = {Purchase Invoice Date},\n\t\tAvailableDate = {Available Date},\n\t\tAccessoryProfit = {Accessory Profit},\n\t\tPaintProfit = {Paint Profit},\n\t\tWarrProfit = {Warr Profit},\n\t\tGapProfit = {Gap Profit},\n\t\tOtherProfit = {Other Profit},\n\t\tVolumeBonus = {Volume Bonus},\n\t\tBonus,\n\t\tRflProfit = {RFL Profit},\n\t\tMetalProfit = {Metal Profit},\n\t\tVehicleInvoiceValue = {Vehicle Invoice Value},\n\t\tDeliveryDate = {Delivery Date},\n\t\tGroupPurchaseDate = {Group Purchase Date},\n\t\tReceivedDate = {Received Date},\n\t\tDateInGroup = {Date In Group},\n\t\tPurchaseAccount = {Purchase Account},\n\t\tFuelTypeID = {Fuel Type},\n\t\tSalesAccountID = {Sales Account ID},\n\t\tSalesAccountName = {Sales Account Name}\n\t)) ~> SQLDMSDetailedSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EnquiryMAX_Enquiries')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "EnquiryMAXEnquiriesJSON",
+								"type": "DatasetReference"
+							},
+							"name": "EnquiryMAXEnquiriesJSON"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLEnquiryMAX_Enquiries",
+								"type": "DatasetReference"
+							},
+							"name": "EnquiryMAXEnquiries"
+						}
+					],
+					"transformations": [
+						{
+							"name": "EnquiryMAXEnquiriesJSONUpsert"
+						},
+						{
+							"name": "DateConversion"
+						}
+					],
+					"script": "source(output(\n\t\tcreatedDateTime as string,\n\t\tenquiryId as string,\n\t\tcustomerId as string,\n\t\tleadId as string,\n\t\tstatus as (code as string, description as string),\n\t\ttestDrive as (appointmentDate as string, taken as boolean),\n\t\ttype as string,\n\t\tpartExchangeCount as string,\n\t\tsourceOfEnquiry as string,\n\t\tmethodOfContact as string,\n\t\tvehicleOfInterest as (make as string, range as string, model as string, derivative as string, vrm as string, fuelType as string, vehicleCode as string, vehicleCodeType as string, odometer as (unit as string, currentValue as string), stockNumber as string, vin as string),\n\t\tsoldVehicle as (make as string, range as string, model as string, derivative as string, vrm as string, fuelType as string, vehicleCode as string, vehicleCodeType as string, odometer as (unit as string, currentValue as string), stockNumber as string, vin as string),\n\t\tlinks as ({} as string),\n\t\tlostSale as (lostSaleRequested as string, lostSaleAccepted as string, lostSaleReason as string),\n\t\toriginApp as string,\n\t\tenquiryNotes as (description as string, createdDateTime as string, createdByName as string)[],\n\t\tcustomerFinanceDetails as (model as string, registration as string, agreementNo as string, financeProduct as string, term as string, deposit as string, installmentAmount as string, gmfvBalloon as string, annualContractMileage as string, contractStartDate as string, contractEndDate as string, outstandingBalance as string),\n\t\tdeskingDeal as (financeProduct as string, term as string, deposit as string, installmentAmount as string, gmfvBalloon as string, annualContractMileage as string),\n\t\testimatedEquityPosition as (estimatedPxValue as string, estimatedEquity as string)\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> EnquiryMAXEnquiriesJSON\nEnquiryMAXEnquiriesJSON alterRow(upsertIf(isNull(enquiryId)==false())) ~> EnquiryMAXEnquiriesJSONUpsert\nEnquiryMAXEnquiriesJSONUpsert derive(LostSaleRequestedDate = toTimestamp(lostSale.lostSaleRequested,'yyyy-MM-dd\\'T\\'HH:mm:ss'),\n\t\tLostSaleAcceptedDate = toTimestamp(lostSale.lostSaleAccepted,'yyyy-MM-dd\\'T\\'HH:mm:ss')) ~> DateConversion\nDateConversion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEnquiryID as string,\n\t\tCustomerID as string,\n\t\tLeadID as string,\n\t\tStatusCode as string,\n\t\tStatusDescription as string,\n\t\tNewOrUsed as string,\n\t\tSourceOfEnquiry as string,\n\t\tMethodOfContact as string,\n\t\tSoldNewOrUsed as string,\n\t\tDeliveryDate as timestamp,\n\t\tOrderDate as timestamp,\n\t\tMake as string,\n\t\tRange as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tRegistrationNumber as string,\n\t\tFuelType as string,\n\t\tMileage as integer,\n\t\tStockNumber as string,\n\t\tLostSaleRequestedDate as timestamp,\n\t\tLostSaleAcceptedDate as timestamp,\n\t\tLostSaleReason as string,\n\t\tuniqueid as integer,\n\t\tClientID as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:true,\n\tkeys:['EnquiryID'],\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCustomerID = customerId,\n\t\tLeadID = leadId,\n\t\tStatusCode = status.code,\n\t\tStatusDescription = status.description,\n\t\tNewOrUsed = type,\n\t\tSourceOfEnquiry = sourceOfEnquiry,\n\t\tMethodOfContact = methodOfContact,\n\t\tMake = soldVehicle.make,\n\t\tRange = soldVehicle.range,\n\t\tModel = soldVehicle.model,\n\t\tDerivative = soldVehicle.derivative,\n\t\tRegistrationNumber = soldVehicle.vrm,\n\t\tFuelType = soldVehicle.fuelType,\n\t\tMileage = soldVehicle.odometer.currentValue,\n\t\tStockNumber = soldVehicle.stockNumber,\n\t\tLostSaleRequestedDate,\n\t\tLostSaleAcceptedDate = lostSale.lostSaleAccepted,\n\t\tLostSaleReason = lostSale.lostSaleReason,\n\t\tEnquiryID = enquiryId\n\t)) ~> EnquiryMAXEnquiries"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/GetSourceInformation')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -31,7 +100,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ExternalSchemass",
+								"referenceName": "ExternalSchemas",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -800,7 +869,9 @@
 				"annotations": [],
 				"lastPublishTime": "2021-05-03T21:08:11Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/EnquiryMAX_Enquiries')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/GetSchemas')]",
@@ -900,128 +971,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/Unleashed')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/PartsSales')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "PeterVardyPartsSales",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "PeterVardyPartsSales",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"PeterVardyPartsSales": {},
-									"SQLDMSPartsSales": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"annotations": [],
-				"lastPublishTime": "2021-06-09T21:38:25Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/PeterVardyPartsSales')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/PeterVardyDetailedSales')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "PeterVardyDetailedSales",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "PeterVardyDetailedSales",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"PeterVardyDetailedSales": {},
-									"SQLDMSDetailedSales": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "ReferenceTableUpdate",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "PeterVardyDetailedSales",
-								"dependencyConditions": [
-									"Succeeded",
-									"Failed"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
-							"storedProcedureParameters": {
-								"SourceSystemID": {
-									"value": "6",
-									"type": "Int64"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "autolytica",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"annotations": [],
-				"lastPublishTime": "2021-06-25T13:33:37Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/PeterVardyDetailedSales')]"
 			]
 		}
 	]

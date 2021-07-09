@@ -1,0 +1,377 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolytica"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ExternalSchemas')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "table_catalog",
+						"type": "varchar"
+					},
+					{
+						"name": "table_schema",
+						"type": "varchar"
+					},
+					{
+						"name": "table_name",
+						"type": "varchar"
+					},
+					{
+						"name": "column_name",
+						"type": "varchar"
+					},
+					{
+						"name": "ordinal_position",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "column_default",
+						"type": "varchar"
+					},
+					{
+						"name": "is_nullable",
+						"type": "varchar"
+					},
+					{
+						"name": "data_type",
+						"type": "varchar"
+					},
+					{
+						"name": "CHARACTER_MAXIMUM_LENGTH",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CHARACTER_OCTET_LENGTH",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NUMERIC_PRECISION",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NUMERIC_PRECISION_RADIX",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NUMERIC_SCALE",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DATETIME_PRECISION",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CHARACTER_SET_CATALOG",
+						"type": "varchar"
+					},
+					{
+						"name": "CHARACTER_SET_SCHEMA",
+						"type": "varchar"
+					},
+					{
+						"name": "CHARACTER_SET_NAME",
+						"type": "varchar"
+					},
+					{
+						"name": "COLLATION_CATALOG",
+						"type": "varchar"
+					},
+					{
+						"name": "COLLATION_SCHEMA",
+						"type": "varchar"
+					},
+					{
+						"name": "COLLATION_NAME",
+						"type": "varchar"
+					},
+					{
+						"name": "DOMAIN_CATALOG",
+						"type": "varchar"
+					},
+					{
+						"name": "DOMAIN_SCHEMA",
+						"type": "varchar"
+					},
+					{
+						"name": "DOMAIN_NAME",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ExternalSchemas"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VehicleStockCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Autolyticaftp",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "SftpLocation",
+						"folderPath": "/Analytics Data Feeds"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Client ID",
+						"type": "String"
+					},
+					{
+						"name": "Dealer ID",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Type",
+						"type": "String"
+					},
+					{
+						"name": "Registration Number",
+						"type": "String"
+					},
+					{
+						"name": "Stock Number",
+						"type": "String"
+					},
+					{
+						"name": "Group Date In Stock",
+						"type": "String"
+					},
+					{
+						"name": "Dealership Date In Stock",
+						"type": "String"
+					},
+					{
+						"name": "Status",
+						"type": "String"
+					},
+					{
+						"name": "New Or Used",
+						"type": "String"
+					},
+					{
+						"name": "Chassis",
+						"type": "String"
+					},
+					{
+						"name": "Registration Date",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "Trim",
+						"type": "String"
+					},
+					{
+						"name": "Engine Size",
+						"type": "String"
+					},
+					{
+						"name": "tyle",
+						"type": "String"
+					},
+					{
+						"name": "Odometer",
+						"type": "String"
+					},
+					{
+						"name": "Odometer Type",
+						"type": "String"
+					},
+					{
+						"name": "FuelType",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "Generic Colour",
+						"type": "String"
+					},
+					{
+						"name": "Specific Colour",
+						"type": "String"
+					},
+					{
+						"name": "Doors",
+						"type": "String"
+					},
+					{
+						"name": "Stock Value",
+						"type": "String"
+					},
+					{
+						"name": "Vat",
+						"type": "String"
+					},
+					{
+						"name": "ce",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Catagory Code",
+						"type": "String"
+					},
+					{
+						"name": "Retail Price",
+						"type": "String"
+					},
+					{
+						"name": "Purchaser ID",
+						"type": "String"
+					},
+					{
+						"name": "Supplier",
+						"type": "String"
+					},
+					{
+						"name": "Group Purchase Date",
+						"type": "String"
+					},
+					{
+						"name": "Available Date",
+						"type": "String"
+					},
+					{
+						"name": "Progress Code",
+						"type": "String"
+					},
+					{
+						"name": "Reconditioning",
+						"type": "String"
+					},
+					{
+						"name": "Transport Costs",
+						"type": "String"
+					},
+					{
+						"name": "Adjusted Stock Value",
+						"type": "String"
+					},
+					{
+						"name": "Received Date",
+						"type": "String"
+					},
+					{
+						"name": "Purchase Account",
+						"type": "String"
+					},
+					{
+						"name": "us",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Autolyticaftp')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Autolyticaftp')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Sftp",
+				"typeProperties": {
+					"host": "autolytica.exavault.com",
+					"port": 22,
+					"skipHostKeyValidation": true,
+					"authenticationType": "Basic",
+					"userName": "autolytica",
+					"password": {
+						"type": "SecureString",
+						"value": "**********"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GetSourceInformation')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "RTC_Ext_BI_Inspection_vISItems",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ExternalSchemas",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tTABLE_CATALOG as string,\n\t\tTABLE_SCHEMA as string,\n\t\tTABLE_NAME as string,\n\t\tCOLUMN_NAME as string,\n\t\tORDINAL_POSITION as integer,\n\t\tCOLUMN_DEFAULT as string,\n\t\tIS_NULLABLE as string,\n\t\tDATA_TYPE as string,\n\t\tCHARACTER_MAXIMUM_LENGTH as integer,\n\t\tCHARACTER_OCTET_LENGTH as integer,\n\t\tNUMERIC_PRECISION as integer,\n\t\tNUMERIC_PRECISION_RADIX as short,\n\t\tNUMERIC_SCALE as integer,\n\t\tDATETIME_PRECISION as short,\n\t\tCHARACTER_SET_CATALOG as string,\n\t\tCHARACTER_SET_SCHEMA as string,\n\t\tCHARACTER_SET_NAME as string,\n\t\tCOLLATION_CATALOG as string,\n\t\tCOLLATION_SCHEMA as string,\n\t\tCOLLATION_NAME as string,\n\t\tDOMAIN_CATALOG as string,\n\t\tDOMAIN_SCHEMA as string,\n\t\tDOMAIN_NAME as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select * from information_schema.columns',\n\tformat: 'query') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\ttable_catalog as string,\n\t\ttable_schema as string,\n\t\ttable_name as string,\n\t\tcolumn_name as string,\n\t\tordinal_position as integer,\n\t\tcolumn_default as string,\n\t\tis_nullable as string,\n\t\tdata_type as string,\n\t\tCHARACTER_MAXIMUM_LENGTH as integer,\n\t\tCHARACTER_OCTET_LENGTH as integer,\n\t\tNUMERIC_PRECISION as integer,\n\t\tNUMERIC_PRECISION_RADIX as integer,\n\t\tNUMERIC_SCALE as integer,\n\t\tDATETIME_PRECISION as integer,\n\t\tCHARACTER_SET_CATALOG as string,\n\t\tCHARACTER_SET_SCHEMA as string,\n\t\tCHARACTER_SET_NAME as string,\n\t\tCOLLATION_CATALOG as string,\n\t\tCOLLATION_SCHEMA as string,\n\t\tCOLLATION_NAME as string,\n\t\tDOMAIN_CATALOG as string,\n\t\tDOMAIN_SCHEMA as string,\n\t\tDOMAIN_NAME as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\ttable_catalog = TABLE_CATALOG,\n\t\ttable_schema = TABLE_SCHEMA,\n\t\ttable_name = TABLE_NAME,\n\t\tcolumn_name = COLUMN_NAME,\n\t\tordinal_position = ORDINAL_POSITION,\n\t\tcolumn_default = COLUMN_DEFAULT,\n\t\tis_nullable = IS_NULLABLE,\n\t\tdata_type = DATA_TYPE,\n\t\tCHARACTER_MAXIMUM_LENGTH,\n\t\tCHARACTER_OCTET_LENGTH,\n\t\tNUMERIC_PRECISION,\n\t\tNUMERIC_PRECISION_RADIX,\n\t\tNUMERIC_SCALE,\n\t\tDATETIME_PRECISION,\n\t\tCHARACTER_SET_CATALOG,\n\t\tCHARACTER_SET_SCHEMA,\n\t\tCHARACTER_SET_NAME,\n\t\tCOLLATION_CATALOG,\n\t\tCOLLATION_SCHEMA,\n\t\tCOLLATION_NAME,\n\t\tDOMAIN_CATALOG,\n\t\tDOMAIN_SCHEMA,\n\t\tDOMAIN_NAME\n\t)) ~> sink1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ExternalSchemas')]"
+			]
+		}
+	]
+}

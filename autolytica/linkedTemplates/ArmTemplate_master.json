@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AutolyticaBlobStorage'"
 		},
+		"Autolyticaftp_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Autolyticaftp'"
+		},
 		"RTCDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'RTCDatabase'"
@@ -38,6 +42,14 @@
 		"enquiryMAX_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'enquiryMAX'"
+		},
+		"Autolyticaftp_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "autolytica.exavault.com"
+		},
+		"Autolyticaftp_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "autolytica"
 		},
 		"RTCVHC_properties_typeProperties_url": {
 			"type": "string",
@@ -117,6 +129,9 @@
 					"AutolyticaBlobStorage_connectionString": {
 						"value": "[parameters('AutolyticaBlobStorage_connectionString')]"
 					},
+					"Autolyticaftp_password": {
+						"value": "[parameters('Autolyticaftp_password')]"
+					},
 					"RTCDatabase_connectionString": {
 						"value": "[parameters('RTCDatabase_connectionString')]"
 					},
@@ -137,6 +152,12 @@
 					},
 					"enquiryMAX_password": {
 						"value": "[parameters('enquiryMAX_password')]"
+					},
+					"Autolyticaftp_properties_typeProperties_host": {
+						"value": "[parameters('Autolyticaftp_properties_typeProperties_host')]"
+					},
+					"Autolyticaftp_properties_typeProperties_userName": {
+						"value": "[parameters('Autolyticaftp_properties_typeProperties_userName')]"
 					},
 					"RTCVHC_properties_typeProperties_url": {
 						"value": "[parameters('RTCVHC_properties_typeProperties_url')]"

@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AutolyticaBlobStorage'"
 		},
+		"Autolyticaftp_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Autolyticaftp'"
+		},
 		"RTCDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'RTCDatabase'"
@@ -38,6 +42,14 @@
 		"enquiryMAX_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'enquiryMAX'"
+		},
+		"Autolyticaftp_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "autolytica.exavault.com"
+		},
+		"Autolyticaftp_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "autolytica"
 		},
 		"RTCVHC_properties_typeProperties_url": {
 			"type": "string",
@@ -23542,7 +23554,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ExternalSchemass')]",
+			"name": "[concat(parameters('factoryName'), '/ExternalSchemas')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -40591,6 +40603,194 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/VehicleStockCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Autolyticaftp",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "SftpLocation",
+						"folderPath": "/Analytics Data Feeds"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Client ID",
+						"type": "String"
+					},
+					{
+						"name": "Dealer ID",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Type",
+						"type": "String"
+					},
+					{
+						"name": "Registration Number",
+						"type": "String"
+					},
+					{
+						"name": "Stock Number",
+						"type": "String"
+					},
+					{
+						"name": "Group Date In Stock",
+						"type": "String"
+					},
+					{
+						"name": "Dealership Date In Stock",
+						"type": "String"
+					},
+					{
+						"name": "Status",
+						"type": "String"
+					},
+					{
+						"name": "New Or Used",
+						"type": "String"
+					},
+					{
+						"name": "Chassis",
+						"type": "String"
+					},
+					{
+						"name": "Registration Date",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "Trim",
+						"type": "String"
+					},
+					{
+						"name": "Engine Size",
+						"type": "String"
+					},
+					{
+						"name": "tyle",
+						"type": "String"
+					},
+					{
+						"name": "Odometer",
+						"type": "String"
+					},
+					{
+						"name": "Odometer Type",
+						"type": "String"
+					},
+					{
+						"name": "FuelType",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "Generic Colour",
+						"type": "String"
+					},
+					{
+						"name": "Specific Colour",
+						"type": "String"
+					},
+					{
+						"name": "Doors",
+						"type": "String"
+					},
+					{
+						"name": "Stock Value",
+						"type": "String"
+					},
+					{
+						"name": "Vat",
+						"type": "String"
+					},
+					{
+						"name": "ce",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Catagory Code",
+						"type": "String"
+					},
+					{
+						"name": "Retail Price",
+						"type": "String"
+					},
+					{
+						"name": "Purchaser ID",
+						"type": "String"
+					},
+					{
+						"name": "Supplier",
+						"type": "String"
+					},
+					{
+						"name": "Group Purchase Date",
+						"type": "String"
+					},
+					{
+						"name": "Available Date",
+						"type": "String"
+					},
+					{
+						"name": "Progress Code",
+						"type": "String"
+					},
+					{
+						"name": "Reconditioning",
+						"type": "String"
+					},
+					{
+						"name": "Transport Costs",
+						"type": "String"
+					},
+					{
+						"name": "Adjusted Stock Value",
+						"type": "String"
+					},
+					{
+						"name": "Received Date",
+						"type": "String"
+					},
+					{
+						"name": "Purchase Account",
+						"type": "String"
+					},
+					{
+						"name": "us",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Autolyticaftp')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AutolyticaBlobStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -40599,6 +40799,27 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AutolyticaBlobStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Autolyticaftp')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Sftp",
+				"typeProperties": {
+					"host": "[parameters('Autolyticaftp_properties_typeProperties_host')]",
+					"port": 22,
+					"skipHostKeyValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Autolyticaftp_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Autolyticaftp_password')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -41569,7 +41790,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "ExternalSchemass",
+								"referenceName": "ExternalSchemas",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -41581,7 +41802,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/RTC_Ext_BI_Inspection_vISItems')]",
-				"[concat(variables('factoryId'), '/datasets/ExternalSchemass')]"
+				"[concat(variables('factoryId'), '/datasets/ExternalSchemas')]"
 			]
 		},
 		{

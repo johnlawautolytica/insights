@@ -1,5 +1,5 @@
 {
-	"name": "ExternalSchemass",
+	"name": "ExternalSchemas",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "autolytica",

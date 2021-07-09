@@ -1,0 +1,45 @@
+{
+	"name": "RTC_Ext_BI_BookingStatus",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BaseCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Booking_vBookingStatus"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

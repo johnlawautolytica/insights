@@ -1,0 +1,109 @@
+{
+	"name": "RTC_Ext_BI_vRepairCodes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RepairCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Text1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Text2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Text3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Text4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Text5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Text6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Allowed",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 2
+			},
+			{
+				"name": "LabType",
+				"type": "char"
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 2
+			},
+			{
+				"name": "Service",
+				"type": "char"
+			},
+			{
+				"name": "isUpsell",
+				"type": "bit"
+			},
+			{
+				"name": "OnlineGroup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OnlineDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LinkedUpsellCode",
+				"type": "varchar"
+			},
+			{
+				"name": "AWS",
+				"type": "bit"
+			},
+			{
+				"name": "CSIContCode",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleVisualsPartId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Booking_vRepairCodes"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

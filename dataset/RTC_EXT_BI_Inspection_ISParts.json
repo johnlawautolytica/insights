@@ -1,0 +1,123 @@
+{
+	"name": "RTC_EXT_BI_Inspection_ISParts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartsId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Details",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Qty",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "Discount",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "NetPrice",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "LabourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BinLocn",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InStock",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Reserved",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Excluded",
+				"type": "bit"
+			},
+			{
+				"name": "Cost",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "LinkedPartsId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Alternative",
+				"type": "bit"
+			},
+			{
+				"name": "Franchise",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BookingLineNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Inspection_vISParts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

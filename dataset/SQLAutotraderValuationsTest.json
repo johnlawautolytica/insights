@@ -1,0 +1,98 @@
+{
+	"name": "SQLAutotraderValuationsTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "AdjustedPartExchange",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "AdjustedRetail",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "AdjustedTrade",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Part_Exchange",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Price_Indicator",
+				"type": "varchar"
+			},
+			{
+				"name": "RegNo",
+				"type": "varchar"
+			},
+			{
+				"name": "Retail",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StockNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "Trade",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Valuation_Type",
+				"type": "varchar"
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrentRecord",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordID",
+				"type": "varchar"
+			},
+			{
+				"name": "PriceIndicatorV2",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Autotrader Valuations Test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

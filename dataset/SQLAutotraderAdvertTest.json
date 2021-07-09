@@ -1,0 +1,82 @@
+{
+	"name": "SQLAutotraderAdvertTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PerformanceScore",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PerformanceRating",
+				"type": "varchar"
+			},
+			{
+				"name": "YesterdayAdvertViews",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "YesterdaySearchViews",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LastWeekAdvertViews",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LastWeekSearchViews",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AdvertURL",
+				"type": "varchar"
+			},
+			{
+				"name": "Source",
+				"type": "varchar"
+			},
+			{
+				"name": "Date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "RegNo",
+				"type": "varchar"
+			},
+			{
+				"name": "StockNo",
+				"type": "varchar"
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrentRecord",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Autotrader Advert Test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

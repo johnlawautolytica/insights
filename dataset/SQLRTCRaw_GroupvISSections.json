@@ -1,0 +1,54 @@
+{
+	"name": "SQLRTCRaw_GroupvISSections",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LongName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InUse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_GroupvISSections"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

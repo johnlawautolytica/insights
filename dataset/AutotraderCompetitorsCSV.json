@@ -1,0 +1,138 @@
+{
+	"name": "AutotraderCompetitorsCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AutotraderCompetitors.csv",
+				"folderPath": "VehicleStock",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "AdvertText",
+				"type": "String"
+			},
+			{
+				"name": "AdvertURL",
+				"type": "String"
+			},
+			{
+				"name": "AttentionGrabber",
+				"type": "String"
+			},
+			{
+				"name": "Bodystyle",
+				"type": "String"
+			},
+			{
+				"name": "Colour",
+				"type": "String"
+			},
+			{
+				"name": "CompetitorReg",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "Date"
+			},
+			{
+				"name": "DaysinStock",
+				"type": "String"
+			},
+			{
+				"name": "Derivative",
+				"type": "String"
+			},
+			{
+				"name": "Fuel",
+				"type": "String"
+			},
+			{
+				"name": "Id",
+				"type": "String"
+			},
+			{
+				"name": "MainImage",
+				"type": "String"
+			},
+			{
+				"name": "Make",
+				"type": "String"
+			},
+			{
+				"name": "Mileage",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Owners",
+				"type": "String"
+			},
+			{
+				"name": "Plate",
+				"type": "String"
+			},
+			{
+				"name": "Price",
+				"type": "String"
+			},
+			{
+				"name": "PriceIndicator",
+				"type": "String"
+			},
+			{
+				"name": "PricePosition",
+				"type": "String"
+			},
+			{
+				"name": "Reg No",
+				"type": "String"
+			},
+			{
+				"name": "SellerName",
+				"type": "String"
+			},
+			{
+				"name": "SellerSegment",
+				"type": "String"
+			},
+			{
+				"name": "SellerTown",
+				"type": "String"
+			},
+			{
+				"name": "StockNumber",
+				"type": "String"
+			},
+			{
+				"name": "TaxRate",
+				"type": "String"
+			},
+			{
+				"name": "Transmission",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

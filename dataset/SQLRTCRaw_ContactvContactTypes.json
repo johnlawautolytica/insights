@@ -1,0 +1,53 @@
+{
+	"name": "SQLRTCRaw_ContactvContactTypes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ContCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Analysis",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisGroup",
+				"type": "varchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_ContactvContactTypes"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

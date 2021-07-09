@@ -1,0 +1,169 @@
+{
+	"name": "SQLRTCRaw_GroupvLogFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Seq",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Booking",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Created",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "DateIn",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ServCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Tran1",
+				"type": "varchar"
+			},
+			{
+				"name": "Tran2",
+				"type": "varchar"
+			},
+			{
+				"name": "Tran3",
+				"type": "varchar"
+			},
+			{
+				"name": "TranComm",
+				"type": "varchar"
+			},
+			{
+				"name": "OpNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Account",
+				"type": "varchar"
+			},
+			{
+				"name": "ContCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PayType",
+				"type": "varchar"
+			},
+			{
+				"name": "OverRide",
+				"type": "varchar"
+			},
+			{
+				"name": "SACA",
+				"type": "varchar"
+			},
+			{
+				"name": "SACU",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceOfBusiness",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastServ",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "NextServ",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "MotDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Campaign",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CampaignPrice",
+				"type": "decimal",
+				"precision": 8,
+				"scale": 2
+			},
+			{
+				"name": "TotalValue",
+				"type": "decimal",
+				"precision": 8,
+				"scale": 2
+			},
+			{
+				"name": "ContSeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ApplicationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InsertedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_GroupvLogFile"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

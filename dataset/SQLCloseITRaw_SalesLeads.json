@@ -1,0 +1,327 @@
+{
+	"name": "SQLCloseITRaw_SalesLeads",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Dealer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealerName",
+				"type": "varchar"
+			},
+			{
+				"name": "GroupName",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_SalesPerson",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Customer_ProspectURN",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_PostCode",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_LeadProviderName",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_DateCreated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Customer_ChangeDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Customer_Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_DateStatusChanged",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Customer_QuickLostReason",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_FirstContact",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_DateSold",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer_DateLost",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Deal_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Deal_Gap",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_Paint",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_Warranty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_ClosedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Deal_BasicPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Deal_DeliveryCharge",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Deal_FirstRegFee",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Deal_RoadTax",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Desired_Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Desired_Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_ModelVariant",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_FuelType",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_GearType",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_OrderMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_Colour",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_Interior",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_DateConfirmed",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Deal_ModelYear",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_Registration",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_DateOfRegistration",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Deal_DemoDriven",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_ServicePayment",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_ExpectedDeliveryMonth",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_ExpectedDeliveryYear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deal_ExpectedDeliveryTimeOfMonth",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_DepositPaymentMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_FinanceMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_MonthlyBudget",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Deal_Deposit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Deal_NewFinancedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "PartEx_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartEx_Registration",
+				"type": "varchar"
+			},
+			{
+				"name": "PartEx_Make",
+				"type": "varchar"
+			},
+			{
+				"name": "PartEx_Model",
+				"type": "varchar"
+			},
+			{
+				"name": "PartEx_Variant",
+				"type": "varchar"
+			},
+			{
+				"name": "PartEx_Colour",
+				"type": "varchar"
+			},
+			{
+				"name": "PartEx_DateOfRegistration",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PartEx_Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartEx_VatQualifying",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartEx_NumberOfOwners",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartEx_ServiceHistory",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartEx_SIVAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "InitialContact_Created",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InitialContact_Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Deal_CancelledDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Deal_HandOverDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CloseITRaw_SalesLeads"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

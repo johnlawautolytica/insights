@@ -1,0 +1,67 @@
+{
+	"name": "SQLRTCRaw_InspectionvMediafile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DealerGroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InspectionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InspectionItemID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FileType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "varchar"
+			},
+			{
+				"name": "DealerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Complete",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Status",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_InspectionvMediafile"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

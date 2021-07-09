@@ -1,0 +1,320 @@
+{
+	"name": "SQLDMSVehicleSales_Older",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustId",
+				"type": "varchar"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Forename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Surname",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HomePhone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Mobile",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Add1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Add2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Add3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Add4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Postcode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehMagic",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StockNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Chassis",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegistrationNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegistrationDate",
+				"type": "date"
+			},
+			{
+				"name": "DateInStock",
+				"type": "date"
+			},
+			{
+				"name": "CapVin",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CapCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Make",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Model",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EngineSize",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Bodystyle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Fuel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Transmission",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenericColour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SpecificColour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Doors",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Siv",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SaleDate",
+				"type": "date"
+			},
+			{
+				"name": "InvNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SalesExec",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FullInvValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Paint",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Warr",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Gap",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Acc",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Recon",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FinanceCommission",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Profit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SaleType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Px1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Px2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Px3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModelAnalysisCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Purchaser",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchaseInvoiceDate",
+				"type": "date"
+			},
+			{
+				"name": "AvailableDate",
+				"type": "date"
+			},
+			{
+				"name": "AccessoryProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PaintProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "WarrProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GapProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "OtherProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "VolumeBonus",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Bonus",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RflProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "MetalProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "VehicleInvoiceValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "date"
+			},
+			{
+				"name": "SalesAccountID",
+				"type": "varchar"
+			},
+			{
+				"name": "SalesAccountName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSVehicleSales_Older"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

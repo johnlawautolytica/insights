@@ -1,0 +1,408 @@
+{
+	"name": "UnleashedSalesOrdersJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesOrders-2.json",
+				"container": "unleashed"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Pagination": {
+					"type": "object",
+					"properties": {
+						"NumberOfItems": {
+							"type": "integer"
+						},
+						"PageSize": {
+							"type": "integer"
+						},
+						"PageNumber": {
+							"type": "integer"
+						},
+						"NumberOfPages": {
+							"type": "integer"
+						}
+					}
+				},
+				"Items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"SalesOrderLines": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"LineNumber": {
+											"type": "integer"
+										},
+										"LineType": {
+											"type": "null"
+										},
+										"Product": {
+											"type": "object",
+											"properties": {
+												"Guid": {
+													"type": "string"
+												},
+												"ProductCode": {
+													"type": "string"
+												},
+												"ProductDescription": {
+													"type": "string"
+												}
+											}
+										},
+										"DueDate": {
+											"type": "string"
+										},
+										"OrderQuantity": {
+											"type": "number"
+										},
+										"UnitPrice": {
+											"type": "number"
+										},
+										"DiscountRate": {
+											"type": "number"
+										},
+										"LineTotal": {
+											"type": "number"
+										},
+										"Volume": {
+											"type": "null"
+										},
+										"Weight": {
+											"type": "number"
+										},
+										"Comments": {
+											"type": "string"
+										},
+										"AverageLandedPriceAtTimeOfSale": {
+											"type": "number"
+										},
+										"TaxRate": {
+											"type": "number"
+										},
+										"LineTax": {
+											"type": "number"
+										},
+										"XeroTaxCode": {
+											"type": "string"
+										},
+										"BCUnitPrice": {
+											"type": "number"
+										},
+										"BCLineTotal": {
+											"type": "number"
+										},
+										"BCLineTax": {
+											"type": "number"
+										},
+										"LineTaxCode": {
+											"type": "null"
+										},
+										"XeroSalesAccount": {
+											"type": "string"
+										},
+										"SerialNumbers": {
+											"type": "null"
+										},
+										"BatchNumbers": {
+											"type": "null"
+										},
+										"Guid": {
+											"type": "string"
+										},
+										"LastModifiedOn": {
+											"type": "string"
+										}
+									}
+								}
+							},
+							"OrderNumber": {
+								"type": "string"
+							},
+							"OrderDate": {
+								"type": "string"
+							},
+							"RequiredDate": {
+								"type": "string"
+							},
+							"CompletedDate": {
+								"type": "string"
+							},
+							"OrderStatus": {
+								"type": "string"
+							},
+							"Customer": {
+								"type": "object",
+								"properties": {
+									"CustomerCode": {
+										"type": "string"
+									},
+									"CustomerName": {
+										"type": "string"
+									},
+									"CurrencyId": {
+										"type": "integer"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"CustomerRef": {
+								"type": "string"
+							},
+							"Comments": {
+								"type": "null"
+							},
+							"Warehouse": {
+								"type": "object",
+								"properties": {
+									"WarehouseCode": {
+										"type": "string"
+									},
+									"WarehouseName": {
+										"type": "string"
+									},
+									"IsDefault": {
+										"type": "boolean"
+									},
+									"StreetNo": {
+										"type": "null"
+									},
+									"AddressLine1": {
+										"type": "null"
+									},
+									"AddressLine2": {
+										"type": "null"
+									},
+									"Suburb": {
+										"type": "null"
+									},
+									"City": {
+										"type": "null"
+									},
+									"Region": {
+										"type": "null"
+									},
+									"Country": {
+										"type": "null"
+									},
+									"PostCode": {
+										"type": "null"
+									},
+									"PhoneNumber": {
+										"type": "null"
+									},
+									"FaxNumber": {
+										"type": "null"
+									},
+									"MobileNumber": {
+										"type": "null"
+									},
+									"DDINumber": {
+										"type": "null"
+									},
+									"ContactName": {
+										"type": "string"
+									},
+									"Obsolete": {
+										"type": "boolean"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"ReceivedDate": {
+								"type": "null"
+							},
+							"DeliveryInstruction": {
+								"type": "null"
+							},
+							"DeliveryName": {
+								"type": "null"
+							},
+							"DeliveryStreetAddress": {
+								"type": "null"
+							},
+							"DeliveryStreetAddress2": {
+								"type": "null"
+							},
+							"DeliverySuburb": {
+								"type": "null"
+							},
+							"DeliveryCity": {
+								"type": "null"
+							},
+							"DeliveryRegion": {
+								"type": "null"
+							},
+							"DeliveryCountry": {
+								"type": "null"
+							},
+							"DeliveryPostCode": {
+								"type": "null"
+							},
+							"Currency": {
+								"type": "object",
+								"properties": {
+									"CurrencyCode": {
+										"type": "string"
+									},
+									"Description": {
+										"type": "string"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"ExchangeRate": {
+								"type": "number"
+							},
+							"DiscountRate": {
+								"type": "number"
+							},
+							"Tax": {
+								"type": "object",
+								"properties": {
+									"TaxCode": {
+										"type": "string"
+									},
+									"Description": {
+										"type": "null"
+									},
+									"TaxRate": {
+										"type": "number"
+									},
+									"CanApplyToExpenses": {
+										"type": "boolean"
+									},
+									"CanApplyToRevenue": {
+										"type": "boolean"
+									},
+									"Obsolete": {
+										"type": "boolean"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "null"
+									}
+								}
+							},
+							"TaxRate": {
+								"type": "number"
+							},
+							"XeroTaxCode": {
+								"type": "string"
+							},
+							"SubTotal": {
+								"type": "number"
+							},
+							"TaxTotal": {
+								"type": "number"
+							},
+							"Total": {
+								"type": "number"
+							},
+							"TotalVolume": {
+								"type": "number"
+							},
+							"TotalWeight": {
+								"type": "number"
+							},
+							"BCSubTotal": {
+								"type": "number"
+							},
+							"BCTaxTotal": {
+								"type": "number"
+							},
+							"BCTotal": {
+								"type": "number"
+							},
+							"PaymentDueDate": {
+								"type": "string"
+							},
+							"AllocateProduct": {
+								"type": "boolean"
+							},
+							"SalesOrderGroup": {
+								"type": "null"
+							},
+							"DeliveryMethod": {
+								"type": "null"
+							},
+							"SalesPerson": {
+								"type": "object",
+								"properties": {
+									"FullName": {
+										"type": "string"
+									},
+									"Email": {
+										"type": "string"
+									},
+									"Obsolete": {
+										"type": "boolean"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"SendAccountingJournalOnly": {
+								"type": "boolean"
+							},
+							"SourceId": {
+								"type": "null"
+							},
+							"CreatedBy": {
+								"type": "string"
+							},
+							"CreatedOn": {
+								"type": "string"
+							},
+							"LastModifiedBy": {
+								"type": "string"
+							},
+							"Guid": {
+								"type": "string"
+							},
+							"LastModifiedOn": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

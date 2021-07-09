@@ -1,0 +1,383 @@
+{
+	"name": "AutotraderJSONExtended",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AutotraderValuations-Extended.json",
+				"folderPath": "VehicleStock",
+				"container": "peter-vardy"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"OriginalInformation": {
+					"type": "object",
+					"properties": {
+						"RecordID": {
+							"type": "string"
+						},
+						"RegNo": {
+							"type": "string"
+						},
+						"StockNo": {
+							"type": "integer"
+						}
+					}
+				},
+				"information": {
+					"type": "object",
+					"properties": {
+						"derivative": {
+							"type": "string"
+						},
+						"make": {
+							"type": "string"
+						},
+						"model": {
+							"type": "string"
+						},
+						"owners": {
+							"type": "integer"
+						},
+						"plate": {
+							"type": "string"
+						},
+						"year": {
+							"type": "integer"
+						},
+						"attentionGrabber": {
+							"type": "string"
+						},
+						"advertText": {
+							"type": "string"
+						}
+					}
+				},
+				"advert": {
+					"type": "object",
+					"properties": {
+						"responseMetrics": {
+							"type": "object",
+							"properties": {
+								"performanceRating": {
+									"type": "object",
+									"properties": {
+										"score": {
+											"type": "integer"
+										},
+										"rating": {
+											"type": "string"
+										}
+									}
+								},
+								"yesterday": {
+									"type": "object",
+									"properties": {
+										"advertViews": {
+											"type": "integer"
+										},
+										"searchViews": {
+											"type": "integer"
+										}
+									}
+								},
+								"lastWeek": {
+									"type": "object",
+									"properties": {
+										"advertViews": {
+											"type": "integer"
+										},
+										"searchViews": {
+											"type": "integer"
+										}
+									}
+								}
+							}
+						},
+						"advertUrl": {
+							"type": "string"
+						},
+						"source": {
+							"type": "string"
+						}
+					}
+				},
+				"valuations": {
+					"type": "object",
+					"properties": {
+						"marketAverageGuidePrice": {
+							"type": "object",
+							"properties": {
+								"trade": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "number"
+										}
+									}
+								},
+								"retail": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "number"
+										}
+									}
+								},
+								"partExchange": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "number"
+										}
+									}
+								}
+							}
+						},
+						"adjustedGuidePrice": {
+							"type": "object",
+							"properties": {
+								"trade": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "number"
+										}
+									}
+								},
+								"retail": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "number"
+										}
+									}
+								},
+								"partExchange": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "number"
+										}
+									}
+								},
+								"priceIndicator": {
+									"type": "string"
+								},
+								"priceIndicatorV2": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"retailMetrics": {
+					"type": "object",
+					"properties": {
+						"liveMarketCondition": {
+							"type": "integer"
+						},
+						"marketSupply": {
+							"type": "integer"
+						},
+						"buyerDemand": {
+							"type": "integer"
+						},
+						"dealerMetrics": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"dealerId": {
+										"type": "string"
+									},
+									"dealerName": {
+										"type": "string"
+									},
+									"localRetailRating": {
+										"type": "integer"
+									},
+									"localDaysToSell": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				},
+				"competitors": {
+					"type": "object",
+					"properties": {
+						"totalResultCount": {
+							"type": "integer"
+						},
+						"filters": {
+							"type": "object",
+							"properties": {
+								"filterExclusions": {
+									"type": "array"
+								},
+								"includeWriteOffCategoryVehicles": {
+									"type": "boolean"
+								},
+								"segment": {
+									"type": "null"
+								},
+								"fuelType": {
+									"type": "string"
+								},
+								"distance": {
+									"type": "integer"
+								},
+								"plateMin": {
+									"type": "string"
+								},
+								"plateMax": {
+									"type": "string"
+								},
+								"mileageMin": {
+									"type": "null"
+								},
+								"mileageMax": {
+									"type": "null"
+								},
+								"engineSize": {
+									"type": "integer"
+								},
+								"colour": {
+									"type": "null"
+								},
+								"bodyType": {
+									"type": "string"
+								},
+								"postcode": {
+									"type": "string"
+								},
+								"taxRate": {
+									"type": "integer"
+								},
+								"doors": {
+									"type": "integer"
+								},
+								"driveTrain": {
+									"type": "string"
+								},
+								"trim": {
+									"type": "string"
+								},
+								"transmission": {
+									"type": "string"
+								}
+							}
+						},
+						"competitorAdverts": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"registration": {
+										"type": "string"
+									},
+									"make": {
+										"type": "string"
+									},
+									"model": {
+										"type": "string"
+									},
+									"derivative": {
+										"type": "string"
+									},
+									"mileage": {
+										"type": "integer"
+									},
+									"year": {
+										"type": "integer"
+									},
+									"plate": {
+										"type": "string"
+									},
+									"colour": {
+										"type": "string"
+									},
+									"insuranceWriteOffCategory": {
+										"type": "null"
+									},
+									"taxRate": {
+										"type": "integer"
+									},
+									"owners": {
+										"type": "null"
+									},
+									"bodyType": {
+										"type": "string"
+									},
+									"fuel": {
+										"type": "string"
+									},
+									"transmission": {
+										"type": "string"
+									},
+									"seller": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											},
+											"town": {
+												"type": "string"
+											},
+											"segment": {
+												"type": "string"
+											}
+										}
+									},
+									"atMetrics": {
+										"type": "object",
+										"properties": {
+											"pricePosition": {
+												"type": "number"
+											}
+										}
+									},
+									"atAdvertUrl": {
+										"type": "string"
+									},
+									"attentionGrabber": {
+										"type": "string"
+									},
+									"daysInStock": {
+										"type": "integer"
+									},
+									"mainImage": {
+										"type": "string"
+									},
+									"advertText": {
+										"type": "string"
+									},
+									"price": {
+										"type": "number"
+									},
+									"priceIndicator": {
+										"type": "string"
+									},
+									"priceIndicatorV2": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,35 @@
+{
+	"name": "Daily 6am",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PeterVardyPartsSales",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "PeterVardyDMSPartsStock",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-04-02T10:14:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"hours": [
+						6
+					]
+				}
+			}
+		}
+	}
+}

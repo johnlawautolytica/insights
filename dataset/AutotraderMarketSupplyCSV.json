@@ -1,0 +1,50 @@
+{
+	"name": "AutotraderMarketSupplyCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AutotraderMarketSupply.csv",
+				"folderPath": "VehicleStock",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "BuyerDemand",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "Date"
+			},
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "LiveMarketCondition",
+				"type": "String"
+			},
+			{
+				"name": "MarketSupply",
+				"type": "String"
+			},
+			{
+				"name": "RegNo",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

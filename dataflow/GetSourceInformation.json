@@ -1,0 +1,28 @@
+{
+	"name": "GetSourceInformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "RTC_Ext_BI_Inspection_vISItems",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ExternalSchemas",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tTABLE_CATALOG as string,\n\t\tTABLE_SCHEMA as string,\n\t\tTABLE_NAME as string,\n\t\tCOLUMN_NAME as string,\n\t\tORDINAL_POSITION as integer,\n\t\tCOLUMN_DEFAULT as string,\n\t\tIS_NULLABLE as string,\n\t\tDATA_TYPE as string,\n\t\tCHARACTER_MAXIMUM_LENGTH as integer,\n\t\tCHARACTER_OCTET_LENGTH as integer,\n\t\tNUMERIC_PRECISION as integer,\n\t\tNUMERIC_PRECISION_RADIX as short,\n\t\tNUMERIC_SCALE as integer,\n\t\tDATETIME_PRECISION as short,\n\t\tCHARACTER_SET_CATALOG as string,\n\t\tCHARACTER_SET_SCHEMA as string,\n\t\tCHARACTER_SET_NAME as string,\n\t\tCOLLATION_CATALOG as string,\n\t\tCOLLATION_SCHEMA as string,\n\t\tCOLLATION_NAME as string,\n\t\tDOMAIN_CATALOG as string,\n\t\tDOMAIN_SCHEMA as string,\n\t\tDOMAIN_NAME as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select * from information_schema.columns',\n\tformat: 'query') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\ttable_catalog as string,\n\t\ttable_schema as string,\n\t\ttable_name as string,\n\t\tcolumn_name as string,\n\t\tordinal_position as integer,\n\t\tcolumn_default as string,\n\t\tis_nullable as string,\n\t\tdata_type as string,\n\t\tCHARACTER_MAXIMUM_LENGTH as integer,\n\t\tCHARACTER_OCTET_LENGTH as integer,\n\t\tNUMERIC_PRECISION as integer,\n\t\tNUMERIC_PRECISION_RADIX as integer,\n\t\tNUMERIC_SCALE as integer,\n\t\tDATETIME_PRECISION as integer,\n\t\tCHARACTER_SET_CATALOG as string,\n\t\tCHARACTER_SET_SCHEMA as string,\n\t\tCHARACTER_SET_NAME as string,\n\t\tCOLLATION_CATALOG as string,\n\t\tCOLLATION_SCHEMA as string,\n\t\tCOLLATION_NAME as string,\n\t\tDOMAIN_CATALOG as string,\n\t\tDOMAIN_SCHEMA as string,\n\t\tDOMAIN_NAME as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\ttable_catalog = TABLE_CATALOG,\n\t\ttable_schema = TABLE_SCHEMA,\n\t\ttable_name = TABLE_NAME,\n\t\tcolumn_name = COLUMN_NAME,\n\t\tordinal_position = ORDINAL_POSITION,\n\t\tcolumn_default = COLUMN_DEFAULT,\n\t\tis_nullable = IS_NULLABLE,\n\t\tdata_type = DATA_TYPE,\n\t\tCHARACTER_MAXIMUM_LENGTH,\n\t\tCHARACTER_OCTET_LENGTH,\n\t\tNUMERIC_PRECISION,\n\t\tNUMERIC_PRECISION_RADIX,\n\t\tNUMERIC_SCALE,\n\t\tDATETIME_PRECISION,\n\t\tCHARACTER_SET_CATALOG,\n\t\tCHARACTER_SET_SCHEMA,\n\t\tCHARACTER_SET_NAME,\n\t\tCOLLATION_CATALOG,\n\t\tCOLLATION_SCHEMA,\n\t\tCOLLATION_NAME,\n\t\tDOMAIN_CATALOG,\n\t\tDOMAIN_SCHEMA,\n\t\tDOMAIN_NAME\n\t)) ~> sink1"
+		}
+	}
+}

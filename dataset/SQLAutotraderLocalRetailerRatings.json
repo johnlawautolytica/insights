@@ -1,0 +1,70 @@
+{
+	"name": "SQLAutotraderLocalRetailerRatings",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "DealerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealerName",
+				"type": "varchar"
+			},
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "LocalRating",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LocalDaysToSell",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Reg_No",
+				"type": "varchar"
+			},
+			{
+				"name": "StockNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrentRecord",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Autotrader Local Retailer Ratings"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

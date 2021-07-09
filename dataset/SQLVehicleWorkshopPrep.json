@@ -1,0 +1,97 @@
+{
+	"name": "SQLVehicleWorkshopPrep",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealershipID",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleID",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNo",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "EstimatedCost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ActualCost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "LineCreatedDate",
+				"type": "date"
+			},
+			{
+				"name": "PushedDate",
+				"type": "date"
+			},
+			{
+				"name": "OrderDate",
+				"type": "date"
+			},
+			{
+				"name": "WIPNo",
+				"type": "varchar"
+			},
+			{
+				"name": "OptionCode",
+				"type": "varchar"
+			},
+			{
+				"name": "WorkDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "ProgressCode",
+				"type": "varchar"
+			},
+			{
+				"name": "AccountStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "QuarantineStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "LogBook",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleInvoiceDate",
+				"type": "date"
+			},
+			{
+				"name": "VehicleDeliveryDate",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VehicleWorkshopPrep"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,28 @@
+{
+	"name": "PeterVardyVehicleWorkshopPrep",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "PeterVardyVSBI4",
+						"type": "DatasetReference"
+					},
+					"name": "VSBI4csv"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLVehicleWorkshopPrep",
+						"type": "DatasetReference"
+					},
+					"name": "SQLVehicleWorkshopPrep"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tco as string,\n\t\tVehicle as string,\n\t\tRegn as string,\n\t\tDesc as string,\n\t\tEstimated as float '###.##',\n\t\tActual as float '###.##',\n\t\t{Line Created} as date 'dd/MM/yyyy',\n\t\t{Date Pushed} as date 'dd/MM/yyyy',\n\t\t{Order date} as date 'dd/MM/yyyy',\n\t\t{WIP no} as string,\n\t\t{Option code} as string,\n\t\t{work desc} as string,\n\t\t{Progress code} as string,\n\t\t{A/c s status} as string,\n\t\t{Analysis code} as string,\n\t\t{Quarantine status} as string,\n\t\t{Log book} as string,\n\t\t{veh Inv date} as date 'dd/MM/yyyy',\n\t\t{Veh Delivery date} as date 'dd/MM/yyyy'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy'],\n\tpreferredIntegralType: 'integer',\n\tpreferredFractionalType: 'float') ~> VSBI4csv\nVSBI4csv sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tVehicleID as string,\n\t\tRegistrationNo as string,\n\t\tVehicleDescription as string,\n\t\tEstimatedCost as double,\n\t\tActualCost as double,\n\t\tLineCreatedDate as date,\n\t\tPushedDate as date,\n\t\tOrderDate as date,\n\t\tWIPNo as string,\n\t\tOptionCode as string,\n\t\tWorkDescription as string,\n\t\tProgressCode as string,\n\t\tAccountStatus as string,\n\t\tQuarantineStatus as string,\n\t\tLogBook as string,\n\t\tVehicleInvoiceDate as date,\n\t\tVehicleDeliveryDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpostSQLs:['update dbo.vehicleworkshopprep set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealershipID = co,\n\t\tVehicleID = Vehicle,\n\t\tRegistrationNo = Regn,\n\t\tVehicleDescription = Desc,\n\t\tEstimatedCost = Estimated,\n\t\tActualCost = Actual,\n\t\tLineCreatedDate = {Line Created},\n\t\tPushedDate = {Date Pushed},\n\t\tOrderDate = {Order date},\n\t\tWIPNo = {WIP no},\n\t\tOptionCode = {Option code},\n\t\tWorkDescription = {work desc},\n\t\tProgressCode = {Progress code},\n\t\tAccountStatus = {A/c s status},\n\t\tQuarantineStatus = {Quarantine status},\n\t\tLogBook = {Log book},\n\t\tVehicleInvoiceDate = {veh Inv date},\n\t\tVehicleDeliveryDate = {Veh Delivery date}\n\t)) ~> SQLVehicleWorkshopPrep"
+		}
+	}
+}

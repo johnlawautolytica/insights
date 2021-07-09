@@ -1,0 +1,185 @@
+{
+	"name": "PeterVardyWebStockFeedCSVOld",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "WebStockFeed.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "Images Not Found",
+				"type": "String"
+			},
+			{
+				"name": "Dealer Id",
+				"type": "String"
+			},
+			{
+				"name": "Feed_ID",
+				"type": "String"
+			},
+			{
+				"name": "Vehicle_ID",
+				"type": "String"
+			},
+			{
+				"name": "FullRegistration",
+				"type": "String"
+			},
+			{
+				"name": "Colour",
+				"type": "String"
+			},
+			{
+				"name": "Fueltype",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "Mileage",
+				"type": "String"
+			},
+			{
+				"name": "BodyType",
+				"type": "String"
+			},
+			{
+				"name": "Doors",
+				"type": "String"
+			},
+			{
+				"name": "Make",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Variant",
+				"type": "String"
+			},
+			{
+				"name": "EngineSize",
+				"type": "String"
+			},
+			{
+				"name": "Price",
+				"type": "String"
+			},
+			{
+				"name": "Transmission",
+				"type": "String"
+			},
+			{
+				"name": "PictureRefs",
+				"type": "String"
+			},
+			{
+				"name": "ServiceHistory",
+				"type": "String"
+			},
+			{
+				"name": "PreviousOwners",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "FourWheelDrive",
+				"type": "String"
+			},
+			{
+				"name": "Options",
+				"type": "String"
+			},
+			{
+				"name": "Comments",
+				"type": "String"
+			},
+			{
+				"name": "New",
+				"type": "String"
+			},
+			{
+				"name": "Used",
+				"type": "String"
+			},
+			{
+				"name": "Site",
+				"type": "String"
+			},
+			{
+				"name": "Origin",
+				"type": "String"
+			},
+			{
+				"name": "V5",
+				"type": "String"
+			},
+			{
+				"name": "Condition",
+				"type": "String"
+			},
+			{
+				"name": "ExDemo",
+				"type": "String"
+			},
+			{
+				"name": "FranchiseApproved",
+				"type": "String"
+			},
+			{
+				"name": "TradePrice",
+				"type": "String"
+			},
+			{
+				"name": "PriceSuffix",
+				"type": "String"
+			},
+			{
+				"name": "ServiceHistoryText",
+				"type": "String"
+			},
+			{
+				"name": "Capid",
+				"type": "String"
+			},
+			{
+				"name": "Attention_Grabber",
+				"type": "String"
+			},
+			{
+				"name": "Glass_Id",
+				"type": "String"
+			},
+			{
+				"name": "Video_URL",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

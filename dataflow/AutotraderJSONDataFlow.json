@@ -1,0 +1,63 @@
+{
+	"name": "AutotraderJSONDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AutotraderJSON",
+						"type": "DatasetReference"
+					},
+					"name": "AutotraderJSON"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLAutotraderLocalRetailerRatings",
+						"type": "DatasetReference"
+					},
+					"name": "SQLAutotraderLocalRetailerRatings"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLAutotraderAdvert",
+						"type": "DatasetReference"
+					},
+					"name": "SQLAutotraderAdverts"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLAutotraderValuations",
+						"type": "DatasetReference"
+					},
+					"name": "SQLAutotraderValuations"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLAutotraderMarketSupply",
+						"type": "DatasetReference"
+					},
+					"name": "SQLAutotraderMarketSupply"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLAutotraderCompetitors",
+						"type": "DatasetReference"
+					},
+					"name": "SQLAutotraderCompetitors"
+				}
+			],
+			"transformations": [
+				{
+					"name": "LocalRetailerRatings"
+				},
+				{
+					"name": "Competitors"
+				}
+			],
+			"script": "source(output(\n\t\tOriginalInformation as (RecordID as string, RegNo as string, StockNo as string),\n\t\tinformation as (derivative as string, make as string, model as string, owners as string, plate as string, year as string, attentionGrabber as string, advertText as string),\n\t\tadvert as (responseMetrics as (performanceRating as (score as string, rating as string), yesterday as (advertViews as string, searchViews as string), lastWeek as (advertViews as string, searchViews as string)), advertUrl as string, source as string),\n\t\tvaluations as (marketAverageGuidePrice as (trade as (amountGBP as double), retail as (amountGBP as double), partExchange as (amountGBP as double)), adjustedGuidePrice as (trade as (amountGBP as double), retail as (amountGBP as double), partExchange as (amountGBP as double), priceIndicator as string, priceIndicatorV2 as string)),\n\t\tretailMetrics as (liveMarketCondition as string, marketSupply as string, buyerDemand as string, dealerMetrics as (dealerId as string, dealerName as string, localRetailRating as string, localDaysToSell as string)[]),\n\t\tcompetitors as (totalResultCount as string, filters as (filterExclusions as string[], includeWriteOffCategoryVehicles as boolean, segment as string, fuelType as string, distance as string, plateMin as string, plateMax as string, mileageMin as string, mileageMax as string, engineSize as string, colour as string, bodyType as string, postcode as string, taxRate as string, doors as string, driveTrain as string, trim as string, transmission as string), competitorAdverts as (registration as string, make as string, model as string, derivative as string, mileage as string, year as string, plate as string, colour as string, insuranceWriteOffCategory as string, taxRate as string, owners as string, bodyType as string, fuel as string, transmission as string, seller as (name as string, town as string, segment as string), atMetrics as (pricePosition as double), atAdvertUrl as string, attentionGrabber as string, daysInStock as string, mainImage as string, advertText as string, price as double, priceIndicator as string, priceIndicatorV2 as string)[])\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> AutotraderJSON\nAutotraderJSON foldDown(unroll(retailMetrics.dealerMetrics),\n\tmapColumn(\n\t\tOriginalInformation,\n\t\tdealerMetrics = retailMetrics.dealerMetrics\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> LocalRetailerRatings\nAutotraderJSON foldDown(unroll(competitors.competitorAdverts),\n\tmapColumn(\n\t\tOriginalInformation,\n\t\tAds = competitors.competitorAdverts,\n\t\tsellername = competitors.competitorAdverts.seller.name,\n\t\tsellertown = competitors.competitorAdverts.seller.town,\n\t\tsellersegment = competitors.competitorAdverts.seller.segment,\n\t\tpricePosition = competitors.competitorAdverts.atMetrics.pricePosition\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Competitors\nLocalRetailerRatings sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDate as timestamp,\n\t\tDealerID as integer,\n\t\tDealerName as string,\n\t\tID as long,\n\t\tLocalRating as integer,\n\t\tLocalDaysToSell as integer,\n\t\tReg_No as string,\n\t\tStockNumber as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader local retailer ratings] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader local retailer ratings] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader local retailer ratings] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealerID = dealerMetrics.dealerId,\n\t\tDealerName = dealerMetrics.dealerName,\n\t\tLocalRating = dealerMetrics.localRetailRating,\n\t\tLocalDaysToSell = dealerMetrics.localDaysToSell,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderLocalRetailerRatings\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPerformanceScore as integer,\n\t\tPerformanceRating as string,\n\t\tYesterdayAdvertViews as integer,\n\t\tYesterdaySearchViews as integer,\n\t\tLastWeekAdvertViews as integer,\n\t\tLastWeekSearchViews as integer,\n\t\tAdvertURL as string,\n\t\tSource as string,\n\t\tDate as timestamp,\n\t\tRegNo as string,\n\t\tStockNo as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader advert] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader advert] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader advert] set date = getdate() where date is null;\\ndelete from [dbo].[autotrader advert] where performancescore is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tPerformanceScore = advert.responseMetrics.performanceRating.score,\n\t\tPerformanceRating = advert.responseMetrics.performanceRating.rating,\n\t\tYesterdayAdvertViews = advert.responseMetrics.yesterday.advertViews,\n\t\tYesterdaySearchViews = advert.responseMetrics.yesterday.searchViews,\n\t\tLastWeekAdvertViews = advert.responseMetrics.lastWeek.advertViews,\n\t\tLastWeekSearchViews = advert.responseMetrics.lastWeek.searchViews,\n\t\tAdvertURL = advert.advertUrl,\n\t\tSource = advert.source,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tStockNo = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderAdverts\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdjustedPartExchange as decimal(18,2),\n\t\tAdjustedRetail as decimal(18,2),\n\t\tAdjustedTrade as decimal(18,2),\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tPart_Exchange as decimal(18,2),\n\t\tPrice_Indicator as string,\n\t\tRegNo as string,\n\t\tRetail as decimal(18,2),\n\t\tStockNumber as integer,\n\t\tTrade as decimal(18,2),\n\t\tValuation_Type as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader valuations] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader valuations] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader valuations] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tAdjustedPartExchange = valuations.adjustedGuidePrice.partExchange.amountGBP,\n\t\tAdjustedRetail = valuations.adjustedGuidePrice.retail.amountGBP,\n\t\tAdjustedTrade = valuations.adjustedGuidePrice.trade.amountGBP,\n\t\tPart_Exchange = valuations.adjustedGuidePrice.partExchange.amountGBP,\n\t\tPrice_Indicator = valuations.adjustedGuidePrice.priceIndicator,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tRetail = valuations.marketAverageGuidePrice.retail.amountGBP,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = valuations.adjustedGuidePrice.priceIndicatorV2,\n\t\tTrade = valuations.marketAverageGuidePrice.trade.amountGBP\n\t)) ~> SQLAutotraderValuations\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tBuyerDemand as integer,\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tLiveMarketCondition as integer,\n\t\tMarketSupply as integer,\n\t\tRegNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader Market Supply] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader Market Supply] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader market supply] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tBuyerDemand = retailMetrics.buyerDemand,\n\t\tLiveMarketCondition = retailMetrics.liveMarketCondition,\n\t\tMarketSupply = retailMetrics.marketSupply,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderMarketSupply\nCompetitors sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdvertText as string,\n\t\tAdvertURL as string,\n\t\tAttentionGrabber as string,\n\t\tBodystyle as string,\n\t\tColour as string,\n\t\tCompetitorReg as string,\n\t\tDate as timestamp,\n\t\tDaysinStock as integer,\n\t\tDerivative as string,\n\t\tFuel as string,\n\t\tId as long,\n\t\tMainImage as string,\n\t\tMake as string,\n\t\tMileage as integer,\n\t\tModel as string,\n\t\tOwners as integer,\n\t\tPlate as integer,\n\t\tPrice as decimal(18,2),\n\t\tPriceIndicator as string,\n\t\tPricePosition as decimal(18,2),\n\t\tReg_No as string,\n\t\tSellerName as string,\n\t\tSellerSegment as string,\n\t\tSellerTown as string,\n\t\tStockNumber as integer,\n\t\tTaxRate as integer,\n\t\tTransmission as string,\n\t\tYear as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader competitors] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader competitors] set currentrecord = 1 where currentrecord is null;\\ndelete from [dbo].[autotrader competitors] where Make is null and currentrecord = 1;\\nupdate [dbo].[autotrader competitors] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tAdvertText = Ads.advertText,\n\t\tAdvertURL = Ads.atAdvertUrl,\n\t\tAttentionGrabber = Ads.attentionGrabber,\n\t\tBodystyle = Ads.bodyType,\n\t\tColour = Ads.colour,\n\t\tCompetitorReg = Ads.registration,\n\t\tDaysinStock = Ads.daysInStock,\n\t\tDerivative = Ads.derivative,\n\t\tFuel = Ads.fuel,\n\t\tMainImage = Ads.mainImage,\n\t\tMake = Ads.make,\n\t\tMileage = Ads.mileage,\n\t\tModel = Ads.model,\n\t\tOwners = Ads.owners,\n\t\tPlate = Ads.plate,\n\t\tPrice = Ads.price,\n\t\tPriceIndicator = Ads.priceIndicator,\n\t\tPricePosition = pricePosition,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tSellerName = sellername,\n\t\tSellerSegment = sellersegment,\n\t\tSellerTown = sellertown,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tTaxRate = Ads.taxRate,\n\t\tTransmission = Ads.transmission,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = Ads.priceIndicatorV2,\n\t\tYear = Ads.year\n\t)) ~> SQLAutotraderCompetitors"
+		}
+	}
+}

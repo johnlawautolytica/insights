@@ -1,0 +1,54 @@
+{
+	"name": "AutotraderLocalRetailerRatingsCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AutotraderLocalRetailerRatings.csv",
+				"folderPath": "VehicleStock",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "Date"
+			},
+			{
+				"name": "DealerID",
+				"type": "String"
+			},
+			{
+				"name": "DealerName",
+				"type": "String"
+			},
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "LocalRating",
+				"type": "String"
+			},
+			{
+				"name": "Reg No",
+				"type": "String"
+			},
+			{
+				"name": "StockNumber",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,64 @@
+{
+	"name": "SQLUnleashedSalesOrders",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Client ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Order Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Order Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Required Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Completed Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Order Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Currency ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Sales Person Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Sales Person GUID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UnleashedSalesOrders_merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

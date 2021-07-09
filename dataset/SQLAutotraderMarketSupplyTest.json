@@ -1,0 +1,61 @@
+{
+	"name": "SQLAutotraderMarketSupplyTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "BuyerDemand",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "LiveMarketCondition",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MarketSupply",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegNo",
+				"type": "varchar"
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrentRecord",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Autotrader Market Supply Test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

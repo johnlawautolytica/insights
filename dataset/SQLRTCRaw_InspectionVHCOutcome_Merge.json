@@ -1,0 +1,57 @@
+{
+	"name": "SQLRTCRaw_InspectionVHCOutcome_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InUse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DealerID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HCType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OutcomeType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContactCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_InspectionVHCOutcome_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

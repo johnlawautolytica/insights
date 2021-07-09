@@ -1,0 +1,375 @@
+{
+	"name": "SQLWebStockFeed_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealership",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FeedID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VehicleID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockNumber",
+				"type": "nchar"
+			},
+			{
+				"name": "VehicleType",
+				"type": "nchar"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "ChassisNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EngineNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Colour",
+				"type": "varchar"
+			},
+			{
+				"name": "SpecificPaintColour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FuelType",
+				"type": "varchar"
+			},
+			{
+				"name": "TrimColour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TrimType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegistrationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Year",
+				"type": "nchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MileageType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BodyStyle",
+				"type": "varchar"
+			},
+			{
+				"name": "Doors",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "varchar"
+			},
+			{
+				"name": "Range",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineSize",
+				"type": "nchar"
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "Transmission",
+				"type": "varchar"
+			},
+			{
+				"name": "PictureRefs",
+				"type": "varchar"
+			},
+			{
+				"name": "ServiceHistory",
+				"type": "varchar"
+			},
+			{
+				"name": "PreviousOwners",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Approved",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WarrantyLevel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FullVehicleCheck",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MultiPointInspection",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BranchPurchaseDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "GroupPurchaseDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "StockStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehicleStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AvailableDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ReadyToGo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HeadOfficeStock",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchasePrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "StockValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ReconditioningDFA",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "DeliveryCost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RetailPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "DeliveryRetailPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ReducedPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "IDAAmount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TrackerNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category",
+				"type": "varchar"
+			},
+			{
+				"name": "HouseCharge",
+				"type": "varchar"
+			},
+			{
+				"name": "CO2",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "IsVisible",
+				"type": "varchar"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastUpdatedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "SentToWeb",
+				"type": "varchar"
+			},
+			{
+				"name": "Seats",
+				"type": "varchar"
+			},
+			{
+				"name": "TaxBand",
+				"type": "varchar"
+			},
+			{
+				"name": "AutotraderBanner",
+				"type": "varchar"
+			},
+			{
+				"name": "MilesPerGallon",
+				"type": "varchar"
+			},
+			{
+				"name": "InsuranceGroup",
+				"type": "varchar"
+			},
+			{
+				"name": "Removed",
+				"type": "varchar"
+			},
+			{
+				"name": "DateRemoved",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ActualRegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "Quarantine",
+				"type": "varchar"
+			},
+			{
+				"name": "YouTubeVideo",
+				"type": "varchar"
+			},
+			{
+				"name": "NumberOfImages",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "varchar"
+			},
+			{
+				"name": "Demo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VATStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TradePrice",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "CapID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FullCapCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VideoURL",
+				"type": "varchar"
+			},
+			{
+				"name": "InsertedDate",
+				"type": "date"
+			},
+			{
+				"name": "DateSentToWeb",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "WebStockFeed_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

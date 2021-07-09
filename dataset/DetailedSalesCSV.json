@@ -1,0 +1,328 @@
+{
+	"name": "DetailedSalesCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "autolytica"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Client ID",
+				"type": "String"
+			},
+			{
+				"name": "Dealer",
+				"type": "String"
+			},
+			{
+				"name": "Cust ID",
+				"type": "String"
+			},
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "forename",
+				"type": "String"
+			},
+			{
+				"name": "Surname",
+				"type": "String"
+			},
+			{
+				"name": "email",
+				"type": "String"
+			},
+			{
+				"name": "home phone",
+				"type": "String"
+			},
+			{
+				"name": "mobile",
+				"type": "String"
+			},
+			{
+				"name": "add 1",
+				"type": "String"
+			},
+			{
+				"name": "add 2",
+				"type": "String"
+			},
+			{
+				"name": "add 3",
+				"type": "String"
+			},
+			{
+				"name": "add 4",
+				"type": "String"
+			},
+			{
+				"name": "postcode",
+				"type": "String"
+			},
+			{
+				"name": "New or Used",
+				"type": "String"
+			},
+			{
+				"name": "type",
+				"type": "String"
+			},
+			{
+				"name": "Veh Magic",
+				"type": "String"
+			},
+			{
+				"name": "stock no",
+				"type": "String"
+			},
+			{
+				"name": "chassis",
+				"type": "String"
+			},
+			{
+				"name": "reg no",
+				"type": "String"
+			},
+			{
+				"name": "reg date",
+				"type": "String"
+			},
+			{
+				"name": "date in stock",
+				"type": "String"
+			},
+			{
+				"name": "CAP VIN",
+				"type": "String"
+			},
+			{
+				"name": "CAP code",
+				"type": "String"
+			},
+			{
+				"name": "make",
+				"type": "String"
+			},
+			{
+				"name": "model",
+				"type": "String"
+			},
+			{
+				"name": "derivative",
+				"type": "String"
+			},
+			{
+				"name": "engine size",
+				"type": "String"
+			},
+			{
+				"name": "bodystyle",
+				"type": "String"
+			},
+			{
+				"name": "mileage",
+				"type": "String"
+			},
+			{
+				"name": "fuel",
+				"type": "String"
+			},
+			{
+				"name": "transmission",
+				"type": "String"
+			},
+			{
+				"name": "generic colour",
+				"type": "String"
+			},
+			{
+				"name": "specific colour",
+				"type": "String"
+			},
+			{
+				"name": "doors",
+				"type": "String"
+			},
+			{
+				"name": "SIV",
+				"type": "String"
+			},
+			{
+				"name": "sale date",
+				"type": "String"
+			},
+			{
+				"name": "inv number",
+				"type": "String"
+			},
+			{
+				"name": "sales exec",
+				"type": "String"
+			},
+			{
+				"name": "full inv value",
+				"type": "String"
+			},
+			{
+				"name": "paint",
+				"type": "String"
+			},
+			{
+				"name": "warr",
+				"type": "String"
+			},
+			{
+				"name": "GAP",
+				"type": "String"
+			},
+			{
+				"name": "Acc",
+				"type": "String"
+			},
+			{
+				"name": "recon",
+				"type": "String"
+			},
+			{
+				"name": "Finance commission",
+				"type": "String"
+			},
+			{
+				"name": "profit",
+				"type": "String"
+			},
+			{
+				"name": "Sale type",
+				"type": "String"
+			},
+			{
+				"name": "PX1",
+				"type": "String"
+			},
+			{
+				"name": "PX2",
+				"type": "String"
+			},
+			{
+				"name": "PX3",
+				"type": "String"
+			},
+			{
+				"name": "Source",
+				"type": "String"
+			},
+			{
+				"name": "Model Analysis Code",
+				"type": "String"
+			},
+			{
+				"name": "Purchaser",
+				"type": "String"
+			},
+			{
+				"name": "Supplier Name",
+				"type": "String"
+			},
+			{
+				"name": "Purchase Invoice Date",
+				"type": "String"
+			},
+			{
+				"name": "Available Date",
+				"type": "String"
+			},
+			{
+				"name": "Accessory Profit",
+				"type": "String"
+			},
+			{
+				"name": "Paint Profit",
+				"type": "String"
+			},
+			{
+				"name": "Warr Profit",
+				"type": "String"
+			},
+			{
+				"name": "Gap Profit",
+				"type": "String"
+			},
+			{
+				"name": "Other Profit",
+				"type": "String"
+			},
+			{
+				"name": "Volume Bonus",
+				"type": "String"
+			},
+			{
+				"name": "Bonus",
+				"type": "String"
+			},
+			{
+				"name": "RFL Profit",
+				"type": "String"
+			},
+			{
+				"name": "Metal Profit",
+				"type": "String"
+			},
+			{
+				"name": "Vehicle Invoice Value",
+				"type": "String"
+			},
+			{
+				"name": "Delivery Date",
+				"type": "String"
+			},
+			{
+				"name": "Group Purchase Date",
+				"type": "String"
+			},
+			{
+				"name": "Received Date",
+				"type": "String"
+			},
+			{
+				"name": "Date In Group",
+				"type": "String"
+			},
+			{
+				"name": "Purchase Account",
+				"type": "String"
+			},
+			{
+				"name": "Supplier Name",
+				"type": "String"
+			},
+			{
+				"name": "Fuel Type",
+				"type": "String"
+			},
+			{
+				"name": "Sales Account ID",
+				"type": "String"
+			},
+			{
+				"name": "Sales Account Name",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

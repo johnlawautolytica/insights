@@ -1,0 +1,335 @@
+{
+	"name": "PeterVardySOBI1",
+	"properties": {
+		"activities": [
+			{
+				"name": "CopyPeterVardyDataToSQL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table DMSAftersalesHours",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ID",
+									"type": "Int32",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ClientID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "S/Type",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SaleType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Invoice No",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "InvoiceNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "WIP No",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "WIPNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "RTS code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RTSCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sold",
+									"type": "Decimal",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SoldHours",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 15
+								}
+							},
+							{
+								"source": {
+									"name": "Taken",
+									"type": "Decimal",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TakenHours",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 15
+								}
+							},
+							{
+								"source": {
+									"name": "Eff",
+									"type": "Decimal",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Efficiency",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 15
+								}
+							},
+							{
+								"source": {
+									"name": "Sale Value",
+									"type": "Decimal",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SaleValue",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 15
+								}
+							},
+							{
+								"source": {
+									"name": "Rec Rate",
+									"type": "Decimal",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RecoveryRate",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 15
+								}
+							},
+							{
+								"source": {
+									"name": "Mech",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Technician",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LA",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LA",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LT",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "co",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Dealer",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Operator name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "OperatorName",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Franchise code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FranchiseCode",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Chassis number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ChassisNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Registration number.",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RegistrationNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date editted",
+									"type": "DateTime",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DateEdited",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false,
+							"dateTimeFormat": "dd/MM/yyyy"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "PeterVardySOBI1CSV",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQLDMSAftersalesHours",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "EmployeeMasterMerge",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CopyPeterVardyDataToSQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[DoReferenceTableUpdate]",
+					"storedProcedureParameters": {
+						"SourceSystemID": {
+							"value": "3",
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-12-23T11:00:23Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

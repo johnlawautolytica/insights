@@ -1,0 +1,35 @@
+{
+	"name": "EnquiryMAX_Enquiries",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EnquiryMAXEnquiriesJSON",
+						"type": "DatasetReference"
+					},
+					"name": "EnquiryMAXEnquiriesJSON"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLEnquiryMAX_Enquiries",
+						"type": "DatasetReference"
+					},
+					"name": "EnquiryMAXEnquiries"
+				}
+			],
+			"transformations": [
+				{
+					"name": "EnquiryMAXEnquiriesJSONUpsert"
+				},
+				{
+					"name": "DateConversion"
+				}
+			],
+			"script": "source(output(\n\t\tcreatedDateTime as string,\n\t\tenquiryId as string,\n\t\tcustomerId as string,\n\t\tleadId as string,\n\t\tstatus as (code as string, description as string),\n\t\ttestDrive as (appointmentDate as string, taken as boolean),\n\t\ttype as string,\n\t\tpartExchangeCount as string,\n\t\tsourceOfEnquiry as string,\n\t\tmethodOfContact as string,\n\t\tvehicleOfInterest as (make as string, range as string, model as string, derivative as string, vrm as string, fuelType as string, vehicleCode as string, vehicleCodeType as string, odometer as (unit as string, currentValue as string), stockNumber as string, vin as string),\n\t\tsoldVehicle as (make as string, range as string, model as string, derivative as string, vrm as string, fuelType as string, vehicleCode as string, vehicleCodeType as string, odometer as (unit as string, currentValue as string), stockNumber as string, vin as string),\n\t\tlinks as ({} as string),\n\t\tlostSale as (lostSaleRequested as string, lostSaleAccepted as string, lostSaleReason as string),\n\t\toriginApp as string,\n\t\tenquiryNotes as (description as string, createdDateTime as string, createdByName as string)[],\n\t\tcustomerFinanceDetails as (model as string, registration as string, agreementNo as string, financeProduct as string, term as string, deposit as string, installmentAmount as string, gmfvBalloon as string, annualContractMileage as string, contractStartDate as string, contractEndDate as string, outstandingBalance as string),\n\t\tdeskingDeal as (financeProduct as string, term as string, deposit as string, installmentAmount as string, gmfvBalloon as string, annualContractMileage as string),\n\t\testimatedEquityPosition as (estimatedPxValue as string, estimatedEquity as string)\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> EnquiryMAXEnquiriesJSON\nEnquiryMAXEnquiriesJSON alterRow(upsertIf(isNull(enquiryId)==false())) ~> EnquiryMAXEnquiriesJSONUpsert\nEnquiryMAXEnquiriesJSONUpsert derive(LostSaleRequestedDate = toTimestamp(lostSale.lostSaleRequested,'yyyy-MM-dd\\'T\\'HH:mm:ss'),\n\t\tLostSaleAcceptedDate = toTimestamp(lostSale.lostSaleAccepted,'yyyy-MM-dd\\'T\\'HH:mm:ss')) ~> DateConversion\nDateConversion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEnquiryID as string,\n\t\tCustomerID as string,\n\t\tLeadID as string,\n\t\tStatusCode as string,\n\t\tStatusDescription as string,\n\t\tNewOrUsed as string,\n\t\tSourceOfEnquiry as string,\n\t\tMethodOfContact as string,\n\t\tSoldNewOrUsed as string,\n\t\tDeliveryDate as timestamp,\n\t\tOrderDate as timestamp,\n\t\tMake as string,\n\t\tRange as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tRegistrationNumber as string,\n\t\tFuelType as string,\n\t\tMileage as integer,\n\t\tStockNumber as string,\n\t\tLostSaleRequestedDate as timestamp,\n\t\tLostSaleAcceptedDate as timestamp,\n\t\tLostSaleReason as string,\n\t\tuniqueid as integer,\n\t\tClientID as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:true,\n\tkeys:['EnquiryID'],\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCustomerID = customerId,\n\t\tLeadID = leadId,\n\t\tStatusCode = status.code,\n\t\tStatusDescription = status.description,\n\t\tNewOrUsed = type,\n\t\tSourceOfEnquiry = sourceOfEnquiry,\n\t\tMethodOfContact = methodOfContact,\n\t\tMake = soldVehicle.make,\n\t\tRange = soldVehicle.range,\n\t\tModel = soldVehicle.model,\n\t\tDerivative = soldVehicle.derivative,\n\t\tRegistrationNumber = soldVehicle.vrm,\n\t\tFuelType = soldVehicle.fuelType,\n\t\tMileage = soldVehicle.odometer.currentValue,\n\t\tStockNumber = soldVehicle.stockNumber,\n\t\tLostSaleRequestedDate,\n\t\tLostSaleAcceptedDate = lostSale.lostSaleAccepted,\n\t\tLostSaleReason = lostSale.lostSaleReason,\n\t\tEnquiryID = enquiryId\n\t)) ~> EnquiryMAXEnquiries"
+		}
+	}
+}

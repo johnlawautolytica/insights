@@ -1,0 +1,105 @@
+{
+	"name": "PeterVardyVehicleCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "MKBI6.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Magic",
+				"type": "String"
+			},
+			{
+				"name": "Fran",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Desc",
+				"type": "String"
+			},
+			{
+				"name": "Reg",
+				"type": "String"
+			},
+			{
+				"name": "DateReg",
+				"type": "Date"
+			},
+			{
+				"name": "DateDel",
+				"type": "String"
+			},
+			{
+				"name": "NU",
+				"type": "String"
+			},
+			{
+				"name": "Last Ser",
+				"type": "String"
+			},
+			{
+				"name": "Next Ser",
+				"type": "String"
+			},
+			{
+				"name": "last MOT",
+				"type": "String"
+			},
+			{
+				"name": "Next MOT",
+				"type": "String"
+			},
+			{
+				"name": "Date Last WK",
+				"type": "String"
+			},
+			{
+				"name": "CAP",
+				"type": "String"
+			},
+			{
+				"name": "VIN",
+				"type": "String"
+			},
+			{
+				"name": "DRVMAGIC",
+				"type": "String"
+			},
+			{
+				"name": "A/Sales m",
+				"type": "String"
+			},
+			{
+				"name": "SalesM",
+				"type": "String"
+			},
+			{
+				"name": "Record status",
+				"type": "String"
+			},
+			{
+				"name": "CAP code",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

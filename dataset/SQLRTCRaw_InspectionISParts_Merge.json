@@ -1,0 +1,130 @@
+{
+	"name": "SQLRTCRaw_InspectionISParts_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartsId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartNo",
+				"type": "varchar"
+			},
+			{
+				"name": "Details",
+				"type": "varchar"
+			},
+			{
+				"name": "Qty",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "Discount",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "NetPrice",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "LabourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BinLocn",
+				"type": "varchar"
+			},
+			{
+				"name": "InStock",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Reserved",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Excluded",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Cost",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "LinkedPartsId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Alternative",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Franchise",
+				"type": "varchar"
+			},
+			{
+				"name": "BookingLineNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_InspectionvISParts_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,109 @@
+{
+	"name": "PeterVardySOBI1CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SOBI1.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "S/Type",
+				"type": "String"
+			},
+			{
+				"name": "Invoice No",
+				"type": "String"
+			},
+			{
+				"name": "WIP No",
+				"type": "String"
+			},
+			{
+				"name": "RTS code",
+				"type": "String"
+			},
+			{
+				"name": "Sold",
+				"type": "String"
+			},
+			{
+				"name": "Taken",
+				"type": "String"
+			},
+			{
+				"name": "Eff",
+				"type": "String"
+			},
+			{
+				"name": "Sale Value",
+				"type": "String"
+			},
+			{
+				"name": "Rec Rate",
+				"type": "String"
+			},
+			{
+				"name": "Mech",
+				"type": "String"
+			},
+			{
+				"name": "LA",
+				"type": "String"
+			},
+			{
+				"name": "LT",
+				"type": "String"
+			},
+			{
+				"name": "co",
+				"type": "String"
+			},
+			{
+				"name": "Operator name",
+				"type": "String"
+			},
+			{
+				"name": "Franchise code",
+				"type": "String"
+			},
+			{
+				"name": "Chassis number",
+				"type": "String"
+			},
+			{
+				"name": "Registration number.",
+				"type": "String"
+			},
+			{
+				"name": "Date editted",
+				"type": "String"
+			},
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Tmagic",
+				"type": "String"
+			},
+			{
+				"name": "Vmagic",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

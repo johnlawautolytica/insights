@@ -1,0 +1,120 @@
+{
+	"name": "SQLRTCRaw_InspectionISTyrePrices",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PricePointId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartNo",
+				"type": "varchar"
+			},
+			{
+				"name": "Description",
+				"type": "varchar"
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "FuelEffRating",
+				"type": "varchar"
+			},
+			{
+				"name": "WetGripRating",
+				"type": "varchar"
+			},
+			{
+				"name": "NoiseRating",
+				"type": "varchar"
+			},
+			{
+				"name": "NoiseClass",
+				"type": "varchar"
+			},
+			{
+				"name": "Stock",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "ThirdParty",
+				"type": "varchar"
+			},
+			{
+				"name": "Selected",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Unavail",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LoadIndex",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SpeedRating",
+				"type": "varchar"
+			},
+			{
+				"name": "OrderID",
+				"type": "varchar"
+			},
+			{
+				"name": "LineID",
+				"type": "varchar"
+			},
+			{
+				"name": "SiteID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CostPrice",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "Notes",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_InspectionvISTyrePrices"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

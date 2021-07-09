@@ -1,0 +1,58 @@
+{
+	"name": "RTC_Ext_BI_Contact_vContactsParms",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FollCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FollDays",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Type",
+				"type": "char"
+			},
+			{
+				"name": "ReportType",
+				"type": "char"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Contact_vContactParms"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

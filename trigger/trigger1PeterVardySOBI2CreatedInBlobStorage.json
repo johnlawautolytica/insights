@@ -1,0 +1,18 @@
+{
+	"name": "trigger1PeterVardySOBI2CreatedInBlobStorage",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/peter-vardy/blobs/",
+			"blobPathEndsWith": "SOBI2.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

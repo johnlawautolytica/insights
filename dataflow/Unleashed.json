@@ -1,0 +1,137 @@
+{
+	"name": "Unleashed",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "UnleashedInvoicesJSON",
+						"type": "DatasetReference"
+					},
+					"name": "UnleashedInvoicesJSON"
+				},
+				{
+					"dataset": {
+						"referenceName": "UnleashedProductsJSON",
+						"type": "DatasetReference"
+					},
+					"name": "UnleashedProductsJSON"
+				},
+				{
+					"dataset": {
+						"referenceName": "UnleashedCustomersJSON",
+						"type": "DatasetReference"
+					},
+					"name": "UnleashedCustomers"
+				},
+				{
+					"dataset": {
+						"referenceName": "UnleashedSalesOrdersJSON",
+						"type": "DatasetReference"
+					},
+					"name": "UnleashedSalesOrders"
+				},
+				{
+					"dataset": {
+						"referenceName": "UnleashedProductGroupsJSON",
+						"type": "DatasetReference"
+					},
+					"name": "UnleashedProductGroups"
+				},
+				{
+					"dataset": {
+						"referenceName": "UnleashedStockOnHandJSON",
+						"type": "DatasetReference"
+					},
+					"name": "UnleashedStockOnHand"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedInvoices",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedInvoices"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedInvoiceItems",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedInvoiceItems"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedProducts",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedProducts"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedCustomers",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedCustomers"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedSalesOrders",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedSalesOrders"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedSalesOrderLines",
+						"type": "DatasetReference"
+					},
+					"name": "SQLSalesOrderLines"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedProductGroups",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedProductGroups"
+				},
+				{
+					"dataset": {
+						"referenceName": "SQLUnleashedStock",
+						"type": "DatasetReference"
+					},
+					"name": "SQLUnleashedStock"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Invoices"
+				},
+				{
+					"name": "InvoiceLines"
+				},
+				{
+					"name": "Products"
+				},
+				{
+					"name": "Customers"
+				},
+				{
+					"name": "SalesOrders"
+				},
+				{
+					"name": "SalesOrderLines"
+				},
+				{
+					"name": "ProductGroups"
+				},
+				{
+					"name": "StockOnHand"
+				}
+			],
+			"script": "source(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (InvoiceNumber as string, OrderNumber as string, QuoteNumber as string, InvoiceDate as string, DueDate as string, InvoiceStatus as string, Customer as (CustomerCode as string, CustomerName as string, CurrencyId as string, Guid as string, LastModifiedOn as string), Comments as string, PostalAddress as (AddressType as string, AddressName as string, StreetAddress as string, StreetAddress2 as string, Suburb as string, City as string, Region as string, Country as string, PostalCode as string, IsDefault as boolean, DeliveryInstruction as string), DeliveryAddress as (AddressType as string, AddressName as string, StreetAddress as string, StreetAddress2 as string, Suburb as string, City as string, Region as string, Country as string, PostalCode as string, IsDefault as boolean, DeliveryInstruction as string), DeliveryInstruction as string, SubTotal as double, TaxTotal as double, Total as double, BCSubTotal as double, BCTaxTotal as double, BCTotal as double, CreatedBy as string, PaymentTerm as string, InvoiceLines as (LineNumber as string, LineType as string, Product as (Guid as string, ProductCode as string, ProductDescription as string), OrderQuantity as double, InvoiceQuantity as double, UnitPrice as double, DiscountRate as double, LineTotal as double, Comments as string, TaxRate as double, LineTax as double, BCUnitPrice as double, SerialNumbers as string, BatchNumbers as string, Guid as string, LastModifiedOn as string)[], Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['Invoice*.json']) ~> UnleashedInvoicesJSON\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (ProductCode as string, ProductDescription as string, Barcode as string, PackSize as string, Width as string, Height as string, Depth as string, Weight as double, MinStockAlertLevel as string, MaxStockAlertLevel as string, ReOrderPoint as string, UnitOfMeasure as string, NeverDiminishing as boolean, LastCost as double, DefaultPurchasePrice as string, DefaultSellPrice as string, CustomerSellPrice as string, AverageLandPrice as double, Obsolete as boolean, Notes as string, Images as string, ImageUrl as string, SellPriceTier1 as (Name as string, Value as string), SellPriceTier2 as (Name as string, Value as string), SellPriceTier3 as (Name as string, Value as string), SellPriceTier4 as (Name as string, Value as string), SellPriceTier5 as (Name as string, Value as string), SellPriceTier6 as (Name as string, Value as string), SellPriceTier7 as (Name as string, Value as string), SellPriceTier8 as (Name as string, Value as string), SellPriceTier9 as (Name as string, Value as string), SellPriceTier10 as (Name as string, Value as string), XeroTaxCode as string, XeroTaxRate as string, TaxablePurchase as boolean, TaxableSales as boolean, XeroSalesTaxCode as string, XeroSalesTaxRate as string, IsComponent as boolean, IsAssembledProduct as boolean, ProductGroup as (GroupName as string, Guid as string, LastModifiedOn as string), XeroSalesAccount as string, XeroCostOfGoodsAccount as string, PurchaseAccount as string, BinLocation as string, Supplier as string, AttributeSet as string, SourceId as string, SourceVariantParentId as string, IsSerialized as boolean, IsBatchTracked as boolean, IsSellable as boolean, MinimumSellPrice as string, MinimumSaleQuantity as string, MinimumOrderQuantity as string, CreatedBy as string, CreatedOn as string, LastModifiedBy as string, CommerceCode as string, CustomsDescription as string, SupplementaryClassificationAbbreviation as string, ICCCountryCode as string, ICCCountryName as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['Products*.json']) ~> UnleashedProductsJSON\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (Addresses as (AddressType as string, AddressName as string, StreetAddress as string, StreetAddress2 as string, Suburb as string, City as string, Region as string, Country as string, PostalCode as string, IsDefault as boolean, DeliveryInstruction as string)[], TaxCode as string, TaxRate as string, CustomerCode as string, CustomerName as string, GSTVATNumber as string, BankName as string, BankBranch as string, BankAccount as string, Website as string, PhoneNumber as string, FaxNumber as string, MobileNumber as string, DDINumber as string, TollFreeNumber as string, Email as string, EmailCC as string, Currency as (CurrencyCode as string, Description as string, Guid as string, LastModifiedOn as string), Notes as string, Taxable as boolean, XeroContactId as string, SalesPerson as string, DiscountRate as double, PrintPackingSlipInsteadOfInvoice as boolean, PrintInvoice as boolean, StopCredit as boolean, Obsolete as boolean, XeroSalesAccount as string, XeroCostOfGoodsAccount as string, SellPriceTier as string, SellPriceTierReference as string, CustomerType as string, PaymentTerm as string, ContactFirstName as string, ContactLastName as string, SourceId as string, CreatedBy as string, CreatedOn as string, LastModifiedBy as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['Customer*.json']) ~> UnleashedCustomers\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (SalesOrderLines as (LineNumber as string, LineType as string, Product as (Guid as string, ProductCode as string, ProductDescription as string), DueDate as string, OrderQuantity as double, UnitPrice as double, DiscountRate as double, LineTotal as double, Volume as string, Weight as double, Comments as string, AverageLandedPriceAtTimeOfSale as double, TaxRate as double, LineTax as double, XeroTaxCode as string, BCUnitPrice as double, BCLineTotal as double, BCLineTax as double, LineTaxCode as string, XeroSalesAccount as string, SerialNumbers as string, BatchNumbers as string, Guid as string, LastModifiedOn as string)[], OrderNumber as string, OrderDate as string, RequiredDate as string, CompletedDate as string, OrderStatus as string, Customer as (CustomerCode as string, CustomerName as string, CurrencyId as string, Guid as string, LastModifiedOn as string), CustomerRef as string, Comments as string, Warehouse as (WarehouseCode as string, WarehouseName as string, IsDefault as boolean, StreetNo as string, AddressLine1 as string, AddressLine2 as string, Suburb as string, City as string, Region as string, Country as string, PostCode as string, PhoneNumber as string, FaxNumber as string, MobileNumber as string, DDINumber as string, ContactName as string, Obsolete as boolean, Guid as string, LastModifiedOn as string), ReceivedDate as string, DeliveryInstruction as string, DeliveryName as string, DeliveryStreetAddress as string, DeliveryStreetAddress2 as string, DeliverySuburb as string, DeliveryCity as string, DeliveryRegion as string, DeliveryCountry as string, DeliveryPostCode as string, Currency as (CurrencyCode as string, Description as string, Guid as string, LastModifiedOn as string), ExchangeRate as double, DiscountRate as double, Tax as (TaxCode as string, Description as string, TaxRate as double, CanApplyToExpenses as boolean, CanApplyToRevenue as boolean, Obsolete as boolean, Guid as string, LastModifiedOn as string), TaxRate as double, XeroTaxCode as string, SubTotal as double, TaxTotal as double, Total as double, TotalVolume as double, TotalWeight as double, BCSubTotal as double, BCTaxTotal as double, BCTotal as double, PaymentDueDate as string, AllocateProduct as boolean, SalesOrderGroup as string, DeliveryMethod as string, SalesPerson as (FullName as string, Email as string, Obsolete as boolean, Guid as string, LastModifiedOn as string), SendAccountingJournalOnly as boolean, SourceId as string, CreatedBy as string, CreatedOn as string, LastModifiedBy as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['SalesOrders*.json']) ~> UnleashedSalesOrders\nsource(output(\n\t\tItems as (GroupName as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> UnleashedProductGroups\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (ProductCode as string, ProductDescription as string, ProductGuid as string, ProductSourceId as string, ProductGroupName as string, WarehouseId as string, Warehouse as string, WarehouseCode as string, DaysSinceLastSale as string, OnPurchase as double, AllocatedQty as double, AvailableQty as double, QtyOnHand as double, AvgCost as double, TotalCost as double, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['StockOnHand*.json']) ~> UnleashedStockOnHand\nUnleashedInvoicesJSON foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Invoices\nUnleashedInvoicesJSON foldDown(unroll(Items.InvoiceLines),\n\tmapColumn(\n\t\tPagination,\n\t\tInvoiceNumber = Items.InvoiceNumber,\n\t\tOrderNumber = Items.OrderNumber,\n\t\tQuoteNumber = Items.QuoteNumber,\n\t\tInvoiceDate = Items.InvoiceDate,\n\t\tDueDate = Items.DueDate,\n\t\tInvoiceStatus = Items.InvoiceStatus,\n\t\tCustomer = Items.Customer,\n\t\tComments = Items.Comments,\n\t\tPostalAddress = Items.PostalAddress,\n\t\tDeliveryAddress = Items.DeliveryAddress,\n\t\tDeliveryInstruction = Items.DeliveryInstruction,\n\t\tSubTotal = Items.SubTotal,\n\t\tTaxTotal = Items.TaxTotal,\n\t\tTotal = Items.Total,\n\t\tBCSubTotal = Items.BCSubTotal,\n\t\tBCTaxTotal = Items.BCTaxTotal,\n\t\tBCTotal = Items.BCTotal,\n\t\tCreatedBy = Items.CreatedBy,\n\t\tPaymentTerm = Items.PaymentTerm,\n\t\tLineNumber = Items.InvoiceLines.LineNumber,\n\t\tLineType = Items.InvoiceLines.LineType,\n\t\tProduct = Items.InvoiceLines.Product,\n\t\tOrderQuantity = Items.InvoiceLines.OrderQuantity,\n\t\tInvoiceQuantity = Items.InvoiceLines.InvoiceQuantity,\n\t\tUnitPrice = Items.InvoiceLines.UnitPrice,\n\t\tDiscountRate = Items.InvoiceLines.DiscountRate,\n\t\tLineTotal = Items.InvoiceLines.LineTotal,\n\t\tTaxRate = Items.InvoiceLines.TaxRate,\n\t\tLineTax = Items.InvoiceLines.LineTax,\n\t\tBCUnitPrice = Items.InvoiceLines.BCUnitPrice,\n\t\tSerialNumbers = Items.InvoiceLines.SerialNumbers,\n\t\tBatchNumbers = Items.InvoiceLines.BatchNumbers,\n\t\tGuid = Items.Guid,\n\t\tLastModifiedOn = Items.LastModifiedOn\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> InvoiceLines\nUnleashedProductsJSON foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Products\nUnleashedCustomers foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Customers\nUnleashedSalesOrders foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> SalesOrders\nUnleashedSalesOrders foldDown(unroll(Items),\n\tmapColumn(\n\t\tPagination,\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> SalesOrderLines\nUnleashedProductGroups foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> ProductGroups\nUnleashedStockOnHand foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> StockOnHand\nInvoices sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Invoice Number} as string,\n\t\t{Order Number} as string,\n\t\t{Invoice Date} as string,\n\t\t{Customer Code} as string,\n\t\t{Currency ID} as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedinvoices_merge;\\ntruncate table unleashedinvoices;'],\n\tpostSQLs:['insert into unleashedinvoices ([Client ID],[Invoice Number],[Order Number],[Invoice Date],[Customer Code],[Currency ID]) \\nselect 2500000, [Invoice Number], [Order Number], DATEADD(day, (cast(substring([invoice date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Invoice Date], [Customer Code],[Currency ID] from unleashedinvoices_merge;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Invoice Number} = Items.InvoiceNumber,\n\t\t{Order Number} = Items.OrderNumber,\n\t\t{Invoice Date} = Items.InvoiceDate,\n\t\t{Customer Code} = Items.Customer.CustomerCode,\n\t\t{Currency ID} = Items.Customer.CurrencyId\n\t)) ~> SQLUnleashedInvoices\nInvoiceLines sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Line Number} as integer,\n\t\t{Invoice Number} as string,\n\t\t{Product Code} as string,\n\t\t{Order Quantity} as decimal(18,4),\n\t\t{Invoice Quantity} as decimal(18,4),\n\t\t{Unit Price} as decimal(18,4),\n\t\t{Discount Rate} as decimal(18,4),\n\t\t{Line Total} as decimal(18,4),\n\t\t{Tax Rate} as decimal(18,4),\n\t\t{Line Tax} as decimal(18,4),\n\t\tBCUnitPrice as decimal(18,4)\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedinvoiceitems;'],\n\tpostSQLs:['update unleashedinvoiceitems set [client id] = 2500000;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Line Number} = LineNumber,\n\t\t{Invoice Number} = InvoiceNumber,\n\t\t{Product Code} = Product.ProductCode,\n\t\t{Order Quantity} = OrderQuantity,\n\t\t{Invoice Quantity} = InvoiceQuantity,\n\t\t{Unit Price} = UnitPrice,\n\t\t{Discount Rate} = DiscountRate,\n\t\t{Line Total} = LineTotal,\n\t\t{Tax Rate} = TaxRate,\n\t\t{Line Tax} = LineTax,\n\t\tBCUnitPrice\n\t)) ~> SQLUnleashedInvoiceItems\nProducts sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Product Code} as string,\n\t\t{Product Description} as string,\n\t\t{Product Group} as string,\n\t\t{Country Name} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedproducts;'],\n\tpostSQLs:['update unleashedproducts set [client ID] = 2500000'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Product Code} = Items.ProductCode,\n\t\t{Product Description} = Items.ProductDescription,\n\t\t{Product Group} = Items.ProductGroup.GroupName,\n\t\t{Country Name} = Items.ICCCountryName\n\t)) ~> SQLUnleashedProducts\nCustomers sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Customer Code} as string,\n\t\tName as string,\n\t\tCountry as string,\n\t\tPostcode as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table UnleashedCustomers;'],\n\tpostSQLs:['update UnleashedCustomers set [Client ID] = 2500000;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Customer Code} = Items.CustomerCode,\n\t\tName = Items.CustomerName,\n\t\tCountry = Items.Addresses[1].Country,\n\t\tPostcode = Items.Addresses[1].PostalCode\n\t)) ~> SQLUnleashedCustomers\nSalesOrders sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Order Number} as string,\n\t\t{Order Date} as string,\n\t\t{Required Date} as string,\n\t\t{Completed Date} as string,\n\t\t{Order Status} as string,\n\t\t{Customer Code} as string,\n\t\t{Currency ID} as string,\n\t\t{Sales Person Name} as string,\n\t\t{Sales Person GUID} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedsalesorders_merge;\\ntruncate table unleashedsalesorders;'],\n\tpostSQLs:['update unleashedsalesorders_merge set [Client ID] = 2500000;\\n\\ninsert into unleashedsalesorders ([Client ID],[Order Number],[Order Date],[Required Date],[Completed Date],[Order Status],[Customer Code],[Currency ID],[Sales Person Name],[Sales Person GUID]) \\nselect 2500000, [Order Number], \\nDATEADD(day, (cast(substring([Order date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Order Date], \\nDATEADD(day, (cast(substring([Required date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Required Date], \\nDATEADD(day, (cast(substring([Completed date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Completed Date], \\n[Order Status], [Customer Code], [Currency ID], [Sales Person Name], [Sales Person GUID] from unleashedsalesorders_merge;\\n'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Order Number} = Items.OrderNumber,\n\t\t{Order Date} = Items.OrderDate,\n\t\t{Required Date} = Items.RequiredDate,\n\t\t{Completed Date} = Items.CompletedDate,\n\t\t{Order Status} = Items.OrderStatus,\n\t\t{Customer Code} = Items.Customer.CustomerCode,\n\t\t{Currency ID} = Items.Customer.CurrencyId,\n\t\t{Sales Person Name} = Items.SalesPerson.FullName,\n\t\t{Sales Person GUID} = Items.SalesPerson.Guid\n\t)) ~> SQLUnleashedSalesOrders\nSalesOrderLines sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Line Number} as integer,\n\t\t{Product Code} as string,\n\t\t{Order Quantity} as decimal(18,4),\n\t\t{Unit Price} as decimal(18,4),\n\t\t{Discount Rate} as decimal(18,4),\n\t\t{Line Total} as decimal(18,4),\n\t\t{Average Cost} as decimal(18,4),\n\t\t{Tax Rate} as decimal(18,4),\n\t\t{Line Tax} as decimal(18,4),\n\t\t{BC Unit Price} as decimal(18,4),\n\t\tGUID as decimal(18,4),\n\t\t{Order Number} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table UnleashedSalesOrderLines;'],\n\tpostSQLs:['update UnleashedSalesOrderLines set [client ID] = 2500000'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Line Number} = Items.SalesOrderLines[1].LineNumber,\n\t\t{Product Code} = Items.SalesOrderLines[1].Product.ProductCode,\n\t\t{Order Quantity} = Items.SalesOrderLines[1].OrderQuantity,\n\t\t{Unit Price} = Items.SalesOrderLines[1].UnitPrice,\n\t\t{Discount Rate} = Items.SalesOrderLines[1].DiscountRate,\n\t\t{Line Total} = Items.SalesOrderLines[1].LineTotal,\n\t\t{Average Cost} = Items.SalesOrderLines[1].AverageLandedPriceAtTimeOfSale,\n\t\t{Tax Rate} = Items.SalesOrderLines[1].TaxRate,\n\t\t{Line Tax} = Items.SalesOrderLines[1].LineTax,\n\t\t{BC Unit Price} = Items.SalesOrderLines[1].BCUnitPrice,\n\t\tGUID = Items.SalesOrderLines[1].Guid,\n\t\t{Order Number} = Items.OrderNumber\n\t)) ~> SQLSalesOrderLines\nProductGroups sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Group Name} as string,\n\t\tGUID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedproductgroups;'],\n\tpostSQLs:['update unleashedproductgroups set [client id] = 2500000;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Group Name} = Items.GroupName,\n\t\tGUID = Items.Guid\n\t)) ~> SQLUnleashedProductGroups\nStockOnHand sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Product Code} as string,\n\t\t{Product Description} as string,\n\t\t{Product Group Name} as string,\n\t\t{Days Since Last Sale} as integer,\n\t\t{On Purchase} as decimal(18,4),\n\t\t{Allocated Quantity} as decimal(18,4),\n\t\t{Available Quantity} as decimal(18,4),\n\t\t{Quantity on Hand} as decimal(18,4),\n\t\t{Average Cost} as decimal(18,4),\n\t\t{Total Cost} as decimal(18,4),\n\t\tGUID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedstock'],\n\tpostSQLs:['update unleashedstock set [client id] = 2500000'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Product Code} = Items.ProductCode,\n\t\t{Product Description} = Items.ProductDescription,\n\t\t{Product Group Name} = Items.ProductGroupName,\n\t\t{Days Since Last Sale} = Items.DaysSinceLastSale,\n\t\t{On Purchase} = Items.OnPurchase,\n\t\t{Allocated Quantity} = Items.AllocatedQty,\n\t\t{Available Quantity} = Items.AvailableQty,\n\t\t{Quantity on Hand} = Items.QtyOnHand,\n\t\t{Average Cost} = Items.AvgCost,\n\t\t{Total Cost} = Items.TotalCost,\n\t\tGUID = Items.Guid\n\t)) ~> SQLUnleashedStock"
+		}
+	}
+}

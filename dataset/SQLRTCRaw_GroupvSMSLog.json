@@ -1,0 +1,80 @@
+{
+	"name": "SQLRTCRaw_GroupvSMSLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SMSLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LinkSMSID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealerID",
+				"type": "varchar"
+			},
+			{
+				"name": "AgentID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BookingID",
+				"type": "varchar"
+			},
+			{
+				"name": "SMSID",
+				"type": "varchar"
+			},
+			{
+				"name": "SendDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Created",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ContSeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ErrorLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_GroupvSMSLog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

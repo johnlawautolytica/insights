@@ -1,0 +1,227 @@
+{
+	"name": "RTCVHCHeader",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCVHC",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "GroupName",
+				"type": "String"
+			},
+			{
+				"name": "SummaryDate",
+				"type": "String"
+			},
+			{
+				"name": "InspectionID",
+				"type": "String"
+			},
+			{
+				"name": "DealerCode",
+				"type": "String"
+			},
+			{
+				"name": "DealerName",
+				"type": "String"
+			},
+			{
+				"name": "Technician",
+				"type": "String"
+			},
+			{
+				"name": "ServiceAdvisor",
+				"type": "String"
+			},
+			{
+				"name": "CustomerName",
+				"type": "String"
+			},
+			{
+				"name": "VehicleRegistration",
+				"type": "String"
+			},
+			{
+				"name": "VehicleDescription",
+				"type": "String"
+			},
+			{
+				"name": "VehicleModel",
+				"type": "String"
+			},
+			{
+				"name": "VehicleRegistrationDate",
+				"type": "String"
+			},
+			{
+				"name": "WipNumber",
+				"type": "String"
+			},
+			{
+				"name": "InspectionType",
+				"type": "String"
+			},
+			{
+				"name": "InspectionMarque",
+				"type": "String"
+			},
+			{
+				"name": "VisitType",
+				"type": "String"
+			},
+			{
+				"name": "CustomerMileage",
+				"type": "String"
+			},
+			{
+				"name": "InspectionCreated",
+				"type": "String"
+			},
+			{
+				"name": "TechnicianStartedInspection",
+				"type": "String"
+			},
+			{
+				"name": "TechnicianFinishedInspection",
+				"type": "String"
+			},
+			{
+				"name": "PartsIdentificationCompleted",
+				"type": "String"
+			},
+			{
+				"name": "LabourIdentificationCompleted",
+				"type": "String"
+			},
+			{
+				"name": "InspectionFormPrinted",
+				"type": "String"
+			},
+			{
+				"name": "InspectionClosed",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "Month",
+				"type": "String"
+			},
+			{
+				"name": "InspectionCarriedOut",
+				"type": "String"
+			},
+			{
+				"name": "TotalItemsIdentified",
+				"type": "String"
+			},
+			{
+				"name": "TotalValueIdentified",
+				"type": "String"
+			},
+			{
+				"name": "TotalItemsSold",
+				"type": "String"
+			},
+			{
+				"name": "TotalValueSold",
+				"type": "String"
+			},
+			{
+				"name": "TotalItemsLost",
+				"type": "String"
+			},
+			{
+				"name": "TotalValueLost",
+				"type": "String"
+			},
+			{
+				"name": "TotalItemsDeferred",
+				"type": "String"
+			},
+			{
+				"name": "TotalValueDeferred",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalItemsIdentified",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalValueIdentified",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalItemsSold",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalValueSold",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalItemsLost",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalValueLost",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalItemsDeferred",
+				"type": "String"
+			},
+			{
+				"name": "RedTotalValueDeferred",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalItemsIdentified",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalValueIdentified",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalItemsSold",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalValueSold",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalItemsLost",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalValueLost",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalItemsDeferred",
+				"type": "String"
+			},
+			{
+				"name": "AmberTotalValueDeferred",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

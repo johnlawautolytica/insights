@@ -1,0 +1,81 @@
+{
+	"name": "SQLRTCRaw_GroupvEmailLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EmailLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "varchar"
+			},
+			{
+				"name": "AgentID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegNo",
+				"type": "varchar"
+			},
+			{
+				"name": "Created",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ContSeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ErrorLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RemoteEmailID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ServiceID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EmailChangedID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_GroupvEmailLog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

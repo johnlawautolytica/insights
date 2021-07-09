@@ -1,0 +1,38 @@
+{
+	"name": "RTC_Ext_BI_Group_vDealersRegions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Group_vDealersRegions"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

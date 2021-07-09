@@ -1,0 +1,110 @@
+{
+	"name": "SQLDMSWorkshopSales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SalesType",
+				"type": "varchar"
+			},
+			{
+				"name": "InvoiceNo",
+				"type": "varchar"
+			},
+			{
+				"name": "WIPNo",
+				"type": "varchar"
+			},
+			{
+				"name": "RTSCode",
+				"type": "varchar"
+			},
+			{
+				"name": "HoursSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HoursTaken",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Efficiency",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SaleValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RecoveryRate",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Technician",
+				"type": "varchar"
+			},
+			{
+				"name": "LA",
+				"type": "varchar"
+			},
+			{
+				"name": "LT",
+				"type": "varchar"
+			},
+			{
+				"name": "DealershipID",
+				"type": "varchar"
+			},
+			{
+				"name": "OperatorName",
+				"type": "varchar"
+			},
+			{
+				"name": "FranchiseCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ChassisNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "DateEdited",
+				"type": "date"
+			},
+			{
+				"name": "Tmagic",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Vmagic",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSWorkshopSales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

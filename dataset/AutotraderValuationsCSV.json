@@ -1,0 +1,74 @@
+{
+	"name": "AutotraderValuationsCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AutotraderValuations.csv",
+				"folderPath": "VehicleStock",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "AdjustedPartExchange",
+				"type": "String"
+			},
+			{
+				"name": "AdjustedRetail",
+				"type": "String"
+			},
+			{
+				"name": "AdjustedTrade",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "Date"
+			},
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "Part Exchange",
+				"type": "String"
+			},
+			{
+				"name": "Price Indicator",
+				"type": "String"
+			},
+			{
+				"name": "RegNo",
+				"type": "String"
+			},
+			{
+				"name": "Retail",
+				"type": "String"
+			},
+			{
+				"name": "StockNumber",
+				"type": "String"
+			},
+			{
+				"name": "Trade",
+				"type": "String"
+			},
+			{
+				"name": "Valuation Type",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

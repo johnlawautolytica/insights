@@ -1,0 +1,297 @@
+{
+	"name": "CloseIT_Ext_Sales_Leads",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesLeads.csv",
+				"container": "rtc"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Dealer_ID",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ID",
+				"type": "String"
+			},
+			{
+				"name": "DealerName",
+				"type": "String"
+			},
+			{
+				"name": "GroupName",
+				"type": "String"
+			},
+			{
+				"name": "Customer_SalesPerson",
+				"type": "String"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "String"
+			},
+			{
+				"name": "Customer_ProspectURN",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Type",
+				"type": "String"
+			},
+			{
+				"name": "Customer_PostCode",
+				"type": "String"
+			},
+			{
+				"name": "Customer_LeadProviderName",
+				"type": "String"
+			},
+			{
+				"name": "Customer_DateCreated",
+				"type": "String"
+			},
+			{
+				"name": "Customer_ChangeDate",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Status",
+				"type": "String"
+			},
+			{
+				"name": "Customer_DateStatusChanged",
+				"type": "String"
+			},
+			{
+				"name": "Customer_QuickLostReason",
+				"type": "String"
+			},
+			{
+				"name": "Customer_FirstContact",
+				"type": "String"
+			},
+			{
+				"name": "Customer_DateSold",
+				"type": "String"
+			},
+			{
+				"name": "Customer_DateLost",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Type",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Gap",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Paint",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Warranty",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ClosedDate",
+				"type": "String"
+			},
+			{
+				"name": "Deal_BasicPrice",
+				"type": "String"
+			},
+			{
+				"name": "Deal_DeilveryCharge",
+				"type": "String"
+			},
+			{
+				"name": "Deal_FirstRegFee",
+				"type": "String"
+			},
+			{
+				"name": "Deal_RoadTax",
+				"type": "String"
+			},
+			{
+				"name": "Desired_Make",
+				"type": "String"
+			},
+			{
+				"name": "Desired_Model",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Make",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Model",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ModelVariant",
+				"type": "String"
+			},
+			{
+				"name": "Deal_FuelType",
+				"type": "String"
+			},
+			{
+				"name": "Deal_GearType",
+				"type": "String"
+			},
+			{
+				"name": "Deal_OrderMethod",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Colour",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Interior",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Mileage",
+				"type": "String"
+			},
+			{
+				"name": "Deal_DateConfirmed",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ModelYear",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Registration",
+				"type": "String"
+			},
+			{
+				"name": "Deal_DateOfRegistration",
+				"type": "String"
+			},
+			{
+				"name": "Deal_DemoDriven",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ServicePayment",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ExpectedDeliveryMonth",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ExpectedDeliveryYear",
+				"type": "String"
+			},
+			{
+				"name": "Deal_ExpectedDeliveryTimeOfMonth",
+				"type": "String"
+			},
+			{
+				"name": "Deal_DepositPaymentMethod",
+				"type": "String"
+			},
+			{
+				"name": "Deal_FinanceMethod",
+				"type": "String"
+			},
+			{
+				"name": "Deal_MonthlyBudget",
+				"type": "String"
+			},
+			{
+				"name": "Deal_Deposit",
+				"type": "String"
+			},
+			{
+				"name": "Deal_NewFinancedBy",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_ID",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_Registration",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_Make",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_Model",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_Variant",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_Colour",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_DateOfRegistration",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_Mileage",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_VatQualifying",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_NumberOfOwners",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_ServiceHistory",
+				"type": "String"
+			},
+			{
+				"name": "PartEx_SIVAmount",
+				"type": "String"
+			},
+			{
+				"name": "InitialContact_Created",
+				"type": "String"
+			},
+			{
+				"name": "InitialContact_Type",
+				"type": "String"
+			},
+			{
+				"name": "Deal_CancelledDate",
+				"type": "String"
+			},
+			{
+				"name": "Deal_HandOverDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,44 @@
+{
+	"name": "SQLRTCRaw_Dealers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealerID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DealerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Marque",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DMS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_Dealers"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,186 @@
+{
+	"name": "SQLVehicleStock",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealershipID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegistrationNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StockNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GroupDateInStock",
+				"type": "date"
+			},
+			{
+				"name": "DealershipDateInStock",
+				"type": "date"
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Chassis",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FirstRegisteredDate",
+				"type": "date"
+			},
+			{
+				"name": "Make",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Model",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Trim",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EngineSize",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Bodystyle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FuelType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Transmission",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenericColour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SpecificColour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Doors",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SIV",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Vat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModelAnalysisCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RetailPrice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Purchaser",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SupplierName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PurchaseInvoiceDate",
+				"type": "date"
+			},
+			{
+				"name": "AvailableDate",
+				"type": "date"
+			},
+			{
+				"name": "ProgressCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Recon",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TransportCosts",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AdjustedSIV",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ReceivedDate",
+				"type": "date"
+			},
+			{
+				"name": "DateInGroup",
+				"type": "date"
+			},
+			{
+				"name": "PurchaseAccount",
+				"type": "varchar"
+			},
+			{
+				"name": "QuarantineStatus",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VehicleStock"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

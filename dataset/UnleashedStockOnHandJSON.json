@@ -1,0 +1,100 @@
+{
+	"name": "UnleashedStockOnHandJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "StockOnHand-1.json",
+				"container": "unleashed"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Pagination": {
+					"type": "object",
+					"properties": {
+						"NumberOfItems": {
+							"type": "integer"
+						},
+						"PageSize": {
+							"type": "integer"
+						},
+						"PageNumber": {
+							"type": "integer"
+						},
+						"NumberOfPages": {
+							"type": "integer"
+						}
+					}
+				},
+				"Items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"ProductCode": {
+								"type": "string"
+							},
+							"ProductDescription": {
+								"type": "string"
+							},
+							"ProductGuid": {
+								"type": "string"
+							},
+							"ProductSourceId": {
+								"type": "null"
+							},
+							"ProductGroupName": {
+								"type": "string"
+							},
+							"WarehouseId": {
+								"type": "string"
+							},
+							"Warehouse": {
+								"type": "string"
+							},
+							"WarehouseCode": {
+								"type": "string"
+							},
+							"DaysSinceLastSale": {
+								"type": "integer"
+							},
+							"OnPurchase": {
+								"type": "number"
+							},
+							"AllocatedQty": {
+								"type": "number"
+							},
+							"AvailableQty": {
+								"type": "number"
+							},
+							"QtyOnHand": {
+								"type": "number"
+							},
+							"AvgCost": {
+								"type": "number"
+							},
+							"TotalCost": {
+								"type": "number"
+							},
+							"Guid": {
+								"type": "string"
+							},
+							"LastModifiedOn": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

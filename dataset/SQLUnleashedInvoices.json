@@ -1,0 +1,49 @@
+{
+	"name": "SQLUnleashedInvoices",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Client ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Invoice Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Order Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Invoice Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Currency ID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UnleashedInvoices_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

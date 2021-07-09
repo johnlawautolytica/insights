@@ -1,0 +1,121 @@
+{
+	"name": "SQLEnquiryMAX_Enquiries",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EnquiryID",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerID",
+				"type": "varchar"
+			},
+			{
+				"name": "LeadID",
+				"type": "varchar"
+			},
+			{
+				"name": "StatusCode",
+				"type": "varchar"
+			},
+			{
+				"name": "StatusDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceOfEnquiry",
+				"type": "varchar"
+			},
+			{
+				"name": "MethodOfContact",
+				"type": "varchar"
+			},
+			{
+				"name": "SoldNewOrUsed",
+				"type": "varchar"
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "OrderDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Range",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelType",
+				"type": "varchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "LostSaleRequestedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LostSaleAcceptedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LostSaleReason",
+				"type": "varchar"
+			},
+			{
+				"name": "uniqueid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EnquiryMAX_Enquiries"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,49 @@
+{
+	"name": "RTC_Ext_BI_Contact_vContactTypes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ContCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Analysis",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AnalysisGroup",
+				"type": "varchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Contact_vContactTypes"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

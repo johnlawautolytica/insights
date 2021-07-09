@@ -1,0 +1,13 @@
+{
+	"name": "VHCHeadersCSVFile",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk",
+			"userId": "johnlaw@oloi.co.uk",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFVVE9MWVRJQ0FfMTgyNzk0OGUtODkzYy00NTY0LWIwODEtOWRiZjIwZGRkM2ZlIg0KfQ=="
+		}
+	}
+}

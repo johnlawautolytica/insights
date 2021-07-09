@@ -1,0 +1,117 @@
+{
+	"name": "ExternalSchemas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "table_catalog",
+				"type": "varchar"
+			},
+			{
+				"name": "table_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "table_name",
+				"type": "varchar"
+			},
+			{
+				"name": "column_name",
+				"type": "varchar"
+			},
+			{
+				"name": "ordinal_position",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "column_default",
+				"type": "varchar"
+			},
+			{
+				"name": "is_nullable",
+				"type": "varchar"
+			},
+			{
+				"name": "data_type",
+				"type": "varchar"
+			},
+			{
+				"name": "CHARACTER_MAXIMUM_LENGTH",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CHARACTER_OCTET_LENGTH",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NUMERIC_PRECISION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NUMERIC_PRECISION_RADIX",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NUMERIC_SCALE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DATETIME_PRECISION",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CHARACTER_SET_CATALOG",
+				"type": "varchar"
+			},
+			{
+				"name": "CHARACTER_SET_SCHEMA",
+				"type": "varchar"
+			},
+			{
+				"name": "CHARACTER_SET_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "COLLATION_CATALOG",
+				"type": "varchar"
+			},
+			{
+				"name": "COLLATION_SCHEMA",
+				"type": "varchar"
+			},
+			{
+				"name": "COLLATION_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "DOMAIN_CATALOG",
+				"type": "varchar"
+			},
+			{
+				"name": "DOMAIN_SCHEMA",
+				"type": "varchar"
+			},
+			{
+				"name": "DOMAIN_NAME",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ExternalSchemas"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

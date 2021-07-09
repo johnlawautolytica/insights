@@ -1,0 +1,258 @@
+{
+	"name": "SQLRTCVHCHeaders",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "InspectionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegionName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DealerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DealerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ServiceAdvisor",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Technician",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehicleRegistration",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehicleDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Franchise",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehicleModel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehicleRegistrationDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "WipNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InspectionType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InspectionMarque",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VisitType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomerMileage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InspectionCreated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "TechnicianStartedInspection",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "TechnicianFinishedInspection",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "PartsIdentificationCompleted",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LabourIdentificationCompleted",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "InspectionFormPrinted",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "InspectionClosed",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Month",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InspectionCarriedOut",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TotalItemsIdentified",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 10
+			},
+			{
+				"name": "TotalValueIdentified",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalItemsSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalValueSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalItemsLost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalValueLost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalItemsDeferred",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalValueDeferred",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalItemsIdentified",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalValueIdentified",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalItemsSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalValueSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalItemsLost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalValueLost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalItemsDeferred",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "RedTotalValueDeferred",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalItemsIdentified",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalValueIdentified",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalItemsSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalValueSold",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalItemsLost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalValueLost",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalItemsDeferred",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AmberTotalValueDeferred",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "VHCHeaders"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

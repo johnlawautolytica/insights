@@ -1,0 +1,48 @@
+{
+	"name": "SQLRTCRaw_GroupvUpsells",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UpsellId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UpsellName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InsertedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_BookingvUpsells"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

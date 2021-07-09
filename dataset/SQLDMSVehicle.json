@@ -1,0 +1,103 @@
+{
+	"name": "SQLDMSVehicle",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VehicleID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "DateofRegistration",
+				"type": "date"
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "date"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "varchar"
+			},
+			{
+				"name": "LastServiceDate",
+				"type": "date"
+			},
+			{
+				"name": "NextServiceDate",
+				"type": "date"
+			},
+			{
+				"name": "LastMOTDate",
+				"type": "date"
+			},
+			{
+				"name": "NextMOTDate",
+				"type": "date"
+			},
+			{
+				"name": "LastWorkshopDate",
+				"type": "date"
+			},
+			{
+				"name": "CapCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ChassisNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "DriverCustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AftersalesCustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SalesCustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordStatus",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSVehicle"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

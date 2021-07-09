@@ -1,0 +1,86 @@
+{
+	"name": "SQLDMSAftersalesWIP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Department",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WIP",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Date Due",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "Customer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Registration Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Operator",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Overdue",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Parts Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Parts Lines",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Labour Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Labour Lines",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Total Value",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSAftersalesWIP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

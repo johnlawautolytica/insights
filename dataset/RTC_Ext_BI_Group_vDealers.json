@@ -1,0 +1,45 @@
+{
+	"name": "RTC_Ext_BI_Group_vDealers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Marque",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DMS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Group_vDealers"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

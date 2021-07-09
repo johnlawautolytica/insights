@@ -1,0 +1,72 @@
+{
+	"name": "RTC_Ext_BI_Group_vISSubSections",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubSectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DisplaySeq",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LongName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CategoryId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Special",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InUse",
+				"type": "bit"
+			},
+			{
+				"name": "Mandatory",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Group_vISSubSections"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

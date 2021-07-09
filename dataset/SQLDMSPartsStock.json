@@ -1,0 +1,100 @@
+{
+	"name": "SQLDMSPartsStock",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Department",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Franchise",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Part Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Average Cost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "3_6_Months",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "6_9_Months",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "9_12_Months",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "12_18_Months",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "18_24_Months",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "24_Months",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Date last sold",
+				"type": "varchar"
+			},
+			{
+				"name": "Date last purchased",
+				"type": "varchar"
+			},
+			{
+				"name": "Date last moved",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSPartsStock_merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

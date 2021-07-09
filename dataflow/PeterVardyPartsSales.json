@@ -1,0 +1,28 @@
+{
+	"name": "PeterVardyPartsSales",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "PeterVardyPartsSalesCSV",
+						"type": "DatasetReference"
+					},
+					"name": "PeterVardyPartsSales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLDMSPartsSales",
+						"type": "DatasetReference"
+					},
+					"name": "SQLDMSPartsSales"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tco as string,\n\t\tST as string,\n\t\tdesc as string,\n\t\tFran as string,\n\t\t{Part number} as string,\n\t\t{Retail Value} as float,\n\t\t{Sale Value} as float,\n\t\t{Cost Value} as float,\n\t\t{Gross Profit} as float,\n\t\t{GP%} as float,\n\t\t{WIP No} as string,\n\t\t{Anal code} as string,\n\t\t{Order quantity} as float,\n\t\t{Selling pric} as float,\n\t\tDate as date 'dd/MM/yyyy',\n\t\t{Product group} as string,\n\t\tDept as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> PeterVardyPartsSales\nPeterVardyPartsSales sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDepartmentID as string,\n\t\tSaleType as string,\n\t\tSaleTypeDescription as string,\n\t\tFranchise as string,\n\t\tPartNumber as string,\n\t\tRetailValue as double,\n\t\tSaleValue as double,\n\t\tCostValue as double,\n\t\tGrossProfit as double,\n\t\tGrossProfitPercentage as double,\n\t\tWIPNo as string,\n\t\tAnalysisCode as string,\n\t\tOrderQuantity as double,\n\t\tSellingPrice as double,\n\t\tSalesDate as date,\n\t\tProductGroup as string,\n\t\tAftersalesDepartment as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpostSQLs:['update dbo.dmspartssales set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDepartmentID = co,\n\t\tSaleType = ST,\n\t\tSaleTypeDescription = desc,\n\t\tFranchise = Fran,\n\t\tPartNumber = {Part number},\n\t\tRetailValue = {Retail Value},\n\t\tSaleValue = {Sale Value},\n\t\tCostValue = {Cost Value},\n\t\tGrossProfit = {Gross Profit},\n\t\tGrossProfitPercentage = {GP%},\n\t\tWIPNo = {WIP No},\n\t\tAnalysisCode = {Anal code},\n\t\tOrderQuantity = {Order quantity},\n\t\tSellingPrice = {Selling pric},\n\t\tSalesDate = Date,\n\t\tProductGroup = {Product group},\n\t\tAftersalesDepartment = Dept\n\t)) ~> SQLDMSPartsSales"
+		}
+	}
+}

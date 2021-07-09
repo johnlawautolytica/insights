@@ -1,0 +1,224 @@
+{
+	"name": "UnleashedCustomersJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Customers-temp.json",
+				"container": "unleashed"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Pagination": {
+					"type": "object",
+					"properties": {
+						"NumberOfItems": {
+							"type": "integer"
+						},
+						"PageSize": {
+							"type": "integer"
+						},
+						"PageNumber": {
+							"type": "integer"
+						},
+						"NumberOfPages": {
+							"type": "integer"
+						}
+					}
+				},
+				"Items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Addresses": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"AddressType": {
+											"type": "string"
+										},
+										"AddressName": {
+											"type": "string"
+										},
+										"StreetAddress": {
+											"type": "string"
+										},
+										"StreetAddress2": {
+											"type": "string"
+										},
+										"Suburb": {
+											"type": "string"
+										},
+										"City": {
+											"type": "null"
+										},
+										"Region": {
+											"type": "string"
+										},
+										"Country": {
+											"type": "string"
+										},
+										"PostalCode": {
+											"type": "null"
+										},
+										"IsDefault": {
+											"type": "boolean"
+										},
+										"DeliveryInstruction": {
+											"type": "null"
+										}
+									}
+								}
+							},
+							"TaxCode": {
+								"type": "string"
+							},
+							"TaxRate": {
+								"type": "null"
+							},
+							"CustomerCode": {
+								"type": "string"
+							},
+							"CustomerName": {
+								"type": "string"
+							},
+							"GSTVATNumber": {
+								"type": "null"
+							},
+							"BankName": {
+								"type": "null"
+							},
+							"BankBranch": {
+								"type": "null"
+							},
+							"BankAccount": {
+								"type": "null"
+							},
+							"Website": {
+								"type": "null"
+							},
+							"PhoneNumber": {
+								"type": "null"
+							},
+							"FaxNumber": {
+								"type": "null"
+							},
+							"MobileNumber": {
+								"type": "null"
+							},
+							"DDINumber": {
+								"type": "null"
+							},
+							"TollFreeNumber": {
+								"type": "null"
+							},
+							"Email": {
+								"type": "null"
+							},
+							"EmailCC": {
+								"type": "null"
+							},
+							"Currency": {
+								"type": "object",
+								"properties": {
+									"CurrencyCode": {
+										"type": "string"
+									},
+									"Description": {
+										"type": "string"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"Notes": {
+								"type": "null"
+							},
+							"Taxable": {
+								"type": "boolean"
+							},
+							"XeroContactId": {
+								"type": "string"
+							},
+							"SalesPerson": {
+								"type": "null"
+							},
+							"DiscountRate": {
+								"type": "number"
+							},
+							"PrintPackingSlipInsteadOfInvoice": {
+								"type": "boolean"
+							},
+							"PrintInvoice": {
+								"type": "boolean"
+							},
+							"StopCredit": {
+								"type": "boolean"
+							},
+							"Obsolete": {
+								"type": "boolean"
+							},
+							"XeroSalesAccount": {
+								"type": "string"
+							},
+							"XeroCostOfGoodsAccount": {
+								"type": "null"
+							},
+							"SellPriceTier": {
+								"type": "string"
+							},
+							"SellPriceTierReference": {
+								"type": "null"
+							},
+							"CustomerType": {
+								"type": "string"
+							},
+							"PaymentTerm": {
+								"type": "string"
+							},
+							"ContactFirstName": {
+								"type": "string"
+							},
+							"ContactLastName": {
+								"type": "string"
+							},
+							"SourceId": {
+								"type": "null"
+							},
+							"CreatedBy": {
+								"type": "string"
+							},
+							"CreatedOn": {
+								"type": "string"
+							},
+							"LastModifiedBy": {
+								"type": "string"
+							},
+							"Guid": {
+								"type": "string"
+							},
+							"LastModifiedOn": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,101 @@
+{
+	"name": "PeterVardyVSBI4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "VSBI4.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "co",
+				"type": "String"
+			},
+			{
+				"name": "Vehicle",
+				"type": "String"
+			},
+			{
+				"name": "Regn",
+				"type": "String"
+			},
+			{
+				"name": "Desc",
+				"type": "String"
+			},
+			{
+				"name": "Estimated",
+				"type": "String"
+			},
+			{
+				"name": "Actual",
+				"type": "String"
+			},
+			{
+				"name": "Line Created",
+				"type": "String"
+			},
+			{
+				"name": "Date Pushed",
+				"type": "String"
+			},
+			{
+				"name": "Order date",
+				"type": "String"
+			},
+			{
+				"name": "WIP no",
+				"type": "String"
+			},
+			{
+				"name": "Option code",
+				"type": "String"
+			},
+			{
+				"name": "work desc",
+				"type": "String"
+			},
+			{
+				"name": "Progress code",
+				"type": "String"
+			},
+			{
+				"name": "A/c s status",
+				"type": "String"
+			},
+			{
+				"name": "Analysis code",
+				"type": "String"
+			},
+			{
+				"name": "Quarantine status",
+				"type": "String"
+			},
+			{
+				"name": "Log book",
+				"type": "String"
+			},
+			{
+				"name": "veh Inv date",
+				"type": "String"
+			},
+			{
+				"name": "Veh Delivery date",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,77 @@
+{
+	"name": "PeterVardySOBI7CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SOBI7.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "D",
+				"type": "String"
+			},
+			{
+				"name": "WIP",
+				"type": "String"
+			},
+			{
+				"name": "Date Due",
+				"type": "String"
+			},
+			{
+				"name": "Customer",
+				"type": "String"
+			},
+			{
+				"name": "Reg No",
+				"type": "String"
+			},
+			{
+				"name": "Operator",
+				"type": "String"
+			},
+			{
+				"name": "O/due",
+				"type": "String"
+			},
+			{
+				"name": "Parts",
+				"type": "String"
+			},
+			{
+				"name": "Lin",
+				"type": "String"
+			},
+			{
+				"name": "Labour",
+				"type": "String"
+			},
+			{
+				"name": "Ln",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "Prop_12",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

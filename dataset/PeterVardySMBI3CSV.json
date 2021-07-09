@@ -1,0 +1,89 @@
+{
+	"name": "PeterVardySMBI3CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SMBI3.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Co",
+				"type": "String"
+			},
+			{
+				"name": "F",
+				"type": "String"
+			},
+			{
+				"name": "Part Number",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "Qty",
+				"type": "String"
+			},
+			{
+				"name": "Avg Cos",
+				"type": "String"
+			},
+			{
+				"name": "3-6 Months",
+				"type": "String"
+			},
+			{
+				"name": "6-9 Months",
+				"type": "String"
+			},
+			{
+				"name": "9-12 Months",
+				"type": "String"
+			},
+			{
+				"name": "12-18 Months",
+				"type": "String"
+			},
+			{
+				"name": "18-24 Months",
+				"type": "String"
+			},
+			{
+				"name": "\u001c 24 Months",
+				"type": "String"
+			},
+			{
+				"name": "Date last sold",
+				"type": "String"
+			},
+			{
+				"name": "Date last purchased",
+				"type": "String"
+			},
+			{
+				"name": "Date last moved",
+				"type": "String"
+			},
+			{
+				"name": "ID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

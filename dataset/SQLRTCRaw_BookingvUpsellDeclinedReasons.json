@@ -1,0 +1,49 @@
+{
+	"name": "SQLRTCRaw_BookingvUpsellDeclinedReasons",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReasonID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Reason",
+				"type": "varchar"
+			},
+			{
+				"name": "Active",
+				"type": "bit"
+			},
+			{
+				"name": "Email",
+				"type": "bit"
+			},
+			{
+				"name": "AddToBooking",
+				"type": "bit"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_BookingvUpsellDeclinedReasons"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

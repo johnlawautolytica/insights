@@ -1,0 +1,28 @@
+{
+	"name": "PeterVardySOBI1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "PeterVardyWorkshopSalesCSV",
+						"type": "DatasetReference"
+					},
+					"name": "PeterVardyWorkshopSales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLDMSWorkshopSales",
+						"type": "DatasetReference"
+					},
+					"name": "SQLDMSWorkshopSales"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\t{S/Type} as string,\n\t\t{Invoice No} as string,\n\t\t{WIP No} as string,\n\t\t{RTS code} as string,\n\t\tSold as float,\n\t\tTaken as float,\n\t\tEff as float,\n\t\t{Sale Value} as float,\n\t\t{Rec Rate} as float,\n\t\tMech as string,\n\t\tLA as string,\n\t\tLT as string,\n\t\tco as string,\n\t\t{Operator name} as string,\n\t\t{Franchise code} as string,\n\t\t{Chassis number} as string,\n\t\t{Registration number.} as string,\n\t\t{Date editted} as date 'dd/MM/yyyy',\n\t\tTmagic as integer,\n\t\tVmagic as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> PeterVardyWorkshopSales\nPeterVardyWorkshopSales sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tSalesType as string,\n\t\tInvoiceNo as string,\n\t\tWIPNo as string,\n\t\tRTSCode as string,\n\t\tHoursSold as double,\n\t\tHoursTaken as double,\n\t\tEfficiency as double,\n\t\tSaleValue as double,\n\t\tRecoveryRate as double,\n\t\tTechnician as string,\n\t\tLA as string,\n\t\tLT as string,\n\t\tDealershipID as string,\n\t\tOperatorName as string,\n\t\tFranchiseCode as string,\n\t\tChassisNumber as string,\n\t\tRegistrationNumber as string,\n\t\tDateEdited as date,\n\t\tTmagic as integer,\n\t\tVmagic as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpostSQLs:['update dbo.DMSWorkshopSales set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSalesType = {S/Type},\n\t\tInvoiceNo = {Invoice No},\n\t\tWIPNo = {WIP No},\n\t\tRTSCode = {RTS code},\n\t\tHoursSold = Sold,\n\t\tHoursTaken = Taken,\n\t\tEfficiency = Eff,\n\t\tSaleValue = {Sale Value},\n\t\tRecoveryRate = {Rec Rate},\n\t\tTechnician = Mech,\n\t\tLA,\n\t\tLT,\n\t\tDealershipID = co,\n\t\tOperatorName = {Operator name},\n\t\tFranchiseCode = {Franchise code},\n\t\tChassisNumber = {Chassis number},\n\t\tRegistrationNumber = {Registration number.},\n\t\tDateEdited = {Date editted},\n\t\tTmagic,\n\t\tVmagic\n\t)) ~> SQLDMSWorkshopSales"
+		}
+	}
+}

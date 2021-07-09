@@ -1,0 +1,37 @@
+{
+	"name": "SQLRTCRaw_GroupvApplication_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ApplicationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ApplicationName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_GroupvApplication_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

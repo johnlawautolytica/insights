@@ -1,0 +1,77 @@
+{
+	"name": "SQLRTCRaw_GroupvISSubSections",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "varchar"
+			},
+			{
+				"name": "TypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubSectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DisplaySeq",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "LongName",
+				"type": "varchar"
+			},
+			{
+				"name": "CategoryId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Special",
+				"type": "varchar"
+			},
+			{
+				"name": "InUse",
+				"type": "varchar"
+			},
+			{
+				"name": "Mandatory",
+				"type": "varchar"
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_GroupvISSubSections"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,335 @@
+{
+	"name": "UnleashedProductsJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Products temp.json",
+				"container": "unleashed"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Pagination": {
+					"type": "object",
+					"properties": {
+						"NumberOfItems": {
+							"type": "integer"
+						},
+						"PageSize": {
+							"type": "integer"
+						},
+						"PageNumber": {
+							"type": "integer"
+						},
+						"NumberOfPages": {
+							"type": "integer"
+						}
+					}
+				},
+				"Items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"ProductCode": {
+								"type": "string"
+							},
+							"ProductDescription": {
+								"type": "string"
+							},
+							"Barcode": {
+								"type": "null"
+							},
+							"PackSize": {
+								"type": "null"
+							},
+							"Width": {
+								"type": "null"
+							},
+							"Height": {
+								"type": "null"
+							},
+							"Depth": {
+								"type": "null"
+							},
+							"Weight": {
+								"type": "number"
+							},
+							"MinStockAlertLevel": {
+								"type": "null"
+							},
+							"MaxStockAlertLevel": {
+								"type": "null"
+							},
+							"ReOrderPoint": {
+								"type": "null"
+							},
+							"UnitOfMeasure": {
+								"type": "null"
+							},
+							"NeverDiminishing": {
+								"type": "boolean"
+							},
+							"LastCost": {
+								"type": "number"
+							},
+							"DefaultPurchasePrice": {
+								"type": "null"
+							},
+							"DefaultSellPrice": {
+								"type": "null"
+							},
+							"CustomerSellPrice": {
+								"type": "null"
+							},
+							"AverageLandPrice": {
+								"type": "number"
+							},
+							"Obsolete": {
+								"type": "boolean"
+							},
+							"Notes": {
+								"type": "null"
+							},
+							"Images": {
+								"type": "null"
+							},
+							"ImageUrl": {
+								"type": "null"
+							},
+							"SellPriceTier1": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "string"
+									}
+								}
+							},
+							"SellPriceTier2": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier3": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier4": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier5": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier6": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier7": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier8": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier9": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"SellPriceTier10": {
+								"type": "object",
+								"properties": {
+									"Name": {
+										"type": "string"
+									},
+									"Value": {
+										"type": "null"
+									}
+								}
+							},
+							"XeroTaxCode": {
+								"type": "null"
+							},
+							"XeroTaxRate": {
+								"type": "null"
+							},
+							"TaxablePurchase": {
+								"type": "boolean"
+							},
+							"TaxableSales": {
+								"type": "boolean"
+							},
+							"XeroSalesTaxCode": {
+								"type": "null"
+							},
+							"XeroSalesTaxRate": {
+								"type": "null"
+							},
+							"IsComponent": {
+								"type": "boolean"
+							},
+							"IsAssembledProduct": {
+								"type": "boolean"
+							},
+							"ProductGroup": {
+								"type": "object",
+								"properties": {
+									"GroupName": {
+										"type": "string"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"XeroSalesAccount": {
+								"type": "null"
+							},
+							"XeroCostOfGoodsAccount": {
+								"type": "null"
+							},
+							"PurchaseAccount": {
+								"type": "null"
+							},
+							"BinLocation": {
+								"type": "null"
+							},
+							"Supplier": {
+								"type": "null"
+							},
+							"AttributeSet": {
+								"type": "null"
+							},
+							"SourceId": {
+								"type": "null"
+							},
+							"SourceVariantParentId": {
+								"type": "null"
+							},
+							"IsSerialized": {
+								"type": "boolean"
+							},
+							"IsBatchTracked": {
+								"type": "boolean"
+							},
+							"IsSellable": {
+								"type": "boolean"
+							},
+							"MinimumSellPrice": {
+								"type": "null"
+							},
+							"MinimumSaleQuantity": {
+								"type": "null"
+							},
+							"MinimumOrderQuantity": {
+								"type": "null"
+							},
+							"CreatedBy": {
+								"type": "string"
+							},
+							"CreatedOn": {
+								"type": "string"
+							},
+							"LastModifiedBy": {
+								"type": "string"
+							},
+							"CommerceCode": {
+								"type": "null"
+							},
+							"CustomsDescription": {
+								"type": "null"
+							},
+							"SupplementaryClassificationAbbreviation": {
+								"type": "null"
+							},
+							"ICCCountryCode": {
+								"type": "null"
+							},
+							"ICCCountryName": {
+								"type": "null"
+							},
+							"Guid": {
+								"type": "string"
+							},
+							"LastModifiedOn": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

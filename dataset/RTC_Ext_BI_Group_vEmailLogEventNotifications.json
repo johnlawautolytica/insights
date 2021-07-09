@@ -1,0 +1,93 @@
+{
+	"name": "RTC_Ext_BI_Group_vEmailLogEventNotifications",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "EmailID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EventType",
+				"type": "varchar"
+			},
+			{
+				"name": "SmtpID",
+				"type": "varchar"
+			},
+			{
+				"name": "Response",
+				"type": "varchar"
+			},
+			{
+				"name": "DeliveryAttempt",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "BounceType",
+				"type": "varchar"
+			},
+			{
+				"name": "BounceStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "IP",
+				"type": "varchar"
+			},
+			{
+				"name": "UserAgent",
+				"type": "varchar"
+			},
+			{
+				"name": "TimeStamp",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Created",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmailLogID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Group_vEmailLogEventNotifications"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

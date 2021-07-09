@@ -1,0 +1,338 @@
+{
+	"name": "PeterVardyEnquiryMaxCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "enquirymax.csv",
+				"folderPath": "Showroom",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Branch",
+				"type": "String"
+			},
+			{
+				"name": "Sales Type",
+				"type": "String"
+			},
+			{
+				"name": "Enquiry No",
+				"type": "String"
+			},
+			{
+				"name": "Customer Title",
+				"type": "String"
+			},
+			{
+				"name": "Customer Forename",
+				"type": "String"
+			},
+			{
+				"name": "Customer Surname",
+				"type": "String"
+			},
+			{
+				"name": "Company Name",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "Home Phone",
+				"type": "String"
+			},
+			{
+				"name": "Mobile Phone",
+				"type": "String"
+			},
+			{
+				"name": "Work Phone",
+				"type": "String"
+			},
+			{
+				"name": "Postcode",
+				"type": "String"
+			},
+			{
+				"name": "Enquiry Created",
+				"type": "String"
+			},
+			{
+				"name": "Enquiry Type",
+				"type": "String"
+			},
+			{
+				"name": "Sales Executive",
+				"type": "String"
+			},
+			{
+				"name": "Business Manager",
+				"type": "String"
+			},
+			{
+				"name": "N/U",
+				"type": "String"
+			},
+			{
+				"name": "Vehicle Type",
+				"type": "String"
+			},
+			{
+				"name": "Make",
+				"type": "String"
+			},
+			{
+				"name": "Range",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Derivative",
+				"type": "String"
+			},
+			{
+				"name": "Registration No",
+				"type": "String"
+			},
+			{
+				"name": "Registration Date",
+				"type": "String"
+			},
+			{
+				"name": "Stock No",
+				"type": "String"
+			},
+			{
+				"name": "Group Date in Stock",
+				"type": "String"
+			},
+			{
+				"name": "Branch Date in Stock",
+				"type": "String"
+			},
+			{
+				"name": "First Order Date",
+				"type": "String"
+			},
+			{
+				"name": "Enquiry Status",
+				"type": "String"
+			},
+			{
+				"name": "Invoiced Date",
+				"type": "String"
+			},
+			{
+				"name": "Expected Delivery Date",
+				"type": "String"
+			},
+			{
+				"name": "Delivery Date",
+				"type": "String"
+			},
+			{
+				"name": "Delivery Category",
+				"type": "String"
+			},
+			{
+				"name": "Metal Only",
+				"type": "String"
+			},
+			{
+				"name": "OTR Price exc Ins",
+				"type": "String"
+			},
+			{
+				"name": "Total Goods & Services inc Ins",
+				"type": "String"
+			},
+			{
+				"name": "Financed",
+				"type": "String"
+			},
+			{
+				"name": "Finance Provider",
+				"type": "String"
+			},
+			{
+				"name": "Fin Type",
+				"type": "String"
+			},
+			{
+				"name": "Finance Scheme",
+				"type": "String"
+			},
+			{
+				"name": "Loan Term",
+				"type": "String"
+			},
+			{
+				"name": "APR",
+				"type": "String"
+			},
+			{
+				"name": "Flat Rate",
+				"type": "String"
+			},
+			{
+				"name": "Finance Balance",
+				"type": "String"
+			},
+			{
+				"name": "Volume Bonus",
+				"type": "String"
+			},
+			{
+				"name": "Commission",
+				"type": "String"
+			},
+			{
+				"name": "DOC Fee",
+				"type": "String"
+			},
+			{
+				"name": "Finance Subsidy",
+				"type": "String"
+			},
+			{
+				"name": "Total Fin Margin",
+				"type": "String"
+			},
+			{
+				"name": "GAP",
+				"type": "String"
+			},
+			{
+				"name": "GAP Product",
+				"type": "String"
+			},
+			{
+				"name": "War",
+				"type": "String"
+			},
+			{
+				"name": "War Product",
+				"type": "String"
+			},
+			{
+				"name": "Ext",
+				"type": "String"
+			},
+			{
+				"name": "Ext Product",
+				"type": "String"
+			},
+			{
+				"name": "Paint",
+				"type": "String"
+			},
+			{
+				"name": "Paint Product",
+				"type": "String"
+			},
+			{
+				"name": "Total Ins Margin",
+				"type": "String"
+			},
+			{
+				"name": "Total F & I Margin",
+				"type": "String"
+			},
+			{
+				"name": "Volume Bonus Central",
+				"type": "String"
+			},
+			{
+				"name": "DOC Fee Central",
+				"type": "String"
+			},
+			{
+				"name": "Total Central Income",
+				"type": "String"
+			},
+			{
+				"name": "Days in Stock",
+				"type": "String"
+			},
+			{
+				"name": "Last Advertised Price",
+				"type": "String"
+			},
+			{
+				"name": "Model Analysis Code",
+				"type": "String"
+			},
+			{
+				"name": "SIV",
+				"type": "String"
+			},
+			{
+				"name": "Stock No66",
+				"type": "String"
+			},
+			{
+				"name": "Chassis No",
+				"type": "String"
+			},
+			{
+				"name": "Engine Size",
+				"type": "String"
+			},
+			{
+				"name": "Body Style",
+				"type": "String"
+			},
+			{
+				"name": "Mileage",
+				"type": "String"
+			},
+			{
+				"name": "Fuel Type",
+				"type": "String"
+			},
+			{
+				"name": "Transmission",
+				"type": "String"
+			},
+			{
+				"name": "Colour",
+				"type": "String"
+			},
+			{
+				"name": "Trim Type",
+				"type": "String"
+			},
+			{
+				"name": "Number of Doors",
+				"type": "String"
+			},
+			{
+				"name": "Gross Profit",
+				"type": "String"
+			},
+			{
+				"name": "Reconditioning Cost",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

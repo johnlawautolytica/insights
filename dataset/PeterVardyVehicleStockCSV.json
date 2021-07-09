@@ -1,0 +1,193 @@
+{
+	"name": "PeterVardyVehicleStockCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "VSSBC.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "String"
+			},
+			{
+				"name": "DealershipID",
+				"type": "String"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "RegistrationNo",
+				"type": "String"
+			},
+			{
+				"name": "StockNo",
+				"type": "String"
+			},
+			{
+				"name": "GroupDateInStock",
+				"type": "String"
+			},
+			{
+				"name": "DealershipDateInStock",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "String"
+			},
+			{
+				"name": "Chassis",
+				"type": "String"
+			},
+			{
+				"name": "FirstRegisteredDate",
+				"type": "String"
+			},
+			{
+				"name": "Make",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Derivative",
+				"type": "String"
+			},
+			{
+				"name": "Trim",
+				"type": "String"
+			},
+			{
+				"name": "EngineSize",
+				"type": "String"
+			},
+			{
+				"name": "Bodystyle",
+				"type": "String"
+			},
+			{
+				"name": "Mileage",
+				"type": "String"
+			},
+			{
+				"name": "FuelType",
+				"type": "String"
+			},
+			{
+				"name": "Transmission",
+				"type": "String"
+			},
+			{
+				"name": "GenericColour",
+				"type": "String"
+			},
+			{
+				"name": "SpecificColour",
+				"type": "String"
+			},
+			{
+				"name": "Doors",
+				"type": "String"
+			},
+			{
+				"name": "SIV",
+				"type": "String"
+			},
+			{
+				"name": "Vat",
+				"type": "String"
+			},
+			{
+				"name": "Source",
+				"type": "String"
+			},
+			{
+				"name": "ModelAnalysisCode",
+				"type": "String"
+			},
+			{
+				"name": "RetailPrice",
+				"type": "String"
+			},
+			{
+				"name": "Purchaser",
+				"type": "String"
+			},
+			{
+				"name": "SupplierName",
+				"type": "String"
+			},
+			{
+				"name": "PurchaseInvoiceDate",
+				"type": "String"
+			},
+			{
+				"name": "AvailableDate",
+				"type": "String"
+			},
+			{
+				"name": "ProgressCode",
+				"type": "String"
+			},
+			{
+				"name": "Recon",
+				"type": "String"
+			},
+			{
+				"name": "TransportCosts",
+				"type": "String"
+			},
+			{
+				"name": "AdjustedSIV",
+				"type": "String"
+			},
+			{
+				"name": "AvailableDate2",
+				"type": "String"
+			},
+			{
+				"name": "PurchaseInvoiceDate2",
+				"type": "String"
+			},
+			{
+				"name": "ReceivedDate",
+				"type": "String"
+			},
+			{
+				"name": "DateInGroup",
+				"type": "String"
+			},
+			{
+				"name": "PurchaseAccount",
+				"type": "String"
+			},
+			{
+				"name": "QuarantineStatus",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

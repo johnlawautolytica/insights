@@ -1,0 +1,332 @@
+{
+	"name": "SQLEMAXRaw_EnquiryActivity",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int"
+			},
+			{
+				"name": "DealerID",
+				"type": "varchar"
+			},
+			{
+				"name": "DealerCode",
+				"type": "varchar"
+			},
+			{
+				"name": "DealerName",
+				"type": "varchar"
+			},
+			{
+				"name": "SalesPerson",
+				"type": "varchar"
+			},
+			{
+				"name": "SalespersonID",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryID",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerID",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerType",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceOfEnquiry",
+				"type": "varchar"
+			},
+			{
+				"name": "MethodOfContact",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleType",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleMake",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleRange",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleModel",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleDerivative",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleReg",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryVehicleVin",
+				"type": "varchar"
+			},
+			{
+				"name": "PXVehicle",
+				"type": "varchar"
+			},
+			{
+				"name": "PXReg",
+				"type": "varchar"
+			},
+			{
+				"name": "PXVin",
+				"type": "varchar"
+			},
+			{
+				"name": "PXMake",
+				"type": "varchar"
+			},
+			{
+				"name": "PXRange",
+				"type": "varchar"
+			},
+			{
+				"name": "PXModel",
+				"type": "varchar"
+			},
+			{
+				"name": "PXDerivative",
+				"type": "varchar"
+			},
+			{
+				"name": "PXSIValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "PXDisposalMethod",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferCreatedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "OfferVehicleType",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferVehicleMake",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferVehicleRange",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferVehicleModel",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferVehicleDerivative",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferVehicleReg",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferVehicleVin",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleBasePrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "AddonsPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Discounts",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "DeliveryFee",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RegFee",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RFLFee",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TotalOTRprice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "PXVehicleOffer",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "PXOverAllowance",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "OrderNo",
+				"type": "varchar"
+			},
+			{
+				"name": "Financed",
+				"type": "varchar"
+			},
+			{
+				"name": "FinanceHouse",
+				"type": "varchar"
+			},
+			{
+				"name": "Rate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "APR",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "FinanceTerms",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "FinanceType",
+				"type": "varchar"
+			},
+			{
+				"name": "CashDeposit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "DealerFDA",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ProviderFDA",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Cashback",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "FinanceValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "MonthlyPayments",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "EnquiryStatusCode",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "TestDriveDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "OrderDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "EstimatedHandoverDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LostSaleDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LostSaleReason",
+				"type": "varchar"
+			},
+			{
+				"name": "LostSaleRequestedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EMAXRaw_EnquiryActivity_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

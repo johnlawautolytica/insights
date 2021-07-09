@@ -1,0 +1,62 @@
+{
+	"name": "SQLRTCRaw_ContactvContactParms",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FollCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FollDays",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Type",
+				"type": "char"
+			},
+			{
+				"name": "ReportType",
+				"type": "char"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_ContactvContactParms"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

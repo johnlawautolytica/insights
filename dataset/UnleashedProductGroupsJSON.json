@@ -1,0 +1,41 @@
+{
+	"name": "UnleashedProductGroupsJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ProductGroups.json",
+				"container": "unleashed"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"GroupName": {
+								"type": "string"
+							},
+							"Guid": {
+								"type": "string"
+							},
+							"LastModifiedOn": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

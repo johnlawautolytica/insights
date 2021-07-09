@@ -1,0 +1,105 @@
+{
+	"name": "SQLDMSAftersalesHours",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SaleType",
+				"type": "varchar"
+			},
+			{
+				"name": "InvoiceNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "WIPNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "RTSCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SoldHours",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "TakenHours",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "Efficiency",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "SaleValue",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "RecoveryRate",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "Technician",
+				"type": "varchar"
+			},
+			{
+				"name": "LA",
+				"type": "varchar"
+			},
+			{
+				"name": "LT",
+				"type": "varchar"
+			},
+			{
+				"name": "Dealer",
+				"type": "varchar"
+			},
+			{
+				"name": "OperatorName",
+				"type": "varchar"
+			},
+			{
+				"name": "FranchiseCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ChassisNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "DateEdited",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSAftersalesHours"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,242 @@
+{
+	"name": "RTC_Ext_BI_Inspection_vISHeaders",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Booking",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NextServ",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "NextMot",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Created",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Tech",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Advisor",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "hcType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InputStarted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InputCompleted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PartsIdentified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LabourIdentified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FollowUpCompleted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InspectionClosed",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InspectionPrinted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PartsAssistance",
+				"type": "bit"
+			},
+			{
+				"name": "InvoiceValue",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 2
+			},
+			{
+				"name": "InUse",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartsRequired",
+				"type": "bit"
+			},
+			{
+				"name": "Model",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "JobNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NotInspectedReason",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Franchise",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DMSRef",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VehNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QualityControllerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NewTyre",
+				"type": "bit"
+			},
+			{
+				"name": "TyresIdentified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExtStatus",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ExtAccessed",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExtResponded",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EventId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UniqueBookingID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OriginalClosedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PreAgreedWorkValue",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 2
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Inspection_vISHeaders"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

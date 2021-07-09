@@ -1,0 +1,138 @@
+{
+	"name": "RTC_Ext_BI_Contact_vContacts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Notes1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Notes2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Notes3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ContDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FollDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Complete",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CompleteCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FollCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Booking",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Value",
+				"type": "decimal",
+				"precision": 6,
+				"scale": 2
+			},
+			{
+				"name": "OpNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegNo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Model",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VehDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Franchise",
+				"type": "varchar"
+			},
+			{
+				"name": "HeaderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GroupedRAG",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OpNumCreated",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Contact_vContacts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

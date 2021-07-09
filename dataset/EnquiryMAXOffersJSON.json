@@ -1,0 +1,354 @@
+{
+	"name": "EnquiryMAXOffersJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "OffersJSON.json",
+				"container": "enquirymax"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"enquiryID": {
+					"type": "string"
+				},
+				"Offers": {
+					"type": "object",
+					"properties": {
+						"offerStatus": {
+							"type": "string"
+						},
+						"vehicle": {
+							"type": "object",
+							"properties": {
+								"make": {
+									"type": "string"
+								},
+								"range": {
+									"type": "string"
+								},
+								"model": {
+									"type": "string"
+								},
+								"derivative": {
+									"type": "string"
+								},
+								"vrm": {
+									"type": "string"
+								},
+								"fuelType": {
+									"type": "string"
+								},
+								"vehicleCode": {
+									"type": "string"
+								},
+								"vehicleCodeType": {
+									"type": "string"
+								},
+								"odometer": {
+									"type": "object",
+									"properties": {
+										"unit": {
+											"type": "string"
+										},
+										"currentValue": {
+											"type": "integer"
+										}
+									}
+								},
+								"stockNumber": {
+									"type": "string"
+								},
+								"vin": {
+									"type": "string"
+								}
+							}
+						},
+						"financeQuotes": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"financeType": {
+										"type": "string"
+									},
+									"cashDeposit": {
+										"type": "integer"
+									},
+									"fda": {
+										"type": "integer"
+									},
+									"cashBack": {
+										"type": "integer"
+									},
+									"docFee": {
+										"type": "integer"
+									},
+									"balanceToFund": {
+										"type": "integer"
+									},
+									"term": {
+										"type": "integer"
+									},
+									"rate": {
+										"type": "integer"
+									},
+									"maxAnnualMileage": {
+										"type": "integer"
+									},
+									"monthlyPayment": {
+										"type": "integer"
+									},
+									"finalPayment": {
+										"type": "integer"
+									}
+								}
+							}
+						},
+						"totalOnRoadPrice": {
+							"type": "integer"
+						},
+						"specificationFrom": {
+							"type": "string"
+						},
+						"vehicleBasePrice": {
+							"type": "integer"
+						},
+						"deliveryFee": {
+							"type": "integer"
+						},
+						"registrationFee": {
+							"type": "integer"
+						},
+						"roadFundLicense": {
+							"type": "integer"
+						},
+						"partExchangeVehicles": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"vatQualifiying": {
+										"type": "boolean"
+									},
+									"import": {
+										"type": "boolean"
+									},
+									"noOfKeys": {
+										"type": "integer"
+									},
+									"outstandingFinanceAmount": {
+										"type": "integer"
+									},
+									"totalReconditionCost": {
+										"type": "integer"
+									},
+									"siv": {
+										"type": "integer"
+									},
+									"dateOfRegistration": {
+										"type": "string"
+									},
+									"lastService": {
+										"type": "string"
+									},
+									"nextService": {
+										"type": "string"
+									},
+									"carTaxExpiry": {
+										"type": "string"
+									},
+									"motExpiry": {
+										"type": "string"
+									},
+									"numberOfOwners": {
+										"type": "integer"
+									},
+									"valuation": {
+										"type": "integer"
+									},
+									"underwrittenBy": {
+										"type": "string"
+									},
+									"salesManager": {
+										"type": "string"
+									},
+									"validUntil": {
+										"type": "string"
+									},
+									"vehicleDisposal": {
+										"type": "string"
+									},
+									"traderName": {
+										"type": "string"
+									},
+									"lastServiceDate": {
+										"type": "string"
+									},
+									"lastMotDate": {
+										"type": "string"
+									},
+									"additionalHpiSummaryNotes": {
+										"type": "string"
+									},
+									"refurbishmentComments": {
+										"type": "string"
+									},
+									"vehicleDriven": {
+										"type": "boolean"
+									},
+									"offerValidUntilDate": {
+										"type": "string"
+									},
+									"vehicleDisposalRoute": {
+										"type": "string"
+									},
+									"make": {
+										"type": "string"
+									},
+									"range": {
+										"type": "string"
+									},
+									"model": {
+										"type": "string"
+									},
+									"derivative": {
+										"type": "string"
+									},
+									"vrm": {
+										"type": "string"
+									},
+									"fuelType": {
+										"type": "string"
+									},
+									"vehicleCode": {
+										"type": "string"
+									},
+									"vehicleCodeType": {
+										"type": "string"
+									},
+									"odometer": {
+										"type": "object",
+										"properties": {
+											"unit": {
+												"type": "string"
+											},
+											"currentValue": {
+												"type": "integer"
+											}
+										}
+									},
+									"stockNumber": {
+										"type": "string"
+									},
+									"vin": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"partExchangeOverAllowance": {
+							"type": "integer"
+						},
+						"incentives": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"description": {
+										"type": "string"
+									},
+									"priceExTax": {
+										"type": "integer"
+									},
+									"price": {
+										"type": "integer"
+									},
+									"categoryText": {
+										"type": "string"
+									},
+									"optionCode": {
+										"type": "string"
+									},
+									"optionText": {
+										"type": "string"
+									},
+									"supplementaryOption": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"dealerOptions": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"description": {
+										"type": "string"
+									},
+									"priceExTax": {
+										"type": "integer"
+									},
+									"price": {
+										"type": "integer"
+									},
+									"categoryText": {
+										"type": "string"
+									},
+									"optionCode": {
+										"type": "string"
+									},
+									"optionText": {
+										"type": "string"
+									},
+									"supplementaryOption": {
+										"type": "boolean"
+									}
+								}
+							}
+						},
+						"factoryOptions": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"description": {
+										"type": "string"
+									},
+									"priceExTax": {
+										"type": "integer"
+									},
+									"price": {
+										"type": "integer"
+									},
+									"categoryText": {
+										"type": "string"
+									},
+									"optionCode": {
+										"type": "string"
+									},
+									"optionText": {
+										"type": "string"
+									},
+									"supplementaryOption": {
+										"type": "boolean"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

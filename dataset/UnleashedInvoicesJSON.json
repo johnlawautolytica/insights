@@ -1,0 +1,266 @@
+{
+	"name": "UnleashedInvoicesJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Invoices-1.json",
+				"container": "unleashed"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Pagination": {
+					"type": "object",
+					"properties": {
+						"NumberOfItems": {
+							"type": "integer"
+						},
+						"PageSize": {
+							"type": "integer"
+						},
+						"PageNumber": {
+							"type": "integer"
+						},
+						"NumberOfPages": {
+							"type": "integer"
+						}
+					}
+				},
+				"Items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"InvoiceNumber": {
+								"type": "string"
+							},
+							"OrderNumber": {
+								"type": "string"
+							},
+							"QuoteNumber": {
+								"type": "null"
+							},
+							"InvoiceDate": {
+								"type": "string"
+							},
+							"DueDate": {
+								"type": "string"
+							},
+							"InvoiceStatus": {
+								"type": "string"
+							},
+							"Customer": {
+								"type": "object",
+								"properties": {
+									"CustomerCode": {
+										"type": "string"
+									},
+									"CustomerName": {
+										"type": "string"
+									},
+									"CurrencyId": {
+										"type": "integer"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							},
+							"Comments": {
+								"type": "null"
+							},
+							"PostalAddress": {
+								"type": "object",
+								"properties": {
+									"AddressType": {
+										"type": "null"
+									},
+									"AddressName": {
+										"type": "string"
+									},
+									"StreetAddress": {
+										"type": "string"
+									},
+									"StreetAddress2": {
+										"type": "null"
+									},
+									"Suburb": {
+										"type": "null"
+									},
+									"City": {
+										"type": "string"
+									},
+									"Region": {
+										"type": "string"
+									},
+									"Country": {
+										"type": "string"
+									},
+									"PostalCode": {
+										"type": "string"
+									},
+									"IsDefault": {
+										"type": "boolean"
+									},
+									"DeliveryInstruction": {
+										"type": "null"
+									}
+								}
+							},
+							"DeliveryAddress": {
+								"type": "object",
+								"properties": {
+									"AddressType": {
+										"type": "null"
+									},
+									"AddressName": {
+										"type": "string"
+									},
+									"StreetAddress": {
+										"type": "string"
+									},
+									"StreetAddress2": {
+										"type": "null"
+									},
+									"Suburb": {
+										"type": "null"
+									},
+									"City": {
+										"type": "string"
+									},
+									"Region": {
+										"type": "string"
+									},
+									"Country": {
+										"type": "string"
+									},
+									"PostalCode": {
+										"type": "string"
+									},
+									"IsDefault": {
+										"type": "boolean"
+									},
+									"DeliveryInstruction": {
+										"type": "null"
+									}
+								}
+							},
+							"DeliveryInstruction": {
+								"type": "null"
+							},
+							"SubTotal": {
+								"type": "number"
+							},
+							"TaxTotal": {
+								"type": "number"
+							},
+							"Total": {
+								"type": "number"
+							},
+							"BCSubTotal": {
+								"type": "number"
+							},
+							"BCTaxTotal": {
+								"type": "number"
+							},
+							"BCTotal": {
+								"type": "number"
+							},
+							"CreatedBy": {
+								"type": "string"
+							},
+							"PaymentTerm": {
+								"type": "null"
+							},
+							"InvoiceLines": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"LineNumber": {
+											"type": "integer"
+										},
+										"LineType": {
+											"type": "null"
+										},
+										"Product": {
+											"type": "object",
+											"properties": {
+												"Guid": {
+													"type": "string"
+												},
+												"ProductCode": {
+													"type": "string"
+												},
+												"ProductDescription": {
+													"type": "string"
+												}
+											}
+										},
+										"OrderQuantity": {
+											"type": "number"
+										},
+										"InvoiceQuantity": {
+											"type": "number"
+										},
+										"UnitPrice": {
+											"type": "number"
+										},
+										"DiscountRate": {
+											"type": "number"
+										},
+										"LineTotal": {
+											"type": "number"
+										},
+										"Comments": {
+											"type": "string"
+										},
+										"TaxRate": {
+											"type": "number"
+										},
+										"LineTax": {
+											"type": "number"
+										},
+										"BCUnitPrice": {
+											"type": "number"
+										},
+										"SerialNumbers": {
+											"type": "null"
+										},
+										"BatchNumbers": {
+											"type": "null"
+										},
+										"Guid": {
+											"type": "string"
+										},
+										"LastModifiedOn": {
+											"type": "string"
+										}
+									}
+								}
+							},
+							"Guid": {
+								"type": "string"
+							},
+							"LastModifiedOn": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

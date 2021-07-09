@@ -1,0 +1,363 @@
+{
+	"name": "SQLEnquiryMax",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealershipID",
+				"type": "varchar"
+			},
+			{
+				"name": "SalesType",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerTitle",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerForename",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerSurname",
+				"type": "varchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "varchar"
+			},
+			{
+				"name": "Email",
+				"type": "varchar"
+			},
+			{
+				"name": "HomePhone",
+				"type": "varchar"
+			},
+			{
+				"name": "MobilePhone",
+				"type": "varchar"
+			},
+			{
+				"name": "WorkPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "Postcode",
+				"type": "varchar"
+			},
+			{
+				"name": "EnquiryCreatedDate",
+				"type": "date"
+			},
+			{
+				"name": "EnquiryType",
+				"type": "varchar"
+			},
+			{
+				"name": "SalesExecutive",
+				"type": "varchar"
+			},
+			{
+				"name": "BusinessManager",
+				"type": "varchar"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleType",
+				"type": "varchar"
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Range",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNo",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationDate",
+				"type": "date"
+			},
+			{
+				"name": "StockNo",
+				"type": "varchar"
+			},
+			{
+				"name": "GroupDateInStock",
+				"type": "date"
+			},
+			{
+				"name": "BranchDateInStock",
+				"type": "date"
+			},
+			{
+				"name": "FirstOrderDate",
+				"type": "date"
+			},
+			{
+				"name": "EnquiryStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "InvoicedDate",
+				"type": "date"
+			},
+			{
+				"name": "ExpectedDeliveryDate",
+				"type": "date"
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "date"
+			},
+			{
+				"name": "DeliveryCategory",
+				"type": "varchar"
+			},
+			{
+				"name": "MetalOnly",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "OTRPriceExcIns",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalGoodsAndServicesIncIns",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Financed",
+				"type": "varchar"
+			},
+			{
+				"name": "FinanceProvider",
+				"type": "varchar"
+			},
+			{
+				"name": "FinanceType",
+				"type": "varchar"
+			},
+			{
+				"name": "FinanceScheme",
+				"type": "varchar"
+			},
+			{
+				"name": "LoanTerm",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "APR",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FlatRate",
+				"type": "varchar"
+			},
+			{
+				"name": "FinanceBalance",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "VolumeBonus",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Commission",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DocFee",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FinanceSubsidy",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalFinanceMargin",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GAP",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GapProduct",
+				"type": "varchar"
+			},
+			{
+				"name": "Warranty",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "WarrantyProduct",
+				"type": "varchar"
+			},
+			{
+				"name": "Extras",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ExtrasProduct",
+				"type": "varchar"
+			},
+			{
+				"name": "Paint",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PaintProduct",
+				"type": "varchar"
+			},
+			{
+				"name": "TotalInsMargin",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalFandIMargin",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "VolumeBonusCentral",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DOCFeeCentral",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TotalCentralIncome",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "DaysInStock",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LastAdvertisedPrice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ModelAnalysisCode",
+				"type": "varchar"
+			},
+			{
+				"name": "SIV",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "StockNo2",
+				"type": "varchar"
+			},
+			{
+				"name": "ChassisNo",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineSize",
+				"type": "varchar"
+			},
+			{
+				"name": "BodyStyle",
+				"type": "varchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FuelType",
+				"type": "varchar"
+			},
+			{
+				"name": "Transmission",
+				"type": "varchar"
+			},
+			{
+				"name": "Colour",
+				"type": "varchar"
+			},
+			{
+				"name": "TrimType",
+				"type": "varchar"
+			},
+			{
+				"name": "NumberOfDoors",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GrossProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ReconditioningCost",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EnquiryMAXSales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

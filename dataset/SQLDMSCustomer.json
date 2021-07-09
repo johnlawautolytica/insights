@@ -1,0 +1,132 @@
+{
+	"name": "SQLDMSCustomer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Title",
+				"type": "varchar"
+			},
+			{
+				"name": "Forename",
+				"type": "varchar"
+			},
+			{
+				"name": "Surname",
+				"type": "varchar"
+			},
+			{
+				"name": "Address1",
+				"type": "varchar"
+			},
+			{
+				"name": "Address2",
+				"type": "varchar"
+			},
+			{
+				"name": "Address3",
+				"type": "varchar"
+			},
+			{
+				"name": "Address4",
+				"type": "varchar"
+			},
+			{
+				"name": "Postcode",
+				"type": "varchar"
+			},
+			{
+				"name": "HomePhone",
+				"type": "varchar"
+			},
+			{
+				"name": "MobilePhone",
+				"type": "varchar"
+			},
+			{
+				"name": "EmailAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "HomeTPS",
+				"type": "varchar"
+			},
+			{
+				"name": "MobileTPS",
+				"type": "varchar"
+			},
+			{
+				"name": "EmailTPS",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentSalesSMS",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentSalesPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentSalesEmail",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentSalesPost",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentAfterSalesSMS",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentAfterSalesPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentAfterSalesEmail",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentAfterSalesPost",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentBMWSMS",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentBMWPhone",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentBMWEmail",
+				"type": "varchar"
+			},
+			{
+				"name": "ConsentBMWPost",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSCustomer"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

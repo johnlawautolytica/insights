@@ -1,0 +1,405 @@
+{
+	"name": "PeterVardyWebStockFeedCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "PVLWebFeed.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Id",
+				"type": "String"
+			},
+			{
+				"name": "DealerCode",
+				"type": "String"
+			},
+			{
+				"name": "StockNumber",
+				"type": "String"
+			},
+			{
+				"name": "NewUsed",
+				"type": "String"
+			},
+			{
+				"name": "VehicleType",
+				"type": "String"
+			},
+			{
+				"name": "Demo",
+				"type": "String"
+			},
+			{
+				"name": "VatStatus",
+				"type": "String"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "String"
+			},
+			{
+				"name": "ChassisNumber",
+				"type": "String"
+			},
+			{
+				"name": "EngineNumber",
+				"type": "String"
+			},
+			{
+				"name": "CapId",
+				"type": "String"
+			},
+			{
+				"name": "FullCapCode",
+				"type": "String"
+			},
+			{
+				"name": "CapModelYear",
+				"type": "String"
+			},
+			{
+				"name": "Make",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Derivative",
+				"type": "String"
+			},
+			{
+				"name": "EngineSize",
+				"type": "String"
+			},
+			{
+				"name": "Doors",
+				"type": "String"
+			},
+			{
+				"name": "BodyStyle",
+				"type": "String"
+			},
+			{
+				"name": "FuelType",
+				"type": "String"
+			},
+			{
+				"name": "TransmissionType",
+				"type": "String"
+			},
+			{
+				"name": "PaintColour",
+				"type": "String"
+			},
+			{
+				"name": "SpecificPaintColour",
+				"type": "String"
+			},
+			{
+				"name": "PaintType",
+				"type": "String"
+			},
+			{
+				"name": "TrimColour",
+				"type": "String"
+			},
+			{
+				"name": "TrimType",
+				"type": "String"
+			},
+			{
+				"name": "Odometer",
+				"type": "String"
+			},
+			{
+				"name": "OdometerType",
+				"type": "String"
+			},
+			{
+				"name": "RegistrationDate",
+				"type": "String"
+			},
+			{
+				"name": "PreviousOwners",
+				"type": "String"
+			},
+			{
+				"name": "ServiceHistory",
+				"type": "String"
+			},
+			{
+				"name": "Approved",
+				"type": "String"
+			},
+			{
+				"name": "WarrantyLevel",
+				"type": "String"
+			},
+			{
+				"name": "FullVehicleCheck",
+				"type": "String"
+			},
+			{
+				"name": "MultiPointInspection",
+				"type": "String"
+			},
+			{
+				"name": "BranchPurchaseDate",
+				"type": "String"
+			},
+			{
+				"name": "GroupPurchaseDate",
+				"type": "String"
+			},
+			{
+				"name": "StockStatus",
+				"type": "String"
+			},
+			{
+				"name": "VehicleStatus",
+				"type": "String"
+			},
+			{
+				"name": "AvailableDate",
+				"type": "String"
+			},
+			{
+				"name": "ReadyToGo",
+				"type": "String"
+			},
+			{
+				"name": "HoStock",
+				"type": "String"
+			},
+			{
+				"name": "OriginalPurchasePrice",
+				"type": "String"
+			},
+			{
+				"name": "StockValue",
+				"type": "String"
+			},
+			{
+				"name": "ReconDfa",
+				"type": "String"
+			},
+			{
+				"name": "DeliveryCost",
+				"type": "String"
+			},
+			{
+				"name": "VehicleSalePrice",
+				"type": "String"
+			},
+			{
+				"name": "DeliveryRetailSalePrice",
+				"type": "String"
+			},
+			{
+				"name": "ReducedPrice",
+				"type": "String"
+			},
+			{
+				"name": "IdaAmount",
+				"type": "String"
+			},
+			{
+				"name": "TrackerNumber",
+				"type": "String"
+			},
+			{
+				"name": "StockType",
+				"type": "String"
+			},
+			{
+				"name": "WebCategory",
+				"type": "String"
+			},
+			{
+				"name": "HouseCharge",
+				"type": "String"
+			},
+			{
+				"name": "Co2",
+				"type": "String"
+			},
+			{
+				"name": "StatusId",
+				"type": "String"
+			},
+			{
+				"name": "IsVisible",
+				"type": "String"
+			},
+			{
+				"name": "DateCreated",
+				"type": "String"
+			},
+			{
+				"name": "DateUpdated",
+				"type": "String"
+			},
+			{
+				"name": "LastUpdatedBy",
+				"type": "String"
+			},
+			{
+				"name": "SentToWeb",
+				"type": "String"
+			},
+			{
+				"name": "Seats",
+				"type": "String"
+			},
+			{
+				"name": "ManufactureDate",
+				"type": "String"
+			},
+			{
+				"name": "TaxBand",
+				"type": "String"
+			},
+			{
+				"name": "AutotraderBanner",
+				"type": "String"
+			},
+			{
+				"name": "Mpg",
+				"type": "String"
+			},
+			{
+				"name": "InsuranceGroup",
+				"type": "String"
+			},
+			{
+				"name": "PlusVat",
+				"type": "String"
+			},
+			{
+				"name": "Featured",
+				"type": "String"
+			},
+			{
+				"name": "POA",
+				"type": "String"
+			},
+			{
+				"name": "Verified",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryCount",
+				"type": "String"
+			},
+			{
+				"name": "PriceLastUpdated",
+				"type": "String"
+			},
+			{
+				"name": "IsVirtual",
+				"type": "String"
+			},
+			{
+				"name": "Removed",
+				"type": "String"
+			},
+			{
+				"name": "PriceVerified",
+				"type": "String"
+			},
+			{
+				"name": "TradePrice",
+				"type": "String"
+			},
+			{
+				"name": "DateRemoved",
+				"type": "String"
+			},
+			{
+				"name": "ActualReg",
+				"type": "String"
+			},
+			{
+				"name": "RoadTaxSix",
+				"type": "String"
+			},
+			{
+				"name": "RoadTaxTwelve",
+				"type": "String"
+			},
+			{
+				"name": "CitNowVideo",
+				"type": "String"
+			},
+			{
+				"name": "VideoRemoved",
+				"type": "String"
+			},
+			{
+				"name": "CapManId",
+				"type": "String"
+			},
+			{
+				"name": "CapModId",
+				"type": "String"
+			},
+			{
+				"name": "ShortModel",
+				"type": "String"
+			},
+			{
+				"name": "FinanceOption",
+				"type": "String"
+			},
+			{
+				"name": "ComingSoon",
+				"type": "String"
+			},
+			{
+				"name": "Quarantine",
+				"type": "String"
+			},
+			{
+				"name": "FinanceDeposit",
+				"type": "String"
+			},
+			{
+				"name": "FinanceTerm",
+				"type": "String"
+			},
+			{
+				"name": "YouTubeVideo",
+				"type": "String"
+			},
+			{
+				"name": "NumberOfImages",
+				"type": "String"
+			},
+			{
+				"name": "ImageURLS",
+				"type": "String"
+			},
+			{
+				"name": "ToBeRemoved",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,81 @@
+{
+	"name": "PeterVardyClockingCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Clocking.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ClockingSeqNo",
+				"type": "String"
+			},
+			{
+				"name": "DealerName",
+				"type": "String"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "String"
+			},
+			{
+				"name": "EmployeeType",
+				"type": "String"
+			},
+			{
+				"name": "BookingNumber",
+				"type": "String"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "String"
+			},
+			{
+				"name": "Action",
+				"type": "String"
+			},
+			{
+				"name": "DateTimeOn",
+				"type": "String"
+			},
+			{
+				"name": "DateTimeOff",
+				"type": "String"
+			},
+			{
+				"name": "AdjElapsed",
+				"type": "String"
+			},
+			{
+				"name": "Column1",
+				"type": "String"
+			},
+			{
+				"name": "Allowed",
+				"type": "String"
+			},
+			{
+				"name": "WorkType",
+				"type": "String"
+			},
+			{
+				"name": "SaleType",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

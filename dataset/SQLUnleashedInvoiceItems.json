@@ -1,0 +1,89 @@
+{
+	"name": "SQLUnleashedInvoiceItems",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Client ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Line Number",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Invoice Number",
+				"type": "varchar"
+			},
+			{
+				"name": "Product Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Order Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Invoice Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Unit Price",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Discount Rate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Line Total",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Tax Rate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Line Tax",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "BCUnitPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UnleashedInvoiceItems"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

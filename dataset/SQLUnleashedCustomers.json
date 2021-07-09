@@ -1,0 +1,44 @@
+{
+	"name": "SQLUnleashedCustomers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Client ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Customer Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "Postcode",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UnleashedCustomers"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

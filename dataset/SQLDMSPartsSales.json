@@ -1,0 +1,98 @@
+{
+	"name": "SQLDMSPartsSales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DepartmentID",
+				"type": "varchar"
+			},
+			{
+				"name": "SaleType",
+				"type": "varchar"
+			},
+			{
+				"name": "SaleTypeDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "Franchise",
+				"type": "varchar"
+			},
+			{
+				"name": "PartNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "RetailValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SaleValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CostValue",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GrossProfit",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GrossProfitPercentage",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "WIPNo",
+				"type": "varchar"
+			},
+			{
+				"name": "AnalysisCode",
+				"type": "varchar"
+			},
+			{
+				"name": "OrderQuantity",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SellingPrice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "SalesDate",
+				"type": "date"
+			},
+			{
+				"name": "ProductGroup",
+				"type": "varchar"
+			},
+			{
+				"name": "AftersalesDepartment",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSPartsSales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

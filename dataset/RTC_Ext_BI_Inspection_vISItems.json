@@ -1,0 +1,198 @@
+{
+	"name": "RTC_Ext_BI_Inspection_vISItems",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubSectionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OutcomeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FollNum",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FollDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FollType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RAG",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InnerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MiddleId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OuterId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "hcType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "hcOutcome",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NSInnerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NSOuterId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OSInnerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OSOuterId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Details",
+				"type": "varchar"
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 7,
+				"scale": 2
+			},
+			{
+				"name": "PartsAssistance",
+				"type": "bit"
+			},
+			{
+				"name": "NoLabour",
+				"type": "bit"
+			},
+			{
+				"name": "NoParts",
+				"type": "bit"
+			},
+			{
+				"name": "NoPrice",
+				"type": "bit"
+			},
+			{
+				"name": "FixedPrice",
+				"type": "bit"
+			},
+			{
+				"name": "PartsPicked",
+				"type": "bit"
+			},
+			{
+				"name": "Completed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuthorisedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "AuthAdvisor",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AuthDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "VideoStatus",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SendVideo",
+				"type": "bit"
+			},
+			{
+				"name": "ExtOutcome",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TechRAG",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BookedContSeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Inspection_vISItems"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "autolytica",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "550193e7-ed2b-4807-9b10-9eb3580a1ecd",
+		"tenantId": "8f314a53-17f5-4ba8-aea6-24466e2d1751"
+	}
+}

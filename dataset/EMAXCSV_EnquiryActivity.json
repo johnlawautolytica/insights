@@ -1,0 +1,293 @@
+{
+	"name": "EMAXCSV_EnquiryActivity",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EMAXRaw_EnquiryActivity.csv",
+				"container": "enquirymax"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "DealerID",
+				"type": "String"
+			},
+			{
+				"name": "DealerCode",
+				"type": "String"
+			},
+			{
+				"name": "DealerName",
+				"type": "String"
+			},
+			{
+				"name": "SalesPerson",
+				"type": "String"
+			},
+			{
+				"name": "SalespersonID",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryID",
+				"type": "String"
+			},
+			{
+				"name": "CustomerID",
+				"type": "String"
+			},
+			{
+				"name": "CustomerType",
+				"type": "String"
+			},
+			{
+				"name": "SourceOfEnquiry",
+				"type": "String"
+			},
+			{
+				"name": "MethodOfContact",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleType",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleMake",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleRange",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleModel",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleDerivative",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleReg",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryVehicleVin",
+				"type": "String"
+			},
+			{
+				"name": "PXVehicle",
+				"type": "String"
+			},
+			{
+				"name": "PXReg",
+				"type": "String"
+			},
+			{
+				"name": "PXVin",
+				"type": "String"
+			},
+			{
+				"name": "PXMake",
+				"type": "String"
+			},
+			{
+				"name": "PXRange",
+				"type": "String"
+			},
+			{
+				"name": "PXModel",
+				"type": "String"
+			},
+			{
+				"name": "PXDerivative",
+				"type": "String"
+			},
+			{
+				"name": "PXSIValue",
+				"type": "String"
+			},
+			{
+				"name": "PXDisposalMethod",
+				"type": "String"
+			},
+			{
+				"name": "OfferCreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleType",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleMake",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleRange",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleModel",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleDerivative",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleReg",
+				"type": "String"
+			},
+			{
+				"name": "OfferVehicleVin",
+				"type": "String"
+			},
+			{
+				"name": "VehicleBasePrice",
+				"type": "String"
+			},
+			{
+				"name": "AddonsPrice",
+				"type": "String"
+			},
+			{
+				"name": "Discounts",
+				"type": "String"
+			},
+			{
+				"name": "DeliveryFee",
+				"type": "String"
+			},
+			{
+				"name": "RegFee",
+				"type": "String"
+			},
+			{
+				"name": "RFLFee",
+				"type": "String"
+			},
+			{
+				"name": "TotalOTRprice",
+				"type": "String"
+			},
+			{
+				"name": "PXVehicleOffer",
+				"type": "String"
+			},
+			{
+				"name": "PXOverAllowance",
+				"type": "String"
+			},
+			{
+				"name": "OrderNo",
+				"type": "String"
+			},
+			{
+				"name": "Financed",
+				"type": "String"
+			},
+			{
+				"name": "FinanceHouse",
+				"type": "String"
+			},
+			{
+				"name": "Rate",
+				"type": "String"
+			},
+			{
+				"name": "APR",
+				"type": "String"
+			},
+			{
+				"name": "FinanceTerms",
+				"type": "String"
+			},
+			{
+				"name": "FinanceType",
+				"type": "String"
+			},
+			{
+				"name": "CashDeposit",
+				"type": "String"
+			},
+			{
+				"name": "DealerFDA",
+				"type": "String"
+			},
+			{
+				"name": "ProviderFDA",
+				"type": "String"
+			},
+			{
+				"name": "Cashback",
+				"type": "String"
+			},
+			{
+				"name": "FinanceValue",
+				"type": "String"
+			},
+			{
+				"name": "MonthlyPayments",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryStatusCode",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryStatus",
+				"type": "String"
+			},
+			{
+				"name": "EnquiryDate",
+				"type": "String"
+			},
+			{
+				"name": "TestDriveDate",
+				"type": "String"
+			},
+			{
+				"name": "OrderDate",
+				"type": "String"
+			},
+			{
+				"name": "EstimatedHandoverDate",
+				"type": "String"
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "String"
+			},
+			{
+				"name": "LostSaleDate",
+				"type": "String"
+			},
+			{
+				"name": "LostSaleReason",
+				"type": "String"
+			},
+			{
+				"name": "LostSaleRequestedDate",
+				"type": "String"
+			},
+			{
+				"name": "NULL",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

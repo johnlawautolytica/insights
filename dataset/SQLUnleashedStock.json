@@ -1,0 +1,85 @@
+{
+	"name": "SQLUnleashedStock",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Client ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Product Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Product Description",
+				"type": "varchar"
+			},
+			{
+				"name": "Product Group Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Days Since Last Sale",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "On Purchase",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Allocated Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Available Quantity",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Quantity on Hand",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Average Cost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "Total Cost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 4
+			},
+			{
+				"name": "GUID",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UnleashedStock"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,91 @@
+{
+	"name": "RTC_EXT_BI_Inspection_ISLabour",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LabourId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Details",
+				"type": "ntext"
+			},
+			{
+				"name": "Allowed",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "RepairCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Discount",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "NetPrice",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "Rate",
+				"type": "decimal",
+				"precision": 9,
+				"scale": 2
+			},
+			{
+				"name": "LabourRate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BookingLineNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Inspection_vISLabour"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,247 @@
+{
+	"name": "SQLRTCRaw_InspectionvISHeaders_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "varchar"
+			},
+			{
+				"name": "TypeId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Booking",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegNo",
+				"type": "varchar"
+			},
+			{
+				"name": "VehDesc",
+				"type": "varchar"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NextServ",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "NextMot",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Created",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Tech",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Advisor",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "hcType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InputStarted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InputCompleted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PartsIdentified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LabourIdentified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "FollowUpCompleted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InspectionClosed",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "InspectionPrinted",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PartsAssistance",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "InvoiceValue",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "InUse",
+				"type": "varchar"
+			},
+			{
+				"name": "PartsRequired",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "RegDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "JobNo",
+				"type": "varchar"
+			},
+			{
+				"name": "NotInspectedReason",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Franchise",
+				"type": "varchar"
+			},
+			{
+				"name": "DMSRef",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VehNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "QualityControllerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NewTyre",
+				"type": "varchar"
+			},
+			{
+				"name": "TyresIdentified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExtStatus",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ExtAccessed",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ExtResponded",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EventId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UniqueBookingID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OriginalClosedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PreAgreedWorkValue",
+				"type": "decimal",
+				"precision": 15,
+				"scale": 2
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_InspectionvISHeaders_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

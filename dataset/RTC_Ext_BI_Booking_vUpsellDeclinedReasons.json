@@ -1,0 +1,50 @@
+{
+	"name": "RTC_Ext_BI_Booking_vUpsellDeclinedReasons",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ReasonId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Active",
+				"type": "bit"
+			},
+			{
+				"name": "EMail",
+				"type": "bit"
+			},
+			{
+				"name": "AddToBooking",
+				"type": "bit"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Booking_vUpsellDeclinedReasons"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

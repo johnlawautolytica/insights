@@ -1,0 +1,77 @@
+{
+	"name": "RTC_Import_Check",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealershipID",
+				"type": "varchar"
+			},
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartsOrLabourID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "KeyDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UpdatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Type",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValueToCheck",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "hcOutcomeDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "hcTypeDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "CheckTypeDescription",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTC_Import_Check"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

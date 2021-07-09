@@ -1,0 +1,1449 @@
+{
+	"name": "AutotraderStockManagementJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AutotraderStockManagement.json",
+				"folderPath": "Autotrader",
+				"container": "autolytica"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"AutotraderRecord": {
+					"type": "object",
+					"properties": {
+						"OriginalInformation": {
+							"type": "object",
+							"properties": {
+								"RecordID": {
+									"type": "string"
+								},
+								"RegNo": {
+									"type": "string"
+								},
+								"StockNo": {
+									"type": "string"
+								}
+							}
+						},
+						"vehicle": {
+							"type": "object",
+							"properties": {
+								"ownershipCondition": {
+									"type": "string"
+								},
+								"registration": {
+									"type": "string"
+								},
+								"vin": {
+									"type": "null"
+								},
+								"make": {
+									"type": "string"
+								},
+								"model": {
+									"type": "string"
+								},
+								"generation": {
+									"type": "null"
+								},
+								"derivative": {
+									"type": "string"
+								},
+								"derivativeId": {
+									"type": "null"
+								},
+								"vehicleType": {
+									"type": "string"
+								},
+								"trim": {
+									"type": "null"
+								},
+								"bodyType": {
+									"type": "string"
+								},
+								"fuelType": {
+									"type": "string"
+								},
+								"cabType": {
+									"type": "null"
+								},
+								"transmissionType": {
+									"type": "string"
+								},
+								"wheelbaseType": {
+									"type": "null"
+								},
+								"roofHeightType": {
+									"type": "null"
+								},
+								"drivetrain": {
+									"type": "string"
+								},
+								"seats": {
+									"type": "null"
+								},
+								"doors": {
+									"type": "integer"
+								},
+								"co2EmissionGPKM": {
+									"type": "null"
+								},
+								"topSpeedMPH": {
+									"type": "null"
+								},
+								"zeroToSixtyMPHSeconds": {
+									"type": "null"
+								},
+								"badgeEngineSizeLitres": {
+									"type": "number"
+								},
+								"engineCapacityCC": {
+									"type": "integer"
+								},
+								"enginePowerBHP": {
+									"type": "null"
+								},
+								"fuelCapacityLitres": {
+									"type": "null"
+								},
+								"emissionClass": {
+									"type": "null"
+								},
+								"fuelEconomyNEDCExtraUrbanMPG": {
+									"type": "null"
+								},
+								"fuelEconomyNEDCUrbanMPG": {
+									"type": "null"
+								},
+								"fuelEconomyNEDCCombinedMPG": {
+									"type": "null"
+								},
+								"fuelEconomyWLTPLowMPG": {
+									"type": "null"
+								},
+								"fuelEconomyWLTPMediumMPG": {
+									"type": "null"
+								},
+								"fuelEconomyWLTPHighMPG": {
+									"type": "null"
+								},
+								"fuelEconomyWLTPExtraHighMPG": {
+									"type": "null"
+								},
+								"fuelEconomyWLTPCombinedMPG": {
+									"type": "null"
+								},
+								"bootSpaceSeatsUpLitres": {
+									"type": "null"
+								},
+								"insuranceGroup": {
+									"type": "null"
+								},
+								"insuranceSecurityCode": {
+									"type": "null"
+								},
+								"firstRegistrationDate": {
+									"type": "null"
+								},
+								"colour": {
+									"type": "null"
+								},
+								"style": {
+									"type": "null"
+								},
+								"subStyle": {
+									"type": "null"
+								},
+								"lengthMM": {
+									"type": "null"
+								},
+								"heightMM": {
+									"type": "null"
+								},
+								"widthMM": {
+									"type": "null"
+								},
+								"payloadLengthMM": {
+									"type": "null"
+								},
+								"payloadWidthMM": {
+									"type": "null"
+								},
+								"payloadHeightMM": {
+									"type": "null"
+								},
+								"payloadWeightKG": {
+									"type": "null"
+								},
+								"minimumKerbWeightKG": {
+									"type": "null"
+								},
+								"grossVehicleWeightKG": {
+									"type": "null"
+								},
+								"odometerReadingMiles": {
+									"type": "integer"
+								},
+								"warrantyMonthsOnPurchase": {
+									"type": "null"
+								},
+								"serviceHistory": {
+									"type": "null"
+								},
+								"plate": {
+									"type": "string"
+								},
+								"yearOfManufacture": {
+									"type": "string"
+								},
+								"interiorCondition": {
+									"type": "null"
+								},
+								"tyreCondition": {
+									"type": "null"
+								},
+								"bodyCondition": {
+									"type": "null"
+								},
+								"previousOwners": {
+									"type": "null"
+								},
+								"exDemo": {
+									"type": "null"
+								},
+								"v5Certificate": {
+									"type": "null"
+								},
+								"driverPosition": {
+									"type": "string"
+								},
+								"axleConfiguration": {
+									"type": "null"
+								},
+								"upholstery": {
+									"type": "null"
+								},
+								"interiorColour": {
+									"type": "null"
+								},
+								"exteriorFinish": {
+									"type": "null"
+								},
+								"lastServiceOdometerReadingMiles": {
+									"type": "null"
+								},
+								"lastServiceDate": {
+									"type": "null"
+								},
+								"chassisMake": {
+									"type": "null"
+								},
+								"chassisModel": {
+									"type": "null"
+								},
+								"bedroomLayout": {
+									"type": "null"
+								},
+								"endLayout": {
+									"type": "null"
+								},
+								"bedrooms": {
+									"type": "null"
+								},
+								"berths": {
+									"type": "null"
+								},
+								"standard": {
+									"type": "object",
+									"properties": {
+										"make": {
+											"type": "string"
+										},
+										"model": {
+											"type": "string"
+										},
+										"generation": {
+											"type": "null"
+										},
+										"derivative": {
+											"type": "string"
+										},
+										"trim": {
+											"type": "null"
+										},
+										"bodyType": {
+											"type": "string"
+										},
+										"fuelType": {
+											"type": "string"
+										},
+										"transmissionType": {
+											"type": "string"
+										},
+										"cabType": {
+											"type": "null"
+										},
+										"drivetrain": {
+											"type": "string"
+										},
+										"colour": {
+											"type": "string"
+										},
+										"style": {
+											"type": "null"
+										},
+										"subStyle": {
+											"type": "null"
+										}
+									}
+								}
+							}
+						},
+						"advertiser": {
+							"type": "object",
+							"properties": {
+								"advertiserId": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"segment": {
+									"type": "string"
+								},
+								"website": {
+									"type": "string"
+								},
+								"mobileWebsite": {
+									"type": "string"
+								},
+								"phone": {
+									"type": "string"
+								},
+								"location": {
+									"type": "object",
+									"properties": {
+										"addressLineOne": {
+											"type": "string"
+										},
+										"town": {
+											"type": "string"
+										},
+										"county": {
+											"type": "null"
+										},
+										"region": {
+											"type": "string"
+										},
+										"postCode": {
+											"type": "string"
+										},
+										"latitude": {
+											"type": "number"
+										},
+										"longitude": {
+											"type": "number"
+										}
+									}
+								},
+								"advertStrapline": {
+									"type": "null"
+								}
+							}
+						},
+						"adverts": {
+							"type": "object",
+							"properties": {
+								"forecourtPrice": {
+									"type": "object",
+									"properties": {
+										"amountGBP": {
+											"type": "integer"
+										}
+									}
+								},
+								"dueDate": {
+									"type": "null"
+								},
+								"manufacturerApproved": {
+									"type": "boolean"
+								},
+								"twelveMonthsMot": {
+									"type": "boolean"
+								},
+								"motInsurance": {
+									"type": "null"
+								},
+								"retailAdverts": {
+									"type": "object",
+									"properties": {
+										"price": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "integer"
+												}
+											}
+										},
+										"priceOnApplication": {
+											"type": "boolean"
+										},
+										"manufacturerRRP": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"vatExcluded": {
+											"type": "null"
+										},
+										"attentionGrabber": {
+											"type": "null"
+										},
+										"description": {
+											"type": "null"
+										},
+										"description2": {
+											"type": "null"
+										},
+										"priceIndicatorRating": {
+											"type": "string"
+										},
+										"autotraderAdvert": {
+											"type": "object",
+											"properties": {
+												"status": {
+													"type": "string"
+												}
+											}
+										},
+										"advertiserAdvert": {
+											"type": "object",
+											"properties": {
+												"status": {
+													"type": "string"
+												}
+											}
+										},
+										"locatorAdvert": {
+											"type": "object",
+											"properties": {
+												"status": {
+													"type": "string"
+												}
+											}
+										},
+										"exportAdvert": {
+											"type": "object",
+											"properties": {
+												"status": {
+													"type": "string"
+												}
+											}
+										},
+										"profileAdvert": {
+											"type": "object",
+											"properties": {
+												"status": {
+													"type": "string"
+												}
+											}
+										},
+										"displayOptions": {
+											"type": "object",
+											"properties": {
+												"excludePreviousOwners": {
+													"type": "boolean"
+												},
+												"excludeStrapline": {
+													"type": "boolean"
+												},
+												"excludeMot": {
+													"type": "boolean"
+												},
+												"excludeWarranty": {
+													"type": "boolean"
+												},
+												"excludeInteriorDetails": {
+													"type": "boolean"
+												},
+												"excludeTyreCondition": {
+													"type": "boolean"
+												},
+												"excludeBodyCondition": {
+													"type": "boolean"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"metadata": {
+							"type": "object",
+							"properties": {
+								"stockId": {
+									"type": "string"
+								},
+								"searchId": {
+									"type": "string"
+								},
+								"externalStockId": {
+									"type": "string"
+								},
+								"externalStockReference": {
+									"type": "null"
+								},
+								"lastUpdated": {
+									"type": "string"
+								},
+								"lastUpdatedByAdvertiser": {
+									"type": "string"
+								},
+								"versionNumber": {
+									"type": "integer"
+								},
+								"lifecycleState": {
+									"type": "string"
+								},
+								"dateOnForecourt": {
+									"type": "string"
+								}
+							}
+						},
+						"features": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"type": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"media": {
+							"type": "object",
+							"properties": {
+								"images": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"href": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"video": {
+									"type": "object",
+									"properties": {
+										"href": {
+											"type": "null"
+										},
+										"photoHref": {
+											"type": "null"
+										}
+									}
+								}
+							}
+						},
+						"valuations": {
+							"type": "object",
+							"properties": {
+								"marketAverage": {
+									"type": "object",
+									"properties": {
+										"trade": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"partExchange": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"retail": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												},
+												"amountExcludingVatGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"private": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										}
+									}
+								},
+								"adjusted": {
+									"type": "object",
+									"properties": {
+										"retail": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"trade": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"partExchange": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										},
+										"private": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "null"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"vehicleMetrics": {
+							"type": "object",
+							"properties": {
+								"national": {
+									"type": "object",
+									"properties": {
+										"retail": {
+											"type": "object",
+											"properties": {
+												"supply": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												},
+												"demand": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												},
+												"marketCondition": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												},
+												"rating": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												},
+												"daysToSell": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												},
+												"locations": {
+													"type": "array"
+												}
+											}
+										}
+									}
+								},
+								"local": {
+									"type": "object",
+									"properties": {
+										"retail": {
+											"type": "object",
+											"properties": {
+												"rating": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												},
+												"daysToSell": {
+													"type": "object",
+													"properties": {
+														"value": {
+															"type": "null"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"responseMetrics": {
+							"type": "object",
+							"properties": {
+								"performanceRating": {
+									"type": "object",
+									"properties": {
+										"score": {
+											"type": "null"
+										},
+										"rating": {
+											"type": "null"
+										}
+									}
+								},
+								"yesterday": {
+									"type": "object",
+									"properties": {
+										"advertViews": {
+											"type": "null"
+										},
+										"searchViews": {
+											"type": "null"
+										}
+									}
+								},
+								"lastWeek": {
+									"type": "object",
+									"properties": {
+										"advertViews": {
+											"type": "null"
+										},
+										"searchViews": {
+											"type": "null"
+										}
+									}
+								}
+							}
+						},
+						"check": {
+							"type": "object",
+							"properties": {
+								"insuranceWriteoffCategory": {
+									"type": "null"
+								},
+								"scrapped": {
+									"type": "null"
+								},
+								"stolen": {
+									"type": "null"
+								},
+								"imported": {
+									"type": "null"
+								},
+								"exported": {
+									"type": "null"
+								},
+								"privateFinance": {
+									"type": "null"
+								},
+								"tradeFinance": {
+									"type": "null"
+								},
+								"highRisk": {
+									"type": "null"
+								},
+								"mileageDiscrepancy": {
+									"type": "null"
+								},
+								"colourChanged": {
+									"type": "null"
+								},
+								"registrationChanged": {
+									"type": "null"
+								},
+								"previousOwners": {
+									"type": "null"
+								}
+							}
+						},
+						"links": {
+							"type": "object",
+							"properties": {
+								"competitor": {
+									"type": "object",
+									"properties": {
+										"href": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"results": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"vehicle": {
+								"type": "object",
+								"properties": {
+									"ownershipCondition": {
+										"type": "string"
+									},
+									"registration": {
+										"type": "string"
+									},
+									"vin": {
+										"type": "string"
+									},
+									"make": {
+										"type": "string"
+									},
+									"model": {
+										"type": "string"
+									},
+									"generation": {
+										"type": "string"
+									},
+									"derivative": {
+										"type": "string"
+									},
+									"derivativeId": {
+										"type": "string"
+									},
+									"vehicleType": {
+										"type": "string"
+									},
+									"trim": {
+										"type": "string"
+									},
+									"bodyType": {
+										"type": "string"
+									},
+									"fuelType": {
+										"type": "string"
+									},
+									"cabType": {
+										"type": "null"
+									},
+									"transmissionType": {
+										"type": "string"
+									},
+									"wheelbaseType": {
+										"type": "string"
+									},
+									"roofHeightType": {
+										"type": "null"
+									},
+									"drivetrain": {
+										"type": "string"
+									},
+									"seats": {
+										"type": "integer"
+									},
+									"doors": {
+										"type": "integer"
+									},
+									"co2EmissionGPKM": {
+										"type": "integer"
+									},
+									"topSpeedMPH": {
+										"type": "integer"
+									},
+									"zeroToSixtyMPHSeconds": {
+										"type": "null"
+									},
+									"badgeEngineSizeLitres": {
+										"type": "number"
+									},
+									"engineCapacityCC": {
+										"type": "integer"
+									},
+									"enginePowerBHP": {
+										"type": "integer"
+									},
+									"fuelCapacityLitres": {
+										"type": "number"
+									},
+									"emissionClass": {
+										"type": "string"
+									},
+									"fuelEconomyNEDCExtraUrbanMPG": {
+										"type": "number"
+									},
+									"fuelEconomyNEDCUrbanMPG": {
+										"type": "number"
+									},
+									"fuelEconomyNEDCCombinedMPG": {
+										"type": "number"
+									},
+									"fuelEconomyWLTPLowMPG": {
+										"type": "null"
+									},
+									"fuelEconomyWLTPMediumMPG": {
+										"type": "null"
+									},
+									"fuelEconomyWLTPHighMPG": {
+										"type": "null"
+									},
+									"fuelEconomyWLTPExtraHighMPG": {
+										"type": "null"
+									},
+									"fuelEconomyWLTPCombinedMPG": {
+										"type": "number"
+									},
+									"bootSpaceSeatsUpLitres": {
+										"type": "number"
+									},
+									"insuranceGroup": {
+										"type": "string"
+									},
+									"insuranceSecurityCode": {
+										"type": "string"
+									},
+									"firstRegistrationDate": {
+										"type": "string"
+									},
+									"colour": {
+										"type": "null"
+									},
+									"style": {
+										"type": "null"
+									},
+									"subStyle": {
+										"type": "null"
+									},
+									"lengthMM": {
+										"type": "integer"
+									},
+									"heightMM": {
+										"type": "integer"
+									},
+									"widthMM": {
+										"type": "integer"
+									},
+									"payloadLengthMM": {
+										"type": "null"
+									},
+									"payloadWidthMM": {
+										"type": "null"
+									},
+									"payloadHeightMM": {
+										"type": "null"
+									},
+									"payloadWeightKG": {
+										"type": "null"
+									},
+									"minimumKerbWeightKG": {
+										"type": "null"
+									},
+									"grossVehicleWeightKG": {
+										"type": "null"
+									},
+									"odometerReadingMiles": {
+										"type": "integer"
+									},
+									"warrantyMonthsOnPurchase": {
+										"type": "null"
+									},
+									"serviceHistory": {
+										"type": "null"
+									},
+									"plate": {
+										"type": "string"
+									},
+									"yearOfManufacture": {
+										"type": "string"
+									},
+									"interiorCondition": {
+										"type": "null"
+									},
+									"tyreCondition": {
+										"type": "null"
+									},
+									"bodyCondition": {
+										"type": "null"
+									},
+									"previousOwners": {
+										"type": "null"
+									},
+									"exDemo": {
+										"type": "null"
+									},
+									"v5Certificate": {
+										"type": "null"
+									},
+									"driverPosition": {
+										"type": "string"
+									},
+									"axleConfiguration": {
+										"type": "null"
+									},
+									"upholstery": {
+										"type": "null"
+									},
+									"interiorColour": {
+										"type": "null"
+									},
+									"exteriorFinish": {
+										"type": "null"
+									},
+									"lastServiceOdometerReadingMiles": {
+										"type": "null"
+									},
+									"lastServiceDate": {
+										"type": "null"
+									},
+									"chassisMake": {
+										"type": "null"
+									},
+									"chassisModel": {
+										"type": "null"
+									},
+									"bedroomLayout": {
+										"type": "null"
+									},
+									"endLayout": {
+										"type": "null"
+									},
+									"bedrooms": {
+										"type": "null"
+									},
+									"berths": {
+										"type": "null"
+									},
+									"standard": {
+										"type": "object",
+										"properties": {
+											"make": {
+												"type": "string"
+											},
+											"model": {
+												"type": "string"
+											},
+											"generation": {
+												"type": "string"
+											},
+											"derivative": {
+												"type": "string"
+											},
+											"trim": {
+												"type": "string"
+											},
+											"bodyType": {
+												"type": "string"
+											},
+											"fuelType": {
+												"type": "string"
+											},
+											"transmissionType": {
+												"type": "string"
+											},
+											"cabType": {
+												"type": "null"
+											},
+											"drivetrain": {
+												"type": "string"
+											},
+											"colour": {
+												"type": "string"
+											},
+											"style": {
+												"type": "null"
+											},
+											"subStyle": {
+												"type": "null"
+											}
+										}
+									}
+								}
+							},
+							"advertiser": {
+								"type": "object",
+								"properties": {
+									"advertiserId": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									},
+									"segment": {
+										"type": "string"
+									},
+									"website": {
+										"type": "string"
+									},
+									"mobileWebsite": {
+										"type": "string"
+									},
+									"phone": {
+										"type": "string"
+									},
+									"location": {
+										"type": "object",
+										"properties": {
+											"addressLineOne": {
+												"type": "string"
+											},
+											"town": {
+												"type": "string"
+											},
+											"county": {
+												"type": "null"
+											},
+											"region": {
+												"type": "string"
+											},
+											"postCode": {
+												"type": "string"
+											},
+											"latitude": {
+												"type": "number"
+											},
+											"longitude": {
+												"type": "number"
+											}
+										}
+									},
+									"advertStrapline": {
+										"type": "null"
+									}
+								}
+							},
+							"adverts": {
+								"type": "object",
+								"properties": {
+									"forecourtPrice": {
+										"type": "object",
+										"properties": {
+											"amountGBP": {
+												"type": "integer"
+											}
+										}
+									},
+									"dueDate": {
+										"type": "null"
+									},
+									"manufacturerApproved": {
+										"type": "boolean"
+									},
+									"twelveMonthsMot": {
+										"type": "boolean"
+									},
+									"motInsurance": {
+										"type": "null"
+									},
+									"retailAdverts": {
+										"type": "object",
+										"properties": {
+											"price": {
+												"type": "object",
+												"properties": {
+													"amountGBP": {
+														"type": "integer"
+													}
+												}
+											},
+											"priceOnApplication": {
+												"type": "boolean"
+											},
+											"manufacturerRRP": {
+												"type": "object",
+												"properties": {
+													"amountGBP": {
+														"type": "null"
+													}
+												}
+											},
+											"vatExcluded": {
+												"type": "null"
+											},
+											"attentionGrabber": {
+												"type": "string"
+											},
+											"description": {
+												"type": "null"
+											},
+											"description2": {
+												"type": "string"
+											},
+											"priceIndicatorRating": {
+												"type": "string"
+											},
+											"autotraderAdvert": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													}
+												}
+											},
+											"advertiserAdvert": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													}
+												}
+											},
+											"locatorAdvert": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													}
+												}
+											},
+											"exportAdvert": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													}
+												}
+											},
+											"profileAdvert": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													}
+												}
+											},
+											"displayOptions": {
+												"type": "object",
+												"properties": {
+													"excludePreviousOwners": {
+														"type": "boolean"
+													},
+													"excludeStrapline": {
+														"type": "boolean"
+													},
+													"excludeMot": {
+														"type": "boolean"
+													},
+													"excludeWarranty": {
+														"type": "boolean"
+													},
+													"excludeInteriorDetails": {
+														"type": "boolean"
+													},
+													"excludeTyreCondition": {
+														"type": "boolean"
+													},
+													"excludeBodyCondition": {
+														"type": "boolean"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"metadata": {
+								"type": "object",
+								"properties": {
+									"stockId": {
+										"type": "string"
+									},
+									"searchId": {
+										"type": "string"
+									},
+									"externalStockId": {
+										"type": "string"
+									},
+									"externalStockReference": {
+										"type": "null"
+									},
+									"lastUpdated": {
+										"type": "string"
+									},
+									"lastUpdatedByAdvertiser": {
+										"type": "string"
+									},
+									"versionNumber": {
+										"type": "integer"
+									},
+									"lifecycleState": {
+										"type": "string"
+									},
+									"dateOnForecourt": {
+										"type": "string"
+									}
+								}
+							},
+							"features": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"name": {
+											"type": "string"
+										},
+										"type": {
+											"type": "string"
+										}
+									}
+								}
+							},
+							"media": {
+								"type": "object",
+								"properties": {
+									"images": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"href": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"video": {
+										"type": "object",
+										"properties": {
+											"href": {
+												"type": "null"
+											},
+											"photoHref": {
+												"type": "null"
+											}
+										}
+									}
+								}
+							},
+							"valuations": {
+								"type": "object",
+								"properties": {
+									"marketAverage": {
+										"type": "object",
+										"properties": {
+											"retail": {
+												"type": "object",
+												"properties": {
+													"amountGBP": {
+														"type": "integer"
+													},
+													"amountExcludingVatGBP": {
+														"type": "null"
+													}
+												}
+											}
+										}
+									},
+									"adjusted": {
+										"type": "object",
+										"properties": {
+											"retail": {
+												"type": "object",
+												"properties": {
+													"amountGBP": {
+														"type": "integer"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"check": {
+								"type": "object",
+								"properties": {
+									"insuranceWriteoffCategory": {
+										"type": "null"
+									},
+									"scrapped": {
+										"type": "boolean"
+									},
+									"stolen": {
+										"type": "boolean"
+									},
+									"imported": {
+										"type": "boolean"
+									},
+									"exported": {
+										"type": "boolean"
+									},
+									"privateFinance": {
+										"type": "null"
+									},
+									"tradeFinance": {
+										"type": "null"
+									},
+									"highRisk": {
+										"type": "null"
+									},
+									"mileageDiscrepancy": {
+										"type": "null"
+									},
+									"colourChanged": {
+										"type": "null"
+									},
+									"registrationChanged": {
+										"type": "null"
+									},
+									"previousOwners": {
+										"type": "null"
+									}
+								}
+							}
+						}
+					}
+				},
+				"facets": {
+					"type": "object"
+				},
+				"totalResults": {
+					"type": "integer"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

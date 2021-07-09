@@ -1,0 +1,76 @@
+{
+	"name": "SQLRTCRaw_BookingvUpsellLog_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Recorded",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "UpsellId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DeclinedId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FreeTextDeclinedId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Agent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 8,
+				"scale": 2
+			},
+			{
+				"name": "Declined",
+				"type": "bit"
+			},
+			{
+				"name": "LogSeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Campaign",
+				"type": "bit"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_BookingvUpsellLog_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,79 @@
+{
+	"name": "SQLClocking",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClockingSeqNo",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmployeeType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BookingNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Action",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DateTimeOn",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "DateTimeOff",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "AdjElapsed",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Allowed",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WorkType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SaleType",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Clocking"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

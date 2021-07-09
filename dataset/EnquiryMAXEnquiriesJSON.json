@@ -1,0 +1,274 @@
+{
+	"name": "EnquiryMAXEnquiriesJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EnquiriesJSON.json",
+				"container": "enquirymax"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"createdDateTime": {
+					"type": "string"
+				},
+				"enquiryId": {
+					"type": "string"
+				},
+				"customerId": {
+					"type": "string"
+				},
+				"leadId": {
+					"type": "string"
+				},
+				"status": {
+					"type": "object",
+					"properties": {
+						"code": {
+							"type": "string"
+						},
+						"description": {
+							"type": "string"
+						}
+					}
+				},
+				"testDrive": {
+					"type": "object",
+					"properties": {
+						"appointmentDate": {
+							"type": "string"
+						},
+						"taken": {
+							"type": "boolean"
+						}
+					}
+				},
+				"type": {
+					"type": "string"
+				},
+				"partExchangeCount": {
+					"type": "integer"
+				},
+				"sourceOfEnquiry": {
+					"type": "string"
+				},
+				"methodOfContact": {
+					"type": "string"
+				},
+				"vehicleOfInterest": {
+					"type": "object",
+					"properties": {
+						"make": {
+							"type": "string"
+						},
+						"range": {
+							"type": "string"
+						},
+						"model": {
+							"type": "string"
+						},
+						"derivative": {
+							"type": "string"
+						},
+						"vrm": {
+							"type": "string"
+						},
+						"fuelType": {
+							"type": "string"
+						},
+						"vehicleCode": {
+							"type": "string"
+						},
+						"vehicleCodeType": {
+							"type": "string"
+						},
+						"odometer": {
+							"type": "object",
+							"properties": {
+								"unit": {
+									"type": "string"
+								},
+								"currentValue": {
+									"type": "integer"
+								}
+							}
+						},
+						"stockNumber": {
+							"type": "string"
+						},
+						"vin": {
+							"type": "string"
+						}
+					}
+				},
+				"soldVehicle": {
+					"type": "object",
+					"properties": {
+						"make": {
+							"type": "string"
+						},
+						"range": {
+							"type": "string"
+						},
+						"model": {
+							"type": "string"
+						},
+						"derivative": {
+							"type": "string"
+						},
+						"vrm": {
+							"type": "string"
+						},
+						"fuelType": {
+							"type": "string"
+						},
+						"vehicleCode": {
+							"type": "string"
+						},
+						"vehicleCodeType": {
+							"type": "string"
+						},
+						"odometer": {
+							"type": "object",
+							"properties": {
+								"unit": {
+									"type": "string"
+								},
+								"currentValue": {
+									"type": "integer"
+								}
+							}
+						},
+						"stockNumber": {
+							"type": "string"
+						},
+						"vin": {
+							"type": "string"
+						}
+					}
+				},
+				"links": {
+					"type": "object"
+				},
+				"lostSale": {
+					"type": "object",
+					"properties": {
+						"lostSaleRequested": {
+							"type": "string"
+						},
+						"lostSaleAccepted": {
+							"type": "string"
+						},
+						"lostSaleReason": {
+							"type": "string"
+						}
+					}
+				},
+				"originApp": {
+					"type": "string"
+				},
+				"enquiryNotes": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"description": {
+								"type": "string"
+							},
+							"createdDateTime": {
+								"type": "string"
+							},
+							"createdByName": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"customerFinanceDetails": {
+					"type": "object",
+					"properties": {
+						"model": {
+							"type": "string"
+						},
+						"registration": {
+							"type": "string"
+						},
+						"agreementNo": {
+							"type": "string"
+						},
+						"financeProduct": {
+							"type": "string"
+						},
+						"term": {
+							"type": "string"
+						},
+						"deposit": {
+							"type": "string"
+						},
+						"installmentAmount": {
+							"type": "string"
+						},
+						"gmfvBalloon": {
+							"type": "string"
+						},
+						"annualContractMileage": {
+							"type": "string"
+						},
+						"contractStartDate": {
+							"type": "string"
+						},
+						"contractEndDate": {
+							"type": "string"
+						},
+						"outstandingBalance": {
+							"type": "string"
+						}
+					}
+				},
+				"deskingDeal": {
+					"type": "object",
+					"properties": {
+						"financeProduct": {
+							"type": "string"
+						},
+						"term": {
+							"type": "string"
+						},
+						"deposit": {
+							"type": "string"
+						},
+						"installmentAmount": {
+							"type": "string"
+						},
+						"gmfvBalloon": {
+							"type": "string"
+						},
+						"annualContractMileage": {
+							"type": "string"
+						}
+					}
+				},
+				"estimatedEquityPosition": {
+					"type": "object",
+					"properties": {
+						"estimatedPxValue": {
+							"type": "string"
+						},
+						"estimatedEquity": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,38 @@
+{
+	"name": "RTC_Ext_BI_Group_vApplication",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RTCDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ApplicationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ApplicationName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BI_Group_vApplication"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

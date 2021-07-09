@@ -1,0 +1,61 @@
+{
+	"name": "SQLRTCRaw_InspectionISCheckTypes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GroupID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DealerID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TypeId",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "InUse",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Marque",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CheckSheetType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Updated",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "UniqueID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "RTCRaw_InspectionISCheckTypes"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

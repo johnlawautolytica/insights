@@ -1,0 +1,93 @@
+{
+	"name": "PeterVardyPartsSalesCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SOBI2.csv",
+				"container": "peter-vardy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "co",
+				"type": "String"
+			},
+			{
+				"name": "ST",
+				"type": "String"
+			},
+			{
+				"name": "desc",
+				"type": "String"
+			},
+			{
+				"name": "Fran",
+				"type": "String"
+			},
+			{
+				"name": "Part number",
+				"type": "String"
+			},
+			{
+				"name": "Retail Value",
+				"type": "String"
+			},
+			{
+				"name": "Sale Value",
+				"type": "String"
+			},
+			{
+				"name": "Cost Value",
+				"type": "String"
+			},
+			{
+				"name": "Gross Profit",
+				"type": "String"
+			},
+			{
+				"name": "GP%",
+				"type": "String"
+			},
+			{
+				"name": "WIP No",
+				"type": "String"
+			},
+			{
+				"name": "Anal code",
+				"type": "String"
+			},
+			{
+				"name": "Order quantity",
+				"type": "String"
+			},
+			{
+				"name": "Selling pric",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Product group",
+				"type": "String"
+			},
+			{
+				"name": "Dept",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

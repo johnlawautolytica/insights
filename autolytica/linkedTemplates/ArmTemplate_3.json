@@ -1,0 +1,2137 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolytica"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vDealersRegions')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vDealersRegions"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vEmailLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmailLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ErrorLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sent",
+						"type": "bit"
+					},
+					{
+						"name": "RemoteEmailID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ServiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmailChangedID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vEmailLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vEmailLogEventNotifications')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "EmailID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EventType",
+						"type": "varchar"
+					},
+					{
+						"name": "SmtpID",
+						"type": "varchar"
+					},
+					{
+						"name": "Response",
+						"type": "varchar"
+					},
+					{
+						"name": "DeliveryAttempt",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "BounceType",
+						"type": "varchar"
+					},
+					{
+						"name": "BounceStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "IP",
+						"type": "varchar"
+					},
+					{
+						"name": "UserAgent",
+						"type": "varchar"
+					},
+					{
+						"name": "TimeStamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmailLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vEmailLogEventNotifications"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vEmployee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmpNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmpType",
+						"type": "char"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vEmployee"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vExtStatus')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ExtStatusID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vExtStatus"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vISSections')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LongName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InUse",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vISSections"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vISSubSections')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SubSectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DisplaySeq",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LongName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CategoryId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Special",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InUse",
+						"type": "bit"
+					},
+					{
+						"name": "Mandatory",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vISSubSections"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vLogFile')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Seq",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DateIn",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ServCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran1",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran2",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran3",
+						"type": "varchar"
+					},
+					{
+						"name": "TranComm",
+						"type": "varchar"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Account",
+						"type": "varchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PayType",
+						"type": "varchar"
+					},
+					{
+						"name": "OverRide",
+						"type": "varchar"
+					},
+					{
+						"name": "SACA",
+						"type": "varchar"
+					},
+					{
+						"name": "SACU",
+						"type": "varchar"
+					},
+					{
+						"name": "SourceOfBusiness",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastServ",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "NextServ",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "MotDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Campaign",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CampaignPrice",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "TotalValue",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vLogFile"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vSMSLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SMSLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LinkSMSID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BookingID",
+						"type": "varchar"
+					},
+					{
+						"name": "SMSID",
+						"type": "varchar"
+					},
+					{
+						"name": "SendDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ErrorLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vSMSLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Inspection_vISHeaders')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Booking",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehDesc",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NextServ",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "NextMot",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Tech",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Advisor",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "hcType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InputStarted",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InputCompleted",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PartsIdentified",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LabourIdentified",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FollowUpCompleted",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InspectionClosed",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "InspectionPrinted",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PartsAssistance",
+						"type": "bit"
+					},
+					{
+						"name": "InvoiceValue",
+						"type": "decimal",
+						"precision": 7,
+						"scale": 2
+					},
+					{
+						"name": "InUse",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartsRequired",
+						"type": "bit"
+					},
+					{
+						"name": "Model",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "JobNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NotInspectedReason",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Franchise",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DMSRef",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "VehNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "QualityControllerId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NewTyre",
+						"type": "bit"
+					},
+					{
+						"name": "TyresIdentified",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ExtStatus",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ExtAccessed",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ExtResponded",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "EventId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UniqueBookingID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OriginalClosedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PreAgreedWorkValue",
+						"type": "decimal",
+						"precision": 7,
+						"scale": 2
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Inspection_vISHeaders"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Inspection_vISItems')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ItemId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SubSectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OutcomeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FollNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FollDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FollType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RAG",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InnerId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MiddleId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OuterId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "hcType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "hcOutcome",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NSInnerId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NSOuterId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OSInnerId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OSOuterId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Details",
+						"type": "varchar"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 7,
+						"scale": 2
+					},
+					{
+						"name": "PartsAssistance",
+						"type": "bit"
+					},
+					{
+						"name": "NoLabour",
+						"type": "bit"
+					},
+					{
+						"name": "NoParts",
+						"type": "bit"
+					},
+					{
+						"name": "NoPrice",
+						"type": "bit"
+					},
+					{
+						"name": "FixedPrice",
+						"type": "bit"
+					},
+					{
+						"name": "PartsPicked",
+						"type": "bit"
+					},
+					{
+						"name": "Completed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AuthorisedBy",
+						"type": "varchar"
+					},
+					{
+						"name": "AuthAdvisor",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AuthDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "VideoStatus",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SendVideo",
+						"type": "bit"
+					},
+					{
+						"name": "ExtOutcome",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TechRAG",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BookedContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Inspection_vISItems"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Inspection_vMediafile')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InspectionID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InspectionItemID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FileType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Complete",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Status",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Inspection_vMediafile"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_vRepairCodes')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RepairCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Text1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Text2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Text3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Text4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Text5",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Text6",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Allowed",
+						"type": "decimal",
+						"precision": 7,
+						"scale": 2
+					},
+					{
+						"name": "LabType",
+						"type": "char"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 7,
+						"scale": 2
+					},
+					{
+						"name": "Service",
+						"type": "char"
+					},
+					{
+						"name": "isUpsell",
+						"type": "bit"
+					},
+					{
+						"name": "OnlineGroup",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OnlineDescription",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LinkedUpsellCode",
+						"type": "varchar"
+					},
+					{
+						"name": "AWS",
+						"type": "bit"
+					},
+					{
+						"name": "CSIContCode",
+						"type": "varchar"
+					},
+					{
+						"name": "VehicleVisualsPartId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Booking_vRepairCodes"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Import_Check')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealershipID",
+						"type": "varchar"
+					},
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ItemID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartsOrLabourID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "KeyDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ValueToCheck",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "hcOutcomeDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "hcTypeDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "CheckTypeDescription",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTC_Import_Check"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderAdvert')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PerformanceScore",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PerformanceRating",
+						"type": "varchar"
+					},
+					{
+						"name": "YesterdayAdvertViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "YesterdaySearchViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastWeekAdvertViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastWeekSearchViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AdvertURL",
+						"type": "varchar"
+					},
+					{
+						"name": "Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "RegNo",
+						"type": "varchar"
+					},
+					{
+						"name": "StockNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Advert"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderAdvertExtended')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PerformanceScore",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PerformanceRating",
+						"type": "varchar"
+					},
+					{
+						"name": "YesterdayAdvertViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "YesterdaySearchViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastWeekAdvertViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastWeekSearchViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AdvertURL",
+						"type": "varchar"
+					},
+					{
+						"name": "Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "RegNo",
+						"type": "varchar"
+					},
+					{
+						"name": "StockNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Advert Extended"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderAdvertTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PerformanceScore",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PerformanceRating",
+						"type": "varchar"
+					},
+					{
+						"name": "YesterdayAdvertViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "YesterdaySearchViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastWeekAdvertViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastWeekSearchViews",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AdvertURL",
+						"type": "varchar"
+					},
+					{
+						"name": "Source",
+						"type": "varchar"
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "RegNo",
+						"type": "varchar"
+					},
+					{
+						"name": "StockNo",
+						"type": "varchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Advert Test"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderCompetitors')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AdvertText",
+						"type": "varchar"
+					},
+					{
+						"name": "AdvertURL",
+						"type": "varchar"
+					},
+					{
+						"name": "AttentionGrabber",
+						"type": "varchar"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "varchar"
+					},
+					{
+						"name": "Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "CompetitorReg",
+						"type": "varchar"
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DaysinStock",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "Fuel",
+						"type": "varchar"
+					},
+					{
+						"name": "Id",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "MainImage",
+						"type": "varchar"
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Owners",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Plate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "PriceIndicator",
+						"type": "varchar"
+					},
+					{
+						"name": "PricePosition",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Reg_No",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerName",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerSegment",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerTown",
+						"type": "varchar"
+					},
+					{
+						"name": "StockNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TaxRate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transmission",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					},
+					{
+						"name": "PriceIndicatorV2",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Competitors"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderCompetitorsExtended')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AdvertText",
+						"type": "varchar"
+					},
+					{
+						"name": "AdvertURL",
+						"type": "varchar"
+					},
+					{
+						"name": "AttentionGrabber",
+						"type": "varchar"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "varchar"
+					},
+					{
+						"name": "Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "CompetitorReg",
+						"type": "varchar"
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DaysinStock",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "Fuel",
+						"type": "varchar"
+					},
+					{
+						"name": "Id",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "MainImage",
+						"type": "varchar"
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Owners",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Plate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "PriceIndicator",
+						"type": "varchar"
+					},
+					{
+						"name": "PricePosition",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Reg_No",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerName",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerSegment",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerTown",
+						"type": "varchar"
+					},
+					{
+						"name": "StockNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TaxRate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transmission",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					},
+					{
+						"name": "PriceIndicatorV2",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Competitors Extended"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderCompetitorsTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AdvertText",
+						"type": "varchar"
+					},
+					{
+						"name": "AdvertURL",
+						"type": "varchar"
+					},
+					{
+						"name": "AttentionGrabber",
+						"type": "varchar"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "varchar"
+					},
+					{
+						"name": "Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "CompetitorReg",
+						"type": "varchar"
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DaysinStock",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "Fuel",
+						"type": "varchar"
+					},
+					{
+						"name": "Id",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "MainImage",
+						"type": "varchar"
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Owners",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Plate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "PriceIndicator",
+						"type": "varchar"
+					},
+					{
+						"name": "PricePosition",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Reg_No",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerName",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerSegment",
+						"type": "varchar"
+					},
+					{
+						"name": "SellerTown",
+						"type": "varchar"
+					},
+					{
+						"name": "StockNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TaxRate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Transmission",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					},
+					{
+						"name": "PriceIndicatorV2",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Competitors Test"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

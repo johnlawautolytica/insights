@@ -1,0 +1,5116 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolytica"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCGroupISSections')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyRTCDataToAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table RTCRaw_GroupvISSections",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "SectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LongName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "LongName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "InUse",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "InUse",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_Ext_BI_Group_vISSections",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_GroupvISSections",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-19T14:56:04Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCGroupISSubSections')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyRTCDataToAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table RTCRaw_GroupvISSubSections",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "SectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SubSectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "SubSectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "DisplaySeq",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "DisplaySeq",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LongName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "LongName",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CategoryId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "CategoryId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Special",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Special",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "InUse",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "InUse",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "Mandatory",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Mandatory",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_Ext_BI_Group_vISSubSections",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_GroupvISSubSections",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-19T15:03:49Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionISCheckTypes')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyRTCDataToAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table RTCRaw_InspectionISCheckTypes",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DealerID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "TypeId",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Name",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Type",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "InUse",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "InUse",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Marque",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Marque",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "CheckSheetType",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "CheckSheetType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_Inspection_vISCheckTypes",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionISCheckTypes",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-19T15:27:02Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionISHeaders')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Copy items from the RTC SQL server to the items table\n",
+				"activities": [
+					{
+						"name": "CopyDataFromRTCtoAutolytica",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetLastUpdatedForHeaders",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "@concat('select * from BI_Inspection_vISHeaders where updated > ''',activity('GetLastUpdatedForHeaders').output.firstrow.lastupdated,'''')",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Dealer",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "TypeId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Booking",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Booking",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "RegNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "RegNo",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "VehDesc",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "VehDesc",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Mileage",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Mileage",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "NextServ",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "NextServ",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "NextMot",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "NextMot",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "Created",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Created",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "Tech",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Tech",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Advisor",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Advisor",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "hcType",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "hcType",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "InputStarted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "InputStarted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "InputCompleted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "InputCompleted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsIdentified",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "PartsIdentified",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "LabourIdentified",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "LabourIdentified",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "FollowUpCompleted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "FollowUpCompleted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "InspectionClosed",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "InspectionClosed",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "InspectionPrinted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "InspectionPrinted",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsAssistance",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "PartsAssistance",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "InvoiceValue",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "InvoiceValue",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "InUse",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "InUse",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsRequired",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "PartsRequired",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "Model",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Model",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "RegDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "RegDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "JobNo",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "JobNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "NotInspectedReason",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "NotInspectedReason",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Franchise",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Franchise",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DMSRef",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "DMSRef",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "VehNo",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "VehNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "QualityControllerId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "QualityControllerId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "NewTyre",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "NewTyre",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "TyresIdentified",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "TyresIdentified",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "ExtStatus",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ExtStatus",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ExtAccessed",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ExtAccessed",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "ExtResponded",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "ExtResponded",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "EventId",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "EventId",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "UniqueBookingID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "UniqueBookingID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "OriginalClosedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "OriginalClosedDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "PreAgreedWorkValue",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "PreAgreedWorkValue",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_Ext_BI_Inspection_vISHeaders",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionvISHeaders_Merge",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "GetLastUpdatedForHeaders",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[MaxUpdatedDate]",
+								"storedProcedureParameters": {
+									"TableName": {
+										"type": "String",
+										"value": "RTCRaw_InspectionvISHeaders"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQLRTCRaw_LastUpdated",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "UpdateLastUpdatedDate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ImportMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateLastUpdatedRTCDate]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "RTCRaw_InspectionvISHeaders",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "ImportMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "UpdateNullDatesBeforeMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[ImportMerge]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "[[dbo].[RTCRaw_InspectionvISHeaders]",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "UpdateNullDatesBeforeMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyDataFromRTCtoAutolytica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "UpdateISHeadersNullDatesBeforeMerge"
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-09-24T20:07:17Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionISItems')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetLastUpdatedForHeaders",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[MaxUpdatedDate]",
+								"storedProcedureParameters": {
+									"TableName": {
+										"type": "String",
+										"value": "RTCRaw_InspectionvISItems"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQLRTCRaw_LastUpdated",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "CopyDataFromRTCtoAutolytica",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetLastUpdatedForHeaders",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "@concat('select * from BI_Inspection_vISItems where updated > ''',activity('GetLastUpdatedForHeaders').output.firstrow.lastupdated,'''')",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "SectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SubSectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "SubSectionId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "OutcomeId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OutcomeId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "FollNum",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "FollNum",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "FollDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "FollDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "FollType",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "FollType",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "RAG",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "RAG",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "InnerId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "InnerId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "MiddleId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "MiddleId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "OuterId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OuterId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "hcType",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "hcType",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "hcOutcome",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "hcOutcome",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "NSInnerId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "NSInnerId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "NSOuterId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "NSOuterId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "OSInnerId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OSInnerId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "OSOuterId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "OSOuterId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "varchar"
+										},
+										"sink": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsAssistance",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "PartsAssistance",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "NoLabour",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "NoLabour",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "NoParts",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "NoParts",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "NoPrice",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "NoPrice",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "FixedPrice",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "FixedPrice",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsPicked",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "PartsPicked",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "Completed",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Completed",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "AuthorisedBy",
+											"type": "String",
+											"physicalType": "varchar"
+										},
+										"sink": {
+											"name": "AuthorisedBy",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "AuthAdvisor",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "AuthAdvisor",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "AuthDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "AuthDate",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									},
+									{
+										"source": {
+											"name": "VideoStatus",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "VideoStatus",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "SendVideo",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "SendVideo",
+											"type": "Boolean",
+											"physicalType": "bit"
+										}
+									},
+									{
+										"source": {
+											"name": "ExtOutcome",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ExtOutcome",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "TechRAG",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "TechRAG",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "BookedContSeqNo",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "BookedContSeqNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_Ext_BI_Inspection_vISItems",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionvISItems_Merge",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "UpdateLastUpdatedDate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ImportMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateLastUpdatedRTCDate]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "RTCRaw_InspectionvISItems",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "ImportMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "UpdateNullDatesBeforeMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[ImportMerge]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "[[dbo].[RTCRaw_InspectionvISItems]",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "UpdateNullDatesBeforeMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyDataFromRTCtoAutolytica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateToNullDates]",
+							"storedProcedureParameters": {
+								"TableName": {
+									"value": "[[dbo].[RTCRaw_InspectionvISItems_Merge]",
+									"type": "String"
+								},
+								"ColumnName": {
+									"value": "FollDate",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-08-04T07:32:50Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionISLabour')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetLastUpdatedForHeaders",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[MaxUpdatedDate]",
+								"storedProcedureParameters": {
+									"TableName": {
+										"type": "String",
+										"value": "RTCRaw_InspectionvlSLabour"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQLRTCRaw_LastUpdated",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "CopyDataFromRTCtoAutolytica",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetLastUpdatedForHeaders",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "@concat('select * from BI_Inspection_vISLabour where updated > ''',activity('GetLastUpdatedForHeaders').output.firstrow.lastupdated,'''')",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "LabourId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "LabourId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "ntext"
+										},
+										"sink": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Allowed",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Allowed",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "RepairCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "RepairCode",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Discount",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Discount",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "NetPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "NetPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Rate",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Rate",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "LabourRate",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "LabourRate",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BookingLineNo",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "BookingLineNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_Inspection_ISLabour",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionISLabour_Merge",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "UpdateLastUpdatedDate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ImportMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateLastUpdatedRTCDate]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "RTCRaw_InspectionvlSLabour",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "ImportMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyDataFromRTCtoAutolytica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[ImportMerge]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "[[dbo].[RTCRaw_InspectionvlSLabour]",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-29T22:36:55Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionISParts')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetLastUpdatedForHeaders",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[MaxUpdatedDate]",
+								"storedProcedureParameters": {
+									"TableName": {
+										"type": "String",
+										"value": "RTCRaw_InspectionvISParts"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQLRTCRaw_LastUpdated",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "CopyDataFromRTCtoAutolytica",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetLastUpdatedForHeaders",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "@concat('select * from BI_Inspection_vISParts where updated > ''',activity('GetLastUpdatedForHeaders').output.firstrow.lastupdated,'''')",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "PartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "PartNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PartNo",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Qty",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Qty",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Discount",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Discount",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "NetPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "NetPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "LabourId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "LabourId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "BinLocn",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "BinLocn",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "InStock",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "InStock",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Reserved",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Reserved",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Excluded",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Excluded",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Cost",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Cost",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "LinkedPartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "LinkedPartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Alternative",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Alternative",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Franchise",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Franchise",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BookingLineNo",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "BookingLineNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_Inspection_ISParts",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionISParts_Merge",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "UpdateLastUpdatedDate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ImportMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateLastUpdatedRTCDate]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "RTCRaw_InspectionvISParts",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "ImportMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyDataFromRTCtoAutolytica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[ImportMerge]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "[[dbo].[RTCRaw_InspectionvISParts]",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-29T22:36:55Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionISParts_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyDataFromRTCtoAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select * from BI_Inspection_vISParts",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ItemId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "PartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "PartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "PartNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "PartNo",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Details",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Qty",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Qty",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Discount",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Discount",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "NetPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "NetPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "LabourId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "LabourId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "BinLocn",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "BinLocn",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "InStock",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "InStock",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Reserved",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "Reserved",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Excluded",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Excluded",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Cost",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										},
+										"sink": {
+											"name": "Cost",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "LinkedPartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "LinkedPartsId",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Alternative",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Alternative",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Franchise",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Franchise",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "BookingLineNo",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "BookingLineNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_Inspection_ISParts",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionISParts_Merge",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "UpdateLastUpdatedDate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ImportMerge",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateLastUpdatedRTCDate]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "RTCRaw_InspectionvISParts",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "ImportMerge",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyDataFromRTCtoAutolytica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[ImportMerge]",
+							"storedProcedureParameters": {
+								"tablename": {
+									"value": "[[dbo].[RTCRaw_InspectionvISParts]",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-09-07T12:21:57Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionVHCOutcome')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyRTCDataToAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table RTCRaw_InspectionVHCOutcome_Merge",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "inuse",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "InUse",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DealerID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "description",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "hctype",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "HCType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "outcometype",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "OutcomeType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "contactcode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "ContactCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_Inspection_VHCOutcome",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionVHCOutcome_Merge",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DoReferenceTableUpdate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyRTCDataToAutolytica",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
+							"storedProcedureParameters": {
+								"SourceSystemID": {
+									"value": "7",
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-03-07T15:31:47Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCInspectionVHCType')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyRTCDataToAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table RTCRaw_InspectionVHCType",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "inuse",
+											"type": "String",
+											"physicalType": "char"
+										},
+										"sink": {
+											"name": "InUse",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "dealer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "DealerID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "description",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_Inspection_VHCType",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_InspectionVHCType",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-19T15:30:56Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHCvGroup')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyRTCDataToAutolytica",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table RTCRaw_vGroup",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "GroupID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "GroupName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										},
+										"sink": {
+											"name": "GroupName",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Enabled",
+											"type": "Boolean",
+											"physicalType": "bit"
+										},
+										"sink": {
+											"name": "Enabled",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RTC_EXT_BI_vGroup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCRaw_vGroup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-19T16:35:46Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Showroom')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyPeterVardyEnquiryMax",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"additionalColumns": [
+									{
+										"name": "ClientID",
+										"value": "10000"
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table EnquiryMaxSales",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ClientID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ClientID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Branch",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DealershipID",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Sales Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SalesType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Enquiry No",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EnquiryNo",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Customer Title",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CustomerTitle",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Customer Forename",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CustomerForename",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Customer Surname",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CustomerSurname",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company Name",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CompanyName",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Email",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Email",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Home Phone",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "HomePhone",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Mobile Phone",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "MobilePhone",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Work Phone",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WorkPhone",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Postcode",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Postcode",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Enquiry Created",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EnquiryCreatedDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Enquiry Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EnquiryType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Sales Executive",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SalesExecutive",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Business Manager",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "BusinessManager",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "N/U",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NewOrUsed",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Vehicle Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "VehicleType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Make",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Make",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Range",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Range",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Model",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Model",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Derivative",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Derivative",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Registration No",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "RegistrationNo",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Registration Date",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "RegistrationDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Stock No",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "StockNo",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Group Date in Stock",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "GroupDateInStock",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Branch Date in Stock",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "BranchDateInStock",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "First Order Date",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FirstOrderDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Enquiry Status",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EnquiryStatus",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Invoiced Date",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "InvoicedDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Expected Delivery Date",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ExpectedDeliveryDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Delivery Date",
+											"type": "DateTime",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DeliveryDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Delivery Category",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DeliveryCategory",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Metal Only",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "MetalOnly",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "OTR Price exc Ins",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "OTRPriceExcIns",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Total Goods & Services inc Ins",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalGoodsAndServicesIncIns",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Financed",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Financed",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Finance Provider",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FinanceProvider",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Fin Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FinanceType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Finance Scheme",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FinanceScheme",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Loan Term",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LoanTerm",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "APR",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "APR",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Flat Rate",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FlatRate",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Finance Balance",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FinanceBalance",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Volume Bonus",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "VolumeBonus",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Commission",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Commission",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "DOC Fee",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DocFee",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Finance Subsidy",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FinanceSubsidy",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Total Fin Margin",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalFinanceMargin",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "GAP",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "GAP",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "GAP Product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "GapProduct",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "War",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Warranty",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "War Product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WarrantyProduct",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Ext",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Extras",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Ext Product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ExtrasProduct",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Paint",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Paint",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Paint Product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PaintProduct",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Total Ins Margin",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalInsMargin",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Total F & I Margin",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalFandIMargin",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Volume Bonus Central",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "VolumeBonusCentral",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "DOC Fee Central",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DOCFeeCentral",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Total Central Income",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalCentralIncome",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Days in Stock",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "DaysInStock",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Last Advertised Price",
+											"type": "Decimal",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LastAdvertisedPrice",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Model Analysis Code",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ModelAnalysisCode",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SIV",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SIV",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Stock Number",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "StockNo2",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Chassis No",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ChassisNo",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Engine Size",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "EngineSize",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Body Style",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "BodyStyle",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Mileage",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Mileage",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Fuel Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "FuelType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Transmission",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Transmission",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Colour",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Colour",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Trim Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TrimType",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Number of Doors",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NumberOfDoors",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Gross Profit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "GrossProfit",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "Reconditioning Cost",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ReconditioningCost",
+											"type": "Decimal",
+											"physicalType": "decimal"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false,
+									"dateTimeFormat": "dd/MM/yyyy"
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "PeterVardyEnquiryMaxXLSX",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLEnquiryMax",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DoReferenceTableUpdate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyPeterVardyEnquiryMax",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
+							"storedProcedureParameters": {
+								"SourceSystemID": {
+									"value": "4",
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-09T21:40:21Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VHCHeaders')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "RTCVHCHeaders",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table dbo.vhcheaders",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "VHCHeadersFromAzureBlob",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLRTCVHCHeaders",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-04-25T21:30:11Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WorkshopWIP')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "PeterVardyDMSAftersalesWIP",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"additionalColumns": [
+									{
+										"name": "ClientID",
+										"value": "10000"
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from dmsaftersaleswip where clientid = 10000",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ClientID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ClientID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "D",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Department",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "WIP",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "WIP",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Date Due",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Date Due",
+											"type": "DateTime",
+											"physicalType": "datetime2"
+										}
+									},
+									{
+										"source": {
+											"name": "Customer",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Customer",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Reg No",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Registration Number",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Operator",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Operator",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "O/due",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Overdue",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Parts",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Parts Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 2,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "Lin",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Parts Lines",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Labour",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Labour Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 2,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "Ln",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Labour Lines",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Total",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Total Value",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false,
+									"dateTimeFormat": "dd/MM/yyyy"
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "PeterVardySOBI7CSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLDMSAftersalesWIP",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-09T21:39:21Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderJSONDataFlow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AutotraderJSON",
+								"type": "DatasetReference"
+							},
+							"name": "AutotraderJSON"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderLocalRetailerRatings",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderLocalRetailerRatings"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderAdvert",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderAdverts"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderValuations",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderValuations"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderMarketSupply",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderMarketSupply"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderCompetitors",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderCompetitors"
+						}
+					],
+					"transformations": [
+						{
+							"name": "LocalRetailerRatings"
+						},
+						{
+							"name": "Competitors"
+						}
+					],
+					"script": "source(output(\n\t\tOriginalInformation as (RecordID as string, RegNo as string, StockNo as string),\n\t\tinformation as (derivative as string, make as string, model as string, owners as string, plate as string, year as string, attentionGrabber as string, advertText as string),\n\t\tadvert as (responseMetrics as (performanceRating as (score as string, rating as string), yesterday as (advertViews as string, searchViews as string), lastWeek as (advertViews as string, searchViews as string)), advertUrl as string, source as string),\n\t\tvaluations as (marketAverageGuidePrice as (trade as (amountGBP as double), retail as (amountGBP as double), partExchange as (amountGBP as double)), adjustedGuidePrice as (trade as (amountGBP as double), retail as (amountGBP as double), partExchange as (amountGBP as double), priceIndicator as string, priceIndicatorV2 as string)),\n\t\tretailMetrics as (liveMarketCondition as string, marketSupply as string, buyerDemand as string, dealerMetrics as (dealerId as string, dealerName as string, localRetailRating as string, localDaysToSell as string)[]),\n\t\tcompetitors as (totalResultCount as string, filters as (filterExclusions as string[], includeWriteOffCategoryVehicles as boolean, segment as string, fuelType as string, distance as string, plateMin as string, plateMax as string, mileageMin as string, mileageMax as string, engineSize as string, colour as string, bodyType as string, postcode as string, taxRate as string, doors as string, driveTrain as string, trim as string, transmission as string), competitorAdverts as (registration as string, make as string, model as string, derivative as string, mileage as string, year as string, plate as string, colour as string, insuranceWriteOffCategory as string, taxRate as string, owners as string, bodyType as string, fuel as string, transmission as string, seller as (name as string, town as string, segment as string), atMetrics as (pricePosition as double), atAdvertUrl as string, attentionGrabber as string, daysInStock as string, mainImage as string, advertText as string, price as double, priceIndicator as string, priceIndicatorV2 as string)[])\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> AutotraderJSON\nAutotraderJSON foldDown(unroll(retailMetrics.dealerMetrics),\n\tmapColumn(\n\t\tOriginalInformation,\n\t\tdealerMetrics = retailMetrics.dealerMetrics\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> LocalRetailerRatings\nAutotraderJSON foldDown(unroll(competitors.competitorAdverts),\n\tmapColumn(\n\t\tOriginalInformation,\n\t\tAds = competitors.competitorAdverts,\n\t\tsellername = competitors.competitorAdverts.seller.name,\n\t\tsellertown = competitors.competitorAdverts.seller.town,\n\t\tsellersegment = competitors.competitorAdverts.seller.segment,\n\t\tpricePosition = competitors.competitorAdverts.atMetrics.pricePosition\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Competitors\nLocalRetailerRatings sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDate as timestamp,\n\t\tDealerID as integer,\n\t\tDealerName as string,\n\t\tID as long,\n\t\tLocalRating as integer,\n\t\tLocalDaysToSell as integer,\n\t\tReg_No as string,\n\t\tStockNumber as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader local retailer ratings] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader local retailer ratings] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader local retailer ratings] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealerID = dealerMetrics.dealerId,\n\t\tDealerName = dealerMetrics.dealerName,\n\t\tLocalRating = dealerMetrics.localRetailRating,\n\t\tLocalDaysToSell = dealerMetrics.localDaysToSell,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderLocalRetailerRatings\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPerformanceScore as integer,\n\t\tPerformanceRating as string,\n\t\tYesterdayAdvertViews as integer,\n\t\tYesterdaySearchViews as integer,\n\t\tLastWeekAdvertViews as integer,\n\t\tLastWeekSearchViews as integer,\n\t\tAdvertURL as string,\n\t\tSource as string,\n\t\tDate as timestamp,\n\t\tRegNo as string,\n\t\tStockNo as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader advert] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader advert] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader advert] set date = getdate() where date is null;\\ndelete from [dbo].[autotrader advert] where performancescore is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tPerformanceScore = advert.responseMetrics.performanceRating.score,\n\t\tPerformanceRating = advert.responseMetrics.performanceRating.rating,\n\t\tYesterdayAdvertViews = advert.responseMetrics.yesterday.advertViews,\n\t\tYesterdaySearchViews = advert.responseMetrics.yesterday.searchViews,\n\t\tLastWeekAdvertViews = advert.responseMetrics.lastWeek.advertViews,\n\t\tLastWeekSearchViews = advert.responseMetrics.lastWeek.searchViews,\n\t\tAdvertURL = advert.advertUrl,\n\t\tSource = advert.source,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tStockNo = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderAdverts\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdjustedPartExchange as decimal(18,2),\n\t\tAdjustedRetail as decimal(18,2),\n\t\tAdjustedTrade as decimal(18,2),\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tPart_Exchange as decimal(18,2),\n\t\tPrice_Indicator as string,\n\t\tRegNo as string,\n\t\tRetail as decimal(18,2),\n\t\tStockNumber as integer,\n\t\tTrade as decimal(18,2),\n\t\tValuation_Type as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader valuations] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader valuations] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader valuations] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tAdjustedPartExchange = valuations.adjustedGuidePrice.partExchange.amountGBP,\n\t\tAdjustedRetail = valuations.adjustedGuidePrice.retail.amountGBP,\n\t\tAdjustedTrade = valuations.adjustedGuidePrice.trade.amountGBP,\n\t\tPart_Exchange = valuations.adjustedGuidePrice.partExchange.amountGBP,\n\t\tPrice_Indicator = valuations.adjustedGuidePrice.priceIndicator,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tRetail = valuations.marketAverageGuidePrice.retail.amountGBP,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = valuations.adjustedGuidePrice.priceIndicatorV2,\n\t\tTrade = valuations.marketAverageGuidePrice.trade.amountGBP\n\t)) ~> SQLAutotraderValuations\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tBuyerDemand as integer,\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tLiveMarketCondition as integer,\n\t\tMarketSupply as integer,\n\t\tRegNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader Market Supply] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader Market Supply] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader market supply] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tBuyerDemand = retailMetrics.buyerDemand,\n\t\tLiveMarketCondition = retailMetrics.liveMarketCondition,\n\t\tMarketSupply = retailMetrics.marketSupply,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderMarketSupply\nCompetitors sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdvertText as string,\n\t\tAdvertURL as string,\n\t\tAttentionGrabber as string,\n\t\tBodystyle as string,\n\t\tColour as string,\n\t\tCompetitorReg as string,\n\t\tDate as timestamp,\n\t\tDaysinStock as integer,\n\t\tDerivative as string,\n\t\tFuel as string,\n\t\tId as long,\n\t\tMainImage as string,\n\t\tMake as string,\n\t\tMileage as integer,\n\t\tModel as string,\n\t\tOwners as integer,\n\t\tPlate as integer,\n\t\tPrice as decimal(18,2),\n\t\tPriceIndicator as string,\n\t\tPricePosition as decimal(18,2),\n\t\tReg_No as string,\n\t\tSellerName as string,\n\t\tSellerSegment as string,\n\t\tSellerTown as string,\n\t\tStockNumber as integer,\n\t\tTaxRate as integer,\n\t\tTransmission as string,\n\t\tYear as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader competitors] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader competitors] set currentrecord = 1 where currentrecord is null;\\ndelete from [dbo].[autotrader competitors] where Make is null and currentrecord = 1;\\nupdate [dbo].[autotrader competitors] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tAdvertText = Ads.advertText,\n\t\tAdvertURL = Ads.atAdvertUrl,\n\t\tAttentionGrabber = Ads.attentionGrabber,\n\t\tBodystyle = Ads.bodyType,\n\t\tColour = Ads.colour,\n\t\tCompetitorReg = Ads.registration,\n\t\tDaysinStock = Ads.daysInStock,\n\t\tDerivative = Ads.derivative,\n\t\tFuel = Ads.fuel,\n\t\tMainImage = Ads.mainImage,\n\t\tMake = Ads.make,\n\t\tMileage = Ads.mileage,\n\t\tModel = Ads.model,\n\t\tOwners = Ads.owners,\n\t\tPlate = Ads.plate,\n\t\tPrice = Ads.price,\n\t\tPriceIndicator = Ads.priceIndicator,\n\t\tPricePosition = pricePosition,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tSellerName = sellername,\n\t\tSellerSegment = sellersegment,\n\t\tSellerTown = sellertown,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tTaxRate = Ads.taxRate,\n\t\tTransmission = Ads.transmission,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = Ads.priceIndicatorV2,\n\t\tYear = Ads.year\n\t)) ~> SQLAutotraderCompetitors"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderJSONDataFlowExtended')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AutotraderJSONExtended",
+								"type": "DatasetReference"
+							},
+							"name": "AutotraderJSON"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderLocalRetailerRatingsExtended",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderLocalRetailerRatings"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderAdvertExtended",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderAdverts"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderValuationsExtended",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderValuations"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderMarketSupplyExtended",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderMarketSupply"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderCompetitorsExtended",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderCompetitors"
+						}
+					],
+					"transformations": [
+						{
+							"name": "LocalRetailerRatings"
+						},
+						{
+							"name": "Competitors"
+						}
+					],
+					"script": "source(output(\n\t\tOriginalInformation as (RecordID as string, RegNo as string, StockNo as string),\n\t\tinformation as (derivative as string, make as string, model as string, owners as string, plate as string, year as string, attentionGrabber as string, advertText as string),\n\t\tadvert as (responseMetrics as (performanceRating as (score as string, rating as string), yesterday as (advertViews as string, searchViews as string), lastWeek as (advertViews as string, searchViews as string)), advertUrl as string, source as string),\n\t\tvaluations as (marketAverageGuidePrice as (trade as (amountGBP as double), retail as (amountGBP as double), partExchange as (amountGBP as double)), adjustedGuidePrice as (trade as (amountGBP as double), retail as (amountGBP as double), partExchange as (amountGBP as double), priceIndicator as string, priceIndicatorV2 as string)),\n\t\tretailMetrics as (liveMarketCondition as string, marketSupply as string, buyerDemand as string, dealerMetrics as (dealerId as string, dealerName as string, localRetailRating as string, localDaysToSell as string)[]),\n\t\tcompetitors as (totalResultCount as string, filters as (filterExclusions as string[], includeWriteOffCategoryVehicles as boolean, segment as string, fuelType as string, distance as string, plateMin as string, plateMax as string, mileageMin as string, mileageMax as string, engineSize as string, colour as string, bodyType as string, postcode as string, taxRate as string, doors as string, driveTrain as string, trim as string, transmission as string), competitorAdverts as (registration as string, make as string, model as string, derivative as string, mileage as string, year as string, plate as string, colour as string, insuranceWriteOffCategory as string, taxRate as string, owners as string, bodyType as string, fuel as string, transmission as string, seller as (name as string, town as string, segment as string), atMetrics as (pricePosition as double), atAdvertUrl as string, attentionGrabber as string, daysInStock as string, mainImage as string, advertText as string, price as double, priceIndicator as string, priceIndicatorV2 as string)[])\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> AutotraderJSON\nAutotraderJSON foldDown(unroll(retailMetrics.dealerMetrics),\n\tmapColumn(\n\t\tOriginalInformation,\n\t\tdealerMetrics = retailMetrics.dealerMetrics\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> LocalRetailerRatings\nAutotraderJSON foldDown(unroll(competitors.competitorAdverts),\n\tmapColumn(\n\t\tOriginalInformation,\n\t\tAds = competitors.competitorAdverts,\n\t\tsellername = competitors.competitorAdverts.seller.name,\n\t\tsellertown = competitors.competitorAdverts.seller.town,\n\t\tsellersegment = competitors.competitorAdverts.seller.segment,\n\t\tpricePosition = competitors.competitorAdverts.atMetrics.pricePosition\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Competitors\nLocalRetailerRatings sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDate as timestamp,\n\t\tDealerID as integer,\n\t\tDealerName as string,\n\t\tID as long,\n\t\tLocalRating as integer,\n\t\tLocalDaysToSell as integer,\n\t\tReg_No as string,\n\t\tStockNumber as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader local retailer ratings extended] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader local retailer ratings extended] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader local retailer ratings extended] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tDealerID = dealerMetrics.dealerId,\n\t\tDealerName = dealerMetrics.dealerName,\n\t\tLocalRating = dealerMetrics.localRetailRating,\n\t\tLocalDaysToSell = dealerMetrics.localDaysToSell,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderLocalRetailerRatings\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPerformanceScore as integer,\n\t\tPerformanceRating as string,\n\t\tYesterdayAdvertViews as integer,\n\t\tYesterdaySearchViews as integer,\n\t\tLastWeekAdvertViews as integer,\n\t\tLastWeekSearchViews as integer,\n\t\tAdvertURL as string,\n\t\tSource as string,\n\t\tDate as timestamp,\n\t\tRegNo as string,\n\t\tStockNo as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader advert extended] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader advert extended] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader advert extended] set date = getdate() where date is null;\\ndelete from [dbo].[autotrader advert extended] where performancescore is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tPerformanceScore = advert.responseMetrics.performanceRating.score,\n\t\tPerformanceRating = advert.responseMetrics.performanceRating.rating,\n\t\tYesterdayAdvertViews = advert.responseMetrics.yesterday.advertViews,\n\t\tYesterdaySearchViews = advert.responseMetrics.yesterday.searchViews,\n\t\tLastWeekAdvertViews = advert.responseMetrics.lastWeek.advertViews,\n\t\tLastWeekSearchViews = advert.responseMetrics.lastWeek.searchViews,\n\t\tAdvertURL = advert.advertUrl,\n\t\tSource = advert.source,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tStockNo = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderAdverts\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdjustedPartExchange as decimal(18,2),\n\t\tAdjustedRetail as decimal(18,2),\n\t\tAdjustedTrade as decimal(18,2),\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tPart_Exchange as decimal(18,2),\n\t\tPrice_Indicator as string,\n\t\tRegNo as string,\n\t\tRetail as decimal(18,2),\n\t\tStockNumber as integer,\n\t\tTrade as decimal(18,2),\n\t\tValuation_Type as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader valuations extended] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader valuations extended] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader valuations extended] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tAdjustedPartExchange = valuations.adjustedGuidePrice.partExchange.amountGBP,\n\t\tAdjustedRetail = valuations.adjustedGuidePrice.retail.amountGBP,\n\t\tAdjustedTrade = valuations.adjustedGuidePrice.trade.amountGBP,\n\t\tPart_Exchange = valuations.adjustedGuidePrice.partExchange.amountGBP,\n\t\tPrice_Indicator = valuations.adjustedGuidePrice.priceIndicator,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tRetail = valuations.marketAverageGuidePrice.retail.amountGBP,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = valuations.adjustedGuidePrice.priceIndicatorV2,\n\t\tTrade = valuations.marketAverageGuidePrice.trade.amountGBP\n\t)) ~> SQLAutotraderValuations\nAutotraderJSON sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tBuyerDemand as integer,\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tLiveMarketCondition as integer,\n\t\tMarketSupply as integer,\n\t\tRegNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader Market Supply extended] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader Market Supply extended] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader market supply extended] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tBuyerDemand = retailMetrics.buyerDemand,\n\t\tLiveMarketCondition = retailMetrics.liveMarketCondition,\n\t\tMarketSupply = retailMetrics.marketSupply,\n\t\tRegNo = OriginalInformation.RegNo,\n\t\tRecordID = OriginalInformation.RecordID\n\t)) ~> SQLAutotraderMarketSupply\nCompetitors sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdvertText as string,\n\t\tAdvertURL as string,\n\t\tAttentionGrabber as string,\n\t\tBodystyle as string,\n\t\tColour as string,\n\t\tCompetitorReg as string,\n\t\tDate as timestamp,\n\t\tDaysinStock as integer,\n\t\tDerivative as string,\n\t\tFuel as string,\n\t\tId as long,\n\t\tMainImage as string,\n\t\tMake as string,\n\t\tMileage as integer,\n\t\tModel as string,\n\t\tOwners as integer,\n\t\tPlate as integer,\n\t\tPrice as decimal(18,2),\n\t\tPriceIndicator as string,\n\t\tPricePosition as decimal(18,2),\n\t\tReg_No as string,\n\t\tSellerName as string,\n\t\tSellerSegment as string,\n\t\tSellerTown as string,\n\t\tStockNumber as integer,\n\t\tTaxRate as integer,\n\t\tTransmission as string,\n\t\tYear as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader competitors extended] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader competitors extended] set currentrecord = 1 where currentrecord is null;\\ndelete from [dbo].[autotrader competitors extended] where Make is null and currentrecord = 1;\\nupdate [dbo].[autotrader competitors extended] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tAdvertText = Ads.advertText,\n\t\tAdvertURL = Ads.atAdvertUrl,\n\t\tAttentionGrabber = Ads.attentionGrabber,\n\t\tBodystyle = Ads.bodyType,\n\t\tColour = Ads.colour,\n\t\tCompetitorReg = Ads.registration,\n\t\tDaysinStock = Ads.daysInStock,\n\t\tDerivative = Ads.derivative,\n\t\tFuel = Ads.fuel,\n\t\tMainImage = Ads.mainImage,\n\t\tMake = Ads.make,\n\t\tMileage = Ads.mileage,\n\t\tModel = Ads.model,\n\t\tOwners = Ads.owners,\n\t\tPlate = Ads.plate,\n\t\tPrice = Ads.price,\n\t\tPriceIndicator = Ads.priceIndicator,\n\t\tPricePosition = pricePosition,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tSellerName = sellername,\n\t\tSellerSegment = sellersegment,\n\t\tSellerTown = sellertown,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tTaxRate = Ads.taxRate,\n\t\tTransmission = Ads.transmission,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = Ads.priceIndicatorV2,\n\t\tYear = Ads.year\n\t)) ~> SQLAutotraderCompetitors"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderStockManagementJSONDataFlow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AutotraderStockManagementJSON",
+								"type": "DatasetReference"
+							},
+							"name": "StockMgmt"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderCompetitorsTest",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderCompetitors"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderLocalRetailerRatingsTest",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderLocalRetailerRatings"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderMarketSupplyTest",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderMarketSupply"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderValuationsTest",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderValuations"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLAutotraderAdvertTest",
+								"type": "DatasetReference"
+							},
+							"name": "SQLAutotraderAdvert"
+						}
+					],
+					"transformations": [
+						{
+							"name": "Competitors"
+						},
+						{
+							"name": "AddDaysinStock"
+						},
+						{
+							"name": "AddDaysInStock2"
+						}
+					],
+					"script": "source(output(\n\t\tAutotraderRecord as (OriginalInformation as (RecordID as string, RegNo as string, StockNo as string), vehicle as (ownershipCondition as string, registration as string, vin as string, make as string, model as string, generation as string, derivative as string, derivativeId as string, vehicleType as string, trim as string, bodyType as string, fuelType as string, cabType as string, transmissionType as string, wheelbaseType as string, roofHeightType as string, drivetrain as string, seats as string, doors as string, co2EmissionGPKM as string, topSpeedMPH as string, zeroToSixtyMPHSeconds as string, badgeEngineSizeLitres as double, engineCapacityCC as string, enginePowerBHP as string, fuelCapacityLitres as string, emissionClass as string, fuelEconomyNEDCExtraUrbanMPG as string, fuelEconomyNEDCUrbanMPG as string, fuelEconomyNEDCCombinedMPG as string, fuelEconomyWLTPLowMPG as string, fuelEconomyWLTPMediumMPG as string, fuelEconomyWLTPHighMPG as string, fuelEconomyWLTPExtraHighMPG as string, fuelEconomyWLTPCombinedMPG as string, bootSpaceSeatsUpLitres as string, insuranceGroup as string, insuranceSecurityCode as string, firstRegistrationDate as string, colour as string, style as string, subStyle as string, lengthMM as string, heightMM as string, widthMM as string, payloadLengthMM as string, payloadWidthMM as string, payloadHeightMM as string, payloadWeightKG as string, minimumKerbWeightKG as string, grossVehicleWeightKG as string, odometerReadingMiles as string, warrantyMonthsOnPurchase as string, serviceHistory as string, plate as string, yearOfManufacture as string, interiorCondition as string, tyreCondition as string, bodyCondition as string, previousOwners as string, exDemo as string, v5Certificate as string, driverPosition as string, axleConfiguration as string, upholstery as string, interiorColour as string, exteriorFinish as string, lastServiceOdometerReadingMiles as string, lastServiceDate as string, chassisMake as string, chassisModel as string, bedroomLayout as string, endLayout as string, bedrooms as string, berths as string, standard as (make as string, model as string, generation as string, derivative as string, trim as string, bodyType as string, fuelType as string, transmissionType as string, cabType as string, drivetrain as string, colour as string, style as string, subStyle as string)), advertiser as (advertiserId as string, name as string, segment as string, website as string, mobileWebsite as string, phone as string, location as (addressLineOne as string, town as string, county as string, region as string, postCode as string, latitude as double, longitude as double), advertStrapline as string), adverts as (forecourtPrice as (amountGBP as string), dueDate as string, manufacturerApproved as boolean, twelveMonthsMot as boolean, motInsurance as string, retailAdverts as (price as (amountGBP as string), priceOnApplication as boolean, manufacturerRRP as (amountGBP as string), vatExcluded as string, attentionGrabber as string, description as string, description2 as string, priceIndicatorRating as string, autotraderAdvert as (status as string), advertiserAdvert as (status as string), locatorAdvert as (status as string), exportAdvert as (status as string), profileAdvert as (status as string), displayOptions as (excludePreviousOwners as boolean, excludeStrapline as boolean, excludeMot as boolean, excludeWarranty as boolean, excludeInteriorDetails as boolean, excludeTyreCondition as boolean, excludeBodyCondition as boolean))), metadata as (stockId as string, searchId as string, externalStockId as string, externalStockReference as string, lastUpdated as string, lastUpdatedByAdvertiser as string, versionNumber as string, lifecycleState as string, dateOnForecourt as string), features as (name as string, type as string)[], media as (images as (href as string)[], video as (href as string, photoHref as string)), valuations as (marketAverage as (trade as (amountGBP as string), partExchange as (amountGBP as string), retail as (amountGBP as string, amountExcludingVatGBP as string), private as (amountGBP as string)), adjusted as (retail as (amountGBP as string), trade as (amountGBP as string), partExchange as (amountGBP as string), private as (amountGBP as string))), vehicleMetrics as (national as (retail as (supply as (value as string), demand as (value as string), marketCondition as (value as string), rating as (value as string), daysToSell as (value as string), locations as string[])), local as (retail as (rating as (value as string), daysToSell as (value as string)))), responseMetrics as (performanceRating as (score as string, rating as string), yesterday as (advertViews as string, searchViews as string), lastWeek as (advertViews as string, searchViews as string)), check as (insuranceWriteoffCategory as string, scrapped as string, stolen as string, imported as string, exported as string, privateFinance as string, tradeFinance as string, highRisk as string, mileageDiscrepancy as string, colourChanged as string, registrationChanged as string, previousOwners as string), links as (competitor as (href as string))),\n\t\tresults as (vehicle as (ownershipCondition as string, registration as string, vin as string, make as string, model as string, generation as string, derivative as string, derivativeId as string, vehicleType as string, trim as string, bodyType as string, fuelType as string, cabType as string, transmissionType as string, wheelbaseType as string, roofHeightType as string, drivetrain as string, seats as string, doors as string, co2EmissionGPKM as string, topSpeedMPH as string, zeroToSixtyMPHSeconds as string, badgeEngineSizeLitres as double, engineCapacityCC as string, enginePowerBHP as string, fuelCapacityLitres as double, emissionClass as string, fuelEconomyNEDCExtraUrbanMPG as double, fuelEconomyNEDCUrbanMPG as double, fuelEconomyNEDCCombinedMPG as double, fuelEconomyWLTPLowMPG as string, fuelEconomyWLTPMediumMPG as string, fuelEconomyWLTPHighMPG as string, fuelEconomyWLTPExtraHighMPG as string, fuelEconomyWLTPCombinedMPG as double, bootSpaceSeatsUpLitres as double, insuranceGroup as string, insuranceSecurityCode as string, firstRegistrationDate as string, colour as string, style as string, subStyle as string, lengthMM as string, heightMM as string, widthMM as string, payloadLengthMM as string, payloadWidthMM as string, payloadHeightMM as string, payloadWeightKG as string, minimumKerbWeightKG as string, grossVehicleWeightKG as string, odometerReadingMiles as string, warrantyMonthsOnPurchase as string, serviceHistory as string, plate as string, yearOfManufacture as string, interiorCondition as string, tyreCondition as string, bodyCondition as string, previousOwners as string, exDemo as string, v5Certificate as string, driverPosition as string, axleConfiguration as string, upholstery as string, interiorColour as string, exteriorFinish as string, lastServiceOdometerReadingMiles as string, lastServiceDate as string, chassisMake as string, chassisModel as string, bedroomLayout as string, endLayout as string, bedrooms as string, berths as string, standard as (make as string, model as string, generation as string, derivative as string, trim as string, bodyType as string, fuelType as string, transmissionType as string, cabType as string, drivetrain as string, colour as string, style as string, subStyle as string)), advertiser as (advertiserId as string, name as string, segment as string, website as string, mobileWebsite as string, phone as string, location as (addressLineOne as string, town as string, county as string, region as string, postCode as string, latitude as double, longitude as double), advertStrapline as string), adverts as (forecourtPrice as (amountGBP as string), dueDate as string, manufacturerApproved as boolean, twelveMonthsMot as boolean, motInsurance as string, retailAdverts as (price as (amountGBP as string), priceOnApplication as boolean, manufacturerRRP as (amountGBP as string), vatExcluded as string, attentionGrabber as string, description as string, description2 as string, priceIndicatorRating as string, autotraderAdvert as (status as string), advertiserAdvert as (status as string), locatorAdvert as (status as string), exportAdvert as (status as string), profileAdvert as (status as string), displayOptions as (excludePreviousOwners as boolean, excludeStrapline as boolean, excludeMot as boolean, excludeWarranty as boolean, excludeInteriorDetails as boolean, excludeTyreCondition as boolean, excludeBodyCondition as boolean))), metadata as (stockId as string, searchId as string, externalStockId as string, externalStockReference as string, lastUpdated as string, lastUpdatedByAdvertiser as string, versionNumber as string, lifecycleState as string, dateOnForecourt as string), features as (name as string, type as string)[], media as (images as (href as string)[], video as (href as string, photoHref as string)), valuations as (marketAverage as (retail as (amountGBP as string, amountExcludingVatGBP as string)), adjusted as (retail as (amountGBP as string))), check as (insuranceWriteoffCategory as string, scrapped as boolean, stolen as boolean, imported as boolean, exported as boolean, privateFinance as string, tradeFinance as string, highRisk as string, mileageDiscrepancy as string, colourChanged as string, registrationChanged as string, previousOwners as string))[],\n\t\tfacets as ({} as string),\n\t\ttotalResults as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> StockMgmt\nStockMgmt foldDown(unroll(results),\n\tmapColumn(\n\t\tOriginalInformation = AutotraderRecord.OriginalInformation,\n\t\tAds = AutotraderRecord.adverts,\n\t\tsellername = AutotraderRecord.advertiser.name,\n\t\tsellertown = AutotraderRecord.advertiser.location.town,\n\t\tsellersegment = results,\n\t\tdateOnForecourt = results\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Competitors\nCompetitors derive(DaysInStock = minus(currentDate(),toDate(dateOnForecourt.metadata.dateOnForecourt,\"yyyy-MM-dd\"))) ~> AddDaysinStock\nStockMgmt derive(DaysInStock = minus(currentDate(),toDate(AutotraderRecord.metadata.dateOnForecourt,\"yyyy-MM-dd\"))) ~> AddDaysInStock2\nAddDaysinStock sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdvertText as string,\n\t\tAdvertURL as string,\n\t\tAttentionGrabber as string,\n\t\tBodystyle as string,\n\t\tColour as string,\n\t\tCompetitorReg as string,\n\t\tDate as timestamp,\n\t\tDaysinStock as integer,\n\t\tDerivative as string,\n\t\tFuel as string,\n\t\tId as long,\n\t\tMainImage as string,\n\t\tMake as string,\n\t\tMileage as integer,\n\t\tModel as string,\n\t\tOwners as integer,\n\t\tPlate as integer,\n\t\tPrice as decimal(18,2),\n\t\tPriceIndicator as string,\n\t\tPricePosition as decimal(18,2),\n\t\tReg_No as string,\n\t\tSellerName as string,\n\t\tSellerSegment as string,\n\t\tSellerTown as string,\n\t\tStockNumber as integer,\n\t\tTaxRate as integer,\n\t\tTransmission as string,\n\t\tYear as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader competitors test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader competitors test] set currentrecord = 1 where currentrecord is null;\\ndelete from [dbo].[autotrader competitors test] where Make is null and currentrecord = 1;\\nupdate [dbo].[autotrader competitors test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tBodystyle = sellersegment.vehicle.standard.bodyType,\n\t\tColour = sellersegment.vehicle.colour,\n\t\tCompetitorReg = sellersegment.vehicle.registration,\n\t\tDerivative = sellersegment.vehicle.derivative,\n\t\tFuel = sellersegment.vehicle.fuelType,\n\t\tMake = sellersegment.vehicle.make,\n\t\tMileage = sellersegment.vehicle.odometerReadingMiles,\n\t\tModel = sellersegment.vehicle.model,\n\t\tOwners = sellersegment.vehicle.previousOwners,\n\t\tPlate = sellersegment.vehicle.plate,\n\t\tPrice = Ads.retailAdverts.price.amountGBP,\n\t\tPriceIndicator = Ads.retailAdverts.priceIndicatorRating,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tSellerName = sellername,\n\t\tSellerSegment = sellersegment.advertiser.segment,\n\t\tSellerTown = sellertown,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tTransmission = sellersegment.vehicle.transmissionType,\n\t\tYear = sellersegment.vehicle.yearOfManufacture,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = Ads.retailAdverts.priceIndicatorRating,\n\t\tDaysinStock = DaysInStock,\n\t\tPriceIndicatorV2 = Ads.retailAdverts.priceIndicatorRating,\n\t\tMainImage = sellersegment.metadata.dateOnForecourt\n\t)) ~> SQLAutotraderCompetitors\nAddDaysInStock2 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDate as timestamp,\n\t\tDealerID as integer,\n\t\tDealerName as string,\n\t\tID as long,\n\t\tLocalRating as integer,\n\t\tLocalDaysToSell as integer,\n\t\tReg_No as string,\n\t\tStockNumber as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader local retailer ratings test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader local retailer ratings test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader local retailer ratings test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealerID = AutotraderRecord.advertiser.advertiserId,\n\t\tDealerName = AutotraderRecord.advertiser.name,\n\t\tLocalRating = AutotraderRecord.vehicleMetrics.local.retail.rating.value,\n\t\tLocalDaysToSell = AutotraderRecord.vehicleMetrics.local.retail.daysToSell.value,\n\t\tReg_No = AutotraderRecord.OriginalInformation.RegNo,\n\t\tStockNumber = AutotraderRecord.OriginalInformation.StockNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID\n\t)) ~> SQLAutotraderLocalRetailerRatings\nStockMgmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tBuyerDemand as integer,\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tLiveMarketCondition as integer,\n\t\tMarketSupply as integer,\n\t\tRegNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader Market Supply test]  set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader Market Supply test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader market supply test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tBuyerDemand = AutotraderRecord.vehicleMetrics.national.retail.demand.value,\n\t\tLiveMarketCondition = AutotraderRecord.vehicleMetrics.national.retail.marketCondition.value,\n\t\tMarketSupply = AutotraderRecord.vehicleMetrics.national.retail.supply.value,\n\t\tRegNo = AutotraderRecord.OriginalInformation.RegNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID\n\t)) ~> SQLAutotraderMarketSupply\nStockMgmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdjustedPartExchange as decimal(18,2),\n\t\tAdjustedRetail as decimal(18,2),\n\t\tAdjustedTrade as decimal(18,2),\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tPart_Exchange as decimal(18,2),\n\t\tPrice_Indicator as string,\n\t\tRegNo as string,\n\t\tRetail as decimal(18,2),\n\t\tStockNumber as string,\n\t\tTrade as decimal(18,2),\n\t\tValuation_Type as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader valuations test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader valuations test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader valuations test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tAdjustedPartExchange = AutotraderRecord.valuations.adjusted.partExchange.amountGBP,\n\t\tAdjustedRetail = AutotraderRecord.valuations.adjusted.retail.amountGBP,\n\t\tAdjustedTrade = AutotraderRecord.valuations.adjusted.trade.amountGBP,\n\t\tPart_Exchange = AutotraderRecord.valuations.adjusted.partExchange.amountGBP,\n\t\tPrice_Indicator = AutotraderRecord.adverts.retailAdverts.priceIndicatorRating,\n\t\tRegNo = AutotraderRecord.OriginalInformation.RegNo,\n\t\tRetail = AutotraderRecord.valuations.adjusted.retail.amountGBP,\n\t\tStockNumber = AutotraderRecord.OriginalInformation.StockNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = AutotraderRecord.adverts.retailAdverts.priceIndicatorRating,\n\t\tTrade = AutotraderRecord.valuations.marketAverage.trade.amountGBP\n\t)) ~> SQLAutotraderValuations\nStockMgmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPerformanceScore as integer,\n\t\tPerformanceRating as string,\n\t\tYesterdayAdvertViews as integer,\n\t\tYesterdaySearchViews as integer,\n\t\tLastWeekAdvertViews as integer,\n\t\tLastWeekSearchViews as integer,\n\t\tAdvertURL as string,\n\t\tSource as string,\n\t\tDate as timestamp,\n\t\tRegNo as string,\n\t\tStockNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader advert test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader advert test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader advert test] set date = getdate() where date is null;\\ndelete from [dbo].[autotrader advert test] where performancescore is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tPerformanceScore = AutotraderRecord.responseMetrics.performanceRating.score,\n\t\tPerformanceRating = AutotraderRecord.responseMetrics.performanceRating.rating,\n\t\tYesterdayAdvertViews = AutotraderRecord.responseMetrics.yesterday.advertViews,\n\t\tYesterdaySearchViews = AutotraderRecord.responseMetrics.yesterday.searchViews,\n\t\tLastWeekAdvertViews = AutotraderRecord.responseMetrics.lastWeek.advertViews,\n\t\tLastWeekSearchViews = AutotraderRecord.responseMetrics.lastWeek.searchViews,\n\t\tRegNo = AutotraderRecord.OriginalInformation.RegNo,\n\t\tStockNo = AutotraderRecord.OriginalInformation.StockNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID\n\t)) ~> SQLAutotraderAdvert"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CloseITSalesLeads')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "CloseIT_Ext_Sales_Leads",
+								"type": "DatasetReference"
+							},
+							"name": "CloseITExtSalesLeads"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLCloseITRaw_SalesLeads",
+								"type": "DatasetReference"
+							},
+							"name": "SQLCloseITRawSalesLeads"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tDealer_ID as short,\n\t\tDeal_ID as integer,\n\t\tDealerName as string,\n\t\tGroupName as string,\n\t\tCustomer_SalesPerson as string,\n\t\tCustomer_ID as integer,\n\t\tCustomer_ProspectURN as string,\n\t\tCustomer_Type as string,\n\t\tCustomer_PostCode as string,\n\t\tCustomer_LeadProviderName as string,\n\t\tCustomer_DateCreated as date 'yyyy-MM-dd',\n\t\tCustomer_ChangeDate as string,\n\t\tCustomer_Status as string,\n\t\tCustomer_DateStatusChanged as string,\n\t\tCustomer_QuickLostReason as string,\n\t\tCustomer_FirstContact as string,\n\t\tCustomer_DateSold as string,\n\t\tCustomer_DateLost as string,\n\t\tDeal_Type as string,\n\t\tDeal_Gap as integer,\n\t\tDeal_Paint as integer,\n\t\tDeal_Warranty as integer,\n\t\tDeal_ClosedDate as string,\n\t\tDeal_BasicPrice as double,\n\t\tDeal_DeilveryCharge as double,\n\t\tDeal_FirstRegFee as double,\n\t\tDeal_RoadTax as double,\n\t\tDesired_Make as string,\n\t\tDesired_Model as string,\n\t\tDeal_Make as string,\n\t\tDeal_Model as string,\n\t\tDeal_ModelVariant as string,\n\t\tDeal_FuelType as string,\n\t\tDeal_GearType as string,\n\t\tDeal_OrderMethod as string,\n\t\tDeal_Colour as string,\n\t\tDeal_Interior as string,\n\t\tDeal_Mileage as integer,\n\t\tDeal_DateConfirmed as string,\n\t\tDeal_ModelYear as double,\n\t\tDeal_Registration as string,\n\t\tDeal_DateOfRegistration as string,\n\t\tDeal_DemoDriven as string,\n\t\tDeal_ServicePayment as string,\n\t\tDeal_ExpectedDeliveryMonth as short,\n\t\tDeal_ExpectedDeliveryYear as short,\n\t\tDeal_ExpectedDeliveryTimeOfMonth as string,\n\t\tDeal_DepositPaymentMethod as string,\n\t\tDeal_FinanceMethod as string,\n\t\tDeal_MonthlyBudget as double,\n\t\tDeal_Deposit as short,\n\t\tDeal_NewFinancedBy as string,\n\t\tPartEx_ID as integer,\n\t\tPartEx_Registration as string,\n\t\tPartEx_Make as string,\n\t\tPartEx_Model as string,\n\t\tPartEx_Variant as string,\n\t\tPartEx_Colour as string,\n\t\tPartEx_DateOfRegistration as string,\n\t\tPartEx_Mileage as integer,\n\t\tPartEx_VatQualifying as integer,\n\t\tPartEx_NumberOfOwners as short,\n\t\tPartEx_ServiceHistory as short,\n\t\tPartEx_SIVAmount as double,\n\t\tInitialContact_Created as string,\n\t\tInitialContact_Type as string,\n\t\tDeal_CancelledDate as string,\n\t\tDeal_HandOverDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> CloseITExtSalesLeads\nCloseITExtSalesLeads sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDealer_ID as integer,\n\t\tDeal_ID as integer,\n\t\tDealerName as string,\n\t\tGroupName as string,\n\t\tCustomer_SalesPerson as string,\n\t\tCustomer_ID as integer,\n\t\tCustomer_ProspectURN as string,\n\t\tCustomer_Type as string,\n\t\tCustomer_PostCode as string,\n\t\tCustomer_LeadProviderName as string,\n\t\tCustomer_DateCreated as timestamp,\n\t\tCustomer_ChangeDate as timestamp,\n\t\tCustomer_Status as string,\n\t\tCustomer_DateStatusChanged as timestamp,\n\t\tCustomer_QuickLostReason as string,\n\t\tCustomer_FirstContact as string,\n\t\tCustomer_DateSold as string,\n\t\tCustomer_DateLost as string,\n\t\tDeal_Type as string,\n\t\tDeal_Gap as integer,\n\t\tDeal_Paint as integer,\n\t\tDeal_Warranty as integer,\n\t\tDeal_ClosedDate as timestamp,\n\t\tDeal_BasicPrice as decimal(18,2),\n\t\tDeal_DeliveryCharge as decimal(18,2),\n\t\tDeal_FirstRegFee as decimal(18,2),\n\t\tDeal_RoadTax as decimal(18,2),\n\t\tDesired_Make as string,\n\t\tDesired_Model as string,\n\t\tDeal_Make as string,\n\t\tDeal_Model as string,\n\t\tDeal_ModelVariant as string,\n\t\tDeal_FuelType as string,\n\t\tDeal_GearType as string,\n\t\tDeal_OrderMethod as string,\n\t\tDeal_Colour as string,\n\t\tDeal_Interior as string,\n\t\tDeal_Mileage as integer,\n\t\tDeal_DateConfirmed as timestamp,\n\t\tDeal_ModelYear as string,\n\t\tDeal_Registration as string,\n\t\tDeal_DateOfRegistration as timestamp,\n\t\tDeal_DemoDriven as string,\n\t\tDeal_ServicePayment as string,\n\t\tDeal_ExpectedDeliveryMonth as integer,\n\t\tDeal_ExpectedDeliveryYear as integer,\n\t\tDeal_ExpectedDeliveryTimeOfMonth as string,\n\t\tDeal_DepositPaymentMethod as string,\n\t\tDeal_FinanceMethod as string,\n\t\tDeal_MonthlyBudget as decimal(18,2),\n\t\tDeal_Deposit as decimal(18,2),\n\t\tDeal_NewFinancedBy as string,\n\t\tPartEx_ID as integer,\n\t\tPartEx_Registration as string,\n\t\tPartEx_Make as string,\n\t\tPartEx_Model as string,\n\t\tPartEx_Variant as string,\n\t\tPartEx_Colour as string,\n\t\tPartEx_DateOfRegistration as timestamp,\n\t\tPartEx_Mileage as integer,\n\t\tPartEx_VatQualifying as integer,\n\t\tPartEx_NumberOfOwners as integer,\n\t\tPartEx_ServiceHistory as integer,\n\t\tPartEx_SIVAmount as decimal(18,2),\n\t\tInitialContact_Created as string,\n\t\tInitialContact_Type as string,\n\t\tDeal_CancelledDate as timestamp,\n\t\tDeal_HandOverDate as timestamp\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table [dbo].[CloseITRaw_SalesLeads]'],\n\tdateFormat:'dd/MM/yyyy',\n\ttimestampFormat:'dd/MM/yyyy',\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealer_ID,\n\t\tDeal_ID,\n\t\tDealerName,\n\t\tGroupName,\n\t\tCustomer_SalesPerson,\n\t\tCustomer_ID,\n\t\tCustomer_ProspectURN,\n\t\tCustomer_Type,\n\t\tCustomer_PostCode,\n\t\tCustomer_LeadProviderName,\n\t\tCustomer_DateCreated,\n\t\tCustomer_ChangeDate,\n\t\tCustomer_Status,\n\t\tCustomer_DateStatusChanged,\n\t\tCustomer_QuickLostReason,\n\t\tCustomer_FirstContact,\n\t\tCustomer_DateSold,\n\t\tCustomer_DateLost,\n\t\tDeal_Type,\n\t\tDeal_Gap,\n\t\tDeal_Paint,\n\t\tDeal_Warranty,\n\t\tDeal_ClosedDate,\n\t\tDeal_BasicPrice,\n\t\tDeal_DeliveryCharge = Deal_DeilveryCharge,\n\t\tDeal_FirstRegFee,\n\t\tDeal_RoadTax,\n\t\tDesired_Make,\n\t\tDesired_Model,\n\t\tDeal_Make,\n\t\tDeal_Model,\n\t\tDeal_ModelVariant,\n\t\tDeal_FuelType,\n\t\tDeal_GearType,\n\t\tDeal_OrderMethod,\n\t\tDeal_Colour,\n\t\tDeal_Interior,\n\t\tDeal_Mileage,\n\t\tDeal_DateConfirmed,\n\t\tDeal_ModelYear,\n\t\tDeal_DateOfRegistration,\n\t\tDeal_DemoDriven,\n\t\tDeal_ServicePayment,\n\t\tDeal_ExpectedDeliveryMonth,\n\t\tDeal_ExpectedDeliveryYear,\n\t\tDeal_ExpectedDeliveryTimeOfMonth,\n\t\tDeal_DepositPaymentMethod,\n\t\tDeal_FinanceMethod,\n\t\tDeal_MonthlyBudget,\n\t\tDeal_Deposit,\n\t\tDeal_NewFinancedBy,\n\t\tPartEx_ID,\n\t\tPartEx_Registration,\n\t\tPartEx_Make,\n\t\tPartEx_Model,\n\t\tPartEx_Variant,\n\t\tPartEx_Colour,\n\t\tPartEx_DateOfRegistration,\n\t\tPartEx_Mileage,\n\t\tPartEx_VatQualifying,\n\t\tPartEx_NumberOfOwners,\n\t\tPartEx_ServiceHistory,\n\t\tPartEx_SIVAmount,\n\t\tInitialContact_Created,\n\t\tInitialContact_Type,\n\t\tDeal_Registration,\n\t\tDeal_CancelledDate,\n\t\tDeal_HandOverDate\n\t)) ~> SQLCloseITRawSalesLeads"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DetailedSales')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "DetailedSalesCSV",
+								"type": "DatasetReference"
+							},
+							"name": "DetailedSales"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLDMSVehicleSales",
+								"type": "DatasetReference"
+							},
+							"name": "SQLDMSDetailedSales"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\t{Client ID} as string,\n\t\tDealer as string,\n\t\t{Cust ID} as string,\n\t\tTitle as string,\n\t\tforename as string,\n\t\tSurname as string,\n\t\temail as string,\n\t\t{home phone} as string,\n\t\tmobile as string,\n\t\t{add 1} as string,\n\t\t{add 2} as string,\n\t\t{add 3} as string,\n\t\t{add 4} as string,\n\t\tpostcode as string,\n\t\t{New or Used} as string,\n\t\ttype as string,\n\t\t{Veh Magic} as string,\n\t\t{stock no} as string,\n\t\tchassis as string,\n\t\t{reg no} as string,\n\t\t{reg date} as string,\n\t\t{date in stock} as string,\n\t\t{CAP VIN} as string,\n\t\t{CAP code} as string,\n\t\tmake as string,\n\t\tmodel as string,\n\t\tderivative as string,\n\t\t{engine size} as string,\n\t\tbodystyle as string,\n\t\tmileage as string,\n\t\tfuel as string,\n\t\ttransmission as string,\n\t\t{generic colour} as string,\n\t\t{specific colour} as string,\n\t\tdoors as string,\n\t\tSIV as string,\n\t\t{sale date} as string,\n\t\t{inv number} as string,\n\t\t{sales exec} as string,\n\t\t{full inv value} as string,\n\t\tpaint as string,\n\t\twarr as string,\n\t\tGAP as string,\n\t\tAcc as string,\n\t\trecon as string,\n\t\t{Finance commission} as string,\n\t\tprofit as string,\n\t\t{Sale type} as string,\n\t\tPX1 as string,\n\t\tPX2 as string,\n\t\tPX3 as string,\n\t\tSource as string,\n\t\t{Model Analysis Code} as string,\n\t\tPurchaser as string,\n\t\t{Supplier Name2} as string,\n\t\t{Purchase Invoice Date} as string,\n\t\t{Available Date} as string,\n\t\t{Accessory Profit} as string,\n\t\t{Paint Profit} as string,\n\t\t{Warr Profit} as string,\n\t\t{Gap Profit} as string,\n\t\t{Other Profit} as string,\n\t\t{Volume Bonus} as string,\n\t\tBonus as string,\n\t\t{RFL Profit} as string,\n\t\t{Metal Profit} as string,\n\t\t{Vehicle Invoice Value} as string,\n\t\t{Delivery Date} as string,\n\t\t{Group Purchase Date} as string,\n\t\t{Received Date} as string,\n\t\t{Date In Group} as string,\n\t\t{Purchase Account} as string,\n\t\t{Supplier Name} as string,\n\t\t{Fuel Type} as string,\n\t\t{Sales Account ID} as string,\n\t\t{Sales Account Name} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy'],\n\twildcardPaths:['DetailedVehSales*.csv']) ~> DetailedSales\nDetailedSales sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealer as string,\n\t\tCustId as string,\n\t\tTitle as string,\n\t\tForename as string,\n\t\tSurname as string,\n\t\tEmail as string,\n\t\tHomePhone as string,\n\t\tMobile as string,\n\t\tAdd1 as string,\n\t\tAdd2 as string,\n\t\tAdd3 as string,\n\t\tAdd4 as string,\n\t\tPostcode as string,\n\t\tNewOrUsed as string,\n\t\tType as string,\n\t\tVehMagic as string,\n\t\tStockNo as string,\n\t\tChassis as string,\n\t\tRegistrationNo as string,\n\t\tRegistrationDate as date,\n\t\tDateInStock as date,\n\t\tCapVin as string,\n\t\tCapCode as string,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuel as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as string,\n\t\tSiv as double,\n\t\tSaleDate as date,\n\t\tInvNumber as integer,\n\t\tSalesExec as string,\n\t\tFullInvValue as double,\n\t\tPaint as double,\n\t\tWarr as double,\n\t\tGap as double,\n\t\tAcc as double,\n\t\tRecon as double,\n\t\tFinanceCommission as double,\n\t\tProfit as double,\n\t\tSaleType as string,\n\t\tPx1 as string,\n\t\tPx2 as string,\n\t\tPx3 as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tAccessoryProfit as double,\n\t\tPaintProfit as double,\n\t\tWarrProfit as double,\n\t\tGapProfit as double,\n\t\tOtherProfit as double,\n\t\tVolumeBonus as double,\n\t\tBonus as double,\n\t\tRflProfit as double,\n\t\tMetalProfit as double,\n\t\tVehicleInvoiceValue as double,\n\t\tDeliveryDate as date,\n\t\tGroupPurchaseDate as date,\n\t\tReceivedDate as date,\n\t\tDateInGroup as date,\n\t\tPurchaseAccount as string,\n\t\tFuelTypeID as string,\n\t\tSalesAccountID as string,\n\t\tSalesAccountName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpreSQLs:['truncate table dbo.DMSVehicleSales'],\n\tpostSQLs:['update dbo.DMSVehicleSales set ClientID = 10000 where ClientID is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tDealer,\n\t\tCustId = {Cust ID},\n\t\tTitle,\n\t\tForename = forename,\n\t\tSurname,\n\t\tEmail = email,\n\t\tHomePhone = {home phone},\n\t\tMobile = mobile,\n\t\tAdd1 = {add 1},\n\t\tAdd2 = {add 2},\n\t\tAdd3 = {add 3},\n\t\tAdd4 = {add 4},\n\t\tPostcode = postcode,\n\t\tNewOrUsed = {New or Used},\n\t\tType = type,\n\t\tVehMagic = {Veh Magic},\n\t\tStockNo = {stock no},\n\t\tChassis = chassis,\n\t\tRegistrationNo = {reg no},\n\t\tRegistrationDate = {reg date},\n\t\tDateInStock = {date in stock},\n\t\tCapVin = {CAP VIN},\n\t\tCapCode = {CAP code},\n\t\tMake = make,\n\t\tModel = model,\n\t\tDerivative = derivative,\n\t\tEngineSize = {engine size},\n\t\tBodystyle = bodystyle,\n\t\tMileage = mileage,\n\t\tFuel = fuel,\n\t\tTransmission = transmission,\n\t\tGenericColour = {generic colour},\n\t\tSpecificColour = {specific colour},\n\t\tDoors = doors,\n\t\tSiv = SIV,\n\t\tSaleDate = {sale date},\n\t\tInvNumber = {inv number},\n\t\tSalesExec = {sales exec},\n\t\tFullInvValue = {full inv value},\n\t\tPaint = paint,\n\t\tWarr = warr,\n\t\tGap = GAP,\n\t\tAcc,\n\t\tRecon = recon,\n\t\tFinanceCommission = {Finance commission},\n\t\tProfit = profit,\n\t\tSaleType = {Sale type},\n\t\tPx1 = PX1,\n\t\tPx2 = PX2,\n\t\tPx3 = PX3,\n\t\tSource,\n\t\tModelAnalysisCode = {Model Analysis Code},\n\t\tPurchaser,\n\t\tPurchaseInvoiceDate = {Purchase Invoice Date},\n\t\tAvailableDate = {Available Date},\n\t\tAccessoryProfit = {Accessory Profit},\n\t\tPaintProfit = {Paint Profit},\n\t\tWarrProfit = {Warr Profit},\n\t\tGapProfit = {Gap Profit},\n\t\tOtherProfit = {Other Profit},\n\t\tVolumeBonus = {Volume Bonus},\n\t\tBonus,\n\t\tRflProfit = {RFL Profit},\n\t\tMetalProfit = {Metal Profit},\n\t\tVehicleInvoiceValue = {Vehicle Invoice Value},\n\t\tDeliveryDate = {Delivery Date},\n\t\tGroupPurchaseDate = {Group Purchase Date},\n\t\tReceivedDate = {Received Date},\n\t\tDateInGroup = {Date In Group},\n\t\tPurchaseAccount = {Purchase Account},\n\t\tFuelTypeID = {Fuel Type},\n\t\tSalesAccountID = {Sales Account ID},\n\t\tSalesAccountName = {Sales Account Name}\n\t)) ~> SQLDMSDetailedSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EnquiryMAX_Enquiries')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "EnquiryMAXEnquiriesJSON",
+								"type": "DatasetReference"
+							},
+							"name": "EnquiryMAXEnquiriesJSON"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLEnquiryMAX_Enquiries",
+								"type": "DatasetReference"
+							},
+							"name": "EnquiryMAXEnquiries"
+						}
+					],
+					"transformations": [
+						{
+							"name": "EnquiryMAXEnquiriesJSONUpsert"
+						},
+						{
+							"name": "DateConversion"
+						}
+					],
+					"script": "source(output(\n\t\tcreatedDateTime as string,\n\t\tenquiryId as string,\n\t\tcustomerId as string,\n\t\tleadId as string,\n\t\tstatus as (code as string, description as string),\n\t\ttestDrive as (appointmentDate as string, taken as boolean),\n\t\ttype as string,\n\t\tpartExchangeCount as string,\n\t\tsourceOfEnquiry as string,\n\t\tmethodOfContact as string,\n\t\tvehicleOfInterest as (make as string, range as string, model as string, derivative as string, vrm as string, fuelType as string, vehicleCode as string, vehicleCodeType as string, odometer as (unit as string, currentValue as string), stockNumber as string, vin as string),\n\t\tsoldVehicle as (make as string, range as string, model as string, derivative as string, vrm as string, fuelType as string, vehicleCode as string, vehicleCodeType as string, odometer as (unit as string, currentValue as string), stockNumber as string, vin as string),\n\t\tlinks as ({} as string),\n\t\tlostSale as (lostSaleRequested as string, lostSaleAccepted as string, lostSaleReason as string),\n\t\toriginApp as string,\n\t\tenquiryNotes as (description as string, createdDateTime as string, createdByName as string)[],\n\t\tcustomerFinanceDetails as (model as string, registration as string, agreementNo as string, financeProduct as string, term as string, deposit as string, installmentAmount as string, gmfvBalloon as string, annualContractMileage as string, contractStartDate as string, contractEndDate as string, outstandingBalance as string),\n\t\tdeskingDeal as (financeProduct as string, term as string, deposit as string, installmentAmount as string, gmfvBalloon as string, annualContractMileage as string),\n\t\testimatedEquityPosition as (estimatedPxValue as string, estimatedEquity as string)\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> EnquiryMAXEnquiriesJSON\nEnquiryMAXEnquiriesJSON alterRow(upsertIf(isNull(enquiryId)==false())) ~> EnquiryMAXEnquiriesJSONUpsert\nEnquiryMAXEnquiriesJSONUpsert derive(LostSaleRequestedDate = toTimestamp(lostSale.lostSaleRequested,'yyyy-MM-dd\\'T\\'HH:mm:ss'),\n\t\tLostSaleAcceptedDate = toTimestamp(lostSale.lostSaleAccepted,'yyyy-MM-dd\\'T\\'HH:mm:ss')) ~> DateConversion\nDateConversion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEnquiryID as string,\n\t\tCustomerID as string,\n\t\tLeadID as string,\n\t\tStatusCode as string,\n\t\tStatusDescription as string,\n\t\tNewOrUsed as string,\n\t\tSourceOfEnquiry as string,\n\t\tMethodOfContact as string,\n\t\tSoldNewOrUsed as string,\n\t\tDeliveryDate as timestamp,\n\t\tOrderDate as timestamp,\n\t\tMake as string,\n\t\tRange as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tRegistrationNumber as string,\n\t\tFuelType as string,\n\t\tMileage as integer,\n\t\tStockNumber as string,\n\t\tLostSaleRequestedDate as timestamp,\n\t\tLostSaleAcceptedDate as timestamp,\n\t\tLostSaleReason as string,\n\t\tuniqueid as integer,\n\t\tClientID as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:true,\n\tkeys:['EnquiryID'],\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tCustomerID = customerId,\n\t\tLeadID = leadId,\n\t\tStatusCode = status.code,\n\t\tStatusDescription = status.description,\n\t\tNewOrUsed = type,\n\t\tSourceOfEnquiry = sourceOfEnquiry,\n\t\tMethodOfContact = methodOfContact,\n\t\tMake = soldVehicle.make,\n\t\tRange = soldVehicle.range,\n\t\tModel = soldVehicle.model,\n\t\tDerivative = soldVehicle.derivative,\n\t\tRegistrationNumber = soldVehicle.vrm,\n\t\tFuelType = soldVehicle.fuelType,\n\t\tMileage = soldVehicle.odometer.currentValue,\n\t\tStockNumber = soldVehicle.stockNumber,\n\t\tLostSaleRequestedDate,\n\t\tLostSaleAcceptedDate = lostSale.lostSaleAccepted,\n\t\tLostSaleReason = lostSale.lostSaleReason,\n\t\tEnquiryID = enquiryId\n\t)) ~> EnquiryMAXEnquiries"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

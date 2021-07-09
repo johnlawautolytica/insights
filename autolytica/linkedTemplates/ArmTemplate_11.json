@@ -1,0 +1,1028 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolytica"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/GetSourceInformation')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "RTC_Ext_BI_Inspection_vISItems",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ExternalSchemass",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tTABLE_CATALOG as string,\n\t\tTABLE_SCHEMA as string,\n\t\tTABLE_NAME as string,\n\t\tCOLUMN_NAME as string,\n\t\tORDINAL_POSITION as integer,\n\t\tCOLUMN_DEFAULT as string,\n\t\tIS_NULLABLE as string,\n\t\tDATA_TYPE as string,\n\t\tCHARACTER_MAXIMUM_LENGTH as integer,\n\t\tCHARACTER_OCTET_LENGTH as integer,\n\t\tNUMERIC_PRECISION as integer,\n\t\tNUMERIC_PRECISION_RADIX as short,\n\t\tNUMERIC_SCALE as integer,\n\t\tDATETIME_PRECISION as short,\n\t\tCHARACTER_SET_CATALOG as string,\n\t\tCHARACTER_SET_SCHEMA as string,\n\t\tCHARACTER_SET_NAME as string,\n\t\tCOLLATION_CATALOG as string,\n\t\tCOLLATION_SCHEMA as string,\n\t\tCOLLATION_NAME as string,\n\t\tDOMAIN_CATALOG as string,\n\t\tDOMAIN_SCHEMA as string,\n\t\tDOMAIN_NAME as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tquery: 'select * from information_schema.columns',\n\tformat: 'query') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\ttable_catalog as string,\n\t\ttable_schema as string,\n\t\ttable_name as string,\n\t\tcolumn_name as string,\n\t\tordinal_position as integer,\n\t\tcolumn_default as string,\n\t\tis_nullable as string,\n\t\tdata_type as string,\n\t\tCHARACTER_MAXIMUM_LENGTH as integer,\n\t\tCHARACTER_OCTET_LENGTH as integer,\n\t\tNUMERIC_PRECISION as integer,\n\t\tNUMERIC_PRECISION_RADIX as integer,\n\t\tNUMERIC_SCALE as integer,\n\t\tDATETIME_PRECISION as integer,\n\t\tCHARACTER_SET_CATALOG as string,\n\t\tCHARACTER_SET_SCHEMA as string,\n\t\tCHARACTER_SET_NAME as string,\n\t\tCOLLATION_CATALOG as string,\n\t\tCOLLATION_SCHEMA as string,\n\t\tCOLLATION_NAME as string,\n\t\tDOMAIN_CATALOG as string,\n\t\tDOMAIN_SCHEMA as string,\n\t\tDOMAIN_NAME as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\ttable_catalog = TABLE_CATALOG,\n\t\ttable_schema = TABLE_SCHEMA,\n\t\ttable_name = TABLE_NAME,\n\t\tcolumn_name = COLUMN_NAME,\n\t\tordinal_position = ORDINAL_POSITION,\n\t\tcolumn_default = COLUMN_DEFAULT,\n\t\tis_nullable = IS_NULLABLE,\n\t\tdata_type = DATA_TYPE,\n\t\tCHARACTER_MAXIMUM_LENGTH,\n\t\tCHARACTER_OCTET_LENGTH,\n\t\tNUMERIC_PRECISION,\n\t\tNUMERIC_PRECISION_RADIX,\n\t\tNUMERIC_SCALE,\n\t\tDATETIME_PRECISION,\n\t\tCHARACTER_SET_CATALOG,\n\t\tCHARACTER_SET_SCHEMA,\n\t\tCHARACTER_SET_NAME,\n\t\tCOLLATION_CATALOG,\n\t\tCOLLATION_SCHEMA,\n\t\tCOLLATION_NAME,\n\t\tDOMAIN_CATALOG,\n\t\tDOMAIN_SCHEMA,\n\t\tDOMAIN_NAME\n\t)) ~> sink1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyDetailedSales')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyDetailedSalesCSV",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyDetailedSales"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLDMSVehicleSales",
+								"type": "DatasetReference"
+							},
+							"name": "SQLDMSDetailedSales"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumn1"
+						}
+					],
+					"script": "source(output(\n\t\t{Client ID} as string,\n\t\tDealer as string,\n\t\t{Cust ID} as string,\n\t\tTitle as string,\n\t\tforename as string,\n\t\tSurname as string,\n\t\temail as string,\n\t\t{home phone} as string,\n\t\tmobile as string,\n\t\t{add 1} as string,\n\t\t{add 2} as string,\n\t\t{add 3} as string,\n\t\t{add 4} as string,\n\t\tpostcode as string,\n\t\t{New or Used} as string,\n\t\ttype as string,\n\t\t{Veh Magic} as string,\n\t\t{stock no} as string,\n\t\tchassis as string,\n\t\t{reg no} as string,\n\t\t{reg date} as date 'dd/MM/yyyy',\n\t\t{date in stock} as date 'dd/MM/yyyy',\n\t\t{CAP VIN} as string,\n\t\t{CAP code} as string,\n\t\tmake as string,\n\t\tmodel as string,\n\t\tderivative as string,\n\t\t{engine size} as string,\n\t\tbodystyle as string,\n\t\tmileage as integer,\n\t\tfuel as string,\n\t\ttransmission as string,\n\t\t{generic colour} as string,\n\t\t{specific colour} as string,\n\t\tdoors as string,\n\t\tSIV as string,\n\t\t{sale date} as date,\n\t\t{inv number} as integer,\n\t\t{sales exec} as string,\n\t\t{full inv value} as string,\n\t\tpaint as string,\n\t\twarr as string,\n\t\tGAP as string,\n\t\tAcc as string,\n\t\trecon as string,\n\t\t{Finance commission} as string,\n\t\tprofit as string,\n\t\t{Sale type} as string,\n\t\tPX1 as string,\n\t\tPX2 as string,\n\t\tPX3 as string,\n\t\tSource as string,\n\t\t{Model Analysis Code} as string,\n\t\tPurchaser as string,\n\t\t{Supplier Name} as string,\n\t\t{Purchase Invoice Date} as date 'dd/MM/yyyy',\n\t\t{Available Date} as date 'dd/MM/yyyy',\n\t\t{Accessory Profit} as string,\n\t\t{Paint Profit} as string,\n\t\t{Warr Profit} as string,\n\t\t{Gap Profit} as string,\n\t\t{Other Profit} as string,\n\t\t{Volume Bonus} as string,\n\t\tBonus as string,\n\t\t{RFL Profit} as string,\n\t\t{Metal Profit} as string,\n\t\t{Vehicle Invoice Value} as string,\n\t\t{Delivery Date} as date 'dd/MM/yyyy',\n\t\t{Group Purchase Date} as date 'dd/MM/yyyy',\n\t\t{Received Date} as date 'dd/MM/yyyy',\n\t\t{Date In Group} as date 'dd/MM/yyyy',\n\t\t{Purchase Account} as string,\n\t\t{Supplier Name2} as string,\n\t\t{Fuel Type} as string,\n\t\t{Sales Account ID} as string,\n\t\t{Sales Account Name} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy']) ~> PeterVardyDetailedSales\nPeterVardyDetailedSales derive({Cust ID} = trim({Cust ID})) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealer as string,\n\t\tCustId as string,\n\t\tTitle as string,\n\t\tForename as string,\n\t\tSurname as string,\n\t\tEmail as string,\n\t\tHomePhone as string,\n\t\tMobile as string,\n\t\tAdd1 as string,\n\t\tAdd2 as string,\n\t\tAdd3 as string,\n\t\tAdd4 as string,\n\t\tPostcode as string,\n\t\tNewOrUsed as string,\n\t\tType as string,\n\t\tVehMagic as string,\n\t\tStockNo as string,\n\t\tChassis as string,\n\t\tRegistrationNo as string,\n\t\tRegistrationDate as date,\n\t\tDateInStock as date,\n\t\tCapVin as string,\n\t\tCapCode as string,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuel as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as string,\n\t\tSiv as double,\n\t\tSaleDate as date,\n\t\tInvNumber as integer,\n\t\tSalesExec as string,\n\t\tFullInvValue as double,\n\t\tPaint as double,\n\t\tWarr as double,\n\t\tGap as double,\n\t\tAcc as double,\n\t\tRecon as double,\n\t\tFinanceCommission as double,\n\t\tProfit as double,\n\t\tSaleType as string,\n\t\tPx1 as string,\n\t\tPx2 as string,\n\t\tPx3 as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tAccessoryProfit as double,\n\t\tPaintProfit as double,\n\t\tWarrProfit as double,\n\t\tGapProfit as double,\n\t\tOtherProfit as double,\n\t\tVolumeBonus as double,\n\t\tBonus as double,\n\t\tRflProfit as double,\n\t\tMetalProfit as double,\n\t\tVehicleInvoiceValue as double,\n\t\tDeliveryDate as date,\n\t\tGroupPurchaseDate as date,\n\t\tReceivedDate as date,\n\t\tDateInGroup as date,\n\t\tPurchaseAccount as string,\n\t\tFuelTypeID as string,\n\t\tSalesAccountID as string,\n\t\tSalesAccountName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpreSQLs:['truncate table dbo.DMSVehicleSales'],\n\tpostSQLs:['update dbo.DMSVehicleSales set ClientID = 10000 where ClientID is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'allErrors',\n\ttransactionCommit: 'single',\n\treportSuccessOnError: false,\n\tmapColumn(\n\t\tDealer,\n\t\tCustId = {Cust ID},\n\t\tTitle,\n\t\tForename = forename,\n\t\tSurname,\n\t\tEmail = email,\n\t\tHomePhone = {home phone},\n\t\tMobile = mobile,\n\t\tAdd1 = {add 1},\n\t\tAdd2 = {add 2},\n\t\tAdd3 = {add 3},\n\t\tAdd4 = {add 4},\n\t\tPostcode = postcode,\n\t\tNewOrUsed = {New or Used},\n\t\tType = type,\n\t\tVehMagic = {Veh Magic},\n\t\tStockNo = {stock no},\n\t\tChassis = chassis,\n\t\tRegistrationNo = {reg no},\n\t\tRegistrationDate = {reg date},\n\t\tDateInStock = {date in stock},\n\t\tCapVin = {CAP VIN},\n\t\tCapCode = {CAP code},\n\t\tMake = make,\n\t\tModel = model,\n\t\tDerivative = derivative,\n\t\tEngineSize = {engine size},\n\t\tBodystyle = bodystyle,\n\t\tMileage = mileage,\n\t\tFuel = fuel,\n\t\tTransmission = transmission,\n\t\tGenericColour = {generic colour},\n\t\tSpecificColour = {specific colour},\n\t\tDoors = doors,\n\t\tSiv = SIV,\n\t\tSaleDate = {sale date},\n\t\tInvNumber = {inv number},\n\t\tSalesExec = {sales exec},\n\t\tFullInvValue = {full inv value},\n\t\tPaint = paint,\n\t\tWarr = warr,\n\t\tGap = GAP,\n\t\tAcc,\n\t\tRecon = recon,\n\t\tFinanceCommission = {Finance commission},\n\t\tProfit = profit,\n\t\tSaleType = {Sale type},\n\t\tPx1 = PX1,\n\t\tPx2 = PX2,\n\t\tPx3 = PX3,\n\t\tSource,\n\t\tModelAnalysisCode = {Model Analysis Code},\n\t\tPurchaser,\n\t\tSupplierName = {Supplier Name},\n\t\tPurchaseInvoiceDate = {Purchase Invoice Date},\n\t\tAvailableDate = {Available Date},\n\t\tAccessoryProfit = {Accessory Profit},\n\t\tPaintProfit = {Paint Profit},\n\t\tWarrProfit = {Warr Profit},\n\t\tGapProfit = {Gap Profit},\n\t\tOtherProfit = {Other Profit},\n\t\tVolumeBonus = {Volume Bonus},\n\t\tBonus,\n\t\tRflProfit = {RFL Profit},\n\t\tMetalProfit = {Metal Profit},\n\t\tVehicleInvoiceValue = {Vehicle Invoice Value},\n\t\tDeliveryDate = {Delivery Date},\n\t\tGroupPurchaseDate = {Group Purchase Date},\n\t\tReceivedDate = {Received Date},\n\t\tDateInGroup = {Date In Group},\n\t\tPurchaseAccount = {Purchase Account},\n\t\tFuelTypeID = {Fuel Type},\n\t\tSalesAccountID = {Sales Account ID},\n\t\tSalesAccountName = {Sales Account Name}\n\t)) ~> SQLDMSDetailedSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyDetailedSales_Older')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyDetailedSalesCSV_Older",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyDetailedSales"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLDMSVehicleSales_Older",
+								"type": "DatasetReference"
+							},
+							"name": "SQLDMSDetailedSales"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumn1"
+						}
+					],
+					"script": "source(output(\n\t\t{Client ID} as string,\n\t\tDealer as string,\n\t\t{Cust ID} as string,\n\t\tTitle as string,\n\t\tforename as string,\n\t\tSurname as string,\n\t\temail as string,\n\t\t{home phone} as string,\n\t\tmobile as string,\n\t\t{add 1} as string,\n\t\t{add 2} as string,\n\t\t{add 3} as string,\n\t\t{add 4} as string,\n\t\tpostcode as string,\n\t\t{New or Used} as string,\n\t\ttype as string,\n\t\t{Veh Magic} as string,\n\t\t{stock no} as string,\n\t\tchassis as string,\n\t\t{reg no} as string,\n\t\t{reg date} as date,\n\t\t{date in stock} as date,\n\t\t{CAP VIN} as string,\n\t\t{CAP code} as string,\n\t\tmake as string,\n\t\tmodel as string,\n\t\tderivative as string,\n\t\t{engine size} as string,\n\t\tbodystyle as string,\n\t\tmileage as string,\n\t\tfuel as string,\n\t\ttransmission as string,\n\t\t{generic colour} as string,\n\t\t{specific colour} as string,\n\t\tdoors as string,\n\t\tSIV as string,\n\t\t{sale date} as date,\n\t\t{inv number} as string,\n\t\t{sales exec} as string,\n\t\t{full inv value} as string,\n\t\tpaint as string,\n\t\twarr as string,\n\t\tGAP as string,\n\t\tAcc as string,\n\t\trecon as string,\n\t\t{Finance commission} as string,\n\t\tprofit as string,\n\t\t{Sale type} as string,\n\t\tPX1 as string,\n\t\tPX2 as string,\n\t\tPX3 as string,\n\t\tSource as string,\n\t\t{Model Analysis Code} as string,\n\t\tPurchaser as string,\n\t\t{Supplier Name} as string,\n\t\t{Purchase Invoice Date} as date,\n\t\t{Available Date} as date,\n\t\t{Accessory Profit} as string,\n\t\t{Paint Profit} as string,\n\t\t{Warr Profit} as string,\n\t\t{Gap Profit} as string,\n\t\t{Other Profit} as string,\n\t\t{Volume Bonus} as string,\n\t\tBonus as string,\n\t\t{RFL Profit} as string,\n\t\t{Metal Profit} as string,\n\t\t{Vehicle Invoice Value} as string,\n\t\t{Delivery Date} as date,\n\t\t{Sales Account ID} as string,\n\t\t{Sales Account Name} as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy']) ~> PeterVardyDetailedSales\nPeterVardyDetailedSales derive({Cust ID} = trim({Cust ID})) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: false,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealer as string,\n\t\tCustId as string,\n\t\tTitle as string,\n\t\tForename as string,\n\t\tSurname as string,\n\t\tEmail as string,\n\t\tHomePhone as string,\n\t\tMobile as string,\n\t\tAdd1 as string,\n\t\tAdd2 as string,\n\t\tAdd3 as string,\n\t\tAdd4 as string,\n\t\tPostcode as string,\n\t\tNewOrUsed as string,\n\t\tType as string,\n\t\tVehMagic as string,\n\t\tStockNo as string,\n\t\tChassis as string,\n\t\tRegistrationNo as string,\n\t\tRegistrationDate as date,\n\t\tDateInStock as date,\n\t\tCapVin as string,\n\t\tCapCode as string,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuel as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as string,\n\t\tSiv as double,\n\t\tSaleDate as date,\n\t\tInvNumber as integer,\n\t\tSalesExec as string,\n\t\tFullInvValue as double,\n\t\tPaint as double,\n\t\tWarr as double,\n\t\tGap as double,\n\t\tAcc as double,\n\t\tRecon as double,\n\t\tFinanceCommission as double,\n\t\tProfit as double,\n\t\tSaleType as string,\n\t\tPx1 as string,\n\t\tPx2 as string,\n\t\tPx3 as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tAccessoryProfit as double,\n\t\tPaintProfit as double,\n\t\tWarrProfit as double,\n\t\tGapProfit as double,\n\t\tOtherProfit as double,\n\t\tVolumeBonus as double,\n\t\tBonus as double,\n\t\tRflProfit as double,\n\t\tMetalProfit as double,\n\t\tVehicleInvoiceValue as double,\n\t\tDeliveryDate as date,\n\t\tSalesAccountID as string,\n\t\tSalesAccountName as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpreSQLs:['truncate table dbo.DMSVehicleSales_Older'],\n\tpostSQLs:['update dbo.DMSVehicleSales_Older set ClientID = 10000 where ClientID is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealer,\n\t\tCustId = {Cust ID},\n\t\tTitle,\n\t\tForename = forename,\n\t\tSurname,\n\t\tEmail = email,\n\t\tHomePhone = {home phone},\n\t\tMobile = mobile,\n\t\tAdd1 = {add 1},\n\t\tAdd2 = {add 2},\n\t\tAdd3 = {add 3},\n\t\tAdd4 = {add 4},\n\t\tPostcode = postcode,\n\t\tNewOrUsed = {New or Used},\n\t\tType = type,\n\t\tVehMagic = {Veh Magic},\n\t\tStockNo = {stock no},\n\t\tChassis = chassis,\n\t\tRegistrationNo = {reg no},\n\t\tRegistrationDate = {reg date},\n\t\tDateInStock = {date in stock},\n\t\tCapVin = {CAP VIN},\n\t\tCapCode = {CAP code},\n\t\tMake = make,\n\t\tModel = model,\n\t\tDerivative = derivative,\n\t\tEngineSize = {engine size},\n\t\tBodystyle = bodystyle,\n\t\tMileage = mileage,\n\t\tFuel = fuel,\n\t\tTransmission = transmission,\n\t\tGenericColour = {generic colour},\n\t\tSpecificColour = {specific colour},\n\t\tDoors = doors,\n\t\tSiv = SIV,\n\t\tSaleDate = {sale date},\n\t\tInvNumber = {inv number},\n\t\tSalesExec = {sales exec},\n\t\tFullInvValue = {full inv value},\n\t\tPaint = paint,\n\t\tWarr = warr,\n\t\tGap = GAP,\n\t\tAcc,\n\t\tRecon = recon,\n\t\tFinanceCommission = {Finance commission},\n\t\tProfit = profit,\n\t\tSaleType = {Sale type},\n\t\tPx1 = PX1,\n\t\tPx2 = PX2,\n\t\tPx3 = PX3,\n\t\tSource,\n\t\tModelAnalysisCode = {Model Analysis Code},\n\t\tPurchaser,\n\t\tSupplierName = {Supplier Name},\n\t\tPurchaseInvoiceDate = {Purchase Invoice Date},\n\t\tAvailableDate = {Available Date},\n\t\tAccessoryProfit = {Accessory Profit},\n\t\tPaintProfit = {Paint Profit},\n\t\tWarrProfit = {Warr Profit},\n\t\tGapProfit = {Gap Profit},\n\t\tOtherProfit = {Other Profit},\n\t\tVolumeBonus = {Volume Bonus},\n\t\tBonus,\n\t\tRflProfit = {RFL Profit},\n\t\tMetalProfit = {Metal Profit},\n\t\tVehicleInvoiceValue = {Vehicle Invoice Value},\n\t\tDeliveryDate = {Delivery Date},\n\t\tClientID = {Client ID},\n\t\tSalesAccountID = {Sales Account ID},\n\t\tSalesAccountName = {Sales Account Name}\n\t)) ~> SQLDMSDetailedSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyEnquiryMAX')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyEnquiryMaxCSV",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyEnquiryMAX"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLEnquiryMax",
+								"type": "DatasetReference"
+							},
+							"name": "SQLPeterVardyEnquiryMAX"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tBranch as string,\n\t\t{Sales Type} as string,\n\t\t{Enquiry No} as string,\n\t\t{Customer Title} as string,\n\t\t{Customer Forename} as string,\n\t\t{Customer Surname} as string,\n\t\t{Company Name} as string,\n\t\tEmail as string,\n\t\t{Home Phone} as string,\n\t\t{Mobile Phone} as string,\n\t\t{Work Phone} as string,\n\t\tPostcode as string,\n\t\t{Enquiry Created} as string,\n\t\t{Enquiry Type} as string,\n\t\t{Sales Executive} as string,\n\t\t{Business Manager} as string,\n\t\t{N/U} as string,\n\t\t{Vehicle Type} as string,\n\t\tMake as string,\n\t\tRange as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\t{Registration No} as string,\n\t\t{Registration Date} as string,\n\t\t{Stock No} as string,\n\t\t{Group Date in Stock} as string,\n\t\t{Branch Date in Stock} as string,\n\t\t{First Order Date} as string,\n\t\t{Enquiry Status} as string,\n\t\t{Invoiced Date} as string,\n\t\t{Expected Delivery Date} as string,\n\t\t{Delivery Date} as string,\n\t\t{Delivery Category} as string,\n\t\t{Metal Only} as string,\n\t\t{OTR Price exc Ins} as string,\n\t\t{Total Goods & Services inc Ins} as string,\n\t\tFinanced as string,\n\t\t{Finance Provider} as string,\n\t\t{Fin Type} as string,\n\t\t{Finance Scheme} as string,\n\t\t{Loan Term} as string,\n\t\tAPR as string,\n\t\t{Flat Rate} as string,\n\t\t{Finance Balance} as string,\n\t\t{Volume Bonus} as string,\n\t\tCommission as string,\n\t\t{DOC Fee} as string,\n\t\t{Finance Subsidy} as string,\n\t\t{Total Fin Margin} as string,\n\t\tGAP as string,\n\t\t{GAP Product} as string,\n\t\tWar as string,\n\t\t{War Product} as string,\n\t\tExt as string,\n\t\t{Ext Product} as string,\n\t\tPaint as string,\n\t\t{Paint Product} as string,\n\t\t{Total Ins Margin} as string,\n\t\t{Total F & I Margin} as string,\n\t\t{Volume Bonus Central} as string,\n\t\t{DOC Fee Central} as string,\n\t\t{Total Central Income} as string,\n\t\t{Days in Stock} as string,\n\t\t{Last Advertised Price} as string,\n\t\t{Model Analysis Code} as string,\n\t\tSIV as string,\n\t\t{Stock No66} as string,\n\t\t{Chassis No} as string,\n\t\t{Engine Size} as string,\n\t\t{Body Style} as string,\n\t\tMileage as string,\n\t\t{Fuel Type} as string,\n\t\tTransmission as string,\n\t\tColour as string,\n\t\t{Trim Type} as string,\n\t\t{Number of Doors} as string,\n\t\t{Gross Profit} as string,\n\t\t{Reconditioning Cost} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> PeterVardyEnquiryMAX\nPeterVardyEnquiryMAX sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tSalesType as string,\n\t\tEnquiryNo as integer,\n\t\tCustomerTitle as string,\n\t\tCustomerForename as string,\n\t\tCustomerSurname as string,\n\t\tCompanyName as string,\n\t\tEmail as string,\n\t\tHomePhone as string,\n\t\tMobilePhone as string,\n\t\tWorkPhone as string,\n\t\tPostcode as string,\n\t\tEnquiryCreatedDate as date,\n\t\tEnquiryType as string,\n\t\tSalesExecutive as string,\n\t\tBusinessManager as string,\n\t\tNewOrUsed as string,\n\t\tVehicleType as string,\n\t\tMake as string,\n\t\tRange as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tRegistrationNo as string,\n\t\tRegistrationDate as date,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date,\n\t\tBranchDateInStock as date,\n\t\tFirstOrderDate as date,\n\t\tEnquiryStatus as string,\n\t\tInvoicedDate as date,\n\t\tExpectedDeliveryDate as date,\n\t\tDeliveryDate as date,\n\t\tDeliveryCategory as string,\n\t\tMetalOnly as double,\n\t\tOTRPriceExcIns as double,\n\t\tTotalGoodsAndServicesIncIns as double,\n\t\tFinanced as string,\n\t\tFinanceProvider as string,\n\t\tFinanceType as string,\n\t\tFinanceScheme as string,\n\t\tLoanTerm as integer,\n\t\tAPR as double,\n\t\tFlatRate as string,\n\t\tFinanceBalance as double,\n\t\tVolumeBonus as double,\n\t\tCommission as double,\n\t\tDocFee as double,\n\t\tFinanceSubsidy as double,\n\t\tTotalFinanceMargin as double,\n\t\tGAP as double,\n\t\tGapProduct as string,\n\t\tWarranty as double,\n\t\tWarrantyProduct as string,\n\t\tExtras as double,\n\t\tExtrasProduct as string,\n\t\tPaint as double,\n\t\tPaintProduct as string,\n\t\tTotalInsMargin as double,\n\t\tTotalFandIMargin as double,\n\t\tVolumeBonusCentral as double,\n\t\tDOCFeeCentral as double,\n\t\tTotalCentralIncome as double,\n\t\tDaysInStock as integer,\n\t\tLastAdvertisedPrice as double,\n\t\tModelAnalysisCode as string,\n\t\tSIV as double,\n\t\tStockNo2 as string,\n\t\tChassisNo as string,\n\t\tEngineSize as string,\n\t\tBodyStyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tColour as string,\n\t\tTrimType as string,\n\t\tNumberOfDoors as integer,\n\t\tGrossProfit as double,\n\t\tReconditioningCost as double\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpreSQLs:['truncate table dbo.enquirymaxsales'],\n\tpostSQLs:['update dbo.EnquiryMAXSales set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tEmail,\n\t\tPostcode,\n\t\tMake,\n\t\tRange,\n\t\tModel,\n\t\tDerivative,\n\t\tFinanced,\n\t\tTransmission,\n\t\tColour\n\t)) ~> SQLPeterVardyEnquiryMAX"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyPartsSales')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyPartsSalesCSV",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyPartsSales"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLDMSPartsSales",
+								"type": "DatasetReference"
+							},
+							"name": "SQLDMSPartsSales"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tco as string,\n\t\tST as string,\n\t\tdesc as string,\n\t\tFran as string,\n\t\t{Part number} as string,\n\t\t{Retail Value} as float,\n\t\t{Sale Value} as float,\n\t\t{Cost Value} as float,\n\t\t{Gross Profit} as float,\n\t\t{GP%} as float,\n\t\t{WIP No} as string,\n\t\t{Anal code} as string,\n\t\t{Order quantity} as float,\n\t\t{Selling pric} as float,\n\t\tDate as date 'dd/MM/yyyy',\n\t\t{Product group} as string,\n\t\tDept as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> PeterVardyPartsSales\nPeterVardyPartsSales sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDepartmentID as string,\n\t\tSaleType as string,\n\t\tSaleTypeDescription as string,\n\t\tFranchise as string,\n\t\tPartNumber as string,\n\t\tRetailValue as double,\n\t\tSaleValue as double,\n\t\tCostValue as double,\n\t\tGrossProfit as double,\n\t\tGrossProfitPercentage as double,\n\t\tWIPNo as string,\n\t\tAnalysisCode as string,\n\t\tOrderQuantity as double,\n\t\tSellingPrice as double,\n\t\tSalesDate as date,\n\t\tProductGroup as string,\n\t\tAftersalesDepartment as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpostSQLs:['update dbo.dmspartssales set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDepartmentID = co,\n\t\tSaleType = ST,\n\t\tSaleTypeDescription = desc,\n\t\tFranchise = Fran,\n\t\tPartNumber = {Part number},\n\t\tRetailValue = {Retail Value},\n\t\tSaleValue = {Sale Value},\n\t\tCostValue = {Cost Value},\n\t\tGrossProfit = {Gross Profit},\n\t\tGrossProfitPercentage = {GP%},\n\t\tWIPNo = {WIP No},\n\t\tAnalysisCode = {Anal code},\n\t\tOrderQuantity = {Order quantity},\n\t\tSellingPrice = {Selling pric},\n\t\tSalesDate = Date,\n\t\tProductGroup = {Product group},\n\t\tAftersalesDepartment = Dept\n\t)) ~> SQLDMSPartsSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardySOBI1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyWorkshopSalesCSV",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyWorkshopSales"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLDMSWorkshopSales",
+								"type": "DatasetReference"
+							},
+							"name": "SQLDMSWorkshopSales"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\t{S/Type} as string,\n\t\t{Invoice No} as string,\n\t\t{WIP No} as string,\n\t\t{RTS code} as string,\n\t\tSold as float,\n\t\tTaken as float,\n\t\tEff as float,\n\t\t{Sale Value} as float,\n\t\t{Rec Rate} as float,\n\t\tMech as string,\n\t\tLA as string,\n\t\tLT as string,\n\t\tco as string,\n\t\t{Operator name} as string,\n\t\t{Franchise code} as string,\n\t\t{Chassis number} as string,\n\t\t{Registration number.} as string,\n\t\t{Date editted} as date 'dd/MM/yyyy',\n\t\tTmagic as integer,\n\t\tVmagic as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> PeterVardyWorkshopSales\nPeterVardyWorkshopSales sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tSalesType as string,\n\t\tInvoiceNo as string,\n\t\tWIPNo as string,\n\t\tRTSCode as string,\n\t\tHoursSold as double,\n\t\tHoursTaken as double,\n\t\tEfficiency as double,\n\t\tSaleValue as double,\n\t\tRecoveryRate as double,\n\t\tTechnician as string,\n\t\tLA as string,\n\t\tLT as string,\n\t\tDealershipID as string,\n\t\tOperatorName as string,\n\t\tFranchiseCode as string,\n\t\tChassisNumber as string,\n\t\tRegistrationNumber as string,\n\t\tDateEdited as date,\n\t\tTmagic as integer,\n\t\tVmagic as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpostSQLs:['update dbo.DMSWorkshopSales set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tSalesType = {S/Type},\n\t\tInvoiceNo = {Invoice No},\n\t\tWIPNo = {WIP No},\n\t\tRTSCode = {RTS code},\n\t\tHoursSold = Sold,\n\t\tHoursTaken = Taken,\n\t\tEfficiency = Eff,\n\t\tSaleValue = {Sale Value},\n\t\tRecoveryRate = {Rec Rate},\n\t\tTechnician = Mech,\n\t\tLA,\n\t\tLT,\n\t\tDealershipID = co,\n\t\tOperatorName = {Operator name},\n\t\tFranchiseCode = {Franchise code},\n\t\tChassisNumber = {Chassis number},\n\t\tRegistrationNumber = {Registration number.},\n\t\tDateEdited = {Date editted},\n\t\tTmagic,\n\t\tVmagic\n\t)) ~> SQLDMSWorkshopSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyVehicleStock')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyVehicleStockCSV",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyVehicleStock"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLVehicleStock",
+								"type": "DatasetReference"
+							},
+							"name": "SQLVehicleStock"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tType as string,\n\t\tRegistrationNo as string,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date 'dd/MM/yyyy',\n\t\tDealershipDateInStock as date 'dd/MM/yyyy',\n\t\tStatus as string,\n\t\tNewOrUsed as string,\n\t\tChassis as string,\n\t\tFirstRegisteredDate as date 'dd/MM/yyyy',\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tTrim as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as integer,\n\t\tSIV as float,\n\t\tVat as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tRetailPrice as float,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date 'dd/MM/yyyy',\n\t\tAvailableDate as date 'dd/MM/yyyy',\n\t\tProgressCode as string,\n\t\tRecon as float,\n\t\tTransportCosts as float,\n\t\tAdjustedSIV as float,\n\t\tAvailableDate2 as date 'dd/MM/yyyy',\n\t\tPurchaseInvoiceDate2 as date 'dd/MM/yyyy',\n\t\tReceivedDate as date 'dd/MM/yyyy',\n\t\tDateInGroup as date 'dd/MM/yyyy',\n\t\tPurchaseAccount as string,\n\t\tQuarantineStatus as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy']) ~> PeterVardyVehicleStock\nPeterVardyVehicleStock sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tType as string,\n\t\tRegistrationNo as string,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date,\n\t\tDealershipDateInStock as date,\n\t\tStatus as string,\n\t\tNewOrUsed as string,\n\t\tChassis as string,\n\t\tFirstRegisteredDate as date,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tTrim as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as integer,\n\t\tSIV as double,\n\t\tVat as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tRetailPrice as double,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tProgressCode as string,\n\t\tRecon as double,\n\t\tTransportCosts as double,\n\t\tAdjustedSIV as double,\n\t\tReceivedDate as date,\n\t\tDateInGroup as date,\n\t\tPurchaseAccount as string,\n\t\tQuarantineStatus as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tClientID,\n\t\tDealershipID,\n\t\tType,\n\t\tRegistrationNo,\n\t\tStockNo,\n\t\tGroupDateInStock,\n\t\tDealershipDateInStock,\n\t\tStatus,\n\t\tNewOrUsed,\n\t\tChassis,\n\t\tFirstRegisteredDate,\n\t\tMake,\n\t\tModel,\n\t\tDerivative,\n\t\tTrim,\n\t\tEngineSize,\n\t\tBodystyle,\n\t\tMileage,\n\t\tFuelType,\n\t\tTransmission,\n\t\tGenericColour,\n\t\tSpecificColour,\n\t\tDoors,\n\t\tSIV,\n\t\tVat,\n\t\tSource,\n\t\tModelAnalysisCode,\n\t\tRetailPrice,\n\t\tPurchaser,\n\t\tSupplierName,\n\t\tPurchaseInvoiceDate,\n\t\tAvailableDate,\n\t\tProgressCode,\n\t\tRecon,\n\t\tTransportCosts,\n\t\tAdjustedSIV,\n\t\tReceivedDate,\n\t\tDateInGroup,\n\t\tPurchaseAccount,\n\t\tQuarantineStatus\n\t)) ~> SQLVehicleStock"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyVehicleWorkshopPrep')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyVSBI4",
+								"type": "DatasetReference"
+							},
+							"name": "VSBI4csv"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLVehicleWorkshopPrep",
+								"type": "DatasetReference"
+							},
+							"name": "SQLVehicleWorkshopPrep"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tco as string,\n\t\tVehicle as string,\n\t\tRegn as string,\n\t\tDesc as string,\n\t\tEstimated as float '###.##',\n\t\tActual as float '###.##',\n\t\t{Line Created} as date 'dd/MM/yyyy',\n\t\t{Date Pushed} as date 'dd/MM/yyyy',\n\t\t{Order date} as date 'dd/MM/yyyy',\n\t\t{WIP no} as string,\n\t\t{Option code} as string,\n\t\t{work desc} as string,\n\t\t{Progress code} as string,\n\t\t{A/c s status} as string,\n\t\t{Analysis code} as string,\n\t\t{Quarantine status} as string,\n\t\t{Log book} as string,\n\t\t{veh Inv date} as date 'dd/MM/yyyy',\n\t\t{Veh Delivery date} as date 'dd/MM/yyyy'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy'],\n\tpreferredIntegralType: 'integer',\n\tpreferredFractionalType: 'float') ~> VSBI4csv\nVSBI4csv sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tVehicleID as string,\n\t\tRegistrationNo as string,\n\t\tVehicleDescription as string,\n\t\tEstimatedCost as double,\n\t\tActualCost as double,\n\t\tLineCreatedDate as date,\n\t\tPushedDate as date,\n\t\tOrderDate as date,\n\t\tWIPNo as string,\n\t\tOptionCode as string,\n\t\tWorkDescription as string,\n\t\tProgressCode as string,\n\t\tAccountStatus as string,\n\t\tQuarantineStatus as string,\n\t\tLogBook as string,\n\t\tVehicleInvoiceDate as date,\n\t\tVehicleDeliveryDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tpostSQLs:['update dbo.vehicleworkshopprep set clientid = 10000 where clientid is null'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealershipID = co,\n\t\tVehicleID = Vehicle,\n\t\tRegistrationNo = Regn,\n\t\tVehicleDescription = Desc,\n\t\tEstimatedCost = Estimated,\n\t\tActualCost = Actual,\n\t\tLineCreatedDate = {Line Created},\n\t\tPushedDate = {Date Pushed},\n\t\tOrderDate = {Order date},\n\t\tWIPNo = {WIP no},\n\t\tOptionCode = {Option code},\n\t\tWorkDescription = {work desc},\n\t\tProgressCode = {Progress code},\n\t\tAccountStatus = {A/c s status},\n\t\tQuarantineStatus = {Quarantine status},\n\t\tLogBook = {Log book},\n\t\tVehicleInvoiceDate = {veh Inv date},\n\t\tVehicleDeliveryDate = {Veh Delivery date}\n\t)) ~> SQLVehicleWorkshopPrep"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyWebStockFeed')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "PeterVardyWebStockFeedCSV",
+								"type": "DatasetReference"
+							},
+							"name": "PeterVardyWebStockFeed"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLWebStockFeed",
+								"type": "DatasetReference"
+							},
+							"name": "WebStockFeed"
+						}
+					],
+					"transformations": [
+						{
+							"name": "SetUpsertCriteria"
+						}
+					],
+					"script": "source(output(\n\t\tId as string,\n\t\tDealerCode as string,\n\t\tStockNumber as string,\n\t\tNewUsed as string,\n\t\tVehicleType as string,\n\t\tDemo as string,\n\t\tVatStatus as string,\n\t\tRegistrationNumber as string,\n\t\tChassisNumber as string,\n\t\tEngineNumber as string,\n\t\tCapId as string,\n\t\tFullCapCode as string,\n\t\tCapModelYear as string,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tEngineSize as string,\n\t\tDoors as string,\n\t\tBodyStyle as string,\n\t\tFuelType as string,\n\t\tTransmissionType as string,\n\t\tPaintColour as string,\n\t\tSpecificPaintColour as string,\n\t\tPaintType as string,\n\t\tTrimColour as string,\n\t\tTrimType as string,\n\t\tOdometer as string,\n\t\tOdometerType as string,\n\t\tRegistrationDate as string,\n\t\tPreviousOwners as string,\n\t\tServiceHistory as string,\n\t\tApproved as string,\n\t\tWarrantyLevel as string,\n\t\tFullVehicleCheck as string,\n\t\tMultiPointInspection as string,\n\t\tBranchPurchaseDate as string,\n\t\tGroupPurchaseDate as string,\n\t\tStockStatus as string,\n\t\tVehicleStatus as string,\n\t\tAvailableDate as string,\n\t\tReadyToGo as string,\n\t\tHoStock as string,\n\t\tOriginalPurchasePrice as string,\n\t\tStockValue as string,\n\t\tReconDfa as string,\n\t\tDeliveryCost as string,\n\t\tVehicleSalePrice as string,\n\t\tDeliveryRetailSalePrice as string,\n\t\tReducedPrice as string,\n\t\tIdaAmount as string,\n\t\tTrackerNumber as string,\n\t\tStockType as string,\n\t\tWebCategory as string,\n\t\tHouseCharge as string,\n\t\tCo2 as string,\n\t\tStatusId as string,\n\t\tIsVisible as string,\n\t\tDateCreated as string,\n\t\tDateUpdated as string,\n\t\tLastUpdatedBy as string,\n\t\tSentToWeb as string,\n\t\tSeats as string,\n\t\tManufactureDate as string,\n\t\tTaxBand as string,\n\t\tAutotraderBanner as string,\n\t\tMpg as string,\n\t\tInsuranceGroup as string,\n\t\tPlusVat as string,\n\t\tFeatured as string,\n\t\tPOA as string,\n\t\tVerified as string,\n\t\tEnquiryCount as string,\n\t\tPriceLastUpdated as string,\n\t\tIsVirtual as string,\n\t\tRemoved as string,\n\t\tPriceVerified as string,\n\t\tTradePrice as string,\n\t\tDateRemoved as string,\n\t\tActualReg as string,\n\t\tRoadTaxSix as string,\n\t\tRoadTaxTwelve as string,\n\t\tCitNowVideo as string,\n\t\tVideoRemoved as string,\n\t\tCapManId as string,\n\t\tCapModId as string,\n\t\tShortModel as string,\n\t\tFinanceOption as string,\n\t\tComingSoon as string,\n\t\tQuarantine as string,\n\t\tFinanceDeposit as string,\n\t\tFinanceTerm as string,\n\t\tYouTubeVideo as string,\n\t\tNumberOfImages as string,\n\t\tImageURLS as string,\n\t\tToBeRemoved as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> PeterVardyWebStockFeed\nPeterVardyWebStockFeed alterRow(upsertIf(true())) ~> SetUpsertCriteria\nSetUpsertCriteria sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealership as string,\n\t\tFeedID as integer,\n\t\tVehicleID as integer,\n\t\tStockNumber as string,\n\t\tVehicleType as string,\n\t\tRegistrationNumber as string,\n\t\tChassisNumber as string,\n\t\tEngineNumber as string,\n\t\tColour as string,\n\t\tSpecificPaintColour as string,\n\t\tFuelType as string,\n\t\tTrimColour as string,\n\t\tTrimType as string,\n\t\tRegistrationDate as timestamp,\n\t\tYear as integer,\n\t\tMileage as integer,\n\t\tMileageType as string,\n\t\tBodyStyle as string,\n\t\tDoors as integer,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tRange as string,\n\t\tEngineSize as integer,\n\t\tPrice as decimal(15,2),\n\t\tTransmission as string,\n\t\tPictureRefs as string,\n\t\tServiceHistory as string,\n\t\tPreviousOwners as integer,\n\t\tApproved as string,\n\t\tWarrantyLevel as string,\n\t\tFullVehicleCheck as string,\n\t\tMultiPointInspection as string,\n\t\tBranchPurchaseDate as timestamp,\n\t\tGroupPurchaseDate as timestamp,\n\t\tStockStatus as string,\n\t\tVehicleStatus as string,\n\t\tAvailableDate as timestamp,\n\t\tReadyToGo as string,\n\t\tHeadOfficeStock as string,\n\t\tPurchasePrice as decimal(18,2),\n\t\tStockValue as decimal(18,2),\n\t\tReconditioningDFA as decimal(18,2),\n\t\tDeliveryCost as decimal(18,2),\n\t\tRetailPrice as decimal(18,2),\n\t\tDeliveryRetailPrice as decimal(18,2),\n\t\tReducedPrice as decimal(18,2),\n\t\tIDAAmount as decimal(18,2),\n\t\tTrackerNumber as string,\n\t\tCategory as string,\n\t\tHouseCharge as string,\n\t\tCO2 as string,\n\t\tStatus as string,\n\t\tIsVisible as string,\n\t\tCreatedDate as timestamp,\n\t\tUpdatedDate as timestamp,\n\t\tLastUpdatedBy as string,\n\t\tSentToWeb as string,\n\t\tSeats as string,\n\t\tTaxBand as string,\n\t\tAutotraderBanner as string,\n\t\tMilesPerGallon as string,\n\t\tInsuranceGroup as string,\n\t\tRemoved as string,\n\t\tDateRemoved as timestamp,\n\t\tActualRegistrationNumber as string,\n\t\tQuarantine as string,\n\t\tYouTubeVideo as string,\n\t\tNumberOfImages as integer,\n\t\tNewOrUsed as string,\n\t\tDemo as string,\n\t\tVATStatus as string,\n\t\tTradePrice as decimal(15,2),\n\t\tCapID as string,\n\t\tFullCapCode as string,\n\t\tVideoURL as string,\n\t\tInsertedDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:true,\n\tupsertable:true,\n\tkeys:['VehicleID'],\n\tformat: 'table',\n\tpostSQLs:['execute UpdatePeterVardyWebStockFeedAfterInsert'],\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tFeedID = Id,\n\t\tDealership = DealerCode,\n\t\tStockNumber,\n\t\tNewOrUsed = NewUsed,\n\t\tVehicleType,\n\t\tDemo,\n\t\tVATStatus = VatStatus,\n\t\tRegistrationNumber,\n\t\tChassisNumber,\n\t\tEngineNumber,\n\t\tCapID = CapId,\n\t\tFullCapCode,\n\t\tYear = CapModelYear,\n\t\tMake,\n\t\tModel,\n\t\tDerivative,\n\t\tEngineSize,\n\t\tDoors,\n\t\tBodyStyle,\n\t\tFuelType,\n\t\tTransmission = TransmissionType,\n\t\tColour = PaintColour,\n\t\tSpecificPaintColour,\n\t\tTrimColour,\n\t\tTrimType,\n\t\tMileage = Odometer,\n\t\tMileageType = OdometerType,\n\t\tRegistrationDate,\n\t\tStockStatus,\n\t\tVehicleStatus,\n\t\tAvailableDate,\n\t\tCreatedDate = DateCreated,\n\t\tUpdatedDate = DateUpdated,\n\t\tVehicleID = Id,\n\t\tSentToWeb,\n\t\tDateRemoved,\n\t\tRemoved,\n\t\tRetailPrice = VehicleSalePrice\n\t)) ~> WebStockFeed"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Unleashed')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "UnleashedInvoicesJSON",
+								"type": "DatasetReference"
+							},
+							"name": "UnleashedInvoicesJSON"
+						},
+						{
+							"dataset": {
+								"referenceName": "UnleashedProductsJSON",
+								"type": "DatasetReference"
+							},
+							"name": "UnleashedProductsJSON"
+						},
+						{
+							"dataset": {
+								"referenceName": "UnleashedCustomersJSON",
+								"type": "DatasetReference"
+							},
+							"name": "UnleashedCustomers"
+						},
+						{
+							"dataset": {
+								"referenceName": "UnleashedSalesOrdersJSON",
+								"type": "DatasetReference"
+							},
+							"name": "UnleashedSalesOrders"
+						},
+						{
+							"dataset": {
+								"referenceName": "UnleashedProductGroupsJSON",
+								"type": "DatasetReference"
+							},
+							"name": "UnleashedProductGroups"
+						},
+						{
+							"dataset": {
+								"referenceName": "UnleashedStockOnHandJSON",
+								"type": "DatasetReference"
+							},
+							"name": "UnleashedStockOnHand"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedInvoices",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedInvoices"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedInvoiceItems",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedInvoiceItems"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedProducts",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedProducts"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedCustomers",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedCustomers"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedSalesOrders",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedSalesOrders"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedSalesOrderLines",
+								"type": "DatasetReference"
+							},
+							"name": "SQLSalesOrderLines"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedProductGroups",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedProductGroups"
+						},
+						{
+							"dataset": {
+								"referenceName": "SQLUnleashedStock",
+								"type": "DatasetReference"
+							},
+							"name": "SQLUnleashedStock"
+						}
+					],
+					"transformations": [
+						{
+							"name": "Invoices"
+						},
+						{
+							"name": "InvoiceLines"
+						},
+						{
+							"name": "Products"
+						},
+						{
+							"name": "Customers"
+						},
+						{
+							"name": "SalesOrders"
+						},
+						{
+							"name": "SalesOrderLines"
+						},
+						{
+							"name": "ProductGroups"
+						},
+						{
+							"name": "StockOnHand"
+						}
+					],
+					"script": "source(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (InvoiceNumber as string, OrderNumber as string, QuoteNumber as string, InvoiceDate as string, DueDate as string, InvoiceStatus as string, Customer as (CustomerCode as string, CustomerName as string, CurrencyId as string, Guid as string, LastModifiedOn as string), Comments as string, PostalAddress as (AddressType as string, AddressName as string, StreetAddress as string, StreetAddress2 as string, Suburb as string, City as string, Region as string, Country as string, PostalCode as string, IsDefault as boolean, DeliveryInstruction as string), DeliveryAddress as (AddressType as string, AddressName as string, StreetAddress as string, StreetAddress2 as string, Suburb as string, City as string, Region as string, Country as string, PostalCode as string, IsDefault as boolean, DeliveryInstruction as string), DeliveryInstruction as string, SubTotal as double, TaxTotal as double, Total as double, BCSubTotal as double, BCTaxTotal as double, BCTotal as double, CreatedBy as string, PaymentTerm as string, InvoiceLines as (LineNumber as string, LineType as string, Product as (Guid as string, ProductCode as string, ProductDescription as string), OrderQuantity as double, InvoiceQuantity as double, UnitPrice as double, DiscountRate as double, LineTotal as double, Comments as string, TaxRate as double, LineTax as double, BCUnitPrice as double, SerialNumbers as string, BatchNumbers as string, Guid as string, LastModifiedOn as string)[], Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['Invoice*.json']) ~> UnleashedInvoicesJSON\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (ProductCode as string, ProductDescription as string, Barcode as string, PackSize as string, Width as string, Height as string, Depth as string, Weight as double, MinStockAlertLevel as string, MaxStockAlertLevel as string, ReOrderPoint as string, UnitOfMeasure as string, NeverDiminishing as boolean, LastCost as double, DefaultPurchasePrice as string, DefaultSellPrice as string, CustomerSellPrice as string, AverageLandPrice as double, Obsolete as boolean, Notes as string, Images as string, ImageUrl as string, SellPriceTier1 as (Name as string, Value as string), SellPriceTier2 as (Name as string, Value as string), SellPriceTier3 as (Name as string, Value as string), SellPriceTier4 as (Name as string, Value as string), SellPriceTier5 as (Name as string, Value as string), SellPriceTier6 as (Name as string, Value as string), SellPriceTier7 as (Name as string, Value as string), SellPriceTier8 as (Name as string, Value as string), SellPriceTier9 as (Name as string, Value as string), SellPriceTier10 as (Name as string, Value as string), XeroTaxCode as string, XeroTaxRate as string, TaxablePurchase as boolean, TaxableSales as boolean, XeroSalesTaxCode as string, XeroSalesTaxRate as string, IsComponent as boolean, IsAssembledProduct as boolean, ProductGroup as (GroupName as string, Guid as string, LastModifiedOn as string), XeroSalesAccount as string, XeroCostOfGoodsAccount as string, PurchaseAccount as string, BinLocation as string, Supplier as string, AttributeSet as string, SourceId as string, SourceVariantParentId as string, IsSerialized as boolean, IsBatchTracked as boolean, IsSellable as boolean, MinimumSellPrice as string, MinimumSaleQuantity as string, MinimumOrderQuantity as string, CreatedBy as string, CreatedOn as string, LastModifiedBy as string, CommerceCode as string, CustomsDescription as string, SupplementaryClassificationAbbreviation as string, ICCCountryCode as string, ICCCountryName as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['Products*.json']) ~> UnleashedProductsJSON\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (Addresses as (AddressType as string, AddressName as string, StreetAddress as string, StreetAddress2 as string, Suburb as string, City as string, Region as string, Country as string, PostalCode as string, IsDefault as boolean, DeliveryInstruction as string)[], TaxCode as string, TaxRate as string, CustomerCode as string, CustomerName as string, GSTVATNumber as string, BankName as string, BankBranch as string, BankAccount as string, Website as string, PhoneNumber as string, FaxNumber as string, MobileNumber as string, DDINumber as string, TollFreeNumber as string, Email as string, EmailCC as string, Currency as (CurrencyCode as string, Description as string, Guid as string, LastModifiedOn as string), Notes as string, Taxable as boolean, XeroContactId as string, SalesPerson as string, DiscountRate as double, PrintPackingSlipInsteadOfInvoice as boolean, PrintInvoice as boolean, StopCredit as boolean, Obsolete as boolean, XeroSalesAccount as string, XeroCostOfGoodsAccount as string, SellPriceTier as string, SellPriceTierReference as string, CustomerType as string, PaymentTerm as string, ContactFirstName as string, ContactLastName as string, SourceId as string, CreatedBy as string, CreatedOn as string, LastModifiedBy as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['Customer*.json']) ~> UnleashedCustomers\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (SalesOrderLines as (LineNumber as string, LineType as string, Product as (Guid as string, ProductCode as string, ProductDescription as string), DueDate as string, OrderQuantity as double, UnitPrice as double, DiscountRate as double, LineTotal as double, Volume as string, Weight as double, Comments as string, AverageLandedPriceAtTimeOfSale as double, TaxRate as double, LineTax as double, XeroTaxCode as string, BCUnitPrice as double, BCLineTotal as double, BCLineTax as double, LineTaxCode as string, XeroSalesAccount as string, SerialNumbers as string, BatchNumbers as string, Guid as string, LastModifiedOn as string)[], OrderNumber as string, OrderDate as string, RequiredDate as string, CompletedDate as string, OrderStatus as string, Customer as (CustomerCode as string, CustomerName as string, CurrencyId as string, Guid as string, LastModifiedOn as string), CustomerRef as string, Comments as string, Warehouse as (WarehouseCode as string, WarehouseName as string, IsDefault as boolean, StreetNo as string, AddressLine1 as string, AddressLine2 as string, Suburb as string, City as string, Region as string, Country as string, PostCode as string, PhoneNumber as string, FaxNumber as string, MobileNumber as string, DDINumber as string, ContactName as string, Obsolete as boolean, Guid as string, LastModifiedOn as string), ReceivedDate as string, DeliveryInstruction as string, DeliveryName as string, DeliveryStreetAddress as string, DeliveryStreetAddress2 as string, DeliverySuburb as string, DeliveryCity as string, DeliveryRegion as string, DeliveryCountry as string, DeliveryPostCode as string, Currency as (CurrencyCode as string, Description as string, Guid as string, LastModifiedOn as string), ExchangeRate as double, DiscountRate as double, Tax as (TaxCode as string, Description as string, TaxRate as double, CanApplyToExpenses as boolean, CanApplyToRevenue as boolean, Obsolete as boolean, Guid as string, LastModifiedOn as string), TaxRate as double, XeroTaxCode as string, SubTotal as double, TaxTotal as double, Total as double, TotalVolume as double, TotalWeight as double, BCSubTotal as double, BCTaxTotal as double, BCTotal as double, PaymentDueDate as string, AllocateProduct as boolean, SalesOrderGroup as string, DeliveryMethod as string, SalesPerson as (FullName as string, Email as string, Obsolete as boolean, Guid as string, LastModifiedOn as string), SendAccountingJournalOnly as boolean, SourceId as string, CreatedBy as string, CreatedOn as string, LastModifiedBy as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['SalesOrders*.json']) ~> UnleashedSalesOrders\nsource(output(\n\t\tItems as (GroupName as string, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> UnleashedProductGroups\nsource(output(\n\t\tPagination as (NumberOfItems as string, PageSize as string, PageNumber as string, NumberOfPages as string),\n\t\tItems as (ProductCode as string, ProductDescription as string, ProductGuid as string, ProductSourceId as string, ProductGroupName as string, WarehouseId as string, Warehouse as string, WarehouseCode as string, DaysSinceLastSale as string, OnPurchase as double, AllocatedQty as double, AvailableQty as double, QtyOnHand as double, AvgCost as double, TotalCost as double, Guid as string, LastModifiedOn as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine',\n\twildcardPaths:['StockOnHand*.json']) ~> UnleashedStockOnHand\nUnleashedInvoicesJSON foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Invoices\nUnleashedInvoicesJSON foldDown(unroll(Items.InvoiceLines),\n\tmapColumn(\n\t\tPagination,\n\t\tInvoiceNumber = Items.InvoiceNumber,\n\t\tOrderNumber = Items.OrderNumber,\n\t\tQuoteNumber = Items.QuoteNumber,\n\t\tInvoiceDate = Items.InvoiceDate,\n\t\tDueDate = Items.DueDate,\n\t\tInvoiceStatus = Items.InvoiceStatus,\n\t\tCustomer = Items.Customer,\n\t\tComments = Items.Comments,\n\t\tPostalAddress = Items.PostalAddress,\n\t\tDeliveryAddress = Items.DeliveryAddress,\n\t\tDeliveryInstruction = Items.DeliveryInstruction,\n\t\tSubTotal = Items.SubTotal,\n\t\tTaxTotal = Items.TaxTotal,\n\t\tTotal = Items.Total,\n\t\tBCSubTotal = Items.BCSubTotal,\n\t\tBCTaxTotal = Items.BCTaxTotal,\n\t\tBCTotal = Items.BCTotal,\n\t\tCreatedBy = Items.CreatedBy,\n\t\tPaymentTerm = Items.PaymentTerm,\n\t\tLineNumber = Items.InvoiceLines.LineNumber,\n\t\tLineType = Items.InvoiceLines.LineType,\n\t\tProduct = Items.InvoiceLines.Product,\n\t\tOrderQuantity = Items.InvoiceLines.OrderQuantity,\n\t\tInvoiceQuantity = Items.InvoiceLines.InvoiceQuantity,\n\t\tUnitPrice = Items.InvoiceLines.UnitPrice,\n\t\tDiscountRate = Items.InvoiceLines.DiscountRate,\n\t\tLineTotal = Items.InvoiceLines.LineTotal,\n\t\tTaxRate = Items.InvoiceLines.TaxRate,\n\t\tLineTax = Items.InvoiceLines.LineTax,\n\t\tBCUnitPrice = Items.InvoiceLines.BCUnitPrice,\n\t\tSerialNumbers = Items.InvoiceLines.SerialNumbers,\n\t\tBatchNumbers = Items.InvoiceLines.BatchNumbers,\n\t\tGuid = Items.Guid,\n\t\tLastModifiedOn = Items.LastModifiedOn\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> InvoiceLines\nUnleashedProductsJSON foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Products\nUnleashedCustomers foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Customers\nUnleashedSalesOrders foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> SalesOrders\nUnleashedSalesOrders foldDown(unroll(Items),\n\tmapColumn(\n\t\tPagination,\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> SalesOrderLines\nUnleashedProductGroups foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> ProductGroups\nUnleashedStockOnHand foldDown(unroll(Items),\n\tmapColumn(\n\t\tItems\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> StockOnHand\nInvoices sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Invoice Number} as string,\n\t\t{Order Number} as string,\n\t\t{Invoice Date} as string,\n\t\t{Customer Code} as string,\n\t\t{Currency ID} as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedinvoices_merge;\\ntruncate table unleashedinvoices;'],\n\tpostSQLs:['insert into unleashedinvoices ([Client ID],[Invoice Number],[Order Number],[Invoice Date],[Customer Code],[Currency ID]) \\nselect 2500000, [Invoice Number], [Order Number], DATEADD(day, (cast(substring([invoice date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Invoice Date], [Customer Code],[Currency ID] from unleashedinvoices_merge;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Invoice Number} = Items.InvoiceNumber,\n\t\t{Order Number} = Items.OrderNumber,\n\t\t{Invoice Date} = Items.InvoiceDate,\n\t\t{Customer Code} = Items.Customer.CustomerCode,\n\t\t{Currency ID} = Items.Customer.CurrencyId\n\t)) ~> SQLUnleashedInvoices\nInvoiceLines sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Line Number} as integer,\n\t\t{Invoice Number} as string,\n\t\t{Product Code} as string,\n\t\t{Order Quantity} as decimal(18,4),\n\t\t{Invoice Quantity} as decimal(18,4),\n\t\t{Unit Price} as decimal(18,4),\n\t\t{Discount Rate} as decimal(18,4),\n\t\t{Line Total} as decimal(18,4),\n\t\t{Tax Rate} as decimal(18,4),\n\t\t{Line Tax} as decimal(18,4),\n\t\tBCUnitPrice as decimal(18,4)\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedinvoiceitems;'],\n\tpostSQLs:['update unleashedinvoiceitems set [client id] = 2500000;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Line Number} = LineNumber,\n\t\t{Invoice Number} = InvoiceNumber,\n\t\t{Product Code} = Product.ProductCode,\n\t\t{Order Quantity} = OrderQuantity,\n\t\t{Invoice Quantity} = InvoiceQuantity,\n\t\t{Unit Price} = UnitPrice,\n\t\t{Discount Rate} = DiscountRate,\n\t\t{Line Total} = LineTotal,\n\t\t{Tax Rate} = TaxRate,\n\t\t{Line Tax} = LineTax,\n\t\tBCUnitPrice\n\t)) ~> SQLUnleashedInvoiceItems\nProducts sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Product Code} as string,\n\t\t{Product Description} as string,\n\t\t{Product Group} as string,\n\t\t{Country Name} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedproducts;'],\n\tpostSQLs:['update unleashedproducts set [client ID] = 2500000'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Product Code} = Items.ProductCode,\n\t\t{Product Description} = Items.ProductDescription,\n\t\t{Product Group} = Items.ProductGroup.GroupName,\n\t\t{Country Name} = Items.ICCCountryName\n\t)) ~> SQLUnleashedProducts\nCustomers sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Customer Code} as string,\n\t\tName as string,\n\t\tCountry as string,\n\t\tPostcode as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table UnleashedCustomers;'],\n\tpostSQLs:['update UnleashedCustomers set [Client ID] = 2500000;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Customer Code} = Items.CustomerCode,\n\t\tName = Items.CustomerName,\n\t\tCountry = Items.Addresses[1].Country,\n\t\tPostcode = Items.Addresses[1].PostalCode\n\t)) ~> SQLUnleashedCustomers\nSalesOrders sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Order Number} as string,\n\t\t{Order Date} as string,\n\t\t{Required Date} as string,\n\t\t{Completed Date} as string,\n\t\t{Order Status} as string,\n\t\t{Customer Code} as string,\n\t\t{Currency ID} as string,\n\t\t{Sales Person Name} as string,\n\t\t{Sales Person GUID} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedsalesorders_merge;\\ntruncate table unleashedsalesorders;'],\n\tpostSQLs:['update unleashedsalesorders_merge set [Client ID] = 2500000;\\n\\ninsert into unleashedsalesorders ([Client ID],[Order Number],[Order Date],[Required Date],[Completed Date],[Order Status],[Customer Code],[Currency ID],[Sales Person Name],[Sales Person GUID]) \\nselect 2500000, [Order Number], \\nDATEADD(day, (cast(substring([Order date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Order Date], \\nDATEADD(day, (cast(substring([Required date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Required Date], \\nDATEADD(day, (cast(substring([Completed date],7,13) as bigint)/86400000), \\'1970-01-01\\') as [Completed Date], \\n[Order Status], [Customer Code], [Currency ID], [Sales Person Name], [Sales Person GUID] from unleashedsalesorders_merge;\\n'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Order Number} = Items.OrderNumber,\n\t\t{Order Date} = Items.OrderDate,\n\t\t{Required Date} = Items.RequiredDate,\n\t\t{Completed Date} = Items.CompletedDate,\n\t\t{Order Status} = Items.OrderStatus,\n\t\t{Customer Code} = Items.Customer.CustomerCode,\n\t\t{Currency ID} = Items.Customer.CurrencyId,\n\t\t{Sales Person Name} = Items.SalesPerson.FullName,\n\t\t{Sales Person GUID} = Items.SalesPerson.Guid\n\t)) ~> SQLUnleashedSalesOrders\nSalesOrderLines sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Line Number} as integer,\n\t\t{Product Code} as string,\n\t\t{Order Quantity} as decimal(18,4),\n\t\t{Unit Price} as decimal(18,4),\n\t\t{Discount Rate} as decimal(18,4),\n\t\t{Line Total} as decimal(18,4),\n\t\t{Average Cost} as decimal(18,4),\n\t\t{Tax Rate} as decimal(18,4),\n\t\t{Line Tax} as decimal(18,4),\n\t\t{BC Unit Price} as decimal(18,4),\n\t\tGUID as decimal(18,4),\n\t\t{Order Number} as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table UnleashedSalesOrderLines;'],\n\tpostSQLs:['update UnleashedSalesOrderLines set [client ID] = 2500000'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Line Number} = Items.SalesOrderLines[1].LineNumber,\n\t\t{Product Code} = Items.SalesOrderLines[1].Product.ProductCode,\n\t\t{Order Quantity} = Items.SalesOrderLines[1].OrderQuantity,\n\t\t{Unit Price} = Items.SalesOrderLines[1].UnitPrice,\n\t\t{Discount Rate} = Items.SalesOrderLines[1].DiscountRate,\n\t\t{Line Total} = Items.SalesOrderLines[1].LineTotal,\n\t\t{Average Cost} = Items.SalesOrderLines[1].AverageLandedPriceAtTimeOfSale,\n\t\t{Tax Rate} = Items.SalesOrderLines[1].TaxRate,\n\t\t{Line Tax} = Items.SalesOrderLines[1].LineTax,\n\t\t{BC Unit Price} = Items.SalesOrderLines[1].BCUnitPrice,\n\t\tGUID = Items.SalesOrderLines[1].Guid,\n\t\t{Order Number} = Items.OrderNumber\n\t)) ~> SQLSalesOrderLines\nProductGroups sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Group Name} as string,\n\t\tGUID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedproductgroups;'],\n\tpostSQLs:['update unleashedproductgroups set [client id] = 2500000;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Group Name} = Items.GroupName,\n\t\tGUID = Items.Guid\n\t)) ~> SQLUnleashedProductGroups\nStockOnHand sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tUniqueID as integer,\n\t\t{Client ID} as integer,\n\t\t{Product Code} as string,\n\t\t{Product Description} as string,\n\t\t{Product Group Name} as string,\n\t\t{Days Since Last Sale} as integer,\n\t\t{On Purchase} as decimal(18,4),\n\t\t{Allocated Quantity} as decimal(18,4),\n\t\t{Available Quantity} as decimal(18,4),\n\t\t{Quantity on Hand} as decimal(18,4),\n\t\t{Average Cost} as decimal(18,4),\n\t\t{Total Cost} as decimal(18,4),\n\t\tGUID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table unleashedstock'],\n\tpostSQLs:['update unleashedstock set [client id] = 2500000'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{Product Code} = Items.ProductCode,\n\t\t{Product Description} = Items.ProductDescription,\n\t\t{Product Group Name} = Items.ProductGroupName,\n\t\t{Days Since Last Sale} = Items.DaysSinceLastSale,\n\t\t{On Purchase} = Items.OnPurchase,\n\t\t{Allocated Quantity} = Items.AllocatedQty,\n\t\t{Available Quantity} = Items.AvailableQty,\n\t\t{Quantity on Hand} = Items.QtyOnHand,\n\t\t{Average Cost} = Items.AvgCost,\n\t\t{Total Cost} = Items.TotalCost,\n\t\tGUID = Items.Guid\n\t)) ~> SQLUnleashedStock"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderImport-JSON')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "AutotraderJSONDataFlow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "AutotraderJSONDataFlow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"AutotraderJSON": {},
+									"SQLAutotraderLocalRetailerRatings": {},
+									"SQLAutotraderAdverts": {},
+									"SQLAutotraderValuations": {},
+									"SQLAutotraderMarketSupply": {},
+									"SQLAutotraderCompetitors": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-01-01T22:04:37Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderImport-JSONExtended')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "AutotraderJSONDataFlowExtended",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "AutotraderJSONDataFlowExtended",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"AutotraderJSON": {},
+									"SQLAutotraderLocalRetailerRatings": {},
+									"SQLAutotraderAdverts": {},
+									"SQLAutotraderValuations": {},
+									"SQLAutotraderMarketSupply": {},
+									"SQLAutotraderCompetitors": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-15T19:53:18Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderStockManagement')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "StockManagement",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "1.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "AutotraderStockManagementJSONDataFlow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"StockMgmt": {},
+									"SQLAutotraderCompetitors": {},
+									"SQLAutotraderLocalRetailerRatings": {},
+									"SQLAutotraderMarketSupply": {},
+									"SQLAutotraderValuations": {},
+									"SQLAutotraderAdvert": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-07-08T16:13:23Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CloseITSalesLeads')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CloseITSalesLeads",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "CloseITSalesLeads",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"CloseITExtSalesLeads": {},
+									"SQLCloseITRawSalesLeads": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "DoReferenceTableUpdate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "TidyUpCloseITRawSalesLeads",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
+							"storedProcedureParameters": {
+								"SourceSystemID": {
+									"value": "2",
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "TidyUpCloseITRawSalesLeads",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CloseITSalesLeads",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[TidyUpCloseITRawSalesLeads]"
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-03-11T08:47:13Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DetailedVehSales')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "DetailedSales",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "PeterVardyDetailedSales",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"PeterVardyDetailedSales": {},
+									"SQLDMSDetailedSales": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "ReferenceTableUpdate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "DetailedSales",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
+							"storedProcedureParameters": {
+								"SourceSystemID": {
+									"value": "6",
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-10T12:22:53Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/PeterVardyDetailedSales')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EnquiryMAXEnquiries')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "EnquiryMAXEnquiries",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "EnquiryMAX_Enquiries",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"EnquiryMAXEnquiriesJSON": {},
+									"EnquiryMAXEnquiries": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-05-03T21:08:11Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GetSchemas')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetSourceInformation",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "GetSourceInformation",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-10-13T22:04:56Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/GetSourceInformation')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ImportUnleashed')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ImportUnleashed",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Unleashed",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"UnleashedInvoicesJSON": {},
+									"UnleashedProductsJSON": {},
+									"UnleashedCustomers": {},
+									"UnleashedSalesOrders": {},
+									"UnleashedProductGroups": {},
+									"UnleashedStockOnHand": {},
+									"SQLUnleashedInvoices": {},
+									"SQLUnleashedInvoiceItems": {},
+									"SQLUnleashedProducts": {},
+									"SQLUnleashedCustomers": {},
+									"SQLUnleashedSalesOrders": {},
+									"SQLSalesOrderLines": {},
+									"SQLUnleashedProductGroups": {},
+									"SQLUnleashedStock": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-03-20T22:39:10Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Unleashed')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PartsSales')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "PeterVardyPartsSales",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "PeterVardyPartsSales",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"PeterVardyPartsSales": {},
+									"SQLDMSPartsSales": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-09T21:38:25Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/PeterVardyPartsSales')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyDetailedSales')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "PeterVardyDetailedSales",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "PeterVardyDetailedSales",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"PeterVardyDetailedSales": {},
+									"SQLDMSDetailedSales": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "ReferenceTableUpdate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "PeterVardyDetailedSales",
+								"dependencyConditions": [
+									"Succeeded",
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
+							"storedProcedureParameters": {
+								"SourceSystemID": {
+									"value": "6",
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-25T13:33:37Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/PeterVardyDetailedSales')]"
+			]
+		}
+	]
+}

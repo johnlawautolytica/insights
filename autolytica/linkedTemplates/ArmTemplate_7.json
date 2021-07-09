@@ -1,0 +1,3334 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolytica"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLUnleashedInvoices')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Invoice Number",
+						"type": "varchar"
+					},
+					{
+						"name": "Order Number",
+						"type": "varchar"
+					},
+					{
+						"name": "Invoice Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Currency ID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UnleashedInvoices_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLUnleashedProductGroups')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Group Name",
+						"type": "varchar"
+					},
+					{
+						"name": "GUID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UnleashedProductGroups"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLUnleashedProducts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Product Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Product Description",
+						"type": "varchar"
+					},
+					{
+						"name": "Product Group",
+						"type": "varchar"
+					},
+					{
+						"name": "Country Name",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UnleashedProducts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLUnleashedSalesOrderLines')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Line Number",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Product Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Order Quantity",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Unit Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Discount Rate",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Line Total",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Average Cost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Tax Rate",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Line Tax",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "BC Unit Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "GUID",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Order Number",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UnleashedSalesOrderLines"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLUnleashedSalesOrders')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Order Number",
+						"type": "varchar"
+					},
+					{
+						"name": "Order Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Required Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Completed Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Order Status",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Currency ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Sales Person Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Sales Person GUID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UnleashedSalesOrders_merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLUnleashedStock')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Product Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Product Description",
+						"type": "varchar"
+					},
+					{
+						"name": "Product Group Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Days Since Last Sale",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "On Purchase",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Allocated Quantity",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Available Quantity",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Quantity on Hand",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Average Cost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Total Cost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "GUID",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UnleashedStock"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLVehicleStock')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealershipID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StockNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GroupDateInStock",
+						"type": "date"
+					},
+					{
+						"name": "DealershipDateInStock",
+						"type": "date"
+					},
+					{
+						"name": "Status",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Chassis",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FirstRegisteredDate",
+						"type": "date"
+					},
+					{
+						"name": "Make",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Trim",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EngineSize",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FuelType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Transmission",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenericColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SpecificColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Doors",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SIV",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Vat",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Source",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ModelAnalysisCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RetailPrice",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Purchaser",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SupplierName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PurchaseInvoiceDate",
+						"type": "date"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "date"
+					},
+					{
+						"name": "ProgressCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Recon",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "TransportCosts",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "AdjustedSIV",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "ReceivedDate",
+						"type": "date"
+					},
+					{
+						"name": "DateInGroup",
+						"type": "date"
+					},
+					{
+						"name": "PurchaseAccount",
+						"type": "varchar"
+					},
+					{
+						"name": "QuarantineStatus",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VehicleStock"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLVehicleWorkshopPrep')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealershipID",
+						"type": "varchar"
+					},
+					{
+						"name": "VehicleID",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationNo",
+						"type": "varchar"
+					},
+					{
+						"name": "VehicleDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "EstimatedCost",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "ActualCost",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "LineCreatedDate",
+						"type": "date"
+					},
+					{
+						"name": "PushedDate",
+						"type": "date"
+					},
+					{
+						"name": "OrderDate",
+						"type": "date"
+					},
+					{
+						"name": "WIPNo",
+						"type": "varchar"
+					},
+					{
+						"name": "OptionCode",
+						"type": "varchar"
+					},
+					{
+						"name": "WorkDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "ProgressCode",
+						"type": "varchar"
+					},
+					{
+						"name": "AccountStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "QuarantineStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "LogBook",
+						"type": "varchar"
+					},
+					{
+						"name": "VehicleInvoiceDate",
+						"type": "date"
+					},
+					{
+						"name": "VehicleDeliveryDate",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VehicleWorkshopPrep"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLWebStockFeed')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealership",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FeedID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "VehicleID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StockNumber",
+						"type": "nchar"
+					},
+					{
+						"name": "VehicleType",
+						"type": "nchar"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "ChassisNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EngineNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "SpecificPaintColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FuelType",
+						"type": "varchar"
+					},
+					{
+						"name": "TrimColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TrimType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MileageType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BodyStyle",
+						"type": "varchar"
+					},
+					{
+						"name": "Doors",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "Range",
+						"type": "varchar"
+					},
+					{
+						"name": "EngineSize",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "Transmission",
+						"type": "varchar"
+					},
+					{
+						"name": "PictureRefs",
+						"type": "varchar"
+					},
+					{
+						"name": "ServiceHistory",
+						"type": "varchar"
+					},
+					{
+						"name": "PreviousOwners",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Approved",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WarrantyLevel",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FullVehicleCheck",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MultiPointInspection",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BranchPurchaseDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "GroupPurchaseDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "StockStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehicleStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ReadyToGo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "HeadOfficeStock",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PurchasePrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "StockValue",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "ReconditioningDFA",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "DeliveryCost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "RetailPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "DeliveryRetailPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "ReducedPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "IDAAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "TrackerNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Category",
+						"type": "varchar"
+					},
+					{
+						"name": "HouseCharge",
+						"type": "varchar"
+					},
+					{
+						"name": "CO2",
+						"type": "varchar"
+					},
+					{
+						"name": "Status",
+						"type": "varchar"
+					},
+					{
+						"name": "IsVisible",
+						"type": "varchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastUpdatedBy",
+						"type": "varchar"
+					},
+					{
+						"name": "SentToWeb",
+						"type": "varchar"
+					},
+					{
+						"name": "Seats",
+						"type": "varchar"
+					},
+					{
+						"name": "TaxBand",
+						"type": "varchar"
+					},
+					{
+						"name": "AutotraderBanner",
+						"type": "varchar"
+					},
+					{
+						"name": "MilesPerGallon",
+						"type": "varchar"
+					},
+					{
+						"name": "InsuranceGroup",
+						"type": "varchar"
+					},
+					{
+						"name": "Removed",
+						"type": "varchar"
+					},
+					{
+						"name": "DateRemoved",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ActualRegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "Quarantine",
+						"type": "varchar"
+					},
+					{
+						"name": "YouTubeVideo",
+						"type": "varchar"
+					},
+					{
+						"name": "NumberOfImages",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "varchar"
+					},
+					{
+						"name": "Demo",
+						"type": "nchar"
+					},
+					{
+						"name": "VATStatus",
+						"type": "nchar"
+					},
+					{
+						"name": "TradePrice",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "CapID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FullCapCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VideoURL",
+						"type": "varchar"
+					},
+					{
+						"name": "InsertedDate",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "WebStockFeed"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLWebStockFeed_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealership",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FeedID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "VehicleID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StockNumber",
+						"type": "nchar"
+					},
+					{
+						"name": "VehicleType",
+						"type": "nchar"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "ChassisNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EngineNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "SpecificPaintColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FuelType",
+						"type": "varchar"
+					},
+					{
+						"name": "TrimColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TrimType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Year",
+						"type": "nchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MileageType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BodyStyle",
+						"type": "varchar"
+					},
+					{
+						"name": "Doors",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "Range",
+						"type": "varchar"
+					},
+					{
+						"name": "EngineSize",
+						"type": "nchar"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "Transmission",
+						"type": "varchar"
+					},
+					{
+						"name": "PictureRefs",
+						"type": "varchar"
+					},
+					{
+						"name": "ServiceHistory",
+						"type": "varchar"
+					},
+					{
+						"name": "PreviousOwners",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Approved",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WarrantyLevel",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FullVehicleCheck",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MultiPointInspection",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BranchPurchaseDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "GroupPurchaseDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "StockStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehicleStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ReadyToGo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "HeadOfficeStock",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PurchasePrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "StockValue",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "ReconditioningDFA",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "DeliveryCost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "RetailPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "DeliveryRetailPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "ReducedPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "IDAAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "TrackerNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Category",
+						"type": "varchar"
+					},
+					{
+						"name": "HouseCharge",
+						"type": "varchar"
+					},
+					{
+						"name": "CO2",
+						"type": "varchar"
+					},
+					{
+						"name": "Status",
+						"type": "varchar"
+					},
+					{
+						"name": "IsVisible",
+						"type": "varchar"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpdatedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastUpdatedBy",
+						"type": "varchar"
+					},
+					{
+						"name": "SentToWeb",
+						"type": "varchar"
+					},
+					{
+						"name": "Seats",
+						"type": "varchar"
+					},
+					{
+						"name": "TaxBand",
+						"type": "varchar"
+					},
+					{
+						"name": "AutotraderBanner",
+						"type": "varchar"
+					},
+					{
+						"name": "MilesPerGallon",
+						"type": "varchar"
+					},
+					{
+						"name": "InsuranceGroup",
+						"type": "varchar"
+					},
+					{
+						"name": "Removed",
+						"type": "varchar"
+					},
+					{
+						"name": "DateRemoved",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ActualRegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "Quarantine",
+						"type": "varchar"
+					},
+					{
+						"name": "YouTubeVideo",
+						"type": "varchar"
+					},
+					{
+						"name": "NumberOfImages",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "varchar"
+					},
+					{
+						"name": "Demo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VATStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TradePrice",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "CapID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FullCapCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VideoURL",
+						"type": "varchar"
+					},
+					{
+						"name": "InsertedDate",
+						"type": "date"
+					},
+					{
+						"name": "DateSentToWeb",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "WebStockFeed_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TableCounts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TableID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CountOfRows",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "TableCounts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedCustomersJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Customers-temp.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Pagination": {
+							"type": "object",
+							"properties": {
+								"NumberOfItems": {
+									"type": "integer"
+								},
+								"PageSize": {
+									"type": "integer"
+								},
+								"PageNumber": {
+									"type": "integer"
+								},
+								"NumberOfPages": {
+									"type": "integer"
+								}
+							}
+						},
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"Addresses": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"AddressType": {
+													"type": "string"
+												},
+												"AddressName": {
+													"type": "string"
+												},
+												"StreetAddress": {
+													"type": "string"
+												},
+												"StreetAddress2": {
+													"type": "string"
+												},
+												"Suburb": {
+													"type": "string"
+												},
+												"City": {
+													"type": "null"
+												},
+												"Region": {
+													"type": "string"
+												},
+												"Country": {
+													"type": "string"
+												},
+												"PostalCode": {
+													"type": "null"
+												},
+												"IsDefault": {
+													"type": "boolean"
+												},
+												"DeliveryInstruction": {
+													"type": "null"
+												}
+											}
+										}
+									},
+									"TaxCode": {
+										"type": "string"
+									},
+									"TaxRate": {
+										"type": "null"
+									},
+									"CustomerCode": {
+										"type": "string"
+									},
+									"CustomerName": {
+										"type": "string"
+									},
+									"GSTVATNumber": {
+										"type": "null"
+									},
+									"BankName": {
+										"type": "null"
+									},
+									"BankBranch": {
+										"type": "null"
+									},
+									"BankAccount": {
+										"type": "null"
+									},
+									"Website": {
+										"type": "null"
+									},
+									"PhoneNumber": {
+										"type": "null"
+									},
+									"FaxNumber": {
+										"type": "null"
+									},
+									"MobileNumber": {
+										"type": "null"
+									},
+									"DDINumber": {
+										"type": "null"
+									},
+									"TollFreeNumber": {
+										"type": "null"
+									},
+									"Email": {
+										"type": "null"
+									},
+									"EmailCC": {
+										"type": "null"
+									},
+									"Currency": {
+										"type": "object",
+										"properties": {
+											"CurrencyCode": {
+												"type": "string"
+											},
+											"Description": {
+												"type": "string"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"Notes": {
+										"type": "null"
+									},
+									"Taxable": {
+										"type": "boolean"
+									},
+									"XeroContactId": {
+										"type": "string"
+									},
+									"SalesPerson": {
+										"type": "null"
+									},
+									"DiscountRate": {
+										"type": "number"
+									},
+									"PrintPackingSlipInsteadOfInvoice": {
+										"type": "boolean"
+									},
+									"PrintInvoice": {
+										"type": "boolean"
+									},
+									"StopCredit": {
+										"type": "boolean"
+									},
+									"Obsolete": {
+										"type": "boolean"
+									},
+									"XeroSalesAccount": {
+										"type": "string"
+									},
+									"XeroCostOfGoodsAccount": {
+										"type": "null"
+									},
+									"SellPriceTier": {
+										"type": "string"
+									},
+									"SellPriceTierReference": {
+										"type": "null"
+									},
+									"CustomerType": {
+										"type": "string"
+									},
+									"PaymentTerm": {
+										"type": "string"
+									},
+									"ContactFirstName": {
+										"type": "string"
+									},
+									"ContactLastName": {
+										"type": "string"
+									},
+									"SourceId": {
+										"type": "null"
+									},
+									"CreatedBy": {
+										"type": "string"
+									},
+									"CreatedOn": {
+										"type": "string"
+									},
+									"LastModifiedBy": {
+										"type": "string"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedInvoices')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Invoices-1.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Pagination": {
+							"type": "object",
+							"properties": {
+								"NumberOfItems": {
+									"type": "integer"
+								},
+								"PageSize": {
+									"type": "integer"
+								},
+								"PageNumber": {
+									"type": "integer"
+								},
+								"NumberOfPages": {
+									"type": "integer"
+								}
+							}
+						},
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"InvoiceNumber": {
+										"type": "string"
+									},
+									"OrderNumber": {
+										"type": "string"
+									},
+									"QuoteNumber": {
+										"type": "null"
+									},
+									"InvoiceDate": {
+										"type": "string"
+									},
+									"DueDate": {
+										"type": "string"
+									},
+									"InvoiceStatus": {
+										"type": "string"
+									},
+									"Customer": {
+										"type": "object",
+										"properties": {
+											"CustomerCode": {
+												"type": "string"
+											},
+											"CustomerName": {
+												"type": "string"
+											},
+											"CurrencyId": {
+												"type": "integer"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"Comments": {
+										"type": "null"
+									},
+									"PostalAddress": {
+										"type": "object",
+										"properties": {
+											"AddressType": {
+												"type": "null"
+											},
+											"AddressName": {
+												"type": "string"
+											},
+											"StreetAddress": {
+												"type": "string"
+											},
+											"StreetAddress2": {
+												"type": "null"
+											},
+											"Suburb": {
+												"type": "null"
+											},
+											"City": {
+												"type": "string"
+											},
+											"Region": {
+												"type": "string"
+											},
+											"Country": {
+												"type": "string"
+											},
+											"PostalCode": {
+												"type": "string"
+											},
+											"IsDefault": {
+												"type": "boolean"
+											},
+											"DeliveryInstruction": {
+												"type": "null"
+											}
+										}
+									},
+									"DeliveryAddress": {
+										"type": "object",
+										"properties": {
+											"AddressType": {
+												"type": "null"
+											},
+											"AddressName": {
+												"type": "string"
+											},
+											"StreetAddress": {
+												"type": "string"
+											},
+											"StreetAddress2": {
+												"type": "null"
+											},
+											"Suburb": {
+												"type": "null"
+											},
+											"City": {
+												"type": "string"
+											},
+											"Region": {
+												"type": "string"
+											},
+											"Country": {
+												"type": "string"
+											},
+											"PostalCode": {
+												"type": "string"
+											},
+											"IsDefault": {
+												"type": "boolean"
+											},
+											"DeliveryInstruction": {
+												"type": "null"
+											}
+										}
+									},
+									"DeliveryInstruction": {
+										"type": "null"
+									},
+									"SubTotal": {
+										"type": "number"
+									},
+									"TaxTotal": {
+										"type": "number"
+									},
+									"Total": {
+										"type": "number"
+									},
+									"BCSubTotal": {
+										"type": "number"
+									},
+									"BCTaxTotal": {
+										"type": "number"
+									},
+									"BCTotal": {
+										"type": "number"
+									},
+									"CreatedBy": {
+										"type": "string"
+									},
+									"PaymentTerm": {
+										"type": "null"
+									},
+									"InvoiceLines": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"LineNumber": {
+													"type": "integer"
+												},
+												"LineType": {
+													"type": "null"
+												},
+												"Product": {
+													"type": "object",
+													"properties": {
+														"Guid": {
+															"type": "string"
+														},
+														"ProductCode": {
+															"type": "string"
+														},
+														"ProductDescription": {
+															"type": "string"
+														}
+													}
+												},
+												"OrderQuantity": {
+													"type": "number"
+												},
+												"InvoiceQuantity": {
+													"type": "number"
+												},
+												"UnitPrice": {
+													"type": "number"
+												},
+												"DiscountRate": {
+													"type": "number"
+												},
+												"LineTotal": {
+													"type": "number"
+												},
+												"Comments": {
+													"type": "string"
+												},
+												"TaxRate": {
+													"type": "number"
+												},
+												"LineTax": {
+													"type": "number"
+												},
+												"BCUnitPrice": {
+													"type": "number"
+												},
+												"SerialNumbers": {
+													"type": "null"
+												},
+												"BatchNumbers": {
+													"type": "null"
+												},
+												"Guid": {
+													"type": "string"
+												},
+												"LastModifiedOn": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedInvoicesJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Invoices-1.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Pagination": {
+							"type": "object",
+							"properties": {
+								"NumberOfItems": {
+									"type": "integer"
+								},
+								"PageSize": {
+									"type": "integer"
+								},
+								"PageNumber": {
+									"type": "integer"
+								},
+								"NumberOfPages": {
+									"type": "integer"
+								}
+							}
+						},
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"InvoiceNumber": {
+										"type": "string"
+									},
+									"OrderNumber": {
+										"type": "string"
+									},
+									"QuoteNumber": {
+										"type": "null"
+									},
+									"InvoiceDate": {
+										"type": "string"
+									},
+									"DueDate": {
+										"type": "string"
+									},
+									"InvoiceStatus": {
+										"type": "string"
+									},
+									"Customer": {
+										"type": "object",
+										"properties": {
+											"CustomerCode": {
+												"type": "string"
+											},
+											"CustomerName": {
+												"type": "string"
+											},
+											"CurrencyId": {
+												"type": "integer"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"Comments": {
+										"type": "null"
+									},
+									"PostalAddress": {
+										"type": "object",
+										"properties": {
+											"AddressType": {
+												"type": "null"
+											},
+											"AddressName": {
+												"type": "string"
+											},
+											"StreetAddress": {
+												"type": "string"
+											},
+											"StreetAddress2": {
+												"type": "null"
+											},
+											"Suburb": {
+												"type": "null"
+											},
+											"City": {
+												"type": "string"
+											},
+											"Region": {
+												"type": "string"
+											},
+											"Country": {
+												"type": "string"
+											},
+											"PostalCode": {
+												"type": "string"
+											},
+											"IsDefault": {
+												"type": "boolean"
+											},
+											"DeliveryInstruction": {
+												"type": "null"
+											}
+										}
+									},
+									"DeliveryAddress": {
+										"type": "object",
+										"properties": {
+											"AddressType": {
+												"type": "null"
+											},
+											"AddressName": {
+												"type": "string"
+											},
+											"StreetAddress": {
+												"type": "string"
+											},
+											"StreetAddress2": {
+												"type": "null"
+											},
+											"Suburb": {
+												"type": "null"
+											},
+											"City": {
+												"type": "string"
+											},
+											"Region": {
+												"type": "string"
+											},
+											"Country": {
+												"type": "string"
+											},
+											"PostalCode": {
+												"type": "string"
+											},
+											"IsDefault": {
+												"type": "boolean"
+											},
+											"DeliveryInstruction": {
+												"type": "null"
+											}
+										}
+									},
+									"DeliveryInstruction": {
+										"type": "null"
+									},
+									"SubTotal": {
+										"type": "number"
+									},
+									"TaxTotal": {
+										"type": "number"
+									},
+									"Total": {
+										"type": "number"
+									},
+									"BCSubTotal": {
+										"type": "number"
+									},
+									"BCTaxTotal": {
+										"type": "number"
+									},
+									"BCTotal": {
+										"type": "number"
+									},
+									"CreatedBy": {
+										"type": "string"
+									},
+									"PaymentTerm": {
+										"type": "null"
+									},
+									"InvoiceLines": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"LineNumber": {
+													"type": "integer"
+												},
+												"LineType": {
+													"type": "null"
+												},
+												"Product": {
+													"type": "object",
+													"properties": {
+														"Guid": {
+															"type": "string"
+														},
+														"ProductCode": {
+															"type": "string"
+														},
+														"ProductDescription": {
+															"type": "string"
+														}
+													}
+												},
+												"OrderQuantity": {
+													"type": "number"
+												},
+												"InvoiceQuantity": {
+													"type": "number"
+												},
+												"UnitPrice": {
+													"type": "number"
+												},
+												"DiscountRate": {
+													"type": "number"
+												},
+												"LineTotal": {
+													"type": "number"
+												},
+												"Comments": {
+													"type": "string"
+												},
+												"TaxRate": {
+													"type": "number"
+												},
+												"LineTax": {
+													"type": "number"
+												},
+												"BCUnitPrice": {
+													"type": "number"
+												},
+												"SerialNumbers": {
+													"type": "null"
+												},
+												"BatchNumbers": {
+													"type": "null"
+												},
+												"Guid": {
+													"type": "string"
+												},
+												"LastModifiedOn": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedProductGroupsJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ProductGroups.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"GroupName": {
+										"type": "string"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedProductsJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Products temp.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Pagination": {
+							"type": "object",
+							"properties": {
+								"NumberOfItems": {
+									"type": "integer"
+								},
+								"PageSize": {
+									"type": "integer"
+								},
+								"PageNumber": {
+									"type": "integer"
+								},
+								"NumberOfPages": {
+									"type": "integer"
+								}
+							}
+						},
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"ProductCode": {
+										"type": "string"
+									},
+									"ProductDescription": {
+										"type": "string"
+									},
+									"Barcode": {
+										"type": "null"
+									},
+									"PackSize": {
+										"type": "null"
+									},
+									"Width": {
+										"type": "null"
+									},
+									"Height": {
+										"type": "null"
+									},
+									"Depth": {
+										"type": "null"
+									},
+									"Weight": {
+										"type": "number"
+									},
+									"MinStockAlertLevel": {
+										"type": "null"
+									},
+									"MaxStockAlertLevel": {
+										"type": "null"
+									},
+									"ReOrderPoint": {
+										"type": "null"
+									},
+									"UnitOfMeasure": {
+										"type": "null"
+									},
+									"NeverDiminishing": {
+										"type": "boolean"
+									},
+									"LastCost": {
+										"type": "number"
+									},
+									"DefaultPurchasePrice": {
+										"type": "null"
+									},
+									"DefaultSellPrice": {
+										"type": "null"
+									},
+									"CustomerSellPrice": {
+										"type": "null"
+									},
+									"AverageLandPrice": {
+										"type": "number"
+									},
+									"Obsolete": {
+										"type": "boolean"
+									},
+									"Notes": {
+										"type": "null"
+									},
+									"Images": {
+										"type": "null"
+									},
+									"ImageUrl": {
+										"type": "null"
+									},
+									"SellPriceTier1": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "string"
+											}
+										}
+									},
+									"SellPriceTier2": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier3": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier4": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier5": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier6": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier7": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier8": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier9": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"SellPriceTier10": {
+										"type": "object",
+										"properties": {
+											"Name": {
+												"type": "string"
+											},
+											"Value": {
+												"type": "null"
+											}
+										}
+									},
+									"XeroTaxCode": {
+										"type": "null"
+									},
+									"XeroTaxRate": {
+										"type": "null"
+									},
+									"TaxablePurchase": {
+										"type": "boolean"
+									},
+									"TaxableSales": {
+										"type": "boolean"
+									},
+									"XeroSalesTaxCode": {
+										"type": "null"
+									},
+									"XeroSalesTaxRate": {
+										"type": "null"
+									},
+									"IsComponent": {
+										"type": "boolean"
+									},
+									"IsAssembledProduct": {
+										"type": "boolean"
+									},
+									"ProductGroup": {
+										"type": "object",
+										"properties": {
+											"GroupName": {
+												"type": "string"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"XeroSalesAccount": {
+										"type": "null"
+									},
+									"XeroCostOfGoodsAccount": {
+										"type": "null"
+									},
+									"PurchaseAccount": {
+										"type": "null"
+									},
+									"BinLocation": {
+										"type": "null"
+									},
+									"Supplier": {
+										"type": "null"
+									},
+									"AttributeSet": {
+										"type": "null"
+									},
+									"SourceId": {
+										"type": "null"
+									},
+									"SourceVariantParentId": {
+										"type": "null"
+									},
+									"IsSerialized": {
+										"type": "boolean"
+									},
+									"IsBatchTracked": {
+										"type": "boolean"
+									},
+									"IsSellable": {
+										"type": "boolean"
+									},
+									"MinimumSellPrice": {
+										"type": "null"
+									},
+									"MinimumSaleQuantity": {
+										"type": "null"
+									},
+									"MinimumOrderQuantity": {
+										"type": "null"
+									},
+									"CreatedBy": {
+										"type": "string"
+									},
+									"CreatedOn": {
+										"type": "string"
+									},
+									"LastModifiedBy": {
+										"type": "string"
+									},
+									"CommerceCode": {
+										"type": "null"
+									},
+									"CustomsDescription": {
+										"type": "null"
+									},
+									"SupplementaryClassificationAbbreviation": {
+										"type": "null"
+									},
+									"ICCCountryCode": {
+										"type": "null"
+									},
+									"ICCCountryName": {
+										"type": "null"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedSalesOrdersJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesOrders-2.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Pagination": {
+							"type": "object",
+							"properties": {
+								"NumberOfItems": {
+									"type": "integer"
+								},
+								"PageSize": {
+									"type": "integer"
+								},
+								"PageNumber": {
+									"type": "integer"
+								},
+								"NumberOfPages": {
+									"type": "integer"
+								}
+							}
+						},
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"SalesOrderLines": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"LineNumber": {
+													"type": "integer"
+												},
+												"LineType": {
+													"type": "null"
+												},
+												"Product": {
+													"type": "object",
+													"properties": {
+														"Guid": {
+															"type": "string"
+														},
+														"ProductCode": {
+															"type": "string"
+														},
+														"ProductDescription": {
+															"type": "string"
+														}
+													}
+												},
+												"DueDate": {
+													"type": "string"
+												},
+												"OrderQuantity": {
+													"type": "number"
+												},
+												"UnitPrice": {
+													"type": "number"
+												},
+												"DiscountRate": {
+													"type": "number"
+												},
+												"LineTotal": {
+													"type": "number"
+												},
+												"Volume": {
+													"type": "null"
+												},
+												"Weight": {
+													"type": "number"
+												},
+												"Comments": {
+													"type": "string"
+												},
+												"AverageLandedPriceAtTimeOfSale": {
+													"type": "number"
+												},
+												"TaxRate": {
+													"type": "number"
+												},
+												"LineTax": {
+													"type": "number"
+												},
+												"XeroTaxCode": {
+													"type": "string"
+												},
+												"BCUnitPrice": {
+													"type": "number"
+												},
+												"BCLineTotal": {
+													"type": "number"
+												},
+												"BCLineTax": {
+													"type": "number"
+												},
+												"LineTaxCode": {
+													"type": "null"
+												},
+												"XeroSalesAccount": {
+													"type": "string"
+												},
+												"SerialNumbers": {
+													"type": "null"
+												},
+												"BatchNumbers": {
+													"type": "null"
+												},
+												"Guid": {
+													"type": "string"
+												},
+												"LastModifiedOn": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"OrderNumber": {
+										"type": "string"
+									},
+									"OrderDate": {
+										"type": "string"
+									},
+									"RequiredDate": {
+										"type": "string"
+									},
+									"CompletedDate": {
+										"type": "string"
+									},
+									"OrderStatus": {
+										"type": "string"
+									},
+									"Customer": {
+										"type": "object",
+										"properties": {
+											"CustomerCode": {
+												"type": "string"
+											},
+											"CustomerName": {
+												"type": "string"
+											},
+											"CurrencyId": {
+												"type": "integer"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"CustomerRef": {
+										"type": "string"
+									},
+									"Comments": {
+										"type": "null"
+									},
+									"Warehouse": {
+										"type": "object",
+										"properties": {
+											"WarehouseCode": {
+												"type": "string"
+											},
+											"WarehouseName": {
+												"type": "string"
+											},
+											"IsDefault": {
+												"type": "boolean"
+											},
+											"StreetNo": {
+												"type": "null"
+											},
+											"AddressLine1": {
+												"type": "null"
+											},
+											"AddressLine2": {
+												"type": "null"
+											},
+											"Suburb": {
+												"type": "null"
+											},
+											"City": {
+												"type": "null"
+											},
+											"Region": {
+												"type": "null"
+											},
+											"Country": {
+												"type": "null"
+											},
+											"PostCode": {
+												"type": "null"
+											},
+											"PhoneNumber": {
+												"type": "null"
+											},
+											"FaxNumber": {
+												"type": "null"
+											},
+											"MobileNumber": {
+												"type": "null"
+											},
+											"DDINumber": {
+												"type": "null"
+											},
+											"ContactName": {
+												"type": "string"
+											},
+											"Obsolete": {
+												"type": "boolean"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"ReceivedDate": {
+										"type": "null"
+									},
+									"DeliveryInstruction": {
+										"type": "null"
+									},
+									"DeliveryName": {
+										"type": "null"
+									},
+									"DeliveryStreetAddress": {
+										"type": "null"
+									},
+									"DeliveryStreetAddress2": {
+										"type": "null"
+									},
+									"DeliverySuburb": {
+										"type": "null"
+									},
+									"DeliveryCity": {
+										"type": "null"
+									},
+									"DeliveryRegion": {
+										"type": "null"
+									},
+									"DeliveryCountry": {
+										"type": "null"
+									},
+									"DeliveryPostCode": {
+										"type": "null"
+									},
+									"Currency": {
+										"type": "object",
+										"properties": {
+											"CurrencyCode": {
+												"type": "string"
+											},
+											"Description": {
+												"type": "string"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"ExchangeRate": {
+										"type": "number"
+									},
+									"DiscountRate": {
+										"type": "number"
+									},
+									"Tax": {
+										"type": "object",
+										"properties": {
+											"TaxCode": {
+												"type": "string"
+											},
+											"Description": {
+												"type": "null"
+											},
+											"TaxRate": {
+												"type": "number"
+											},
+											"CanApplyToExpenses": {
+												"type": "boolean"
+											},
+											"CanApplyToRevenue": {
+												"type": "boolean"
+											},
+											"Obsolete": {
+												"type": "boolean"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "null"
+											}
+										}
+									},
+									"TaxRate": {
+										"type": "number"
+									},
+									"XeroTaxCode": {
+										"type": "string"
+									},
+									"SubTotal": {
+										"type": "number"
+									},
+									"TaxTotal": {
+										"type": "number"
+									},
+									"Total": {
+										"type": "number"
+									},
+									"TotalVolume": {
+										"type": "number"
+									},
+									"TotalWeight": {
+										"type": "number"
+									},
+									"BCSubTotal": {
+										"type": "number"
+									},
+									"BCTaxTotal": {
+										"type": "number"
+									},
+									"BCTotal": {
+										"type": "number"
+									},
+									"PaymentDueDate": {
+										"type": "string"
+									},
+									"AllocateProduct": {
+										"type": "boolean"
+									},
+									"SalesOrderGroup": {
+										"type": "null"
+									},
+									"DeliveryMethod": {
+										"type": "null"
+									},
+									"SalesPerson": {
+										"type": "object",
+										"properties": {
+											"FullName": {
+												"type": "string"
+											},
+											"Email": {
+												"type": "string"
+											},
+											"Obsolete": {
+												"type": "boolean"
+											},
+											"Guid": {
+												"type": "string"
+											},
+											"LastModifiedOn": {
+												"type": "string"
+											}
+										}
+									},
+									"SendAccountingJournalOnly": {
+										"type": "boolean"
+									},
+									"SourceId": {
+										"type": "null"
+									},
+									"CreatedBy": {
+										"type": "string"
+									},
+									"CreatedOn": {
+										"type": "string"
+									},
+									"LastModifiedBy": {
+										"type": "string"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UnleashedStockOnHandJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "StockOnHand-1.json",
+						"container": "unleashed"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Pagination": {
+							"type": "object",
+							"properties": {
+								"NumberOfItems": {
+									"type": "integer"
+								},
+								"PageSize": {
+									"type": "integer"
+								},
+								"PageNumber": {
+									"type": "integer"
+								},
+								"NumberOfPages": {
+									"type": "integer"
+								}
+							}
+						},
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"ProductCode": {
+										"type": "string"
+									},
+									"ProductDescription": {
+										"type": "string"
+									},
+									"ProductGuid": {
+										"type": "string"
+									},
+									"ProductSourceId": {
+										"type": "null"
+									},
+									"ProductGroupName": {
+										"type": "string"
+									},
+									"WarehouseId": {
+										"type": "string"
+									},
+									"Warehouse": {
+										"type": "string"
+									},
+									"WarehouseCode": {
+										"type": "string"
+									},
+									"DaysSinceLastSale": {
+										"type": "integer"
+									},
+									"OnPurchase": {
+										"type": "number"
+									},
+									"AllocatedQty": {
+										"type": "number"
+									},
+									"AvailableQty": {
+										"type": "number"
+									},
+									"QtyOnHand": {
+										"type": "number"
+									},
+									"AvgCost": {
+										"type": "number"
+									},
+									"TotalCost": {
+										"type": "number"
+									},
+									"Guid": {
+										"type": "string"
+									},
+									"LastModifiedOn": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VHCHeaders')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "VHCHeadersCSV",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VHCHeadersFromAzureBlob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VHCHeaders.csv",
+						"container": "rtc"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}

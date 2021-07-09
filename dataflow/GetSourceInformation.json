@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ExternalSchemas",
+						"referenceName": "ExternalSchemass",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"

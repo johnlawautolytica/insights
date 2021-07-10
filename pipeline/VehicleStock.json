@@ -3,35 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "PeterVardyVehicleStock",
-				"type": "ExecuteDataFlow",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataflow": {
-						"referenceName": "PeterVardyVehicleStock",
-						"type": "DataFlowReference"
-					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					},
-					"traceLevel": "Fine"
-				}
-			},
-			{
 				"name": "DoReferenceTableUpdate",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "PeterVardyVehicleStock",
+						"activity": "Copy data1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -120,11 +96,6 @@
 						"type": "TabularTranslator",
 						"mappings": [
 							{
-								"source": {
-									"name": "Client ID",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "ClientID",
 									"type": "Int32",
@@ -132,11 +103,6 @@
 								}
 							},
 							{
-								"source": {
-									"name": "Dealer ID",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "DealershipID",
 									"type": "String",
@@ -144,11 +110,6 @@
 								}
 							},
 							{
-								"source": {
-									"name": "Vehicle Type",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "Type",
 									"type": "String",
@@ -156,11 +117,6 @@
 								}
 							},
 							{
-								"source": {
-									"name": "Registration Number",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "RegistrationNo",
 									"type": "String",
@@ -168,11 +124,6 @@
 								}
 							},
 							{
-								"source": {
-									"name": "Stock Number",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "StockNo",
 									"type": "String",

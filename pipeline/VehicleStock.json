@@ -3,67 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DoReferenceTableUpdate",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Copy data1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[DoReferenceTableUpdate]",
-					"storedProcedureParameters": {
-						"SourceSystemID": {
-							"value": "8",
-							"type": "Int64"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "autolytica",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "UpdateVehicleStock",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "DoReferenceTableUpdate",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[UpdateVehicleStock]"
-				},
-				"linkedServiceName": {
-					"referenceName": "autolytica",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "Copy data1",
+				"name": "CopyCSVToSQL",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -80,6 +20,8 @@
 						"storeSettings": {
 							"type": "SftpReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "*",
+							"wildcardFileName": "vehiclestock-*.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -96,6 +38,9 @@
 						"type": "TabularTranslator",
 						"mappings": [
 							{
+								"source": {
+									"name": "Client ID"
+								},
 								"sink": {
 									"name": "ClientID",
 									"type": "Int32",
@@ -103,6 +48,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Dealer ID"
+								},
 								"sink": {
 									"name": "DealershipID",
 									"type": "String",
@@ -110,6 +58,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Vehicle Type"
+								},
 								"sink": {
 									"name": "Type",
 									"type": "String",
@@ -117,6 +68,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Registration Number"
+								},
 								"sink": {
 									"name": "RegistrationNo",
 									"type": "String",
@@ -124,6 +78,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Stock Number"
+								},
 								"sink": {
 									"name": "StockNo",
 									"type": "String",
@@ -131,6 +88,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Group Date in Stock"
+								},
 								"sink": {
 									"name": "GroupDateInStock",
 									"type": "DateTime",
@@ -138,6 +98,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Dealership Date In Stock"
+								},
 								"sink": {
 									"name": "DealershipDateInStock",
 									"type": "DateTime",
@@ -145,6 +108,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Status"
+								},
 								"sink": {
 									"name": "Status",
 									"type": "String",
@@ -152,6 +118,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "New Or Used"
+								},
 								"sink": {
 									"name": "NewOrUsed",
 									"type": "String",
@@ -159,6 +128,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Chassis"
+								},
 								"sink": {
 									"name": "Chassis",
 									"type": "String",
@@ -166,6 +138,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Registration Date"
+								},
 								"sink": {
 									"name": "FirstRegisteredDate",
 									"type": "DateTime",
@@ -173,6 +148,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Make"
+								},
 								"sink": {
 									"name": "Make",
 									"type": "String",
@@ -180,6 +158,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Model"
+								},
 								"sink": {
 									"name": "Model",
 									"type": "String",
@@ -187,6 +168,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Derivative"
+								},
 								"sink": {
 									"name": "Derivative",
 									"type": "String",
@@ -194,6 +178,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Trim"
+								},
 								"sink": {
 									"name": "Trim",
 									"type": "String",
@@ -201,6 +188,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Engine Size"
+								},
 								"sink": {
 									"name": "EngineSize",
 									"type": "String",
@@ -208,6 +198,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Bodystyle"
+								},
 								"sink": {
 									"name": "Bodystyle",
 									"type": "String",
@@ -216,9 +209,7 @@
 							},
 							{
 								"source": {
-									"name": "Mileage",
-									"type": "String",
-									"physicalType": "String"
+									"name": "Odometer"
 								},
 								"sink": {
 									"name": "Mileage",
@@ -227,6 +218,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "FuelType"
+								},
 								"sink": {
 									"name": "FuelType",
 									"type": "String",
@@ -234,6 +228,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Transmission"
+								},
 								"sink": {
 									"name": "Transmission",
 									"type": "String",
@@ -241,6 +238,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Generic Colour"
+								},
 								"sink": {
 									"name": "GenericColour",
 									"type": "String",
@@ -248,13 +248,9 @@
 								}
 							},
 							{
-								"sink": {
-									"name": "SpecificColour",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
+								"source": {
+									"name": "Doors"
+								},
 								"sink": {
 									"name": "Doors",
 									"type": "Int32",
@@ -262,6 +258,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Stock Value"
+								},
 								"sink": {
 									"name": "SIV",
 									"type": "Double",
@@ -269,6 +268,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Vat"
+								},
 								"sink": {
 									"name": "Vat",
 									"type": "String",
@@ -276,6 +278,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Source"
+								},
 								"sink": {
 									"name": "Source",
 									"type": "String",
@@ -283,6 +288,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Vehicle Catagory Code"
+								},
 								"sink": {
 									"name": "ModelAnalysisCode",
 									"type": "String",
@@ -290,6 +298,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Retail Price"
+								},
 								"sink": {
 									"name": "RetailPrice",
 									"type": "Double",
@@ -297,6 +308,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Purchaser ID"
+								},
 								"sink": {
 									"name": "Purchaser",
 									"type": "String",
@@ -304,6 +318,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Supplier"
+								},
 								"sink": {
 									"name": "SupplierName",
 									"type": "String",
@@ -311,6 +328,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Group Purchase Date"
+								},
 								"sink": {
 									"name": "PurchaseInvoiceDate",
 									"type": "DateTime",
@@ -318,6 +338,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Available Date"
+								},
 								"sink": {
 									"name": "AvailableDate",
 									"type": "DateTime",
@@ -325,6 +348,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Progress Code"
+								},
 								"sink": {
 									"name": "ProgressCode",
 									"type": "String",
@@ -332,6 +358,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Reconditioning"
+								},
 								"sink": {
 									"name": "Recon",
 									"type": "Double",
@@ -339,6 +368,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Transport Costs"
+								},
 								"sink": {
 									"name": "TransportCosts",
 									"type": "Double",
@@ -346,6 +378,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Adjusted Stock Value"
+								},
 								"sink": {
 									"name": "AdjustedSIV",
 									"type": "Double",
@@ -353,6 +388,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Received Date"
+								},
 								"sink": {
 									"name": "ReceivedDate",
 									"type": "DateTime",
@@ -360,13 +398,9 @@
 								}
 							},
 							{
-								"sink": {
-									"name": "DateInGroup",
-									"type": "DateTime",
-									"physicalType": "date"
-								}
-							},
-							{
+								"source": {
+									"name": "Purchase Account"
+								},
 								"sink": {
 									"name": "PurchaseAccount",
 									"type": "String",
@@ -374,6 +408,9 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Quarantine Status"
+								},
 								"sink": {
 									"name": "QuarantineStatus",
 									"type": "String",

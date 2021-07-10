@@ -123,7 +123,7 @@
 				"type": "String"
 			},
 			{
-				"name": "Vehicle Catagory Code",
+				"name": "Vehicle Category Code",
 				"type": "String"
 			},
 			{

@@ -20,8 +20,7 @@
 						"storeSettings": {
 							"type": "SftpReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "*",
-							"wildcardFileName": "vehiclestock-*.csv",
+							"wildcardFileName": "VehicleStock-*.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -289,7 +288,7 @@
 							},
 							{
 								"source": {
-									"name": "Vehicle Catagory Code"
+									"name": "Vehicle Category Code"
 								},
 								"sink": {
 									"name": "ModelAnalysisCode",
@@ -438,6 +437,66 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "DoReferenceTableUpdate",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CopyCSVToSQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[DoReferenceTableUpdate]",
+					"storedProcedureParameters": {
+						"SourceSystemID": {
+							"value": "8",
+							"type": "Int64"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "UpdateVehicleStock",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DoReferenceTableUpdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[UpdateVehicleStock]"
+				},
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": [],

@@ -4822,6 +4822,516 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/VehicleStock')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyCSVToSQL",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"wildcardFileName": "VehicleStock-*.csv",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from vehiclestock where clientid <> 10000",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Client ID"
+										},
+										"sink": {
+											"name": "ClientID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealer ID"
+										},
+										"sink": {
+											"name": "DealershipID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Vehicle Type"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Registration Number"
+										},
+										"sink": {
+											"name": "RegistrationNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Stock Number"
+										},
+										"sink": {
+											"name": "StockNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Group Date in Stock"
+										},
+										"sink": {
+											"name": "GroupDateInStock",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealership Date In Stock"
+										},
+										"sink": {
+											"name": "DealershipDateInStock",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Status"
+										},
+										"sink": {
+											"name": "Status",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "New Or Used"
+										},
+										"sink": {
+											"name": "NewOrUsed",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Chassis"
+										},
+										"sink": {
+											"name": "Chassis",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Registration Date"
+										},
+										"sink": {
+											"name": "FirstRegisteredDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Make"
+										},
+										"sink": {
+											"name": "Make",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Model"
+										},
+										"sink": {
+											"name": "Model",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Derivative"
+										},
+										"sink": {
+											"name": "Derivative",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Trim"
+										},
+										"sink": {
+											"name": "Trim",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Engine Size"
+										},
+										"sink": {
+											"name": "EngineSize",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Bodystyle"
+										},
+										"sink": {
+											"name": "Bodystyle",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Odometer"
+										},
+										"sink": {
+											"name": "Mileage",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "FuelType"
+										},
+										"sink": {
+											"name": "FuelType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Transmission"
+										},
+										"sink": {
+											"name": "Transmission",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Generic Colour"
+										},
+										"sink": {
+											"name": "GenericColour",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Doors"
+										},
+										"sink": {
+											"name": "Doors",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Stock Value"
+										},
+										"sink": {
+											"name": "SIV",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Vat"
+										},
+										"sink": {
+											"name": "Vat",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Source"
+										},
+										"sink": {
+											"name": "Source",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Vehicle Category Code"
+										},
+										"sink": {
+											"name": "ModelAnalysisCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Retail Price"
+										},
+										"sink": {
+											"name": "RetailPrice",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Purchaser ID"
+										},
+										"sink": {
+											"name": "Purchaser",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Supplier"
+										},
+										"sink": {
+											"name": "SupplierName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Group Purchase Date"
+										},
+										"sink": {
+											"name": "PurchaseInvoiceDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Available Date"
+										},
+										"sink": {
+											"name": "AvailableDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Progress Code"
+										},
+										"sink": {
+											"name": "ProgressCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Reconditioning"
+										},
+										"sink": {
+											"name": "Recon",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Transport Costs"
+										},
+										"sink": {
+											"name": "TransportCosts",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Adjusted Stock Value"
+										},
+										"sink": {
+											"name": "AdjustedSIV",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Received Date"
+										},
+										"sink": {
+											"name": "ReceivedDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Purchase Account"
+										},
+										"sink": {
+											"name": "PurchaseAccount",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Quarantine Status"
+										},
+										"sink": {
+											"name": "QuarantineStatus",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false,
+									"dateTimeFormat": "dd/MM/yyyy"
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "VehicleStockCSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLVehicleStock",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "DoReferenceTableUpdate",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "CopyCSVToSQL",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[DoReferenceTableUpdate]",
+							"storedProcedureParameters": {
+								"SourceSystemID": {
+									"value": "8",
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "UpdateVehicleStock",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "DoReferenceTableUpdate",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[UpdateVehicleStock]"
+						},
+						"linkedServiceName": {
+							"referenceName": "autolytica",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-06-09T21:35:44Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/WorkshopWIP')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -5252,37 +5762,6 @@
 						}
 					],
 					"script": "source(output(\n\t\tAutotraderRecord as (OriginalInformation as (RecordID as string, RegNo as string, StockNo as string), vehicle as (ownershipCondition as string, registration as string, vin as string, make as string, model as string, generation as string, derivative as string, derivativeId as string, vehicleType as string, trim as string, bodyType as string, fuelType as string, cabType as string, transmissionType as string, wheelbaseType as string, roofHeightType as string, drivetrain as string, seats as string, doors as string, co2EmissionGPKM as string, topSpeedMPH as string, zeroToSixtyMPHSeconds as string, badgeEngineSizeLitres as double, engineCapacityCC as string, enginePowerBHP as string, fuelCapacityLitres as string, emissionClass as string, fuelEconomyNEDCExtraUrbanMPG as string, fuelEconomyNEDCUrbanMPG as string, fuelEconomyNEDCCombinedMPG as string, fuelEconomyWLTPLowMPG as string, fuelEconomyWLTPMediumMPG as string, fuelEconomyWLTPHighMPG as string, fuelEconomyWLTPExtraHighMPG as string, fuelEconomyWLTPCombinedMPG as string, bootSpaceSeatsUpLitres as string, insuranceGroup as string, insuranceSecurityCode as string, firstRegistrationDate as string, colour as string, style as string, subStyle as string, lengthMM as string, heightMM as string, widthMM as string, payloadLengthMM as string, payloadWidthMM as string, payloadHeightMM as string, payloadWeightKG as string, minimumKerbWeightKG as string, grossVehicleWeightKG as string, odometerReadingMiles as string, warrantyMonthsOnPurchase as string, serviceHistory as string, plate as string, yearOfManufacture as string, interiorCondition as string, tyreCondition as string, bodyCondition as string, previousOwners as string, exDemo as string, v5Certificate as string, driverPosition as string, axleConfiguration as string, upholstery as string, interiorColour as string, exteriorFinish as string, lastServiceOdometerReadingMiles as string, lastServiceDate as string, chassisMake as string, chassisModel as string, bedroomLayout as string, endLayout as string, bedrooms as string, berths as string, standard as (make as string, model as string, generation as string, derivative as string, trim as string, bodyType as string, fuelType as string, transmissionType as string, cabType as string, drivetrain as string, colour as string, style as string, subStyle as string)), advertiser as (advertiserId as string, name as string, segment as string, website as string, mobileWebsite as string, phone as string, location as (addressLineOne as string, town as string, county as string, region as string, postCode as string, latitude as double, longitude as double), advertStrapline as string), adverts as (forecourtPrice as (amountGBP as string), dueDate as string, manufacturerApproved as boolean, twelveMonthsMot as boolean, motInsurance as string, retailAdverts as (price as (amountGBP as string), priceOnApplication as boolean, manufacturerRRP as (amountGBP as string), vatExcluded as string, attentionGrabber as string, description as string, description2 as string, priceIndicatorRating as string, autotraderAdvert as (status as string), advertiserAdvert as (status as string), locatorAdvert as (status as string), exportAdvert as (status as string), profileAdvert as (status as string), displayOptions as (excludePreviousOwners as boolean, excludeStrapline as boolean, excludeMot as boolean, excludeWarranty as boolean, excludeInteriorDetails as boolean, excludeTyreCondition as boolean, excludeBodyCondition as boolean))), metadata as (stockId as string, searchId as string, externalStockId as string, externalStockReference as string, lastUpdated as string, lastUpdatedByAdvertiser as string, versionNumber as string, lifecycleState as string, dateOnForecourt as string), features as (name as string, type as string)[], media as (images as (href as string)[], video as (href as string, photoHref as string)), valuations as (marketAverage as (trade as (amountGBP as string), partExchange as (amountGBP as string), retail as (amountGBP as string, amountExcludingVatGBP as string), private as (amountGBP as string)), adjusted as (retail as (amountGBP as string), trade as (amountGBP as string), partExchange as (amountGBP as string), private as (amountGBP as string))), vehicleMetrics as (national as (retail as (supply as (value as string), demand as (value as string), marketCondition as (value as string), rating as (value as string), daysToSell as (value as string), locations as string[])), local as (retail as (rating as (value as string), daysToSell as (value as string)))), responseMetrics as (performanceRating as (score as string, rating as string), yesterday as (advertViews as string, searchViews as string), lastWeek as (advertViews as string, searchViews as string)), check as (insuranceWriteoffCategory as string, scrapped as string, stolen as string, imported as string, exported as string, privateFinance as string, tradeFinance as string, highRisk as string, mileageDiscrepancy as string, colourChanged as string, registrationChanged as string, previousOwners as string), links as (competitor as (href as string))),\n\t\tresults as (vehicle as (ownershipCondition as string, registration as string, vin as string, make as string, model as string, generation as string, derivative as string, derivativeId as string, vehicleType as string, trim as string, bodyType as string, fuelType as string, cabType as string, transmissionType as string, wheelbaseType as string, roofHeightType as string, drivetrain as string, seats as string, doors as string, co2EmissionGPKM as string, topSpeedMPH as string, zeroToSixtyMPHSeconds as string, badgeEngineSizeLitres as double, engineCapacityCC as string, enginePowerBHP as string, fuelCapacityLitres as double, emissionClass as string, fuelEconomyNEDCExtraUrbanMPG as double, fuelEconomyNEDCUrbanMPG as double, fuelEconomyNEDCCombinedMPG as double, fuelEconomyWLTPLowMPG as string, fuelEconomyWLTPMediumMPG as string, fuelEconomyWLTPHighMPG as string, fuelEconomyWLTPExtraHighMPG as string, fuelEconomyWLTPCombinedMPG as double, bootSpaceSeatsUpLitres as double, insuranceGroup as string, insuranceSecurityCode as string, firstRegistrationDate as string, colour as string, style as string, subStyle as string, lengthMM as string, heightMM as string, widthMM as string, payloadLengthMM as string, payloadWidthMM as string, payloadHeightMM as string, payloadWeightKG as string, minimumKerbWeightKG as string, grossVehicleWeightKG as string, odometerReadingMiles as string, warrantyMonthsOnPurchase as string, serviceHistory as string, plate as string, yearOfManufacture as string, interiorCondition as string, tyreCondition as string, bodyCondition as string, previousOwners as string, exDemo as string, v5Certificate as string, driverPosition as string, axleConfiguration as string, upholstery as string, interiorColour as string, exteriorFinish as string, lastServiceOdometerReadingMiles as string, lastServiceDate as string, chassisMake as string, chassisModel as string, bedroomLayout as string, endLayout as string, bedrooms as string, berths as string, standard as (make as string, model as string, generation as string, derivative as string, trim as string, bodyType as string, fuelType as string, transmissionType as string, cabType as string, drivetrain as string, colour as string, style as string, subStyle as string)), advertiser as (advertiserId as string, name as string, segment as string, website as string, mobileWebsite as string, phone as string, location as (addressLineOne as string, town as string, county as string, region as string, postCode as string, latitude as double, longitude as double), advertStrapline as string), adverts as (forecourtPrice as (amountGBP as string), dueDate as string, manufacturerApproved as boolean, twelveMonthsMot as boolean, motInsurance as string, retailAdverts as (price as (amountGBP as string), priceOnApplication as boolean, manufacturerRRP as (amountGBP as string), vatExcluded as string, attentionGrabber as string, description as string, description2 as string, priceIndicatorRating as string, autotraderAdvert as (status as string), advertiserAdvert as (status as string), locatorAdvert as (status as string), exportAdvert as (status as string), profileAdvert as (status as string), displayOptions as (excludePreviousOwners as boolean, excludeStrapline as boolean, excludeMot as boolean, excludeWarranty as boolean, excludeInteriorDetails as boolean, excludeTyreCondition as boolean, excludeBodyCondition as boolean))), metadata as (stockId as string, searchId as string, externalStockId as string, externalStockReference as string, lastUpdated as string, lastUpdatedByAdvertiser as string, versionNumber as string, lifecycleState as string, dateOnForecourt as string), features as (name as string, type as string)[], media as (images as (href as string)[], video as (href as string, photoHref as string)), valuations as (marketAverage as (retail as (amountGBP as string, amountExcludingVatGBP as string)), adjusted as (retail as (amountGBP as string))), check as (insuranceWriteoffCategory as string, scrapped as boolean, stolen as boolean, imported as boolean, exported as boolean, privateFinance as string, tradeFinance as string, highRisk as string, mileageDiscrepancy as string, colourChanged as string, registrationChanged as string, previousOwners as string))[],\n\t\tfacets as ({} as string),\n\t\ttotalResults as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> StockMgmt\nStockMgmt foldDown(unroll(results),\n\tmapColumn(\n\t\tOriginalInformation = AutotraderRecord.OriginalInformation,\n\t\tAds = AutotraderRecord.adverts,\n\t\tsellername = AutotraderRecord.advertiser.name,\n\t\tsellertown = AutotraderRecord.advertiser.location.town,\n\t\tsellersegment = results,\n\t\tdateOnForecourt = results\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Competitors\nCompetitors derive(DaysInStock = minus(currentDate(),toDate(dateOnForecourt.metadata.dateOnForecourt,\"yyyy-MM-dd\"))) ~> AddDaysinStock\nStockMgmt derive(DaysInStock = minus(currentDate(),toDate(AutotraderRecord.metadata.dateOnForecourt,\"yyyy-MM-dd\"))) ~> AddDaysInStock2\nAddDaysinStock sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdvertText as string,\n\t\tAdvertURL as string,\n\t\tAttentionGrabber as string,\n\t\tBodystyle as string,\n\t\tColour as string,\n\t\tCompetitorReg as string,\n\t\tDate as timestamp,\n\t\tDaysinStock as integer,\n\t\tDerivative as string,\n\t\tFuel as string,\n\t\tId as long,\n\t\tMainImage as string,\n\t\tMake as string,\n\t\tMileage as integer,\n\t\tModel as string,\n\t\tOwners as integer,\n\t\tPlate as integer,\n\t\tPrice as decimal(18,2),\n\t\tPriceIndicator as string,\n\t\tPricePosition as decimal(18,2),\n\t\tReg_No as string,\n\t\tSellerName as string,\n\t\tSellerSegment as string,\n\t\tSellerTown as string,\n\t\tStockNumber as integer,\n\t\tTaxRate as integer,\n\t\tTransmission as string,\n\t\tYear as integer,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader competitors test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader competitors test] set currentrecord = 1 where currentrecord is null;\\ndelete from [dbo].[autotrader competitors test] where Make is null and currentrecord = 1;\\nupdate [dbo].[autotrader competitors test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tBodystyle = sellersegment.vehicle.standard.bodyType,\n\t\tColour = sellersegment.vehicle.colour,\n\t\tCompetitorReg = sellersegment.vehicle.registration,\n\t\tDerivative = sellersegment.vehicle.derivative,\n\t\tFuel = sellersegment.vehicle.fuelType,\n\t\tMake = sellersegment.vehicle.make,\n\t\tMileage = sellersegment.vehicle.odometerReadingMiles,\n\t\tModel = sellersegment.vehicle.model,\n\t\tOwners = sellersegment.vehicle.previousOwners,\n\t\tPlate = sellersegment.vehicle.plate,\n\t\tPrice = Ads.retailAdverts.price.amountGBP,\n\t\tPriceIndicator = Ads.retailAdverts.priceIndicatorRating,\n\t\tReg_No = OriginalInformation.RegNo,\n\t\tSellerName = sellername,\n\t\tSellerSegment = sellersegment.advertiser.segment,\n\t\tSellerTown = sellertown,\n\t\tStockNumber = OriginalInformation.StockNo,\n\t\tTransmission = sellersegment.vehicle.transmissionType,\n\t\tYear = sellersegment.vehicle.yearOfManufacture,\n\t\tRecordID = OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = Ads.retailAdverts.priceIndicatorRating,\n\t\tDaysinStock = DaysInStock,\n\t\tPriceIndicatorV2 = Ads.retailAdverts.priceIndicatorRating,\n\t\tMainImage = sellersegment.metadata.dateOnForecourt\n\t)) ~> SQLAutotraderCompetitors\nAddDaysInStock2 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDate as timestamp,\n\t\tDealerID as integer,\n\t\tDealerName as string,\n\t\tID as long,\n\t\tLocalRating as integer,\n\t\tLocalDaysToSell as integer,\n\t\tReg_No as string,\n\t\tStockNumber as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader local retailer ratings test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader local retailer ratings test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader local retailer ratings test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealerID = AutotraderRecord.advertiser.advertiserId,\n\t\tDealerName = AutotraderRecord.advertiser.name,\n\t\tLocalRating = AutotraderRecord.vehicleMetrics.local.retail.rating.value,\n\t\tLocalDaysToSell = AutotraderRecord.vehicleMetrics.local.retail.daysToSell.value,\n\t\tReg_No = AutotraderRecord.OriginalInformation.RegNo,\n\t\tStockNumber = AutotraderRecord.OriginalInformation.StockNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID\n\t)) ~> SQLAutotraderLocalRetailerRatings\nStockMgmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tBuyerDemand as integer,\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tLiveMarketCondition as integer,\n\t\tMarketSupply as integer,\n\t\tRegNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader Market Supply test]  set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader Market Supply test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader market supply test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tBuyerDemand = AutotraderRecord.vehicleMetrics.national.retail.demand.value,\n\t\tLiveMarketCondition = AutotraderRecord.vehicleMetrics.national.retail.marketCondition.value,\n\t\tMarketSupply = AutotraderRecord.vehicleMetrics.national.retail.supply.value,\n\t\tRegNo = AutotraderRecord.OriginalInformation.RegNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID\n\t)) ~> SQLAutotraderMarketSupply\nStockMgmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tAdjustedPartExchange as decimal(18,2),\n\t\tAdjustedRetail as decimal(18,2),\n\t\tAdjustedTrade as decimal(18,2),\n\t\tDate as timestamp,\n\t\tID as long,\n\t\tPart_Exchange as decimal(18,2),\n\t\tPrice_Indicator as string,\n\t\tRegNo as string,\n\t\tRetail as decimal(18,2),\n\t\tStockNumber as string,\n\t\tTrade as decimal(18,2),\n\t\tValuation_Type as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string,\n\t\tPriceIndicatorV2 as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader valuations test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader valuations test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader valuations test] set date = getdate() where date is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tAdjustedPartExchange = AutotraderRecord.valuations.adjusted.partExchange.amountGBP,\n\t\tAdjustedRetail = AutotraderRecord.valuations.adjusted.retail.amountGBP,\n\t\tAdjustedTrade = AutotraderRecord.valuations.adjusted.trade.amountGBP,\n\t\tPart_Exchange = AutotraderRecord.valuations.adjusted.partExchange.amountGBP,\n\t\tPrice_Indicator = AutotraderRecord.adverts.retailAdverts.priceIndicatorRating,\n\t\tRegNo = AutotraderRecord.OriginalInformation.RegNo,\n\t\tRetail = AutotraderRecord.valuations.adjusted.retail.amountGBP,\n\t\tStockNumber = AutotraderRecord.OriginalInformation.StockNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID,\n\t\tPriceIndicatorV2 = AutotraderRecord.adverts.retailAdverts.priceIndicatorRating,\n\t\tTrade = AutotraderRecord.valuations.marketAverage.trade.amountGBP\n\t)) ~> SQLAutotraderValuations\nStockMgmt sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tPerformanceScore as integer,\n\t\tPerformanceRating as string,\n\t\tYesterdayAdvertViews as integer,\n\t\tYesterdaySearchViews as integer,\n\t\tLastWeekAdvertViews as integer,\n\t\tLastWeekSearchViews as integer,\n\t\tAdvertURL as string,\n\t\tSource as string,\n\t\tDate as timestamp,\n\t\tRegNo as string,\n\t\tStockNo as string,\n\t\tUniqueID as integer,\n\t\tCurrentRecord as integer,\n\t\tRecordID as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['update [dbo].[autotrader advert test] set currentrecord = currentrecord - 1'],\n\tpostSQLs:['update [dbo].[autotrader advert test] set currentrecord = 1 where currentrecord is null;\\nupdate [dbo].[autotrader advert test] set date = getdate() where date is null;\\ndelete from [dbo].[autotrader advert test] where performancescore is null;'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tPerformanceScore = AutotraderRecord.responseMetrics.performanceRating.score,\n\t\tPerformanceRating = AutotraderRecord.responseMetrics.performanceRating.rating,\n\t\tYesterdayAdvertViews = AutotraderRecord.responseMetrics.yesterday.advertViews,\n\t\tYesterdaySearchViews = AutotraderRecord.responseMetrics.yesterday.searchViews,\n\t\tLastWeekAdvertViews = AutotraderRecord.responseMetrics.lastWeek.advertViews,\n\t\tLastWeekSearchViews = AutotraderRecord.responseMetrics.lastWeek.searchViews,\n\t\tRegNo = AutotraderRecord.OriginalInformation.RegNo,\n\t\tStockNo = AutotraderRecord.OriginalInformation.StockNo,\n\t\tRecordID = AutotraderRecord.OriginalInformation.RecordID\n\t)) ~> SQLAutotraderAdvert"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CloseITSalesLeads')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "CloseIT_Ext_Sales_Leads",
-								"type": "DatasetReference"
-							},
-							"name": "CloseITExtSalesLeads"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "SQLCloseITRaw_SalesLeads",
-								"type": "DatasetReference"
-							},
-							"name": "SQLCloseITRawSalesLeads"
-						}
-					],
-					"transformations": [],
-					"script": "source(output(\n\t\tDealer_ID as short,\n\t\tDeal_ID as integer,\n\t\tDealerName as string,\n\t\tGroupName as string,\n\t\tCustomer_SalesPerson as string,\n\t\tCustomer_ID as integer,\n\t\tCustomer_ProspectURN as string,\n\t\tCustomer_Type as string,\n\t\tCustomer_PostCode as string,\n\t\tCustomer_LeadProviderName as string,\n\t\tCustomer_DateCreated as date 'yyyy-MM-dd',\n\t\tCustomer_ChangeDate as string,\n\t\tCustomer_Status as string,\n\t\tCustomer_DateStatusChanged as string,\n\t\tCustomer_QuickLostReason as string,\n\t\tCustomer_FirstContact as string,\n\t\tCustomer_DateSold as string,\n\t\tCustomer_DateLost as string,\n\t\tDeal_Type as string,\n\t\tDeal_Gap as integer,\n\t\tDeal_Paint as integer,\n\t\tDeal_Warranty as integer,\n\t\tDeal_ClosedDate as string,\n\t\tDeal_BasicPrice as double,\n\t\tDeal_DeilveryCharge as double,\n\t\tDeal_FirstRegFee as double,\n\t\tDeal_RoadTax as double,\n\t\tDesired_Make as string,\n\t\tDesired_Model as string,\n\t\tDeal_Make as string,\n\t\tDeal_Model as string,\n\t\tDeal_ModelVariant as string,\n\t\tDeal_FuelType as string,\n\t\tDeal_GearType as string,\n\t\tDeal_OrderMethod as string,\n\t\tDeal_Colour as string,\n\t\tDeal_Interior as string,\n\t\tDeal_Mileage as integer,\n\t\tDeal_DateConfirmed as string,\n\t\tDeal_ModelYear as double,\n\t\tDeal_Registration as string,\n\t\tDeal_DateOfRegistration as string,\n\t\tDeal_DemoDriven as string,\n\t\tDeal_ServicePayment as string,\n\t\tDeal_ExpectedDeliveryMonth as short,\n\t\tDeal_ExpectedDeliveryYear as short,\n\t\tDeal_ExpectedDeliveryTimeOfMonth as string,\n\t\tDeal_DepositPaymentMethod as string,\n\t\tDeal_FinanceMethod as string,\n\t\tDeal_MonthlyBudget as double,\n\t\tDeal_Deposit as short,\n\t\tDeal_NewFinancedBy as string,\n\t\tPartEx_ID as integer,\n\t\tPartEx_Registration as string,\n\t\tPartEx_Make as string,\n\t\tPartEx_Model as string,\n\t\tPartEx_Variant as string,\n\t\tPartEx_Colour as string,\n\t\tPartEx_DateOfRegistration as string,\n\t\tPartEx_Mileage as integer,\n\t\tPartEx_VatQualifying as integer,\n\t\tPartEx_NumberOfOwners as short,\n\t\tPartEx_ServiceHistory as short,\n\t\tPartEx_SIVAmount as double,\n\t\tInitialContact_Created as string,\n\t\tInitialContact_Type as string,\n\t\tDeal_CancelledDate as string,\n\t\tDeal_HandOverDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> CloseITExtSalesLeads\nCloseITExtSalesLeads sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tDealer_ID as integer,\n\t\tDeal_ID as integer,\n\t\tDealerName as string,\n\t\tGroupName as string,\n\t\tCustomer_SalesPerson as string,\n\t\tCustomer_ID as integer,\n\t\tCustomer_ProspectURN as string,\n\t\tCustomer_Type as string,\n\t\tCustomer_PostCode as string,\n\t\tCustomer_LeadProviderName as string,\n\t\tCustomer_DateCreated as timestamp,\n\t\tCustomer_ChangeDate as timestamp,\n\t\tCustomer_Status as string,\n\t\tCustomer_DateStatusChanged as timestamp,\n\t\tCustomer_QuickLostReason as string,\n\t\tCustomer_FirstContact as string,\n\t\tCustomer_DateSold as string,\n\t\tCustomer_DateLost as string,\n\t\tDeal_Type as string,\n\t\tDeal_Gap as integer,\n\t\tDeal_Paint as integer,\n\t\tDeal_Warranty as integer,\n\t\tDeal_ClosedDate as timestamp,\n\t\tDeal_BasicPrice as decimal(18,2),\n\t\tDeal_DeliveryCharge as decimal(18,2),\n\t\tDeal_FirstRegFee as decimal(18,2),\n\t\tDeal_RoadTax as decimal(18,2),\n\t\tDesired_Make as string,\n\t\tDesired_Model as string,\n\t\tDeal_Make as string,\n\t\tDeal_Model as string,\n\t\tDeal_ModelVariant as string,\n\t\tDeal_FuelType as string,\n\t\tDeal_GearType as string,\n\t\tDeal_OrderMethod as string,\n\t\tDeal_Colour as string,\n\t\tDeal_Interior as string,\n\t\tDeal_Mileage as integer,\n\t\tDeal_DateConfirmed as timestamp,\n\t\tDeal_ModelYear as string,\n\t\tDeal_Registration as string,\n\t\tDeal_DateOfRegistration as timestamp,\n\t\tDeal_DemoDriven as string,\n\t\tDeal_ServicePayment as string,\n\t\tDeal_ExpectedDeliveryMonth as integer,\n\t\tDeal_ExpectedDeliveryYear as integer,\n\t\tDeal_ExpectedDeliveryTimeOfMonth as string,\n\t\tDeal_DepositPaymentMethod as string,\n\t\tDeal_FinanceMethod as string,\n\t\tDeal_MonthlyBudget as decimal(18,2),\n\t\tDeal_Deposit as decimal(18,2),\n\t\tDeal_NewFinancedBy as string,\n\t\tPartEx_ID as integer,\n\t\tPartEx_Registration as string,\n\t\tPartEx_Make as string,\n\t\tPartEx_Model as string,\n\t\tPartEx_Variant as string,\n\t\tPartEx_Colour as string,\n\t\tPartEx_DateOfRegistration as timestamp,\n\t\tPartEx_Mileage as integer,\n\t\tPartEx_VatQualifying as integer,\n\t\tPartEx_NumberOfOwners as integer,\n\t\tPartEx_ServiceHistory as integer,\n\t\tPartEx_SIVAmount as decimal(18,2),\n\t\tInitialContact_Created as string,\n\t\tInitialContact_Type as string,\n\t\tDeal_CancelledDate as timestamp,\n\t\tDeal_HandOverDate as timestamp\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tpreSQLs:['truncate table [dbo].[CloseITRaw_SalesLeads]'],\n\tdateFormat:'dd/MM/yyyy',\n\ttimestampFormat:'dd/MM/yyyy',\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tDealer_ID,\n\t\tDeal_ID,\n\t\tDealerName,\n\t\tGroupName,\n\t\tCustomer_SalesPerson,\n\t\tCustomer_ID,\n\t\tCustomer_ProspectURN,\n\t\tCustomer_Type,\n\t\tCustomer_PostCode,\n\t\tCustomer_LeadProviderName,\n\t\tCustomer_DateCreated,\n\t\tCustomer_ChangeDate,\n\t\tCustomer_Status,\n\t\tCustomer_DateStatusChanged,\n\t\tCustomer_QuickLostReason,\n\t\tCustomer_FirstContact,\n\t\tCustomer_DateSold,\n\t\tCustomer_DateLost,\n\t\tDeal_Type,\n\t\tDeal_Gap,\n\t\tDeal_Paint,\n\t\tDeal_Warranty,\n\t\tDeal_ClosedDate,\n\t\tDeal_BasicPrice,\n\t\tDeal_DeliveryCharge = Deal_DeilveryCharge,\n\t\tDeal_FirstRegFee,\n\t\tDeal_RoadTax,\n\t\tDesired_Make,\n\t\tDesired_Model,\n\t\tDeal_Make,\n\t\tDeal_Model,\n\t\tDeal_ModelVariant,\n\t\tDeal_FuelType,\n\t\tDeal_GearType,\n\t\tDeal_OrderMethod,\n\t\tDeal_Colour,\n\t\tDeal_Interior,\n\t\tDeal_Mileage,\n\t\tDeal_DateConfirmed,\n\t\tDeal_ModelYear,\n\t\tDeal_DateOfRegistration,\n\t\tDeal_DemoDriven,\n\t\tDeal_ServicePayment,\n\t\tDeal_ExpectedDeliveryMonth,\n\t\tDeal_ExpectedDeliveryYear,\n\t\tDeal_ExpectedDeliveryTimeOfMonth,\n\t\tDeal_DepositPaymentMethod,\n\t\tDeal_FinanceMethod,\n\t\tDeal_MonthlyBudget,\n\t\tDeal_Deposit,\n\t\tDeal_NewFinancedBy,\n\t\tPartEx_ID,\n\t\tPartEx_Registration,\n\t\tPartEx_Make,\n\t\tPartEx_Model,\n\t\tPartEx_Variant,\n\t\tPartEx_Colour,\n\t\tPartEx_DateOfRegistration,\n\t\tPartEx_Mileage,\n\t\tPartEx_VatQualifying,\n\t\tPartEx_NumberOfOwners,\n\t\tPartEx_ServiceHistory,\n\t\tPartEx_SIVAmount,\n\t\tInitialContact_Created,\n\t\tInitialContact_Type,\n\t\tDeal_Registration,\n\t\tDeal_CancelledDate,\n\t\tDeal_HandOverDate\n\t)) ~> SQLCloseITRawSalesLeads"
 				}
 			},
 			"dependsOn": []

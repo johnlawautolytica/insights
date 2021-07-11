@@ -19005,8 +19005,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "PeterVardyVehicleStock",
-						"type": "ExecuteDataFlow",
+						"name": "CopyCSVToSQL",
+						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -19017,29 +19017,437 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"dataflow": {
-								"referenceName": "PeterVardyVehicleStock",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"PeterVardyVehicleStock": {},
-									"SQLVehicleStock": {}
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"wildcardFileName": "VehicleStock-*.csv",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
 								}
 							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from vehiclestock where clientid <> 10000",
+								"disableMetricsCollection": false
 							},
-							"traceLevel": "Fine"
-						}
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Client ID"
+										},
+										"sink": {
+											"name": "ClientID",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealer ID"
+										},
+										"sink": {
+											"name": "DealershipID",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Vehicle Type"
+										},
+										"sink": {
+											"name": "Type",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Registration Number"
+										},
+										"sink": {
+											"name": "RegistrationNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Stock Number"
+										},
+										"sink": {
+											"name": "StockNo",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Group Date in Stock"
+										},
+										"sink": {
+											"name": "GroupDateInStock",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Dealership Date In Stock"
+										},
+										"sink": {
+											"name": "DealershipDateInStock",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Status"
+										},
+										"sink": {
+											"name": "Status",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "New Or Used"
+										},
+										"sink": {
+											"name": "NewOrUsed",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Chassis"
+										},
+										"sink": {
+											"name": "Chassis",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Registration Date"
+										},
+										"sink": {
+											"name": "FirstRegisteredDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Make"
+										},
+										"sink": {
+											"name": "Make",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Model"
+										},
+										"sink": {
+											"name": "Model",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Derivative"
+										},
+										"sink": {
+											"name": "Derivative",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Trim"
+										},
+										"sink": {
+											"name": "Trim",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Engine Size"
+										},
+										"sink": {
+											"name": "EngineSize",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Bodystyle"
+										},
+										"sink": {
+											"name": "Bodystyle",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Odometer"
+										},
+										"sink": {
+											"name": "Mileage",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "FuelType"
+										},
+										"sink": {
+											"name": "FuelType",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Transmission"
+										},
+										"sink": {
+											"name": "Transmission",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Generic Colour"
+										},
+										"sink": {
+											"name": "GenericColour",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Doors"
+										},
+										"sink": {
+											"name": "Doors",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Stock Value"
+										},
+										"sink": {
+											"name": "SIV",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Vat"
+										},
+										"sink": {
+											"name": "Vat",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Source"
+										},
+										"sink": {
+											"name": "Source",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Vehicle Category Code"
+										},
+										"sink": {
+											"name": "ModelAnalysisCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Retail Price"
+										},
+										"sink": {
+											"name": "RetailPrice",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Purchaser ID"
+										},
+										"sink": {
+											"name": "Purchaser",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Supplier"
+										},
+										"sink": {
+											"name": "SupplierName",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Group Purchase Date"
+										},
+										"sink": {
+											"name": "PurchaseInvoiceDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Available Date"
+										},
+										"sink": {
+											"name": "AvailableDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Progress Code"
+										},
+										"sink": {
+											"name": "ProgressCode",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Reconditioning"
+										},
+										"sink": {
+											"name": "Recon",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Transport Costs"
+										},
+										"sink": {
+											"name": "TransportCosts",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Adjusted Stock Value"
+										},
+										"sink": {
+											"name": "AdjustedSIV",
+											"type": "Double",
+											"physicalType": "float"
+										}
+									},
+									{
+										"source": {
+											"name": "Received Date"
+										},
+										"sink": {
+											"name": "ReceivedDate",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Purchase Account"
+										},
+										"sink": {
+											"name": "PurchaseAccount",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Quarantine Status"
+										},
+										"sink": {
+											"name": "QuarantineStatus",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false,
+									"dateTimeFormat": "dd/MM/yyyy"
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "VehicleStockCSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQLVehicleStock",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					},
 					{
 						"name": "DoReferenceTableUpdate",
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "PeterVardyVehicleStock",
+								"activity": "CopyCSVToSQL",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -19099,7 +19507,8 @@
 				"lastPublishTime": "2021-06-09T21:35:44Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/PeterVardyVehicleStock')]",
+				"[concat(variables('factoryId'), '/datasets/VehicleStockCSV')]",
+				"[concat(variables('factoryId'), '/datasets/SQLVehicleStock')]",
 				"[concat(variables('factoryId'), '/linkedServices/autolytica')]"
 			]
 		},
@@ -40645,7 +41054,7 @@
 						"type": "String"
 					},
 					{
-						"name": "Group Date In Stock",
+						"name": "Group Date in Stock",
 						"type": "String"
 					},
 					{
@@ -40689,7 +41098,7 @@
 						"type": "String"
 					},
 					{
-						"name": "tyle",
+						"name": "Bodystyle",
 						"type": "String"
 					},
 					{
@@ -40713,10 +41122,6 @@
 						"type": "String"
 					},
 					{
-						"name": "Specific Colour",
-						"type": "String"
-					},
-					{
 						"name": "Doors",
 						"type": "String"
 					},
@@ -40729,11 +41134,11 @@
 						"type": "String"
 					},
 					{
-						"name": "ce",
+						"name": "Source",
 						"type": "String"
 					},
 					{
-						"name": "Vehicle Catagory Code",
+						"name": "Vehicle Category Code",
 						"type": "String"
 					},
 					{
@@ -40781,7 +41186,7 @@
 						"type": "String"
 					},
 					{
-						"name": "us",
+						"name": "Quarantine Status",
 						"type": "String"
 					}
 				]
@@ -42008,8 +42413,12 @@
 							"name": "SQLVehicleStock"
 						}
 					],
-					"transformations": [],
-					"script": "source(output(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tType as string,\n\t\tRegistrationNo as string,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date 'dd/MM/yyyy',\n\t\tDealershipDateInStock as date 'dd/MM/yyyy',\n\t\tStatus as string,\n\t\tNewOrUsed as string,\n\t\tChassis as string,\n\t\tFirstRegisteredDate as date 'dd/MM/yyyy',\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tTrim as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as integer,\n\t\tSIV as float,\n\t\tVat as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tRetailPrice as float,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date 'dd/MM/yyyy',\n\t\tAvailableDate as date 'dd/MM/yyyy',\n\t\tProgressCode as string,\n\t\tRecon as float,\n\t\tTransportCosts as float,\n\t\tAdjustedSIV as float,\n\t\tAvailableDate2 as date 'dd/MM/yyyy',\n\t\tPurchaseInvoiceDate2 as date 'dd/MM/yyyy',\n\t\tReceivedDate as date 'dd/MM/yyyy',\n\t\tDateInGroup as date 'dd/MM/yyyy',\n\t\tPurchaseAccount as string,\n\t\tQuarantineStatus as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy']) ~> PeterVardyVehicleStock\nPeterVardyVehicleStock sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tType as string,\n\t\tRegistrationNo as string,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date,\n\t\tDealershipDateInStock as date,\n\t\tStatus as string,\n\t\tNewOrUsed as string,\n\t\tChassis as string,\n\t\tFirstRegisteredDate as date,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tTrim as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as integer,\n\t\tSIV as double,\n\t\tVat as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tRetailPrice as double,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tProgressCode as string,\n\t\tRecon as double,\n\t\tTransportCosts as double,\n\t\tAdjustedSIV as double,\n\t\tReceivedDate as date,\n\t\tDateInGroup as date,\n\t\tPurchaseAccount as string,\n\t\tQuarantineStatus as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tClientID,\n\t\tDealershipID,\n\t\tType,\n\t\tRegistrationNo,\n\t\tStockNo,\n\t\tGroupDateInStock,\n\t\tDealershipDateInStock,\n\t\tStatus,\n\t\tNewOrUsed,\n\t\tChassis,\n\t\tFirstRegisteredDate,\n\t\tMake,\n\t\tModel,\n\t\tDerivative,\n\t\tTrim,\n\t\tEngineSize,\n\t\tBodystyle,\n\t\tMileage,\n\t\tFuelType,\n\t\tTransmission,\n\t\tGenericColour,\n\t\tSpecificColour,\n\t\tDoors,\n\t\tSIV,\n\t\tVat,\n\t\tSource,\n\t\tModelAnalysisCode,\n\t\tRetailPrice,\n\t\tPurchaser,\n\t\tSupplierName,\n\t\tPurchaseInvoiceDate,\n\t\tAvailableDate,\n\t\tProgressCode,\n\t\tRecon,\n\t\tTransportCosts,\n\t\tAdjustedSIV,\n\t\tReceivedDate,\n\t\tDateInGroup,\n\t\tPurchaseAccount,\n\t\tQuarantineStatus\n\t)) ~> SQLVehicleStock"
+					"transformations": [
+						{
+							"name": "TrimStockNumber"
+						}
+					],
+					"script": "source(output(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tType as string,\n\t\tRegistrationNo as string,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date 'dd/MM/yyyy',\n\t\tDealershipDateInStock as date 'dd/MM/yyyy',\n\t\tStatus as string,\n\t\tNewOrUsed as string,\n\t\tChassis as string,\n\t\tFirstRegisteredDate as date 'dd/MM/yyyy',\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tTrim as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as integer,\n\t\tSIV as float,\n\t\tVat as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tRetailPrice as float,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date 'dd/MM/yyyy',\n\t\tAvailableDate as date 'dd/MM/yyyy',\n\t\tProgressCode as string,\n\t\tRecon as float,\n\t\tTransportCosts as float,\n\t\tAdjustedSIV as float,\n\t\tAvailableDate2 as date 'dd/MM/yyyy',\n\t\tPurchaseInvoiceDate2 as date 'dd/MM/yyyy',\n\t\tReceivedDate as date 'dd/MM/yyyy',\n\t\tDateInGroup as date 'dd/MM/yyyy',\n\t\tPurchaseAccount as string,\n\t\tQuarantineStatus as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdateFormats: ['dd/MM/yyyy']) ~> PeterVardyVehicleStock\nPeterVardyVehicleStock derive(StockNo = trim(StockNo)) ~> TrimStockNumber\nTrimStockNumber sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tClientID as integer,\n\t\tDealershipID as string,\n\t\tType as string,\n\t\tRegistrationNo as string,\n\t\tStockNo as string,\n\t\tGroupDateInStock as date,\n\t\tDealershipDateInStock as date,\n\t\tStatus as string,\n\t\tNewOrUsed as string,\n\t\tChassis as string,\n\t\tFirstRegisteredDate as date,\n\t\tMake as string,\n\t\tModel as string,\n\t\tDerivative as string,\n\t\tTrim as string,\n\t\tEngineSize as string,\n\t\tBodystyle as string,\n\t\tMileage as integer,\n\t\tFuelType as string,\n\t\tTransmission as string,\n\t\tGenericColour as string,\n\t\tSpecificColour as string,\n\t\tDoors as integer,\n\t\tSIV as double,\n\t\tVat as string,\n\t\tSource as string,\n\t\tModelAnalysisCode as string,\n\t\tRetailPrice as double,\n\t\tPurchaser as string,\n\t\tSupplierName as string,\n\t\tPurchaseInvoiceDate as date,\n\t\tAvailableDate as date,\n\t\tProgressCode as string,\n\t\tRecon as double,\n\t\tTransportCosts as double,\n\t\tAdjustedSIV as double,\n\t\tReceivedDate as date,\n\t\tDateInGroup as date,\n\t\tPurchaseAccount as string,\n\t\tQuarantineStatus as string\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tClientID,\n\t\tDealershipID,\n\t\tType,\n\t\tRegistrationNo,\n\t\tStockNo,\n\t\tGroupDateInStock,\n\t\tDealershipDateInStock,\n\t\tStatus,\n\t\tNewOrUsed,\n\t\tChassis,\n\t\tFirstRegisteredDate,\n\t\tMake,\n\t\tModel,\n\t\tDerivative,\n\t\tTrim,\n\t\tEngineSize,\n\t\tBodystyle,\n\t\tMileage,\n\t\tFuelType,\n\t\tTransmission,\n\t\tGenericColour,\n\t\tSpecificColour,\n\t\tDoors,\n\t\tSIV,\n\t\tVat,\n\t\tSource,\n\t\tModelAnalysisCode,\n\t\tRetailPrice,\n\t\tPurchaser,\n\t\tSupplierName,\n\t\tPurchaseInvoiceDate,\n\t\tAvailableDate,\n\t\tProgressCode,\n\t\tRecon,\n\t\tTransportCosts,\n\t\tAdjustedSIV,\n\t\tReceivedDate,\n\t\tDateInGroup,\n\t\tPurchaseAccount,\n\t\tQuarantineStatus\n\t)) ~> SQLVehicleStock"
 				}
 			},
 			"dependsOn": [

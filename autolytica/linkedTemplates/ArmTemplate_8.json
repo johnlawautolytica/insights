@@ -88,7 +88,7 @@
 						"type": "String"
 					},
 					{
-						"name": "Group Date In Stock",
+						"name": "Group Date in Stock",
 						"type": "String"
 					},
 					{
@@ -132,7 +132,7 @@
 						"type": "String"
 					},
 					{
-						"name": "tyle",
+						"name": "Bodystyle",
 						"type": "String"
 					},
 					{
@@ -156,10 +156,6 @@
 						"type": "String"
 					},
 					{
-						"name": "Specific Colour",
-						"type": "String"
-					},
-					{
 						"name": "Doors",
 						"type": "String"
 					},
@@ -172,11 +168,11 @@
 						"type": "String"
 					},
 					{
-						"name": "ce",
+						"name": "Source",
 						"type": "String"
 					},
 					{
-						"name": "Vehicle Catagory Code",
+						"name": "Vehicle Category Code",
 						"type": "String"
 					},
 					{
@@ -224,7 +220,7 @@
 						"type": "String"
 					},
 					{
-						"name": "us",
+						"name": "Quarantine Status",
 						"type": "String"
 					}
 				]

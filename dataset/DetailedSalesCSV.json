@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"folderPath": "Client Folder",
 				"container": "autolytica"
 			},
 			"columnDelimiter": ",",

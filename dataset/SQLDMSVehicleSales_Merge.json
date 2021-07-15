@@ -180,6 +180,10 @@
 			{
 				"name": "Sales Account Name",
 				"type": "varchar"
+			},
+			{
+				"name": "FileName",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {

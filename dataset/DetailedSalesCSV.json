@@ -2,7 +2,7 @@
 	"name": "DetailedSalesCSV",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AutolyticaBlobStorage",
+			"referenceName": "AutolyticaBlobProd",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],

@@ -1,0 +1,11 @@
+{
+	"name": "AutolyticaProdKeyVault",
+	"properties": {
+		"description": "Main key vault ",
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://autolytica.vault.azure.net/"
+		}
+	}
+}

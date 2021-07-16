@@ -1,0 +1,10 @@
+{
+	"name": "AutolyticaKeyVault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://autolytica.vault.azure.net/"
+		}
+	}
+}

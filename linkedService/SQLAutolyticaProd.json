@@ -1,0 +1,19 @@
+{
+	"name": "SQLAutolyticaProd",
+	"properties": {
+		"description": "The production database in the RTC environment",
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=autolyticaprod.database.windows.net;Initial Catalog=autolyticaprod;User ID=autolytica",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AutolyticaProdKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQLAutolyticaSecret-autolyticapassword"
+			}
+		}
+	}
+}

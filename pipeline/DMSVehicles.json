@@ -394,7 +394,8 @@
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
+							"treatBooleanAsNumber": false,
+							"dateTimeFormat": "dd/MM/yyyy"
 						}
 					}
 				},

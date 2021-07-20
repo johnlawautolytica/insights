@@ -1,0 +1,3237 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolyticaprod"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderValuationsExtended')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AdjustedPartExchange",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "AdjustedRetail",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "AdjustedTrade",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "Part_Exchange",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Price_Indicator",
+						"type": "varchar"
+					},
+					{
+						"name": "RegNo",
+						"type": "varchar"
+					},
+					{
+						"name": "Retail",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "StockNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Trade",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Valuation_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					},
+					{
+						"name": "PriceIndicatorV2",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Valuations Extended"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLAutotraderValuationsTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AdjustedPartExchange",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "AdjustedRetail",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "AdjustedTrade",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Date",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "Part_Exchange",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Price_Indicator",
+						"type": "varchar"
+					},
+					{
+						"name": "RegNo",
+						"type": "varchar"
+					},
+					{
+						"name": "Retail",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "StockNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "Trade",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Valuation_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentRecord",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordID",
+						"type": "varchar"
+					},
+					{
+						"name": "PriceIndicatorV2",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Autotrader Valuations Test"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLClocking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ClockingSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmployeeName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmployeeType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BookingNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Action",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DateTimeOn",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DateTimeOff",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "AdjElapsed",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Allowed",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WorkType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SaleType",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Clocking"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLCloseITRaw_SalesLeads')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Dealer_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerName",
+						"type": "varchar"
+					},
+					{
+						"name": "GroupName",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_SalesPerson",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Customer_ProspectURN",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_PostCode",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_LeadProviderName",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_DateCreated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Customer_ChangeDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Customer_Status",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_DateStatusChanged",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Customer_QuickLostReason",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_FirstContact",
+						"type": "varchar"
+					},
+					{
+						"name": "Customer_DateSold",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Customer_DateLost",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Deal_Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Deal_Gap",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_Paint",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_Warranty",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_ClosedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Deal_BasicPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Deal_DeliveryCharge",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Deal_FirstRegFee",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Deal_RoadTax",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Desired_Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Desired_Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_ModelVariant",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_FuelType",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_GearType",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_OrderMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_Interior",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_DateConfirmed",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Deal_ModelYear",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_Registration",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_DateOfRegistration",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Deal_DemoDriven",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_ServicePayment",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_ExpectedDeliveryMonth",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_ExpectedDeliveryYear",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deal_ExpectedDeliveryTimeOfMonth",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_DepositPaymentMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_FinanceMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_MonthlyBudget",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Deal_Deposit",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Deal_NewFinancedBy",
+						"type": "varchar"
+					},
+					{
+						"name": "PartEx_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartEx_Registration",
+						"type": "varchar"
+					},
+					{
+						"name": "PartEx_Make",
+						"type": "varchar"
+					},
+					{
+						"name": "PartEx_Model",
+						"type": "varchar"
+					},
+					{
+						"name": "PartEx_Variant",
+						"type": "varchar"
+					},
+					{
+						"name": "PartEx_Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "PartEx_DateOfRegistration",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "PartEx_Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartEx_VatQualifying",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartEx_NumberOfOwners",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartEx_ServiceHistory",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PartEx_SIVAmount",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "InitialContact_Created",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InitialContact_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Deal_CancelledDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Deal_HandOverDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CloseITRaw_SalesLeads"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSAftersalesHours')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SaleType",
+						"type": "varchar"
+					},
+					{
+						"name": "InvoiceNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "WIPNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "RTSCode",
+						"type": "varchar"
+					},
+					{
+						"name": "SoldHours",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "TakenHours",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "Efficiency",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "SaleValue",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "RecoveryRate",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "Technician",
+						"type": "varchar"
+					},
+					{
+						"name": "LA",
+						"type": "varchar"
+					},
+					{
+						"name": "LT",
+						"type": "varchar"
+					},
+					{
+						"name": "Dealer",
+						"type": "varchar"
+					},
+					{
+						"name": "OperatorName",
+						"type": "varchar"
+					},
+					{
+						"name": "FranchiseCode",
+						"type": "varchar"
+					},
+					{
+						"name": "ChassisNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "DateEdited",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSAftersalesHours"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSAftersalesWIP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Department",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WIP",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Date Due",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Customer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Registration Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Operator",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Overdue",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Parts Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Parts Lines",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Labour Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Labour Lines",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Total Value",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSAftersalesWIP"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSCustomer')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CustomerNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Title",
+						"type": "varchar"
+					},
+					{
+						"name": "Forename",
+						"type": "varchar"
+					},
+					{
+						"name": "Surname",
+						"type": "varchar"
+					},
+					{
+						"name": "Address1",
+						"type": "varchar"
+					},
+					{
+						"name": "Address2",
+						"type": "varchar"
+					},
+					{
+						"name": "Address3",
+						"type": "varchar"
+					},
+					{
+						"name": "Address4",
+						"type": "varchar"
+					},
+					{
+						"name": "Postcode",
+						"type": "varchar"
+					},
+					{
+						"name": "HomePhone",
+						"type": "varchar"
+					},
+					{
+						"name": "MobilePhone",
+						"type": "varchar"
+					},
+					{
+						"name": "EmailAddress",
+						"type": "varchar"
+					},
+					{
+						"name": "HomeTPS",
+						"type": "varchar"
+					},
+					{
+						"name": "MobileTPS",
+						"type": "varchar"
+					},
+					{
+						"name": "EmailTPS",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentSalesSMS",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentSalesPhone",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentSalesEmail",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentSalesPost",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentAfterSalesSMS",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentAfterSalesPhone",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentAfterSalesEmail",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentAfterSalesPost",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentBMWSMS",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentBMWPhone",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentBMWEmail",
+						"type": "varchar"
+					},
+					{
+						"name": "ConsentBMWPost",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSCustomer"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSEmployee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Dealership",
+						"type": "varchar"
+					},
+					{
+						"name": "EmployeeType",
+						"type": "varchar"
+					},
+					{
+						"name": "Check",
+						"type": "varchar"
+					},
+					{
+						"name": "RefID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSEmployee"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSPartsSales')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DepartmentID",
+						"type": "varchar"
+					},
+					{
+						"name": "SaleType",
+						"type": "varchar"
+					},
+					{
+						"name": "SaleTypeDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "Franchise",
+						"type": "varchar"
+					},
+					{
+						"name": "PartNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "RetailValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SaleValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "CostValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "GrossProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "GrossProfitPercentage",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "WIPNo",
+						"type": "varchar"
+					},
+					{
+						"name": "AnalysisCode",
+						"type": "varchar"
+					},
+					{
+						"name": "OrderQuantity",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SellingPrice",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SalesDate",
+						"type": "date"
+					},
+					{
+						"name": "ProductGroup",
+						"type": "varchar"
+					},
+					{
+						"name": "AftersalesDepartment",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSPartsSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSPartsStock')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Department",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Franchise",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Part Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Quantity",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Average Cost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "3_6_Months",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "6_9_Months",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "9_12_Months",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "12_18_Months",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "18_24_Months",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "24_Months",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Date last sold",
+						"type": "varchar"
+					},
+					{
+						"name": "Date last purchased",
+						"type": "varchar"
+					},
+					{
+						"name": "Date last moved",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSPartsStock_merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSVehicle')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "VehicleID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "DateofRegistration",
+						"type": "date"
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "date"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "varchar"
+					},
+					{
+						"name": "LastServiceDate",
+						"type": "date"
+					},
+					{
+						"name": "NextServiceDate",
+						"type": "date"
+					},
+					{
+						"name": "LastMOTDate",
+						"type": "date"
+					},
+					{
+						"name": "NextMOTDate",
+						"type": "date"
+					},
+					{
+						"name": "LastWorkshopDate",
+						"type": "date"
+					},
+					{
+						"name": "CapCode",
+						"type": "varchar"
+					},
+					{
+						"name": "ChassisNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "DriverCustomerID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AftersalesCustomerID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SalesCustomerID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordStatus",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSVehicle"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSVehicleSales')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustId",
+						"type": "varchar"
+					},
+					{
+						"name": "Title",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Forename",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Surname",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Email",
+						"type": "nvarchar"
+					},
+					{
+						"name": "HomePhone",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Mobile",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Postcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehMagic",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StockNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Chassis",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "date"
+					},
+					{
+						"name": "DateInStock",
+						"type": "date"
+					},
+					{
+						"name": "CapVin",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CapCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Make",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EngineSize",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Fuel",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Transmission",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenericColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SpecificColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Doors",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Siv",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SaleDate",
+						"type": "date"
+					},
+					{
+						"name": "InvNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SalesExec",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FullInvValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Paint",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Warr",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Gap",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Acc",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Recon",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "FinanceCommission",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Profit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SaleType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Px1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Px2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Px3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Source",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ModelAnalysisCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Purchaser",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SupplierName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PurchaseInvoiceDate",
+						"type": "date"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "date"
+					},
+					{
+						"name": "AccessoryProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "PaintProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "WarrProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "GapProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "OtherProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "VolumeBonus",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Bonus",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "RflProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "MetalProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "VehicleInvoiceValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "date"
+					},
+					{
+						"name": "GroupPurchaseDate",
+						"type": "date"
+					},
+					{
+						"name": "ReceivedDate",
+						"type": "date"
+					},
+					{
+						"name": "DateInGroup",
+						"type": "date"
+					},
+					{
+						"name": "PurchaseAccount",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FuelTypeID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SalesAccountID",
+						"type": "varchar"
+					},
+					{
+						"name": "SalesAccountName",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSVehicleSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSVehicleSales_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Customer ID",
+						"type": "varchar"
+					},
+					{
+						"name": "New Or Used",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Vehicle Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DMS Vehicle ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Stock Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Registration Number",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Registration Date",
+						"type": "date"
+					},
+					{
+						"name": "Dealership Date In Stock",
+						"type": "date"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Stock Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Sale Date",
+						"type": "date"
+					},
+					{
+						"name": "Invoice Number",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sales Executive ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Full Invoice Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Paint Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Warranty Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Gap Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Wheel Protection Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Add on Product 1",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Add on Product 2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Add on Product 3",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Add on Product 4",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Volume Bonus",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Other Bonus",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "RFL Profit",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Metal Profit",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Metal Invoice Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Delivery Date",
+						"type": "date"
+					},
+					{
+						"name": "Group Purchase Date",
+						"type": "date"
+					},
+					{
+						"name": "Received Date",
+						"type": "date"
+					},
+					{
+						"name": "Purchase Account",
+						"type": "varchar"
+					},
+					{
+						"name": "Sales Account ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Sales Account Name",
+						"type": "varchar"
+					},
+					{
+						"name": "FileName",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSVehicleSales_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSVehicleSales_Older')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CustId",
+						"type": "varchar"
+					},
+					{
+						"name": "Title",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Forename",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Surname",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Email",
+						"type": "nvarchar"
+					},
+					{
+						"name": "HomePhone",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Mobile",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Add4",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Postcode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehMagic",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StockNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Chassis",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "date"
+					},
+					{
+						"name": "DateInStock",
+						"type": "date"
+					},
+					{
+						"name": "CapVin",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CapCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Make",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EngineSize",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Fuel",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Transmission",
+						"type": "nvarchar"
+					},
+					{
+						"name": "GenericColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SpecificColour",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Doors",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Siv",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SaleDate",
+						"type": "date"
+					},
+					{
+						"name": "InvNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SalesExec",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FullInvValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Paint",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Warr",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Gap",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Acc",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Recon",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "FinanceCommission",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Profit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SaleType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Px1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Px2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Px3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Source",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ModelAnalysisCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Purchaser",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SupplierName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PurchaseInvoiceDate",
+						"type": "date"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "date"
+					},
+					{
+						"name": "AccessoryProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "PaintProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "WarrProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "GapProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "OtherProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "VolumeBonus",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Bonus",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "RflProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "MetalProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "VehicleInvoiceValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "date"
+					},
+					{
+						"name": "SalesAccountID",
+						"type": "varchar"
+					},
+					{
+						"name": "SalesAccountName",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSVehicleSales_Older"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLDMSWorkshopSales')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SalesType",
+						"type": "varchar"
+					},
+					{
+						"name": "InvoiceNo",
+						"type": "varchar"
+					},
+					{
+						"name": "WIPNo",
+						"type": "varchar"
+					},
+					{
+						"name": "RTSCode",
+						"type": "varchar"
+					},
+					{
+						"name": "HoursSold",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "HoursTaken",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Efficiency",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "SaleValue",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "RecoveryRate",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Technician",
+						"type": "varchar"
+					},
+					{
+						"name": "LA",
+						"type": "varchar"
+					},
+					{
+						"name": "LT",
+						"type": "varchar"
+					},
+					{
+						"name": "DealershipID",
+						"type": "varchar"
+					},
+					{
+						"name": "OperatorName",
+						"type": "varchar"
+					},
+					{
+						"name": "FranchiseCode",
+						"type": "varchar"
+					},
+					{
+						"name": "ChassisNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "DateEdited",
+						"type": "date"
+					},
+					{
+						"name": "Tmagic",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Vmagic",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DMSWorkshopSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLEMAXRaw_EnquiryActivity')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int"
+					},
+					{
+						"name": "DealerID",
+						"type": "varchar"
+					},
+					{
+						"name": "DealerCode",
+						"type": "varchar"
+					},
+					{
+						"name": "DealerName",
+						"type": "varchar"
+					},
+					{
+						"name": "SalesPerson",
+						"type": "varchar"
+					},
+					{
+						"name": "SalespersonID",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryID",
+						"type": "varchar"
+					},
+					{
+						"name": "CustomerID",
+						"type": "varchar"
+					},
+					{
+						"name": "CustomerType",
+						"type": "varchar"
+					},
+					{
+						"name": "SourceOfEnquiry",
+						"type": "varchar"
+					},
+					{
+						"name": "MethodOfContact",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleType",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleMake",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleRange",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleModel",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleDerivative",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleReg",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryVehicleVin",
+						"type": "varchar"
+					},
+					{
+						"name": "PXVehicle",
+						"type": "varchar"
+					},
+					{
+						"name": "PXReg",
+						"type": "varchar"
+					},
+					{
+						"name": "PXVin",
+						"type": "varchar"
+					},
+					{
+						"name": "PXMake",
+						"type": "varchar"
+					},
+					{
+						"name": "PXRange",
+						"type": "varchar"
+					},
+					{
+						"name": "PXModel",
+						"type": "varchar"
+					},
+					{
+						"name": "PXDerivative",
+						"type": "varchar"
+					},
+					{
+						"name": "PXSIValue",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "PXDisposalMethod",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferCreatedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "OfferVehicleType",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferVehicleMake",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferVehicleRange",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferVehicleModel",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferVehicleDerivative",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferVehicleReg",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferVehicleVin",
+						"type": "varchar"
+					},
+					{
+						"name": "VehicleBasePrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "AddonsPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Discounts",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "DeliveryFee",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "RegFee",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "RFLFee",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "TotalOTRprice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "PXVehicleOffer",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "PXOverAllowance",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "OrderNo",
+						"type": "varchar"
+					},
+					{
+						"name": "Financed",
+						"type": "varchar"
+					},
+					{
+						"name": "FinanceHouse",
+						"type": "varchar"
+					},
+					{
+						"name": "Rate",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "APR",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "FinanceTerms",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "FinanceType",
+						"type": "varchar"
+					},
+					{
+						"name": "CashDeposit",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "DealerFDA",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "ProviderFDA",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Cashback",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "FinanceValue",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "MonthlyPayments",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "EnquiryStatusCode",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "TestDriveDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "OrderDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "EstimatedHandoverDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "LostSaleDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "LostSaleReason",
+						"type": "varchar"
+					},
+					{
+						"name": "LostSaleRequestedDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "EMAXRaw_EnquiryActivity_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLEnquiryMAX_Enquiries')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EnquiryID",
+						"type": "varchar"
+					},
+					{
+						"name": "CustomerID",
+						"type": "varchar"
+					},
+					{
+						"name": "LeadID",
+						"type": "varchar"
+					},
+					{
+						"name": "StatusCode",
+						"type": "varchar"
+					},
+					{
+						"name": "StatusDescription",
+						"type": "varchar"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "varchar"
+					},
+					{
+						"name": "SourceOfEnquiry",
+						"type": "varchar"
+					},
+					{
+						"name": "MethodOfContact",
+						"type": "varchar"
+					},
+					{
+						"name": "SoldNewOrUsed",
+						"type": "varchar"
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "OrderDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Range",
+						"type": "varchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "FuelType",
+						"type": "varchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "StockNumber",
+						"type": "varchar"
+					},
+					{
+						"name": "LostSaleRequestedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "LostSaleAcceptedDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "LostSaleReason",
+						"type": "varchar"
+					},
+					{
+						"name": "uniqueid",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "EnquiryMAX_Enquiries"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLEnquiryMax')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealershipID",
+						"type": "varchar"
+					},
+					{
+						"name": "SalesType",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CustomerTitle",
+						"type": "varchar"
+					},
+					{
+						"name": "CustomerForename",
+						"type": "varchar"
+					},
+					{
+						"name": "CustomerSurname",
+						"type": "varchar"
+					},
+					{
+						"name": "CompanyName",
+						"type": "varchar"
+					},
+					{
+						"name": "Email",
+						"type": "varchar"
+					},
+					{
+						"name": "HomePhone",
+						"type": "varchar"
+					},
+					{
+						"name": "MobilePhone",
+						"type": "varchar"
+					},
+					{
+						"name": "WorkPhone",
+						"type": "varchar"
+					},
+					{
+						"name": "Postcode",
+						"type": "varchar"
+					},
+					{
+						"name": "EnquiryCreatedDate",
+						"type": "date"
+					},
+					{
+						"name": "EnquiryType",
+						"type": "varchar"
+					},
+					{
+						"name": "SalesExecutive",
+						"type": "varchar"
+					},
+					{
+						"name": "BusinessManager",
+						"type": "varchar"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "varchar"
+					},
+					{
+						"name": "VehicleType",
+						"type": "varchar"
+					},
+					{
+						"name": "Make",
+						"type": "varchar"
+					},
+					{
+						"name": "Range",
+						"type": "varchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Derivative",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationNo",
+						"type": "varchar"
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "date"
+					},
+					{
+						"name": "StockNo",
+						"type": "varchar"
+					},
+					{
+						"name": "GroupDateInStock",
+						"type": "date"
+					},
+					{
+						"name": "BranchDateInStock",
+						"type": "date"
+					},
+					{
+						"name": "FirstOrderDate",
+						"type": "date"
+					},
+					{
+						"name": "EnquiryStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "InvoicedDate",
+						"type": "date"
+					},
+					{
+						"name": "ExpectedDeliveryDate",
+						"type": "date"
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "date"
+					},
+					{
+						"name": "DeliveryCategory",
+						"type": "varchar"
+					},
+					{
+						"name": "MetalOnly",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "OTRPriceExcIns",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "TotalGoodsAndServicesIncIns",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Financed",
+						"type": "varchar"
+					},
+					{
+						"name": "FinanceProvider",
+						"type": "varchar"
+					},
+					{
+						"name": "FinanceType",
+						"type": "varchar"
+					},
+					{
+						"name": "FinanceScheme",
+						"type": "varchar"
+					},
+					{
+						"name": "LoanTerm",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "APR",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "FlatRate",
+						"type": "varchar"
+					},
+					{
+						"name": "FinanceBalance",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "VolumeBonus",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "Commission",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "DocFee",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "FinanceSubsidy",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "TotalFinanceMargin",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "GAP",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "GapProduct",
+						"type": "varchar"
+					},
+					{
+						"name": "Warranty",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "WarrantyProduct",
+						"type": "varchar"
+					},
+					{
+						"name": "Extras",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "ExtrasProduct",
+						"type": "varchar"
+					},
+					{
+						"name": "Paint",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "PaintProduct",
+						"type": "varchar"
+					},
+					{
+						"name": "TotalInsMargin",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "TotalFandIMargin",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "VolumeBonusCentral",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "DOCFeeCentral",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "TotalCentralIncome",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "DaysInStock",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastAdvertisedPrice",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "ModelAnalysisCode",
+						"type": "varchar"
+					},
+					{
+						"name": "SIV",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "StockNo2",
+						"type": "varchar"
+					},
+					{
+						"name": "ChassisNo",
+						"type": "varchar"
+					},
+					{
+						"name": "EngineSize",
+						"type": "varchar"
+					},
+					{
+						"name": "BodyStyle",
+						"type": "varchar"
+					},
+					{
+						"name": "Mileage",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FuelType",
+						"type": "varchar"
+					},
+					{
+						"name": "Transmission",
+						"type": "varchar"
+					},
+					{
+						"name": "Colour",
+						"type": "varchar"
+					},
+					{
+						"name": "TrimType",
+						"type": "varchar"
+					},
+					{
+						"name": "NumberOfDoors",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GrossProfit",
+						"type": "float",
+						"precision": 15
+					},
+					{
+						"name": "ReconditioningCost",
+						"type": "float",
+						"precision": 15
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "EnquiryMAXSales"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_BookingvUpsellDeclinedReasons')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ReasonID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Reason",
+						"type": "varchar"
+					},
+					{
+						"name": "Active",
+						"type": "bit"
+					},
+					{
+						"name": "Email",
+						"type": "bit"
+					},
+					{
+						"name": "AddToBooking",
+						"type": "bit"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_BookingvUpsellDeclinedReasons"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_BookingvUpsellLog_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Recorded",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UpsellId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FreeTextDeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Agent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "Declined",
+						"type": "bit"
+					},
+					{
+						"name": "LogSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Campaign",
+						"type": "bit"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_BookingvUpsellLog_Merge"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

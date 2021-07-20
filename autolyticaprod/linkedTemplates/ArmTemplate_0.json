@@ -1,0 +1,3477 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolyticaprod"
+		},
+		"AutolyticaBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AutolyticaBlobStorage'"
+		},
+		"Autolyticaftp_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Autolyticaftp'"
+		},
+		"RTCVHC_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RTCVHC'"
+		},
+		"VHCHeadersCSV_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VHCHeadersCSV'"
+		},
+		"VHCHeadersCSVFile_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VHCHeadersCSVFile'"
+		},
+		"VehicleStockCSV_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VehicleStockCSV'"
+		},
+		"enquiryMAX_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'enquiryMAX'"
+		},
+		"AutolyticaKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://autolytica.vault.azure.net/"
+		},
+		"Autolyticaftp_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "autolytica.exavault.com"
+		},
+		"Autolyticaftp_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "autolytica"
+		},
+		"RTCVHC_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data%20Sources/Partners/RTC/VHCHeadersE.csv"
+		},
+		"RTCVHC_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"VHCHeadersCSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data Sources/Partners/RTC/VHCHeadersE.csv"
+		},
+		"VHCHeadersCSV_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"VHCHeadersCSVFile_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk"
+		},
+		"VHCHeadersCSVFile_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"VehicleStockCSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data Sources/Vehicle Stock/10000 - Used Car Stock.csv"
+		},
+		"VehicleStockCSV_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"enquiryMAX_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data%20Sources/Partners/enquiryMAX"
+		},
+		"enquiryMAX_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "system@autolytica.co.uk"
+		},
+		"PeterVardySOBI1CreatedInBlobStorage_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage"
+		},
+		"trigger1PeterVardySOBI2CreatedInBlobStorage_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AutolyticaBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AutolyticaBlobStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutolyticaKeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AutolyticaKeyVault_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Autolyticaftp')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Sftp",
+				"typeProperties": {
+					"host": "[parameters('Autolyticaftp_properties_typeProperties_host')]",
+					"port": 22,
+					"skipHostKeyValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Autolyticaftp_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Autolyticaftp_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCVHC')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('RTCVHC_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Windows",
+					"userName": "[parameters('RTCVHC_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('RTCVHC_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VHCHeadersCSV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('VHCHeadersCSV_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Windows",
+					"userName": "[parameters('VHCHeadersCSV_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('VHCHeadersCSV_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VHCHeadersCSVFile')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('VHCHeadersCSVFile_properties_typeProperties_host')]",
+					"userId": "[parameters('VHCHeadersCSVFile_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('VHCHeadersCSVFile_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VehicleStockCSV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('VehicleStockCSV_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Basic",
+					"userName": "[parameters('VehicleStockCSV_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('VehicleStockCSV_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/enquiryMAX')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('enquiryMAX_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('enquiryMAX_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('enquiryMAX_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardySOBI1CreatedInBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/peter-vardy/blobs/",
+					"blobPathEndsWith": "SOBI1.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('PeterVardySOBI1CreatedInBlobStorage_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VHCHeadersCreatedInBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2020-04-25T21:27:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								0,
+								7
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1PeterVardySOBI2CreatedInBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/peter-vardy/blobs/",
+					"blobPathEndsWith": "SOBI2.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger1PeterVardySOBI2CreatedInBlobStorage_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderCompetitorsCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderCompetitors.csv",
+						"folderPath": "VehicleStock",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "AdvertText",
+						"type": "String"
+					},
+					{
+						"name": "AdvertURL",
+						"type": "String"
+					},
+					{
+						"name": "AttentionGrabber",
+						"type": "String"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "String"
+					},
+					{
+						"name": "Colour",
+						"type": "String"
+					},
+					{
+						"name": "CompetitorReg",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "Date"
+					},
+					{
+						"name": "DaysinStock",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "Fuel",
+						"type": "String"
+					},
+					{
+						"name": "Id",
+						"type": "String"
+					},
+					{
+						"name": "MainImage",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Mileage",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Owners",
+						"type": "String"
+					},
+					{
+						"name": "Plate",
+						"type": "String"
+					},
+					{
+						"name": "Price",
+						"type": "String"
+					},
+					{
+						"name": "PriceIndicator",
+						"type": "String"
+					},
+					{
+						"name": "PricePosition",
+						"type": "String"
+					},
+					{
+						"name": "Reg No",
+						"type": "String"
+					},
+					{
+						"name": "SellerName",
+						"type": "String"
+					},
+					{
+						"name": "SellerSegment",
+						"type": "String"
+					},
+					{
+						"name": "SellerTown",
+						"type": "String"
+					},
+					{
+						"name": "StockNumber",
+						"type": "String"
+					},
+					{
+						"name": "TaxRate",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderValuations.json",
+						"folderPath": "VehicleStock",
+						"container": "peter-vardy"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"OriginalInformation": {
+							"type": "object",
+							"properties": {
+								"RecordID": {
+									"type": "string"
+								},
+								"RegNo": {
+									"type": "string"
+								},
+								"StockNo": {
+									"type": "integer"
+								}
+							}
+						},
+						"information": {
+							"type": "object",
+							"properties": {
+								"derivative": {
+									"type": "string"
+								},
+								"make": {
+									"type": "string"
+								},
+								"model": {
+									"type": "string"
+								},
+								"owners": {
+									"type": "integer"
+								},
+								"plate": {
+									"type": "string"
+								},
+								"year": {
+									"type": "integer"
+								},
+								"attentionGrabber": {
+									"type": "string"
+								},
+								"advertText": {
+									"type": "string"
+								}
+							}
+						},
+						"advert": {
+							"type": "object",
+							"properties": {
+								"responseMetrics": {
+									"type": "object",
+									"properties": {
+										"performanceRating": {
+											"type": "object",
+											"properties": {
+												"score": {
+													"type": "integer"
+												},
+												"rating": {
+													"type": "string"
+												}
+											}
+										},
+										"yesterday": {
+											"type": "object",
+											"properties": {
+												"advertViews": {
+													"type": "integer"
+												},
+												"searchViews": {
+													"type": "integer"
+												}
+											}
+										},
+										"lastWeek": {
+											"type": "object",
+											"properties": {
+												"advertViews": {
+													"type": "integer"
+												},
+												"searchViews": {
+													"type": "integer"
+												}
+											}
+										}
+									}
+								},
+								"advertUrl": {
+									"type": "string"
+								},
+								"source": {
+									"type": "string"
+								}
+							}
+						},
+						"valuations": {
+							"type": "object",
+							"properties": {
+								"marketAverageGuidePrice": {
+									"type": "object",
+									"properties": {
+										"trade": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"retail": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"partExchange": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										}
+									}
+								},
+								"adjustedGuidePrice": {
+									"type": "object",
+									"properties": {
+										"trade": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"retail": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"partExchange": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"priceIndicator": {
+											"type": "string"
+										},
+										"priceIndicatorV2": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						},
+						"retailMetrics": {
+							"type": "object",
+							"properties": {
+								"liveMarketCondition": {
+									"type": "integer"
+								},
+								"marketSupply": {
+									"type": "integer"
+								},
+								"buyerDemand": {
+									"type": "integer"
+								},
+								"dealerMetrics": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"dealerId": {
+												"type": "string"
+											},
+											"dealerName": {
+												"type": "string"
+											},
+											"localRetailRating": {
+												"type": "integer"
+											},
+											"localDaysToSell": {
+												"type": "integer"
+											}
+										}
+									}
+								}
+							}
+						},
+						"competitors": {
+							"type": "object",
+							"properties": {
+								"totalResultCount": {
+									"type": "integer"
+								},
+								"filters": {
+									"type": "object",
+									"properties": {
+										"filterExclusions": {
+											"type": "array"
+										},
+										"includeWriteOffCategoryVehicles": {
+											"type": "boolean"
+										},
+										"segment": {
+											"type": "null"
+										},
+										"fuelType": {
+											"type": "string"
+										},
+										"distance": {
+											"type": "integer"
+										},
+										"plateMin": {
+											"type": "string"
+										},
+										"plateMax": {
+											"type": "string"
+										},
+										"mileageMin": {
+											"type": "null"
+										},
+										"mileageMax": {
+											"type": "null"
+										},
+										"engineSize": {
+											"type": "integer"
+										},
+										"colour": {
+											"type": "null"
+										},
+										"bodyType": {
+											"type": "string"
+										},
+										"postcode": {
+											"type": "string"
+										},
+										"taxRate": {
+											"type": "integer"
+										},
+										"doors": {
+											"type": "integer"
+										},
+										"driveTrain": {
+											"type": "string"
+										},
+										"trim": {
+											"type": "string"
+										},
+										"transmission": {
+											"type": "string"
+										}
+									}
+								},
+								"competitorAdverts": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"registration": {
+												"type": "string"
+											},
+											"make": {
+												"type": "string"
+											},
+											"model": {
+												"type": "string"
+											},
+											"derivative": {
+												"type": "string"
+											},
+											"mileage": {
+												"type": "integer"
+											},
+											"year": {
+												"type": "integer"
+											},
+											"plate": {
+												"type": "string"
+											},
+											"colour": {
+												"type": "string"
+											},
+											"insuranceWriteOffCategory": {
+												"type": "null"
+											},
+											"taxRate": {
+												"type": "integer"
+											},
+											"owners": {
+												"type": "null"
+											},
+											"bodyType": {
+												"type": "string"
+											},
+											"fuel": {
+												"type": "string"
+											},
+											"transmission": {
+												"type": "string"
+											},
+											"seller": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string"
+													},
+													"town": {
+														"type": "string"
+													},
+													"segment": {
+														"type": "string"
+													}
+												}
+											},
+											"atMetrics": {
+												"type": "object",
+												"properties": {
+													"pricePosition": {
+														"type": "number"
+													}
+												}
+											},
+											"atAdvertUrl": {
+												"type": "string"
+											},
+											"attentionGrabber": {
+												"type": "string"
+											},
+											"daysInStock": {
+												"type": "integer"
+											},
+											"mainImage": {
+												"type": "string"
+											},
+											"advertText": {
+												"type": "string"
+											},
+											"price": {
+												"type": "number"
+											},
+											"priceIndicator": {
+												"type": "string"
+											},
+											"priceIndicatorV2": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderJSONExtended')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderValuations-Extended.json",
+						"folderPath": "VehicleStock",
+						"container": "peter-vardy"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"OriginalInformation": {
+							"type": "object",
+							"properties": {
+								"RecordID": {
+									"type": "string"
+								},
+								"RegNo": {
+									"type": "string"
+								},
+								"StockNo": {
+									"type": "integer"
+								}
+							}
+						},
+						"information": {
+							"type": "object",
+							"properties": {
+								"derivative": {
+									"type": "string"
+								},
+								"make": {
+									"type": "string"
+								},
+								"model": {
+									"type": "string"
+								},
+								"owners": {
+									"type": "integer"
+								},
+								"plate": {
+									"type": "string"
+								},
+								"year": {
+									"type": "integer"
+								},
+								"attentionGrabber": {
+									"type": "string"
+								},
+								"advertText": {
+									"type": "string"
+								}
+							}
+						},
+						"advert": {
+							"type": "object",
+							"properties": {
+								"responseMetrics": {
+									"type": "object",
+									"properties": {
+										"performanceRating": {
+											"type": "object",
+											"properties": {
+												"score": {
+													"type": "integer"
+												},
+												"rating": {
+													"type": "string"
+												}
+											}
+										},
+										"yesterday": {
+											"type": "object",
+											"properties": {
+												"advertViews": {
+													"type": "integer"
+												},
+												"searchViews": {
+													"type": "integer"
+												}
+											}
+										},
+										"lastWeek": {
+											"type": "object",
+											"properties": {
+												"advertViews": {
+													"type": "integer"
+												},
+												"searchViews": {
+													"type": "integer"
+												}
+											}
+										}
+									}
+								},
+								"advertUrl": {
+									"type": "string"
+								},
+								"source": {
+									"type": "string"
+								}
+							}
+						},
+						"valuations": {
+							"type": "object",
+							"properties": {
+								"marketAverageGuidePrice": {
+									"type": "object",
+									"properties": {
+										"trade": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"retail": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"partExchange": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										}
+									}
+								},
+								"adjustedGuidePrice": {
+									"type": "object",
+									"properties": {
+										"trade": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"retail": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"partExchange": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "number"
+												}
+											}
+										},
+										"priceIndicator": {
+											"type": "string"
+										},
+										"priceIndicatorV2": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						},
+						"retailMetrics": {
+							"type": "object",
+							"properties": {
+								"liveMarketCondition": {
+									"type": "integer"
+								},
+								"marketSupply": {
+									"type": "integer"
+								},
+								"buyerDemand": {
+									"type": "integer"
+								},
+								"dealerMetrics": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"dealerId": {
+												"type": "string"
+											},
+											"dealerName": {
+												"type": "string"
+											},
+											"localRetailRating": {
+												"type": "integer"
+											},
+											"localDaysToSell": {
+												"type": "integer"
+											}
+										}
+									}
+								}
+							}
+						},
+						"competitors": {
+							"type": "object",
+							"properties": {
+								"totalResultCount": {
+									"type": "integer"
+								},
+								"filters": {
+									"type": "object",
+									"properties": {
+										"filterExclusions": {
+											"type": "array"
+										},
+										"includeWriteOffCategoryVehicles": {
+											"type": "boolean"
+										},
+										"segment": {
+											"type": "null"
+										},
+										"fuelType": {
+											"type": "string"
+										},
+										"distance": {
+											"type": "integer"
+										},
+										"plateMin": {
+											"type": "string"
+										},
+										"plateMax": {
+											"type": "string"
+										},
+										"mileageMin": {
+											"type": "null"
+										},
+										"mileageMax": {
+											"type": "null"
+										},
+										"engineSize": {
+											"type": "integer"
+										},
+										"colour": {
+											"type": "null"
+										},
+										"bodyType": {
+											"type": "string"
+										},
+										"postcode": {
+											"type": "string"
+										},
+										"taxRate": {
+											"type": "integer"
+										},
+										"doors": {
+											"type": "integer"
+										},
+										"driveTrain": {
+											"type": "string"
+										},
+										"trim": {
+											"type": "string"
+										},
+										"transmission": {
+											"type": "string"
+										}
+									}
+								},
+								"competitorAdverts": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"registration": {
+												"type": "string"
+											},
+											"make": {
+												"type": "string"
+											},
+											"model": {
+												"type": "string"
+											},
+											"derivative": {
+												"type": "string"
+											},
+											"mileage": {
+												"type": "integer"
+											},
+											"year": {
+												"type": "integer"
+											},
+											"plate": {
+												"type": "string"
+											},
+											"colour": {
+												"type": "string"
+											},
+											"insuranceWriteOffCategory": {
+												"type": "null"
+											},
+											"taxRate": {
+												"type": "integer"
+											},
+											"owners": {
+												"type": "null"
+											},
+											"bodyType": {
+												"type": "string"
+											},
+											"fuel": {
+												"type": "string"
+											},
+											"transmission": {
+												"type": "string"
+											},
+											"seller": {
+												"type": "object",
+												"properties": {
+													"name": {
+														"type": "string"
+													},
+													"town": {
+														"type": "string"
+													},
+													"segment": {
+														"type": "string"
+													}
+												}
+											},
+											"atMetrics": {
+												"type": "object",
+												"properties": {
+													"pricePosition": {
+														"type": "number"
+													}
+												}
+											},
+											"atAdvertUrl": {
+												"type": "string"
+											},
+											"attentionGrabber": {
+												"type": "string"
+											},
+											"daysInStock": {
+												"type": "integer"
+											},
+											"mainImage": {
+												"type": "string"
+											},
+											"advertText": {
+												"type": "string"
+											},
+											"price": {
+												"type": "number"
+											},
+											"priceIndicator": {
+												"type": "string"
+											},
+											"priceIndicatorV2": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderLocalRetailerRatingsCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderLocalRetailerRatings.csv",
+						"folderPath": "VehicleStock",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Date",
+						"type": "Date"
+					},
+					{
+						"name": "DealerID",
+						"type": "String"
+					},
+					{
+						"name": "DealerName",
+						"type": "String"
+					},
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "LocalRating",
+						"type": "String"
+					},
+					{
+						"name": "Reg No",
+						"type": "String"
+					},
+					{
+						"name": "StockNumber",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderMarketSupplyCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderMarketSupply.csv",
+						"folderPath": "VehicleStock",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "BuyerDemand",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "Date"
+					},
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "LiveMarketCondition",
+						"type": "String"
+					},
+					{
+						"name": "MarketSupply",
+						"type": "String"
+					},
+					{
+						"name": "RegNo",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderStockManagementJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderStockManagement.json",
+						"folderPath": "Autotrader",
+						"container": "autolytica"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"AutotraderRecord": {
+							"type": "object",
+							"properties": {
+								"OriginalInformation": {
+									"type": "object",
+									"properties": {
+										"RecordID": {
+											"type": "string"
+										},
+										"RegNo": {
+											"type": "string"
+										},
+										"StockNo": {
+											"type": "string"
+										}
+									}
+								},
+								"vehicle": {
+									"type": "object",
+									"properties": {
+										"ownershipCondition": {
+											"type": "string"
+										},
+										"registration": {
+											"type": "string"
+										},
+										"vin": {
+											"type": "null"
+										},
+										"make": {
+											"type": "string"
+										},
+										"model": {
+											"type": "string"
+										},
+										"generation": {
+											"type": "null"
+										},
+										"derivative": {
+											"type": "string"
+										},
+										"derivativeId": {
+											"type": "null"
+										},
+										"vehicleType": {
+											"type": "string"
+										},
+										"trim": {
+											"type": "null"
+										},
+										"bodyType": {
+											"type": "string"
+										},
+										"fuelType": {
+											"type": "string"
+										},
+										"cabType": {
+											"type": "null"
+										},
+										"transmissionType": {
+											"type": "string"
+										},
+										"wheelbaseType": {
+											"type": "null"
+										},
+										"roofHeightType": {
+											"type": "null"
+										},
+										"drivetrain": {
+											"type": "string"
+										},
+										"seats": {
+											"type": "null"
+										},
+										"doors": {
+											"type": "integer"
+										},
+										"co2EmissionGPKM": {
+											"type": "null"
+										},
+										"topSpeedMPH": {
+											"type": "null"
+										},
+										"zeroToSixtyMPHSeconds": {
+											"type": "null"
+										},
+										"badgeEngineSizeLitres": {
+											"type": "number"
+										},
+										"engineCapacityCC": {
+											"type": "integer"
+										},
+										"enginePowerBHP": {
+											"type": "null"
+										},
+										"fuelCapacityLitres": {
+											"type": "null"
+										},
+										"emissionClass": {
+											"type": "null"
+										},
+										"fuelEconomyNEDCExtraUrbanMPG": {
+											"type": "null"
+										},
+										"fuelEconomyNEDCUrbanMPG": {
+											"type": "null"
+										},
+										"fuelEconomyNEDCCombinedMPG": {
+											"type": "null"
+										},
+										"fuelEconomyWLTPLowMPG": {
+											"type": "null"
+										},
+										"fuelEconomyWLTPMediumMPG": {
+											"type": "null"
+										},
+										"fuelEconomyWLTPHighMPG": {
+											"type": "null"
+										},
+										"fuelEconomyWLTPExtraHighMPG": {
+											"type": "null"
+										},
+										"fuelEconomyWLTPCombinedMPG": {
+											"type": "null"
+										},
+										"bootSpaceSeatsUpLitres": {
+											"type": "null"
+										},
+										"insuranceGroup": {
+											"type": "null"
+										},
+										"insuranceSecurityCode": {
+											"type": "null"
+										},
+										"firstRegistrationDate": {
+											"type": "null"
+										},
+										"colour": {
+											"type": "null"
+										},
+										"style": {
+											"type": "null"
+										},
+										"subStyle": {
+											"type": "null"
+										},
+										"lengthMM": {
+											"type": "null"
+										},
+										"heightMM": {
+											"type": "null"
+										},
+										"widthMM": {
+											"type": "null"
+										},
+										"payloadLengthMM": {
+											"type": "null"
+										},
+										"payloadWidthMM": {
+											"type": "null"
+										},
+										"payloadHeightMM": {
+											"type": "null"
+										},
+										"payloadWeightKG": {
+											"type": "null"
+										},
+										"minimumKerbWeightKG": {
+											"type": "null"
+										},
+										"grossVehicleWeightKG": {
+											"type": "null"
+										},
+										"odometerReadingMiles": {
+											"type": "integer"
+										},
+										"warrantyMonthsOnPurchase": {
+											"type": "null"
+										},
+										"serviceHistory": {
+											"type": "null"
+										},
+										"plate": {
+											"type": "string"
+										},
+										"yearOfManufacture": {
+											"type": "string"
+										},
+										"interiorCondition": {
+											"type": "null"
+										},
+										"tyreCondition": {
+											"type": "null"
+										},
+										"bodyCondition": {
+											"type": "null"
+										},
+										"previousOwners": {
+											"type": "null"
+										},
+										"exDemo": {
+											"type": "null"
+										},
+										"v5Certificate": {
+											"type": "null"
+										},
+										"driverPosition": {
+											"type": "string"
+										},
+										"axleConfiguration": {
+											"type": "null"
+										},
+										"upholstery": {
+											"type": "null"
+										},
+										"interiorColour": {
+											"type": "null"
+										},
+										"exteriorFinish": {
+											"type": "null"
+										},
+										"lastServiceOdometerReadingMiles": {
+											"type": "null"
+										},
+										"lastServiceDate": {
+											"type": "null"
+										},
+										"chassisMake": {
+											"type": "null"
+										},
+										"chassisModel": {
+											"type": "null"
+										},
+										"bedroomLayout": {
+											"type": "null"
+										},
+										"endLayout": {
+											"type": "null"
+										},
+										"bedrooms": {
+											"type": "null"
+										},
+										"berths": {
+											"type": "null"
+										},
+										"standard": {
+											"type": "object",
+											"properties": {
+												"make": {
+													"type": "string"
+												},
+												"model": {
+													"type": "string"
+												},
+												"generation": {
+													"type": "null"
+												},
+												"derivative": {
+													"type": "string"
+												},
+												"trim": {
+													"type": "null"
+												},
+												"bodyType": {
+													"type": "string"
+												},
+												"fuelType": {
+													"type": "string"
+												},
+												"transmissionType": {
+													"type": "string"
+												},
+												"cabType": {
+													"type": "null"
+												},
+												"drivetrain": {
+													"type": "string"
+												},
+												"colour": {
+													"type": "string"
+												},
+												"style": {
+													"type": "null"
+												},
+												"subStyle": {
+													"type": "null"
+												}
+											}
+										}
+									}
+								},
+								"advertiser": {
+									"type": "object",
+									"properties": {
+										"advertiserId": {
+											"type": "string"
+										},
+										"name": {
+											"type": "string"
+										},
+										"segment": {
+											"type": "string"
+										},
+										"website": {
+											"type": "string"
+										},
+										"mobileWebsite": {
+											"type": "string"
+										},
+										"phone": {
+											"type": "string"
+										},
+										"location": {
+											"type": "object",
+											"properties": {
+												"addressLineOne": {
+													"type": "string"
+												},
+												"town": {
+													"type": "string"
+												},
+												"county": {
+													"type": "null"
+												},
+												"region": {
+													"type": "string"
+												},
+												"postCode": {
+													"type": "string"
+												},
+												"latitude": {
+													"type": "number"
+												},
+												"longitude": {
+													"type": "number"
+												}
+											}
+										},
+										"advertStrapline": {
+											"type": "null"
+										}
+									}
+								},
+								"adverts": {
+									"type": "object",
+									"properties": {
+										"forecourtPrice": {
+											"type": "object",
+											"properties": {
+												"amountGBP": {
+													"type": "integer"
+												}
+											}
+										},
+										"dueDate": {
+											"type": "null"
+										},
+										"manufacturerApproved": {
+											"type": "boolean"
+										},
+										"twelveMonthsMot": {
+											"type": "boolean"
+										},
+										"motInsurance": {
+											"type": "null"
+										},
+										"retailAdverts": {
+											"type": "object",
+											"properties": {
+												"price": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "integer"
+														}
+													}
+												},
+												"priceOnApplication": {
+													"type": "boolean"
+												},
+												"manufacturerRRP": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"vatExcluded": {
+													"type": "null"
+												},
+												"attentionGrabber": {
+													"type": "null"
+												},
+												"description": {
+													"type": "null"
+												},
+												"description2": {
+													"type": "null"
+												},
+												"priceIndicatorRating": {
+													"type": "string"
+												},
+												"autotraderAdvert": {
+													"type": "object",
+													"properties": {
+														"status": {
+															"type": "string"
+														}
+													}
+												},
+												"advertiserAdvert": {
+													"type": "object",
+													"properties": {
+														"status": {
+															"type": "string"
+														}
+													}
+												},
+												"locatorAdvert": {
+													"type": "object",
+													"properties": {
+														"status": {
+															"type": "string"
+														}
+													}
+												},
+												"exportAdvert": {
+													"type": "object",
+													"properties": {
+														"status": {
+															"type": "string"
+														}
+													}
+												},
+												"profileAdvert": {
+													"type": "object",
+													"properties": {
+														"status": {
+															"type": "string"
+														}
+													}
+												},
+												"displayOptions": {
+													"type": "object",
+													"properties": {
+														"excludePreviousOwners": {
+															"type": "boolean"
+														},
+														"excludeStrapline": {
+															"type": "boolean"
+														},
+														"excludeMot": {
+															"type": "boolean"
+														},
+														"excludeWarranty": {
+															"type": "boolean"
+														},
+														"excludeInteriorDetails": {
+															"type": "boolean"
+														},
+														"excludeTyreCondition": {
+															"type": "boolean"
+														},
+														"excludeBodyCondition": {
+															"type": "boolean"
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"metadata": {
+									"type": "object",
+									"properties": {
+										"stockId": {
+											"type": "string"
+										},
+										"searchId": {
+											"type": "string"
+										},
+										"externalStockId": {
+											"type": "string"
+										},
+										"externalStockReference": {
+											"type": "null"
+										},
+										"lastUpdated": {
+											"type": "string"
+										},
+										"lastUpdatedByAdvertiser": {
+											"type": "string"
+										},
+										"versionNumber": {
+											"type": "integer"
+										},
+										"lifecycleState": {
+											"type": "string"
+										},
+										"dateOnForecourt": {
+											"type": "string"
+										}
+									}
+								},
+								"features": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											},
+											"type": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"media": {
+									"type": "object",
+									"properties": {
+										"images": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"href": {
+														"type": "string"
+													}
+												}
+											}
+										},
+										"video": {
+											"type": "object",
+											"properties": {
+												"href": {
+													"type": "null"
+												},
+												"photoHref": {
+													"type": "null"
+												}
+											}
+										}
+									}
+								},
+								"valuations": {
+									"type": "object",
+									"properties": {
+										"marketAverage": {
+											"type": "object",
+											"properties": {
+												"trade": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"partExchange": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"retail": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														},
+														"amountExcludingVatGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"private": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												}
+											}
+										},
+										"adjusted": {
+											"type": "object",
+											"properties": {
+												"retail": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"trade": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"partExchange": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												},
+												"private": {
+													"type": "object",
+													"properties": {
+														"amountGBP": {
+															"type": "null"
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"vehicleMetrics": {
+									"type": "object",
+									"properties": {
+										"national": {
+											"type": "object",
+											"properties": {
+												"retail": {
+													"type": "object",
+													"properties": {
+														"supply": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														},
+														"demand": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														},
+														"marketCondition": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														},
+														"rating": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														},
+														"daysToSell": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														},
+														"locations": {
+															"type": "array"
+														}
+													}
+												}
+											}
+										},
+										"local": {
+											"type": "object",
+											"properties": {
+												"retail": {
+													"type": "object",
+													"properties": {
+														"rating": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														},
+														"daysToSell": {
+															"type": "object",
+															"properties": {
+																"value": {
+																	"type": "null"
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"responseMetrics": {
+									"type": "object",
+									"properties": {
+										"performanceRating": {
+											"type": "object",
+											"properties": {
+												"score": {
+													"type": "null"
+												},
+												"rating": {
+													"type": "null"
+												}
+											}
+										},
+										"yesterday": {
+											"type": "object",
+											"properties": {
+												"advertViews": {
+													"type": "null"
+												},
+												"searchViews": {
+													"type": "null"
+												}
+											}
+										},
+										"lastWeek": {
+											"type": "object",
+											"properties": {
+												"advertViews": {
+													"type": "null"
+												},
+												"searchViews": {
+													"type": "null"
+												}
+											}
+										}
+									}
+								},
+								"check": {
+									"type": "object",
+									"properties": {
+										"insuranceWriteoffCategory": {
+											"type": "null"
+										},
+										"scrapped": {
+											"type": "null"
+										},
+										"stolen": {
+											"type": "null"
+										},
+										"imported": {
+											"type": "null"
+										},
+										"exported": {
+											"type": "null"
+										},
+										"privateFinance": {
+											"type": "null"
+										},
+										"tradeFinance": {
+											"type": "null"
+										},
+										"highRisk": {
+											"type": "null"
+										},
+										"mileageDiscrepancy": {
+											"type": "null"
+										},
+										"colourChanged": {
+											"type": "null"
+										},
+										"registrationChanged": {
+											"type": "null"
+										},
+										"previousOwners": {
+											"type": "null"
+										}
+									}
+								},
+								"links": {
+									"type": "object",
+									"properties": {
+										"competitor": {
+											"type": "object",
+											"properties": {
+												"href": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"results": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"vehicle": {
+										"type": "object",
+										"properties": {
+											"ownershipCondition": {
+												"type": "string"
+											},
+											"registration": {
+												"type": "string"
+											},
+											"vin": {
+												"type": "string"
+											},
+											"make": {
+												"type": "string"
+											},
+											"model": {
+												"type": "string"
+											},
+											"generation": {
+												"type": "string"
+											},
+											"derivative": {
+												"type": "string"
+											},
+											"derivativeId": {
+												"type": "string"
+											},
+											"vehicleType": {
+												"type": "string"
+											},
+											"trim": {
+												"type": "string"
+											},
+											"bodyType": {
+												"type": "string"
+											},
+											"fuelType": {
+												"type": "string"
+											},
+											"cabType": {
+												"type": "null"
+											},
+											"transmissionType": {
+												"type": "string"
+											},
+											"wheelbaseType": {
+												"type": "string"
+											},
+											"roofHeightType": {
+												"type": "null"
+											},
+											"drivetrain": {
+												"type": "string"
+											},
+											"seats": {
+												"type": "integer"
+											},
+											"doors": {
+												"type": "integer"
+											},
+											"co2EmissionGPKM": {
+												"type": "integer"
+											},
+											"topSpeedMPH": {
+												"type": "integer"
+											},
+											"zeroToSixtyMPHSeconds": {
+												"type": "null"
+											},
+											"badgeEngineSizeLitres": {
+												"type": "number"
+											},
+											"engineCapacityCC": {
+												"type": "integer"
+											},
+											"enginePowerBHP": {
+												"type": "integer"
+											},
+											"fuelCapacityLitres": {
+												"type": "number"
+											},
+											"emissionClass": {
+												"type": "string"
+											},
+											"fuelEconomyNEDCExtraUrbanMPG": {
+												"type": "number"
+											},
+											"fuelEconomyNEDCUrbanMPG": {
+												"type": "number"
+											},
+											"fuelEconomyNEDCCombinedMPG": {
+												"type": "number"
+											},
+											"fuelEconomyWLTPLowMPG": {
+												"type": "null"
+											},
+											"fuelEconomyWLTPMediumMPG": {
+												"type": "null"
+											},
+											"fuelEconomyWLTPHighMPG": {
+												"type": "null"
+											},
+											"fuelEconomyWLTPExtraHighMPG": {
+												"type": "null"
+											},
+											"fuelEconomyWLTPCombinedMPG": {
+												"type": "number"
+											},
+											"bootSpaceSeatsUpLitres": {
+												"type": "number"
+											},
+											"insuranceGroup": {
+												"type": "string"
+											},
+											"insuranceSecurityCode": {
+												"type": "string"
+											},
+											"firstRegistrationDate": {
+												"type": "string"
+											},
+											"colour": {
+												"type": "null"
+											},
+											"style": {
+												"type": "null"
+											},
+											"subStyle": {
+												"type": "null"
+											},
+											"lengthMM": {
+												"type": "integer"
+											},
+											"heightMM": {
+												"type": "integer"
+											},
+											"widthMM": {
+												"type": "integer"
+											},
+											"payloadLengthMM": {
+												"type": "null"
+											},
+											"payloadWidthMM": {
+												"type": "null"
+											},
+											"payloadHeightMM": {
+												"type": "null"
+											},
+											"payloadWeightKG": {
+												"type": "null"
+											},
+											"minimumKerbWeightKG": {
+												"type": "null"
+											},
+											"grossVehicleWeightKG": {
+												"type": "null"
+											},
+											"odometerReadingMiles": {
+												"type": "integer"
+											},
+											"warrantyMonthsOnPurchase": {
+												"type": "null"
+											},
+											"serviceHistory": {
+												"type": "null"
+											},
+											"plate": {
+												"type": "string"
+											},
+											"yearOfManufacture": {
+												"type": "string"
+											},
+											"interiorCondition": {
+												"type": "null"
+											},
+											"tyreCondition": {
+												"type": "null"
+											},
+											"bodyCondition": {
+												"type": "null"
+											},
+											"previousOwners": {
+												"type": "null"
+											},
+											"exDemo": {
+												"type": "null"
+											},
+											"v5Certificate": {
+												"type": "null"
+											},
+											"driverPosition": {
+												"type": "string"
+											},
+											"axleConfiguration": {
+												"type": "null"
+											},
+											"upholstery": {
+												"type": "null"
+											},
+											"interiorColour": {
+												"type": "null"
+											},
+											"exteriorFinish": {
+												"type": "null"
+											},
+											"lastServiceOdometerReadingMiles": {
+												"type": "null"
+											},
+											"lastServiceDate": {
+												"type": "null"
+											},
+											"chassisMake": {
+												"type": "null"
+											},
+											"chassisModel": {
+												"type": "null"
+											},
+											"bedroomLayout": {
+												"type": "null"
+											},
+											"endLayout": {
+												"type": "null"
+											},
+											"bedrooms": {
+												"type": "null"
+											},
+											"berths": {
+												"type": "null"
+											},
+											"standard": {
+												"type": "object",
+												"properties": {
+													"make": {
+														"type": "string"
+													},
+													"model": {
+														"type": "string"
+													},
+													"generation": {
+														"type": "string"
+													},
+													"derivative": {
+														"type": "string"
+													},
+													"trim": {
+														"type": "string"
+													},
+													"bodyType": {
+														"type": "string"
+													},
+													"fuelType": {
+														"type": "string"
+													},
+													"transmissionType": {
+														"type": "string"
+													},
+													"cabType": {
+														"type": "null"
+													},
+													"drivetrain": {
+														"type": "string"
+													},
+													"colour": {
+														"type": "string"
+													},
+													"style": {
+														"type": "null"
+													},
+													"subStyle": {
+														"type": "null"
+													}
+												}
+											}
+										}
+									},
+									"advertiser": {
+										"type": "object",
+										"properties": {
+											"advertiserId": {
+												"type": "string"
+											},
+											"name": {
+												"type": "string"
+											},
+											"segment": {
+												"type": "string"
+											},
+											"website": {
+												"type": "string"
+											},
+											"mobileWebsite": {
+												"type": "string"
+											},
+											"phone": {
+												"type": "string"
+											},
+											"location": {
+												"type": "object",
+												"properties": {
+													"addressLineOne": {
+														"type": "string"
+													},
+													"town": {
+														"type": "string"
+													},
+													"county": {
+														"type": "null"
+													},
+													"region": {
+														"type": "string"
+													},
+													"postCode": {
+														"type": "string"
+													},
+													"latitude": {
+														"type": "number"
+													},
+													"longitude": {
+														"type": "number"
+													}
+												}
+											},
+											"advertStrapline": {
+												"type": "null"
+											}
+										}
+									},
+									"adverts": {
+										"type": "object",
+										"properties": {
+											"forecourtPrice": {
+												"type": "object",
+												"properties": {
+													"amountGBP": {
+														"type": "integer"
+													}
+												}
+											},
+											"dueDate": {
+												"type": "null"
+											},
+											"manufacturerApproved": {
+												"type": "boolean"
+											},
+											"twelveMonthsMot": {
+												"type": "boolean"
+											},
+											"motInsurance": {
+												"type": "null"
+											},
+											"retailAdverts": {
+												"type": "object",
+												"properties": {
+													"price": {
+														"type": "object",
+														"properties": {
+															"amountGBP": {
+																"type": "integer"
+															}
+														}
+													},
+													"priceOnApplication": {
+														"type": "boolean"
+													},
+													"manufacturerRRP": {
+														"type": "object",
+														"properties": {
+															"amountGBP": {
+																"type": "null"
+															}
+														}
+													},
+													"vatExcluded": {
+														"type": "null"
+													},
+													"attentionGrabber": {
+														"type": "string"
+													},
+													"description": {
+														"type": "null"
+													},
+													"description2": {
+														"type": "string"
+													},
+													"priceIndicatorRating": {
+														"type": "string"
+													},
+													"autotraderAdvert": {
+														"type": "object",
+														"properties": {
+															"status": {
+																"type": "string"
+															}
+														}
+													},
+													"advertiserAdvert": {
+														"type": "object",
+														"properties": {
+															"status": {
+																"type": "string"
+															}
+														}
+													},
+													"locatorAdvert": {
+														"type": "object",
+														"properties": {
+															"status": {
+																"type": "string"
+															}
+														}
+													},
+													"exportAdvert": {
+														"type": "object",
+														"properties": {
+															"status": {
+																"type": "string"
+															}
+														}
+													},
+													"profileAdvert": {
+														"type": "object",
+														"properties": {
+															"status": {
+																"type": "string"
+															}
+														}
+													},
+													"displayOptions": {
+														"type": "object",
+														"properties": {
+															"excludePreviousOwners": {
+																"type": "boolean"
+															},
+															"excludeStrapline": {
+																"type": "boolean"
+															},
+															"excludeMot": {
+																"type": "boolean"
+															},
+															"excludeWarranty": {
+																"type": "boolean"
+															},
+															"excludeInteriorDetails": {
+																"type": "boolean"
+															},
+															"excludeTyreCondition": {
+																"type": "boolean"
+															},
+															"excludeBodyCondition": {
+																"type": "boolean"
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"metadata": {
+										"type": "object",
+										"properties": {
+											"stockId": {
+												"type": "string"
+											},
+											"searchId": {
+												"type": "string"
+											},
+											"externalStockId": {
+												"type": "string"
+											},
+											"externalStockReference": {
+												"type": "null"
+											},
+											"lastUpdated": {
+												"type": "string"
+											},
+											"lastUpdatedByAdvertiser": {
+												"type": "string"
+											},
+											"versionNumber": {
+												"type": "integer"
+											},
+											"lifecycleState": {
+												"type": "string"
+											},
+											"dateOnForecourt": {
+												"type": "string"
+											}
+										}
+									},
+									"features": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"type": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"media": {
+										"type": "object",
+										"properties": {
+											"images": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"href": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"video": {
+												"type": "object",
+												"properties": {
+													"href": {
+														"type": "null"
+													},
+													"photoHref": {
+														"type": "null"
+													}
+												}
+											}
+										}
+									},
+									"valuations": {
+										"type": "object",
+										"properties": {
+											"marketAverage": {
+												"type": "object",
+												"properties": {
+													"retail": {
+														"type": "object",
+														"properties": {
+															"amountGBP": {
+																"type": "integer"
+															},
+															"amountExcludingVatGBP": {
+																"type": "null"
+															}
+														}
+													}
+												}
+											},
+											"adjusted": {
+												"type": "object",
+												"properties": {
+													"retail": {
+														"type": "object",
+														"properties": {
+															"amountGBP": {
+																"type": "integer"
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"check": {
+										"type": "object",
+										"properties": {
+											"insuranceWriteoffCategory": {
+												"type": "null"
+											},
+											"scrapped": {
+												"type": "boolean"
+											},
+											"stolen": {
+												"type": "boolean"
+											},
+											"imported": {
+												"type": "boolean"
+											},
+											"exported": {
+												"type": "boolean"
+											},
+											"privateFinance": {
+												"type": "null"
+											},
+											"tradeFinance": {
+												"type": "null"
+											},
+											"highRisk": {
+												"type": "null"
+											},
+											"mileageDiscrepancy": {
+												"type": "null"
+											},
+											"colourChanged": {
+												"type": "null"
+											},
+											"registrationChanged": {
+												"type": "null"
+											},
+											"previousOwners": {
+												"type": "null"
+											}
+										}
+									}
+								}
+							}
+						},
+						"facets": {
+							"type": "object"
+						},
+						"totalResults": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AutotraderValuationsCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AutotraderValuations.csv",
+						"folderPath": "VehicleStock",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "AdjustedPartExchange",
+						"type": "String"
+					},
+					{
+						"name": "AdjustedRetail",
+						"type": "String"
+					},
+					{
+						"name": "AdjustedTrade",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "Date"
+					},
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "Part Exchange",
+						"type": "String"
+					},
+					{
+						"name": "Price Indicator",
+						"type": "String"
+					},
+					{
+						"name": "RegNo",
+						"type": "String"
+					},
+					{
+						"name": "Retail",
+						"type": "String"
+					},
+					{
+						"name": "StockNumber",
+						"type": "String"
+					},
+					{
+						"name": "Trade",
+						"type": "String"
+					},
+					{
+						"name": "Valuation Type",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CloseIT_Ext_Sales_Leads')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesLeads.csv",
+						"container": "rtc"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Dealer_ID",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ID",
+						"type": "String"
+					},
+					{
+						"name": "DealerName",
+						"type": "String"
+					},
+					{
+						"name": "GroupName",
+						"type": "String"
+					},
+					{
+						"name": "Customer_SalesPerson",
+						"type": "String"
+					},
+					{
+						"name": "Customer_ID",
+						"type": "String"
+					},
+					{
+						"name": "Customer_ProspectURN",
+						"type": "String"
+					},
+					{
+						"name": "Customer_Type",
+						"type": "String"
+					},
+					{
+						"name": "Customer_PostCode",
+						"type": "String"
+					},
+					{
+						"name": "Customer_LeadProviderName",
+						"type": "String"
+					},
+					{
+						"name": "Customer_DateCreated",
+						"type": "String"
+					},
+					{
+						"name": "Customer_ChangeDate",
+						"type": "String"
+					},
+					{
+						"name": "Customer_Status",
+						"type": "String"
+					},
+					{
+						"name": "Customer_DateStatusChanged",
+						"type": "String"
+					},
+					{
+						"name": "Customer_QuickLostReason",
+						"type": "String"
+					},
+					{
+						"name": "Customer_FirstContact",
+						"type": "String"
+					},
+					{
+						"name": "Customer_DateSold",
+						"type": "String"
+					},
+					{
+						"name": "Customer_DateLost",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Type",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Gap",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Paint",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Warranty",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ClosedDate",
+						"type": "String"
+					},
+					{
+						"name": "Deal_BasicPrice",
+						"type": "String"
+					},
+					{
+						"name": "Deal_DeilveryCharge",
+						"type": "String"
+					},
+					{
+						"name": "Deal_FirstRegFee",
+						"type": "String"
+					},
+					{
+						"name": "Deal_RoadTax",
+						"type": "String"
+					},
+					{
+						"name": "Desired_Make",
+						"type": "String"
+					},
+					{
+						"name": "Desired_Model",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Make",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Model",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ModelVariant",
+						"type": "String"
+					},
+					{
+						"name": "Deal_FuelType",
+						"type": "String"
+					},
+					{
+						"name": "Deal_GearType",
+						"type": "String"
+					},
+					{
+						"name": "Deal_OrderMethod",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Colour",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Interior",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Mileage",
+						"type": "String"
+					},
+					{
+						"name": "Deal_DateConfirmed",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ModelYear",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Registration",
+						"type": "String"
+					},
+					{
+						"name": "Deal_DateOfRegistration",
+						"type": "String"
+					},
+					{
+						"name": "Deal_DemoDriven",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ServicePayment",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ExpectedDeliveryMonth",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ExpectedDeliveryYear",
+						"type": "String"
+					},
+					{
+						"name": "Deal_ExpectedDeliveryTimeOfMonth",
+						"type": "String"
+					},
+					{
+						"name": "Deal_DepositPaymentMethod",
+						"type": "String"
+					},
+					{
+						"name": "Deal_FinanceMethod",
+						"type": "String"
+					},
+					{
+						"name": "Deal_MonthlyBudget",
+						"type": "String"
+					},
+					{
+						"name": "Deal_Deposit",
+						"type": "String"
+					},
+					{
+						"name": "Deal_NewFinancedBy",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_ID",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_Registration",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_Make",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_Model",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_Variant",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_Colour",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_DateOfRegistration",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_Mileage",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_VatQualifying",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_NumberOfOwners",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_ServiceHistory",
+						"type": "String"
+					},
+					{
+						"name": "PartEx_SIVAmount",
+						"type": "String"
+					},
+					{
+						"name": "InitialContact_Created",
+						"type": "String"
+					},
+					{
+						"name": "InitialContact_Type",
+						"type": "String"
+					},
+					{
+						"name": "Deal_CancelledDate",
+						"type": "String"
+					},
+					{
+						"name": "Deal_HandOverDate",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EMAXCSV_EnquiryActivity')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EMAXRaw_EnquiryActivity.csv",
+						"container": "enquirymax"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "DealerID",
+						"type": "String"
+					},
+					{
+						"name": "DealerCode",
+						"type": "String"
+					},
+					{
+						"name": "DealerName",
+						"type": "String"
+					},
+					{
+						"name": "SalesPerson",
+						"type": "String"
+					},
+					{
+						"name": "SalespersonID",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryID",
+						"type": "String"
+					},
+					{
+						"name": "CustomerID",
+						"type": "String"
+					},
+					{
+						"name": "CustomerType",
+						"type": "String"
+					},
+					{
+						"name": "SourceOfEnquiry",
+						"type": "String"
+					},
+					{
+						"name": "MethodOfContact",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleType",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleMake",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleRange",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleModel",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleDerivative",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleReg",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryVehicleVin",
+						"type": "String"
+					},
+					{
+						"name": "PXVehicle",
+						"type": "String"
+					},
+					{
+						"name": "PXReg",
+						"type": "String"
+					},
+					{
+						"name": "PXVin",
+						"type": "String"
+					},
+					{
+						"name": "PXMake",
+						"type": "String"
+					},
+					{
+						"name": "PXRange",
+						"type": "String"
+					},
+					{
+						"name": "PXModel",
+						"type": "String"
+					},
+					{
+						"name": "PXDerivative",
+						"type": "String"
+					},
+					{
+						"name": "PXSIValue",
+						"type": "String"
+					},
+					{
+						"name": "PXDisposalMethod",
+						"type": "String"
+					},
+					{
+						"name": "OfferCreatedDate",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleType",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleMake",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleRange",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleModel",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleDerivative",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleReg",
+						"type": "String"
+					},
+					{
+						"name": "OfferVehicleVin",
+						"type": "String"
+					},
+					{
+						"name": "VehicleBasePrice",
+						"type": "String"
+					},
+					{
+						"name": "AddonsPrice",
+						"type": "String"
+					},
+					{
+						"name": "Discounts",
+						"type": "String"
+					},
+					{
+						"name": "DeliveryFee",
+						"type": "String"
+					},
+					{
+						"name": "RegFee",
+						"type": "String"
+					},
+					{
+						"name": "RFLFee",
+						"type": "String"
+					},
+					{
+						"name": "TotalOTRprice",
+						"type": "String"
+					},
+					{
+						"name": "PXVehicleOffer",
+						"type": "String"
+					},
+					{
+						"name": "PXOverAllowance",
+						"type": "String"
+					},
+					{
+						"name": "OrderNo",
+						"type": "String"
+					},
+					{
+						"name": "Financed",
+						"type": "String"
+					},
+					{
+						"name": "FinanceHouse",
+						"type": "String"
+					},
+					{
+						"name": "Rate",
+						"type": "String"
+					},
+					{
+						"name": "APR",
+						"type": "String"
+					},
+					{
+						"name": "FinanceTerms",
+						"type": "String"
+					},
+					{
+						"name": "FinanceType",
+						"type": "String"
+					},
+					{
+						"name": "CashDeposit",
+						"type": "String"
+					},
+					{
+						"name": "DealerFDA",
+						"type": "String"
+					},
+					{
+						"name": "ProviderFDA",
+						"type": "String"
+					},
+					{
+						"name": "Cashback",
+						"type": "String"
+					},
+					{
+						"name": "FinanceValue",
+						"type": "String"
+					},
+					{
+						"name": "MonthlyPayments",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryStatusCode",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryStatus",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryDate",
+						"type": "String"
+					},
+					{
+						"name": "TestDriveDate",
+						"type": "String"
+					},
+					{
+						"name": "OrderDate",
+						"type": "String"
+					},
+					{
+						"name": "EstimatedHandoverDate",
+						"type": "String"
+					},
+					{
+						"name": "DeliveryDate",
+						"type": "String"
+					},
+					{
+						"name": "LostSaleDate",
+						"type": "String"
+					},
+					{
+						"name": "LostSaleReason",
+						"type": "String"
+					},
+					{
+						"name": "LostSaleRequestedDate",
+						"type": "String"
+					},
+					{
+						"name": "NULL",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AutolyticaBlobStorage')]"
+			]
+		}
+	]
+}

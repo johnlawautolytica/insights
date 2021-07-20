@@ -1,0 +1,3871 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolyticaprod"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/EnquiryMAXEnquiriesJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EnquiriesJSON.json",
+						"container": "enquirymax"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"createdDateTime": {
+							"type": "string"
+						},
+						"enquiryId": {
+							"type": "string"
+						},
+						"customerId": {
+							"type": "string"
+						},
+						"leadId": {
+							"type": "string"
+						},
+						"status": {
+							"type": "object",
+							"properties": {
+								"code": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								}
+							}
+						},
+						"testDrive": {
+							"type": "object",
+							"properties": {
+								"appointmentDate": {
+									"type": "string"
+								},
+								"taken": {
+									"type": "boolean"
+								}
+							}
+						},
+						"type": {
+							"type": "string"
+						},
+						"partExchangeCount": {
+							"type": "integer"
+						},
+						"sourceOfEnquiry": {
+							"type": "string"
+						},
+						"methodOfContact": {
+							"type": "string"
+						},
+						"vehicleOfInterest": {
+							"type": "object",
+							"properties": {
+								"make": {
+									"type": "string"
+								},
+								"range": {
+									"type": "string"
+								},
+								"model": {
+									"type": "string"
+								},
+								"derivative": {
+									"type": "string"
+								},
+								"vrm": {
+									"type": "string"
+								},
+								"fuelType": {
+									"type": "string"
+								},
+								"vehicleCode": {
+									"type": "string"
+								},
+								"vehicleCodeType": {
+									"type": "string"
+								},
+								"odometer": {
+									"type": "object",
+									"properties": {
+										"unit": {
+											"type": "string"
+										},
+										"currentValue": {
+											"type": "integer"
+										}
+									}
+								},
+								"stockNumber": {
+									"type": "string"
+								},
+								"vin": {
+									"type": "string"
+								}
+							}
+						},
+						"soldVehicle": {
+							"type": "object",
+							"properties": {
+								"make": {
+									"type": "string"
+								},
+								"range": {
+									"type": "string"
+								},
+								"model": {
+									"type": "string"
+								},
+								"derivative": {
+									"type": "string"
+								},
+								"vrm": {
+									"type": "string"
+								},
+								"fuelType": {
+									"type": "string"
+								},
+								"vehicleCode": {
+									"type": "string"
+								},
+								"vehicleCodeType": {
+									"type": "string"
+								},
+								"odometer": {
+									"type": "object",
+									"properties": {
+										"unit": {
+											"type": "string"
+										},
+										"currentValue": {
+											"type": "integer"
+										}
+									}
+								},
+								"stockNumber": {
+									"type": "string"
+								},
+								"vin": {
+									"type": "string"
+								}
+							}
+						},
+						"links": {
+							"type": "object"
+						},
+						"lostSale": {
+							"type": "object",
+							"properties": {
+								"lostSaleRequested": {
+									"type": "string"
+								},
+								"lostSaleAccepted": {
+									"type": "string"
+								},
+								"lostSaleReason": {
+									"type": "string"
+								}
+							}
+						},
+						"originApp": {
+							"type": "string"
+						},
+						"enquiryNotes": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"description": {
+										"type": "string"
+									},
+									"createdDateTime": {
+										"type": "string"
+									},
+									"createdByName": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"customerFinanceDetails": {
+							"type": "object",
+							"properties": {
+								"model": {
+									"type": "string"
+								},
+								"registration": {
+									"type": "string"
+								},
+								"agreementNo": {
+									"type": "string"
+								},
+								"financeProduct": {
+									"type": "string"
+								},
+								"term": {
+									"type": "string"
+								},
+								"deposit": {
+									"type": "string"
+								},
+								"installmentAmount": {
+									"type": "string"
+								},
+								"gmfvBalloon": {
+									"type": "string"
+								},
+								"annualContractMileage": {
+									"type": "string"
+								},
+								"contractStartDate": {
+									"type": "string"
+								},
+								"contractEndDate": {
+									"type": "string"
+								},
+								"outstandingBalance": {
+									"type": "string"
+								}
+							}
+						},
+						"deskingDeal": {
+							"type": "object",
+							"properties": {
+								"financeProduct": {
+									"type": "string"
+								},
+								"term": {
+									"type": "string"
+								},
+								"deposit": {
+									"type": "string"
+								},
+								"installmentAmount": {
+									"type": "string"
+								},
+								"gmfvBalloon": {
+									"type": "string"
+								},
+								"annualContractMileage": {
+									"type": "string"
+								}
+							}
+						},
+						"estimatedEquityPosition": {
+							"type": "object",
+							"properties": {
+								"estimatedPxValue": {
+									"type": "string"
+								},
+								"estimatedEquity": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EnquiryMAXOffersJSON')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "OffersJSON.json",
+						"container": "enquirymax"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"enquiryID": {
+							"type": "string"
+						},
+						"Offers": {
+							"type": "object",
+							"properties": {
+								"offerStatus": {
+									"type": "string"
+								},
+								"vehicle": {
+									"type": "object",
+									"properties": {
+										"make": {
+											"type": "string"
+										},
+										"range": {
+											"type": "string"
+										},
+										"model": {
+											"type": "string"
+										},
+										"derivative": {
+											"type": "string"
+										},
+										"vrm": {
+											"type": "string"
+										},
+										"fuelType": {
+											"type": "string"
+										},
+										"vehicleCode": {
+											"type": "string"
+										},
+										"vehicleCodeType": {
+											"type": "string"
+										},
+										"odometer": {
+											"type": "object",
+											"properties": {
+												"unit": {
+													"type": "string"
+												},
+												"currentValue": {
+													"type": "integer"
+												}
+											}
+										},
+										"stockNumber": {
+											"type": "string"
+										},
+										"vin": {
+											"type": "string"
+										}
+									}
+								},
+								"financeQuotes": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"financeType": {
+												"type": "string"
+											},
+											"cashDeposit": {
+												"type": "integer"
+											},
+											"fda": {
+												"type": "integer"
+											},
+											"cashBack": {
+												"type": "integer"
+											},
+											"docFee": {
+												"type": "integer"
+											},
+											"balanceToFund": {
+												"type": "integer"
+											},
+											"term": {
+												"type": "integer"
+											},
+											"rate": {
+												"type": "integer"
+											},
+											"maxAnnualMileage": {
+												"type": "integer"
+											},
+											"monthlyPayment": {
+												"type": "integer"
+											},
+											"finalPayment": {
+												"type": "integer"
+											}
+										}
+									}
+								},
+								"totalOnRoadPrice": {
+									"type": "integer"
+								},
+								"specificationFrom": {
+									"type": "string"
+								},
+								"vehicleBasePrice": {
+									"type": "integer"
+								},
+								"deliveryFee": {
+									"type": "integer"
+								},
+								"registrationFee": {
+									"type": "integer"
+								},
+								"roadFundLicense": {
+									"type": "integer"
+								},
+								"partExchangeVehicles": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"vatQualifiying": {
+												"type": "boolean"
+											},
+											"import": {
+												"type": "boolean"
+											},
+											"noOfKeys": {
+												"type": "integer"
+											},
+											"outstandingFinanceAmount": {
+												"type": "integer"
+											},
+											"totalReconditionCost": {
+												"type": "integer"
+											},
+											"siv": {
+												"type": "integer"
+											},
+											"dateOfRegistration": {
+												"type": "string"
+											},
+											"lastService": {
+												"type": "string"
+											},
+											"nextService": {
+												"type": "string"
+											},
+											"carTaxExpiry": {
+												"type": "string"
+											},
+											"motExpiry": {
+												"type": "string"
+											},
+											"numberOfOwners": {
+												"type": "integer"
+											},
+											"valuation": {
+												"type": "integer"
+											},
+											"underwrittenBy": {
+												"type": "string"
+											},
+											"salesManager": {
+												"type": "string"
+											},
+											"validUntil": {
+												"type": "string"
+											},
+											"vehicleDisposal": {
+												"type": "string"
+											},
+											"traderName": {
+												"type": "string"
+											},
+											"lastServiceDate": {
+												"type": "string"
+											},
+											"lastMotDate": {
+												"type": "string"
+											},
+											"additionalHpiSummaryNotes": {
+												"type": "string"
+											},
+											"refurbishmentComments": {
+												"type": "string"
+											},
+											"vehicleDriven": {
+												"type": "boolean"
+											},
+											"offerValidUntilDate": {
+												"type": "string"
+											},
+											"vehicleDisposalRoute": {
+												"type": "string"
+											},
+											"make": {
+												"type": "string"
+											},
+											"range": {
+												"type": "string"
+											},
+											"model": {
+												"type": "string"
+											},
+											"derivative": {
+												"type": "string"
+											},
+											"vrm": {
+												"type": "string"
+											},
+											"fuelType": {
+												"type": "string"
+											},
+											"vehicleCode": {
+												"type": "string"
+											},
+											"vehicleCodeType": {
+												"type": "string"
+											},
+											"odometer": {
+												"type": "object",
+												"properties": {
+													"unit": {
+														"type": "string"
+													},
+													"currentValue": {
+														"type": "integer"
+													}
+												}
+											},
+											"stockNumber": {
+												"type": "string"
+											},
+											"vin": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"partExchangeOverAllowance": {
+									"type": "integer"
+								},
+								"incentives": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"description": {
+												"type": "string"
+											},
+											"priceExTax": {
+												"type": "integer"
+											},
+											"price": {
+												"type": "integer"
+											},
+											"categoryText": {
+												"type": "string"
+											},
+											"optionCode": {
+												"type": "string"
+											},
+											"optionText": {
+												"type": "string"
+											},
+											"supplementaryOption": {
+												"type": "boolean"
+											}
+										}
+									}
+								},
+								"dealerOptions": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"description": {
+												"type": "string"
+											},
+											"priceExTax": {
+												"type": "integer"
+											},
+											"price": {
+												"type": "integer"
+											},
+											"categoryText": {
+												"type": "string"
+											},
+											"optionCode": {
+												"type": "string"
+											},
+											"optionText": {
+												"type": "string"
+											},
+											"supplementaryOption": {
+												"type": "boolean"
+											}
+										}
+									}
+								},
+								"factoryOptions": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"description": {
+												"type": "string"
+											},
+											"priceExTax": {
+												"type": "integer"
+											},
+											"price": {
+												"type": "integer"
+											},
+											"categoryText": {
+												"type": "string"
+											},
+											"optionCode": {
+												"type": "string"
+											},
+											"optionText": {
+												"type": "string"
+											},
+											"supplementaryOption": {
+												"type": "boolean"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyClockingCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Clocking.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ClockingSeqNo",
+						"type": "String"
+					},
+					{
+						"name": "DealerName",
+						"type": "String"
+					},
+					{
+						"name": "EmployeeName",
+						"type": "String"
+					},
+					{
+						"name": "EmployeeType",
+						"type": "String"
+					},
+					{
+						"name": "BookingNumber",
+						"type": "String"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "String"
+					},
+					{
+						"name": "Action",
+						"type": "String"
+					},
+					{
+						"name": "DateTimeOn",
+						"type": "String"
+					},
+					{
+						"name": "DateTimeOff",
+						"type": "String"
+					},
+					{
+						"name": "AdjElapsed",
+						"type": "String"
+					},
+					{
+						"name": "Column1",
+						"type": "String"
+					},
+					{
+						"name": "Allowed",
+						"type": "String"
+					},
+					{
+						"name": "WorkType",
+						"type": "String"
+					},
+					{
+						"name": "SaleType",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyCustomerCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "MKBI5.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyDMSEmployeeCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VSSBD.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "Name",
+						"type": "String"
+					},
+					{
+						"name": "Dealership",
+						"type": "String"
+					},
+					{
+						"name": "EmployeeType",
+						"type": "String"
+					},
+					{
+						"name": "Check",
+						"type": "String"
+					},
+					{
+						"name": "RefID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyDetailedSalesCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VSSBB.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Client ID",
+						"type": "String"
+					},
+					{
+						"name": "Dealer",
+						"type": "String"
+					},
+					{
+						"name": "Cust ID",
+						"type": "String"
+					},
+					{
+						"name": "Title",
+						"type": "String"
+					},
+					{
+						"name": "forename",
+						"type": "String"
+					},
+					{
+						"name": "Surname",
+						"type": "String"
+					},
+					{
+						"name": "email",
+						"type": "String"
+					},
+					{
+						"name": "home phone",
+						"type": "String"
+					},
+					{
+						"name": "mobile",
+						"type": "String"
+					},
+					{
+						"name": "add 1",
+						"type": "String"
+					},
+					{
+						"name": "add 2",
+						"type": "String"
+					},
+					{
+						"name": "add 3",
+						"type": "String"
+					},
+					{
+						"name": "add 4",
+						"type": "String"
+					},
+					{
+						"name": "postcode",
+						"type": "String"
+					},
+					{
+						"name": "New or Used",
+						"type": "String"
+					},
+					{
+						"name": "type",
+						"type": "String"
+					},
+					{
+						"name": "Veh Magic",
+						"type": "String"
+					},
+					{
+						"name": "stock no",
+						"type": "String"
+					},
+					{
+						"name": "chassis",
+						"type": "String"
+					},
+					{
+						"name": "reg no",
+						"type": "String"
+					},
+					{
+						"name": "reg date",
+						"type": "String"
+					},
+					{
+						"name": "date in stock",
+						"type": "String"
+					},
+					{
+						"name": "CAP VIN",
+						"type": "String"
+					},
+					{
+						"name": "CAP code",
+						"type": "String"
+					},
+					{
+						"name": "make",
+						"type": "String"
+					},
+					{
+						"name": "model",
+						"type": "String"
+					},
+					{
+						"name": "derivative",
+						"type": "String"
+					},
+					{
+						"name": "engine size",
+						"type": "String"
+					},
+					{
+						"name": "bodystyle",
+						"type": "String"
+					},
+					{
+						"name": "mileage",
+						"type": "String"
+					},
+					{
+						"name": "fuel",
+						"type": "String"
+					},
+					{
+						"name": "transmission",
+						"type": "String"
+					},
+					{
+						"name": "generic colour",
+						"type": "String"
+					},
+					{
+						"name": "specific colour",
+						"type": "String"
+					},
+					{
+						"name": "doors",
+						"type": "String"
+					},
+					{
+						"name": "SIV",
+						"type": "String"
+					},
+					{
+						"name": "sale date",
+						"type": "String"
+					},
+					{
+						"name": "inv number",
+						"type": "String"
+					},
+					{
+						"name": "sales exec",
+						"type": "String"
+					},
+					{
+						"name": "full inv value",
+						"type": "String"
+					},
+					{
+						"name": "paint",
+						"type": "String"
+					},
+					{
+						"name": "warr",
+						"type": "String"
+					},
+					{
+						"name": "GAP",
+						"type": "String"
+					},
+					{
+						"name": "Acc",
+						"type": "String"
+					},
+					{
+						"name": "recon",
+						"type": "String"
+					},
+					{
+						"name": "Finance commission",
+						"type": "String"
+					},
+					{
+						"name": "profit",
+						"type": "String"
+					},
+					{
+						"name": "Sale type",
+						"type": "String"
+					},
+					{
+						"name": "PX1",
+						"type": "String"
+					},
+					{
+						"name": "PX2",
+						"type": "String"
+					},
+					{
+						"name": "PX3",
+						"type": "String"
+					},
+					{
+						"name": "Source",
+						"type": "String"
+					},
+					{
+						"name": "Model Analysis Code",
+						"type": "String"
+					},
+					{
+						"name": "Purchaser",
+						"type": "String"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "String"
+					},
+					{
+						"name": "Purchase Invoice Date",
+						"type": "String"
+					},
+					{
+						"name": "Available Date",
+						"type": "String"
+					},
+					{
+						"name": "Accessory Profit",
+						"type": "String"
+					},
+					{
+						"name": "Paint Profit",
+						"type": "String"
+					},
+					{
+						"name": "Warr Profit",
+						"type": "String"
+					},
+					{
+						"name": "Gap Profit",
+						"type": "String"
+					},
+					{
+						"name": "Other Profit",
+						"type": "String"
+					},
+					{
+						"name": "Volume Bonus",
+						"type": "String"
+					},
+					{
+						"name": "Bonus",
+						"type": "String"
+					},
+					{
+						"name": "RFL Profit",
+						"type": "String"
+					},
+					{
+						"name": "Metal Profit",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Invoice Value",
+						"type": "String"
+					},
+					{
+						"name": "Delivery Date",
+						"type": "String"
+					},
+					{
+						"name": "Group Purchase Date",
+						"type": "String"
+					},
+					{
+						"name": "Received Date",
+						"type": "String"
+					},
+					{
+						"name": "Date In Group",
+						"type": "String"
+					},
+					{
+						"name": "Purchase Account",
+						"type": "String"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "String"
+					},
+					{
+						"name": "Fuel Type",
+						"type": "String"
+					},
+					{
+						"name": "Sales Account ID",
+						"type": "String"
+					},
+					{
+						"name": "Sales Account Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyDetailedSalesCSV_Older')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VSSBA.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"nullValue": " ",
+					"quoteChar": "\"",
+					"treatEmptyAsNull": true
+				},
+				"schema": [
+					{
+						"name": "Client ID",
+						"type": "String"
+					},
+					{
+						"name": "Dealer",
+						"type": "String"
+					},
+					{
+						"name": "Cust ID",
+						"type": "String"
+					},
+					{
+						"name": "Title",
+						"type": "String"
+					},
+					{
+						"name": "forename",
+						"type": "String"
+					},
+					{
+						"name": "Surname",
+						"type": "String"
+					},
+					{
+						"name": "email",
+						"type": "String"
+					},
+					{
+						"name": "home phone",
+						"type": "String"
+					},
+					{
+						"name": "mobile",
+						"type": "String"
+					},
+					{
+						"name": "add 1",
+						"type": "String"
+					},
+					{
+						"name": "add 2",
+						"type": "String"
+					},
+					{
+						"name": "add 3",
+						"type": "String"
+					},
+					{
+						"name": "add 4",
+						"type": "String"
+					},
+					{
+						"name": "postcode",
+						"type": "String"
+					},
+					{
+						"name": "New or Used",
+						"type": "String"
+					},
+					{
+						"name": "type",
+						"type": "String"
+					},
+					{
+						"name": "Veh Magic",
+						"type": "String"
+					},
+					{
+						"name": "stock no",
+						"type": "String"
+					},
+					{
+						"name": "chassis",
+						"type": "String"
+					},
+					{
+						"name": "reg no",
+						"type": "String"
+					},
+					{
+						"name": "reg date",
+						"type": "Date"
+					},
+					{
+						"name": "date in stock",
+						"type": "Date"
+					},
+					{
+						"name": "CAP VIN",
+						"type": "String"
+					},
+					{
+						"name": "CAP code",
+						"type": "String"
+					},
+					{
+						"name": "make",
+						"type": "String"
+					},
+					{
+						"name": "model",
+						"type": "String"
+					},
+					{
+						"name": "derivative",
+						"type": "String"
+					},
+					{
+						"name": "engine size",
+						"type": "String"
+					},
+					{
+						"name": "bodystyle",
+						"type": "String"
+					},
+					{
+						"name": "mileage",
+						"type": "String"
+					},
+					{
+						"name": "fuel",
+						"type": "String"
+					},
+					{
+						"name": "transmission",
+						"type": "String"
+					},
+					{
+						"name": "generic colour",
+						"type": "String"
+					},
+					{
+						"name": "specific colour",
+						"type": "String"
+					},
+					{
+						"name": "doors",
+						"type": "String"
+					},
+					{
+						"name": "SIV",
+						"type": "String"
+					},
+					{
+						"name": "sale date",
+						"type": "Date"
+					},
+					{
+						"name": "inv number",
+						"type": "String"
+					},
+					{
+						"name": "sales exec",
+						"type": "String"
+					},
+					{
+						"name": "full inv value",
+						"type": "String"
+					},
+					{
+						"name": "paint",
+						"type": "String"
+					},
+					{
+						"name": "warr",
+						"type": "String"
+					},
+					{
+						"name": "GAP",
+						"type": "String"
+					},
+					{
+						"name": "Acc",
+						"type": "String"
+					},
+					{
+						"name": "recon",
+						"type": "String"
+					},
+					{
+						"name": "Finance commission",
+						"type": "String"
+					},
+					{
+						"name": "profit",
+						"type": "String"
+					},
+					{
+						"name": "Sale type",
+						"type": "String"
+					},
+					{
+						"name": "PX1",
+						"type": "String"
+					},
+					{
+						"name": "PX2",
+						"type": "String"
+					},
+					{
+						"name": "PX3",
+						"type": "String"
+					},
+					{
+						"name": "Source",
+						"type": "String"
+					},
+					{
+						"name": "Model Analysis Code",
+						"type": "String"
+					},
+					{
+						"name": "Purchaser",
+						"type": "String"
+					},
+					{
+						"name": "Supplier Name",
+						"type": "String"
+					},
+					{
+						"name": "Purchase Invoice Date",
+						"type": "Date"
+					},
+					{
+						"name": "Available Date",
+						"type": "Date"
+					},
+					{
+						"name": "Accessory Profit",
+						"type": "String"
+					},
+					{
+						"name": "Paint Profit",
+						"type": "String"
+					},
+					{
+						"name": "Warr Profit",
+						"type": "String"
+					},
+					{
+						"name": "Gap Profit",
+						"type": "String"
+					},
+					{
+						"name": "Other Profit",
+						"type": "String"
+					},
+					{
+						"name": "Volume Bonus",
+						"type": "String"
+					},
+					{
+						"name": "Bonus",
+						"type": "String"
+					},
+					{
+						"name": "RFL Profit",
+						"type": "String"
+					},
+					{
+						"name": "Metal Profit",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Invoice Value",
+						"type": "String"
+					},
+					{
+						"name": "Delivery Date",
+						"type": "Date"
+					},
+					{
+						"name": "Sales Account ID",
+						"type": "String"
+					},
+					{
+						"name": "Sales Account Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyEnquiryMaxCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "enquirymax.csv",
+						"folderPath": "Showroom",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Branch",
+						"type": "String"
+					},
+					{
+						"name": "Sales Type",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry No",
+						"type": "String"
+					},
+					{
+						"name": "Customer Title",
+						"type": "String"
+					},
+					{
+						"name": "Customer Forename",
+						"type": "String"
+					},
+					{
+						"name": "Customer Surname",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "Home Phone",
+						"type": "String"
+					},
+					{
+						"name": "Mobile Phone",
+						"type": "String"
+					},
+					{
+						"name": "Work Phone",
+						"type": "String"
+					},
+					{
+						"name": "Postcode",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry Created",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry Type",
+						"type": "String"
+					},
+					{
+						"name": "Sales Executive",
+						"type": "String"
+					},
+					{
+						"name": "Business Manager",
+						"type": "String"
+					},
+					{
+						"name": "N/U",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Type",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Range",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "Registration No",
+						"type": "String"
+					},
+					{
+						"name": "Registration Date",
+						"type": "String"
+					},
+					{
+						"name": "Stock No",
+						"type": "String"
+					},
+					{
+						"name": "Group Date in Stock",
+						"type": "String"
+					},
+					{
+						"name": "Branch Date in Stock",
+						"type": "String"
+					},
+					{
+						"name": "First Order Date",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry Status",
+						"type": "String"
+					},
+					{
+						"name": "Invoiced Date",
+						"type": "String"
+					},
+					{
+						"name": "Expected Delivery Date",
+						"type": "String"
+					},
+					{
+						"name": "Delivery Date",
+						"type": "String"
+					},
+					{
+						"name": "Delivery Category",
+						"type": "String"
+					},
+					{
+						"name": "Metal Only",
+						"type": "String"
+					},
+					{
+						"name": "OTR Price exc Ins",
+						"type": "String"
+					},
+					{
+						"name": "Total Goods & Services inc Ins",
+						"type": "String"
+					},
+					{
+						"name": "Financed",
+						"type": "String"
+					},
+					{
+						"name": "Finance Provider",
+						"type": "String"
+					},
+					{
+						"name": "Fin Type",
+						"type": "String"
+					},
+					{
+						"name": "Finance Scheme",
+						"type": "String"
+					},
+					{
+						"name": "Loan Term",
+						"type": "String"
+					},
+					{
+						"name": "APR",
+						"type": "String"
+					},
+					{
+						"name": "Flat Rate",
+						"type": "String"
+					},
+					{
+						"name": "Finance Balance",
+						"type": "String"
+					},
+					{
+						"name": "Volume Bonus",
+						"type": "String"
+					},
+					{
+						"name": "Commission",
+						"type": "String"
+					},
+					{
+						"name": "DOC Fee",
+						"type": "String"
+					},
+					{
+						"name": "Finance Subsidy",
+						"type": "String"
+					},
+					{
+						"name": "Total Fin Margin",
+						"type": "String"
+					},
+					{
+						"name": "GAP",
+						"type": "String"
+					},
+					{
+						"name": "GAP Product",
+						"type": "String"
+					},
+					{
+						"name": "War",
+						"type": "String"
+					},
+					{
+						"name": "War Product",
+						"type": "String"
+					},
+					{
+						"name": "Ext",
+						"type": "String"
+					},
+					{
+						"name": "Ext Product",
+						"type": "String"
+					},
+					{
+						"name": "Paint",
+						"type": "String"
+					},
+					{
+						"name": "Paint Product",
+						"type": "String"
+					},
+					{
+						"name": "Total Ins Margin",
+						"type": "String"
+					},
+					{
+						"name": "Total F & I Margin",
+						"type": "String"
+					},
+					{
+						"name": "Volume Bonus Central",
+						"type": "String"
+					},
+					{
+						"name": "DOC Fee Central",
+						"type": "String"
+					},
+					{
+						"name": "Total Central Income",
+						"type": "String"
+					},
+					{
+						"name": "Days in Stock",
+						"type": "String"
+					},
+					{
+						"name": "Last Advertised Price",
+						"type": "String"
+					},
+					{
+						"name": "Model Analysis Code",
+						"type": "String"
+					},
+					{
+						"name": "SIV",
+						"type": "String"
+					},
+					{
+						"name": "Stock No66",
+						"type": "String"
+					},
+					{
+						"name": "Chassis No",
+						"type": "String"
+					},
+					{
+						"name": "Engine Size",
+						"type": "String"
+					},
+					{
+						"name": "Body Style",
+						"type": "String"
+					},
+					{
+						"name": "Mileage",
+						"type": "String"
+					},
+					{
+						"name": "Fuel Type",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "Colour",
+						"type": "String"
+					},
+					{
+						"name": "Trim Type",
+						"type": "String"
+					},
+					{
+						"name": "Number of Doors",
+						"type": "String"
+					},
+					{
+						"name": "Gross Profit",
+						"type": "String"
+					},
+					{
+						"name": "Reconditioning Cost",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyEnquiryMaxXLSX')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "enquiryMAX",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Peter Vardy EnquiryMax Raw.xlsx",
+						"folderPath": "Showroom",
+						"container": "peter-vardy"
+					},
+					"range": "",
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Branch",
+						"type": "String"
+					},
+					{
+						"name": "Sales Type",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry No",
+						"type": "String"
+					},
+					{
+						"name": "Customer Title",
+						"type": "String"
+					},
+					{
+						"name": "Customer Forename",
+						"type": "String"
+					},
+					{
+						"name": "Customer Surname",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "Home Phone",
+						"type": "String"
+					},
+					{
+						"name": "Mobile Phone",
+						"type": "String"
+					},
+					{
+						"name": "Work Phone",
+						"type": "String"
+					},
+					{
+						"name": "Postcode",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry Created",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry Type",
+						"type": "String"
+					},
+					{
+						"name": "Sales Executive",
+						"type": "String"
+					},
+					{
+						"name": "Business Manager",
+						"type": "String"
+					},
+					{
+						"name": "N/U",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle Type",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Range",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "Registration No",
+						"type": "String"
+					},
+					{
+						"name": "Registration Date",
+						"type": "String"
+					},
+					{
+						"name": "Stock No",
+						"type": "String"
+					},
+					{
+						"name": "Group Date in Stock",
+						"type": "String"
+					},
+					{
+						"name": "Branch Date in Stock",
+						"type": "String"
+					},
+					{
+						"name": "First Order Date",
+						"type": "String"
+					},
+					{
+						"name": "Enquiry Status",
+						"type": "String"
+					},
+					{
+						"name": "Invoiced Date",
+						"type": "String"
+					},
+					{
+						"name": "Expected Delivery Date",
+						"type": "String"
+					},
+					{
+						"name": "Delivery Date",
+						"type": "String"
+					},
+					{
+						"name": "Delivery Category",
+						"type": "String"
+					},
+					{
+						"name": "Metal Only",
+						"type": "String"
+					},
+					{
+						"name": "OTR Price exc Ins",
+						"type": "String"
+					},
+					{
+						"name": "Total Goods & Services inc Ins",
+						"type": "String"
+					},
+					{
+						"name": "Financed",
+						"type": "String"
+					},
+					{
+						"name": "Finance Provider",
+						"type": "String"
+					},
+					{
+						"name": "Fin Type",
+						"type": "String"
+					},
+					{
+						"name": "Finance Scheme",
+						"type": "String"
+					},
+					{
+						"name": "Loan Term",
+						"type": "String"
+					},
+					{
+						"name": "APR",
+						"type": "String"
+					},
+					{
+						"name": "Flat Rate",
+						"type": "String"
+					},
+					{
+						"name": "Finance Balance",
+						"type": "String"
+					},
+					{
+						"name": "Volume Bonus",
+						"type": "String"
+					},
+					{
+						"name": "Commission",
+						"type": "String"
+					},
+					{
+						"name": "DOC Fee",
+						"type": "String"
+					},
+					{
+						"name": "Finance Subsidy",
+						"type": "String"
+					},
+					{
+						"name": "Total Fin Margin",
+						"type": "String"
+					},
+					{
+						"name": "GAP",
+						"type": "String"
+					},
+					{
+						"name": "GAP Product",
+						"type": "String"
+					},
+					{
+						"name": "War",
+						"type": "String"
+					},
+					{
+						"name": "War Product",
+						"type": "String"
+					},
+					{
+						"name": "Ext",
+						"type": "String"
+					},
+					{
+						"name": "Ext Product",
+						"type": "String"
+					},
+					{
+						"name": "Paint",
+						"type": "String"
+					},
+					{
+						"name": "Paint Product",
+						"type": "String"
+					},
+					{
+						"name": "Total Ins Margin",
+						"type": "String"
+					},
+					{
+						"name": "Total F & I Margin",
+						"type": "String"
+					},
+					{
+						"name": "Volume Bonus Central",
+						"type": "String"
+					},
+					{
+						"name": "DOC Fee Central",
+						"type": "String"
+					},
+					{
+						"name": "Total Central Income",
+						"type": "String"
+					},
+					{
+						"name": "Days in Stock",
+						"type": "String"
+					},
+					{
+						"name": "Last Advertised Price",
+						"type": "String"
+					},
+					{
+						"name": "Model Analysis Code",
+						"type": "String"
+					},
+					{
+						"name": "SIV",
+						"type": "String"
+					},
+					{
+						"name": "Stock Number",
+						"type": "String"
+					},
+					{
+						"name": "Chassis No",
+						"type": "String"
+					},
+					{
+						"name": "Engine Size",
+						"type": "String"
+					},
+					{
+						"name": "Body Style",
+						"type": "String"
+					},
+					{
+						"name": "Mileage",
+						"type": "String"
+					},
+					{
+						"name": "Fuel Type",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "Colour",
+						"type": "String"
+					},
+					{
+						"name": "Trim Type",
+						"type": "String"
+					},
+					{
+						"name": "Number of Doors",
+						"type": "String"
+					},
+					{
+						"name": "Gross Profit",
+						"type": "String"
+					},
+					{
+						"name": "Reconditioning Cost",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyPartsSalesCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SOBI2.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "co",
+						"type": "String"
+					},
+					{
+						"name": "ST",
+						"type": "String"
+					},
+					{
+						"name": "desc",
+						"type": "String"
+					},
+					{
+						"name": "Fran",
+						"type": "String"
+					},
+					{
+						"name": "Part number",
+						"type": "String"
+					},
+					{
+						"name": "Retail Value",
+						"type": "String"
+					},
+					{
+						"name": "Sale Value",
+						"type": "String"
+					},
+					{
+						"name": "Cost Value",
+						"type": "String"
+					},
+					{
+						"name": "Gross Profit",
+						"type": "String"
+					},
+					{
+						"name": "GP%",
+						"type": "String"
+					},
+					{
+						"name": "WIP No",
+						"type": "String"
+					},
+					{
+						"name": "Anal code",
+						"type": "String"
+					},
+					{
+						"name": "Order quantity",
+						"type": "String"
+					},
+					{
+						"name": "Selling pric",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Product group",
+						"type": "String"
+					},
+					{
+						"name": "Dept",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardySMBI3CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SMBI3.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Co",
+						"type": "String"
+					},
+					{
+						"name": "F",
+						"type": "String"
+					},
+					{
+						"name": "Part Number",
+						"type": "String"
+					},
+					{
+						"name": "Description",
+						"type": "String"
+					},
+					{
+						"name": "Qty",
+						"type": "String"
+					},
+					{
+						"name": "Avg Cos",
+						"type": "String"
+					},
+					{
+						"name": "3-6 Months",
+						"type": "String"
+					},
+					{
+						"name": "6-9 Months",
+						"type": "String"
+					},
+					{
+						"name": "9-12 Months",
+						"type": "String"
+					},
+					{
+						"name": "12-18 Months",
+						"type": "String"
+					},
+					{
+						"name": "18-24 Months",
+						"type": "String"
+					},
+					{
+						"name": "\u001c 24 Months",
+						"type": "String"
+					},
+					{
+						"name": "Date last sold",
+						"type": "String"
+					},
+					{
+						"name": "Date last purchased",
+						"type": "String"
+					},
+					{
+						"name": "Date last moved",
+						"type": "String"
+					},
+					{
+						"name": "ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardySOBI1CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SOBI1.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "S/Type",
+						"type": "String"
+					},
+					{
+						"name": "Invoice No",
+						"type": "String"
+					},
+					{
+						"name": "WIP No",
+						"type": "String"
+					},
+					{
+						"name": "RTS code",
+						"type": "String"
+					},
+					{
+						"name": "Sold",
+						"type": "String"
+					},
+					{
+						"name": "Taken",
+						"type": "String"
+					},
+					{
+						"name": "Eff",
+						"type": "String"
+					},
+					{
+						"name": "Sale Value",
+						"type": "String"
+					},
+					{
+						"name": "Rec Rate",
+						"type": "String"
+					},
+					{
+						"name": "Mech",
+						"type": "String"
+					},
+					{
+						"name": "LA",
+						"type": "String"
+					},
+					{
+						"name": "LT",
+						"type": "String"
+					},
+					{
+						"name": "co",
+						"type": "String"
+					},
+					{
+						"name": "Operator name",
+						"type": "String"
+					},
+					{
+						"name": "Franchise code",
+						"type": "String"
+					},
+					{
+						"name": "Chassis number",
+						"type": "String"
+					},
+					{
+						"name": "Registration number.",
+						"type": "String"
+					},
+					{
+						"name": "Date editted",
+						"type": "String"
+					},
+					{
+						"name": "ID",
+						"type": "String"
+					},
+					{
+						"name": "Tmagic",
+						"type": "String"
+					},
+					{
+						"name": "Vmagic",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardySOBI7CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SOBI7.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "D",
+						"type": "String"
+					},
+					{
+						"name": "WIP",
+						"type": "String"
+					},
+					{
+						"name": "Date Due",
+						"type": "String"
+					},
+					{
+						"name": "Customer",
+						"type": "String"
+					},
+					{
+						"name": "Reg No",
+						"type": "String"
+					},
+					{
+						"name": "Operator",
+						"type": "String"
+					},
+					{
+						"name": "O/due",
+						"type": "String"
+					},
+					{
+						"name": "Parts",
+						"type": "String"
+					},
+					{
+						"name": "Lin",
+						"type": "String"
+					},
+					{
+						"name": "Labour",
+						"type": "String"
+					},
+					{
+						"name": "Ln",
+						"type": "String"
+					},
+					{
+						"name": "Total",
+						"type": "String"
+					},
+					{
+						"name": "Prop_12",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyVSBI4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VSBI4.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "co",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle",
+						"type": "String"
+					},
+					{
+						"name": "Regn",
+						"type": "String"
+					},
+					{
+						"name": "Desc",
+						"type": "String"
+					},
+					{
+						"name": "Estimated",
+						"type": "String"
+					},
+					{
+						"name": "Actual",
+						"type": "String"
+					},
+					{
+						"name": "Line Created",
+						"type": "String"
+					},
+					{
+						"name": "Date Pushed",
+						"type": "String"
+					},
+					{
+						"name": "Order date",
+						"type": "String"
+					},
+					{
+						"name": "WIP no",
+						"type": "String"
+					},
+					{
+						"name": "Option code",
+						"type": "String"
+					},
+					{
+						"name": "work desc",
+						"type": "String"
+					},
+					{
+						"name": "Progress code",
+						"type": "String"
+					},
+					{
+						"name": "A/c s status",
+						"type": "String"
+					},
+					{
+						"name": "Analysis code",
+						"type": "String"
+					},
+					{
+						"name": "Quarantine status",
+						"type": "String"
+					},
+					{
+						"name": "Log book",
+						"type": "String"
+					},
+					{
+						"name": "veh Inv date",
+						"type": "String"
+					},
+					{
+						"name": "Veh Delivery date",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyVehicleCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "MKBI6.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Magic",
+						"type": "String"
+					},
+					{
+						"name": "Fran",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Desc",
+						"type": "String"
+					},
+					{
+						"name": "Reg",
+						"type": "String"
+					},
+					{
+						"name": "DateReg",
+						"type": "Date"
+					},
+					{
+						"name": "DateDel",
+						"type": "String"
+					},
+					{
+						"name": "NU",
+						"type": "String"
+					},
+					{
+						"name": "Last Ser",
+						"type": "String"
+					},
+					{
+						"name": "Next Ser",
+						"type": "String"
+					},
+					{
+						"name": "last MOT",
+						"type": "String"
+					},
+					{
+						"name": "Next MOT",
+						"type": "String"
+					},
+					{
+						"name": "Date Last WK",
+						"type": "String"
+					},
+					{
+						"name": "CAP",
+						"type": "String"
+					},
+					{
+						"name": "VIN",
+						"type": "String"
+					},
+					{
+						"name": "DRVMAGIC",
+						"type": "String"
+					},
+					{
+						"name": "A/Sales m",
+						"type": "String"
+					},
+					{
+						"name": "SalesM",
+						"type": "String"
+					},
+					{
+						"name": "Record status",
+						"type": "String"
+					},
+					{
+						"name": "CAP code",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyVehicleStockCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "VSSBC.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ClientID",
+						"type": "String"
+					},
+					{
+						"name": "DealershipID",
+						"type": "String"
+					},
+					{
+						"name": "Type",
+						"type": "String"
+					},
+					{
+						"name": "RegistrationNo",
+						"type": "String"
+					},
+					{
+						"name": "StockNo",
+						"type": "String"
+					},
+					{
+						"name": "GroupDateInStock",
+						"type": "String"
+					},
+					{
+						"name": "DealershipDateInStock",
+						"type": "String"
+					},
+					{
+						"name": "Status",
+						"type": "String"
+					},
+					{
+						"name": "NewOrUsed",
+						"type": "String"
+					},
+					{
+						"name": "Chassis",
+						"type": "String"
+					},
+					{
+						"name": "FirstRegisteredDate",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "Trim",
+						"type": "String"
+					},
+					{
+						"name": "EngineSize",
+						"type": "String"
+					},
+					{
+						"name": "Bodystyle",
+						"type": "String"
+					},
+					{
+						"name": "Mileage",
+						"type": "String"
+					},
+					{
+						"name": "FuelType",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "GenericColour",
+						"type": "String"
+					},
+					{
+						"name": "SpecificColour",
+						"type": "String"
+					},
+					{
+						"name": "Doors",
+						"type": "String"
+					},
+					{
+						"name": "SIV",
+						"type": "String"
+					},
+					{
+						"name": "Vat",
+						"type": "String"
+					},
+					{
+						"name": "Source",
+						"type": "String"
+					},
+					{
+						"name": "ModelAnalysisCode",
+						"type": "String"
+					},
+					{
+						"name": "RetailPrice",
+						"type": "String"
+					},
+					{
+						"name": "Purchaser",
+						"type": "String"
+					},
+					{
+						"name": "SupplierName",
+						"type": "String"
+					},
+					{
+						"name": "PurchaseInvoiceDate",
+						"type": "String"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "String"
+					},
+					{
+						"name": "ProgressCode",
+						"type": "String"
+					},
+					{
+						"name": "Recon",
+						"type": "String"
+					},
+					{
+						"name": "TransportCosts",
+						"type": "String"
+					},
+					{
+						"name": "AdjustedSIV",
+						"type": "String"
+					},
+					{
+						"name": "AvailableDate2",
+						"type": "String"
+					},
+					{
+						"name": "PurchaseInvoiceDate2",
+						"type": "String"
+					},
+					{
+						"name": "ReceivedDate",
+						"type": "String"
+					},
+					{
+						"name": "DateInGroup",
+						"type": "String"
+					},
+					{
+						"name": "PurchaseAccount",
+						"type": "String"
+					},
+					{
+						"name": "QuarantineStatus",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyWebStockFeedCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "PVLWebFeed.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Id",
+						"type": "String"
+					},
+					{
+						"name": "DealerCode",
+						"type": "String"
+					},
+					{
+						"name": "StockNumber",
+						"type": "String"
+					},
+					{
+						"name": "NewUsed",
+						"type": "String"
+					},
+					{
+						"name": "VehicleType",
+						"type": "String"
+					},
+					{
+						"name": "Demo",
+						"type": "String"
+					},
+					{
+						"name": "VatStatus",
+						"type": "String"
+					},
+					{
+						"name": "RegistrationNumber",
+						"type": "String"
+					},
+					{
+						"name": "ChassisNumber",
+						"type": "String"
+					},
+					{
+						"name": "EngineNumber",
+						"type": "String"
+					},
+					{
+						"name": "CapId",
+						"type": "String"
+					},
+					{
+						"name": "FullCapCode",
+						"type": "String"
+					},
+					{
+						"name": "CapModelYear",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Derivative",
+						"type": "String"
+					},
+					{
+						"name": "EngineSize",
+						"type": "String"
+					},
+					{
+						"name": "Doors",
+						"type": "String"
+					},
+					{
+						"name": "BodyStyle",
+						"type": "String"
+					},
+					{
+						"name": "FuelType",
+						"type": "String"
+					},
+					{
+						"name": "TransmissionType",
+						"type": "String"
+					},
+					{
+						"name": "PaintColour",
+						"type": "String"
+					},
+					{
+						"name": "SpecificPaintColour",
+						"type": "String"
+					},
+					{
+						"name": "PaintType",
+						"type": "String"
+					},
+					{
+						"name": "TrimColour",
+						"type": "String"
+					},
+					{
+						"name": "TrimType",
+						"type": "String"
+					},
+					{
+						"name": "Odometer",
+						"type": "String"
+					},
+					{
+						"name": "OdometerType",
+						"type": "String"
+					},
+					{
+						"name": "RegistrationDate",
+						"type": "String"
+					},
+					{
+						"name": "PreviousOwners",
+						"type": "String"
+					},
+					{
+						"name": "ServiceHistory",
+						"type": "String"
+					},
+					{
+						"name": "Approved",
+						"type": "String"
+					},
+					{
+						"name": "WarrantyLevel",
+						"type": "String"
+					},
+					{
+						"name": "FullVehicleCheck",
+						"type": "String"
+					},
+					{
+						"name": "MultiPointInspection",
+						"type": "String"
+					},
+					{
+						"name": "BranchPurchaseDate",
+						"type": "String"
+					},
+					{
+						"name": "GroupPurchaseDate",
+						"type": "String"
+					},
+					{
+						"name": "StockStatus",
+						"type": "String"
+					},
+					{
+						"name": "VehicleStatus",
+						"type": "String"
+					},
+					{
+						"name": "AvailableDate",
+						"type": "String"
+					},
+					{
+						"name": "ReadyToGo",
+						"type": "String"
+					},
+					{
+						"name": "HoStock",
+						"type": "String"
+					},
+					{
+						"name": "OriginalPurchasePrice",
+						"type": "String"
+					},
+					{
+						"name": "StockValue",
+						"type": "String"
+					},
+					{
+						"name": "ReconDfa",
+						"type": "String"
+					},
+					{
+						"name": "DeliveryCost",
+						"type": "String"
+					},
+					{
+						"name": "VehicleSalePrice",
+						"type": "String"
+					},
+					{
+						"name": "DeliveryRetailSalePrice",
+						"type": "String"
+					},
+					{
+						"name": "ReducedPrice",
+						"type": "String"
+					},
+					{
+						"name": "IdaAmount",
+						"type": "String"
+					},
+					{
+						"name": "TrackerNumber",
+						"type": "String"
+					},
+					{
+						"name": "StockType",
+						"type": "String"
+					},
+					{
+						"name": "WebCategory",
+						"type": "String"
+					},
+					{
+						"name": "HouseCharge",
+						"type": "String"
+					},
+					{
+						"name": "Co2",
+						"type": "String"
+					},
+					{
+						"name": "StatusId",
+						"type": "String"
+					},
+					{
+						"name": "IsVisible",
+						"type": "String"
+					},
+					{
+						"name": "DateCreated",
+						"type": "String"
+					},
+					{
+						"name": "DateUpdated",
+						"type": "String"
+					},
+					{
+						"name": "LastUpdatedBy",
+						"type": "String"
+					},
+					{
+						"name": "SentToWeb",
+						"type": "String"
+					},
+					{
+						"name": "Seats",
+						"type": "String"
+					},
+					{
+						"name": "ManufactureDate",
+						"type": "String"
+					},
+					{
+						"name": "TaxBand",
+						"type": "String"
+					},
+					{
+						"name": "AutotraderBanner",
+						"type": "String"
+					},
+					{
+						"name": "Mpg",
+						"type": "String"
+					},
+					{
+						"name": "InsuranceGroup",
+						"type": "String"
+					},
+					{
+						"name": "PlusVat",
+						"type": "String"
+					},
+					{
+						"name": "Featured",
+						"type": "String"
+					},
+					{
+						"name": "POA",
+						"type": "String"
+					},
+					{
+						"name": "Verified",
+						"type": "String"
+					},
+					{
+						"name": "EnquiryCount",
+						"type": "String"
+					},
+					{
+						"name": "PriceLastUpdated",
+						"type": "String"
+					},
+					{
+						"name": "IsVirtual",
+						"type": "String"
+					},
+					{
+						"name": "Removed",
+						"type": "String"
+					},
+					{
+						"name": "PriceVerified",
+						"type": "String"
+					},
+					{
+						"name": "TradePrice",
+						"type": "String"
+					},
+					{
+						"name": "DateRemoved",
+						"type": "String"
+					},
+					{
+						"name": "ActualReg",
+						"type": "String"
+					},
+					{
+						"name": "RoadTaxSix",
+						"type": "String"
+					},
+					{
+						"name": "RoadTaxTwelve",
+						"type": "String"
+					},
+					{
+						"name": "CitNowVideo",
+						"type": "String"
+					},
+					{
+						"name": "VideoRemoved",
+						"type": "String"
+					},
+					{
+						"name": "CapManId",
+						"type": "String"
+					},
+					{
+						"name": "CapModId",
+						"type": "String"
+					},
+					{
+						"name": "ShortModel",
+						"type": "String"
+					},
+					{
+						"name": "FinanceOption",
+						"type": "String"
+					},
+					{
+						"name": "ComingSoon",
+						"type": "String"
+					},
+					{
+						"name": "Quarantine",
+						"type": "String"
+					},
+					{
+						"name": "FinanceDeposit",
+						"type": "String"
+					},
+					{
+						"name": "FinanceTerm",
+						"type": "String"
+					},
+					{
+						"name": "YouTubeVideo",
+						"type": "String"
+					},
+					{
+						"name": "NumberOfImages",
+						"type": "String"
+					},
+					{
+						"name": "ImageURLS",
+						"type": "String"
+					},
+					{
+						"name": "ToBeRemoved",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyWebStockFeedCSVOld')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "WebStockFeed.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Prop_0",
+						"type": "String"
+					},
+					{
+						"name": "Images Not Found",
+						"type": "String"
+					},
+					{
+						"name": "Dealer Id",
+						"type": "String"
+					},
+					{
+						"name": "Feed_ID",
+						"type": "String"
+					},
+					{
+						"name": "Vehicle_ID",
+						"type": "String"
+					},
+					{
+						"name": "FullRegistration",
+						"type": "String"
+					},
+					{
+						"name": "Colour",
+						"type": "String"
+					},
+					{
+						"name": "Fueltype",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Mileage",
+						"type": "String"
+					},
+					{
+						"name": "BodyType",
+						"type": "String"
+					},
+					{
+						"name": "Doors",
+						"type": "String"
+					},
+					{
+						"name": "Make",
+						"type": "String"
+					},
+					{
+						"name": "Model",
+						"type": "String"
+					},
+					{
+						"name": "Variant",
+						"type": "String"
+					},
+					{
+						"name": "EngineSize",
+						"type": "String"
+					},
+					{
+						"name": "Price",
+						"type": "String"
+					},
+					{
+						"name": "Transmission",
+						"type": "String"
+					},
+					{
+						"name": "PictureRefs",
+						"type": "String"
+					},
+					{
+						"name": "ServiceHistory",
+						"type": "String"
+					},
+					{
+						"name": "PreviousOwners",
+						"type": "String"
+					},
+					{
+						"name": "Category",
+						"type": "String"
+					},
+					{
+						"name": "FourWheelDrive",
+						"type": "String"
+					},
+					{
+						"name": "Options",
+						"type": "String"
+					},
+					{
+						"name": "Comments",
+						"type": "String"
+					},
+					{
+						"name": "New",
+						"type": "String"
+					},
+					{
+						"name": "Used",
+						"type": "String"
+					},
+					{
+						"name": "Site",
+						"type": "String"
+					},
+					{
+						"name": "Origin",
+						"type": "String"
+					},
+					{
+						"name": "V5",
+						"type": "String"
+					},
+					{
+						"name": "Condition",
+						"type": "String"
+					},
+					{
+						"name": "ExDemo",
+						"type": "String"
+					},
+					{
+						"name": "FranchiseApproved",
+						"type": "String"
+					},
+					{
+						"name": "TradePrice",
+						"type": "String"
+					},
+					{
+						"name": "PriceSuffix",
+						"type": "String"
+					},
+					{
+						"name": "ServiceHistoryText",
+						"type": "String"
+					},
+					{
+						"name": "Capid",
+						"type": "String"
+					},
+					{
+						"name": "Attention_Grabber",
+						"type": "String"
+					},
+					{
+						"name": "Glass_Id",
+						"type": "String"
+					},
+					{
+						"name": "Video_URL",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PeterVardyWorkshopSalesCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SOBI1.csv",
+						"container": "peter-vardy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "S/Type",
+						"type": "String"
+					},
+					{
+						"name": "Invoice No",
+						"type": "String"
+					},
+					{
+						"name": "WIP No",
+						"type": "String"
+					},
+					{
+						"name": "RTS code",
+						"type": "String"
+					},
+					{
+						"name": "Sold",
+						"type": "String"
+					},
+					{
+						"name": "Taken",
+						"type": "String"
+					},
+					{
+						"name": "Eff",
+						"type": "String"
+					},
+					{
+						"name": "Sale Value",
+						"type": "String"
+					},
+					{
+						"name": "Rec Rate",
+						"type": "String"
+					},
+					{
+						"name": "Mech",
+						"type": "String"
+					},
+					{
+						"name": "LA",
+						"type": "String"
+					},
+					{
+						"name": "LT",
+						"type": "String"
+					},
+					{
+						"name": "co",
+						"type": "String"
+					},
+					{
+						"name": "Operator name",
+						"type": "String"
+					},
+					{
+						"name": "Franchise code",
+						"type": "String"
+					},
+					{
+						"name": "Chassis number",
+						"type": "String"
+					},
+					{
+						"name": "Registration number.",
+						"type": "String"
+					},
+					{
+						"name": "Date editted",
+						"type": "String"
+					},
+					{
+						"name": "Tmagic",
+						"type": "String"
+					},
+					{
+						"name": "Vmagic",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTCTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AutolyticaBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "rtc"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}

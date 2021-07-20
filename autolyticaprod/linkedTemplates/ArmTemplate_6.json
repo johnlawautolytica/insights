@@ -1,0 +1,1557 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolyticaprod"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_BookingvUpsells_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Recorded",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UpsellId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FreeTextDeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Agent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "Declined",
+						"type": "bit"
+					},
+					{
+						"name": "LogSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Campaign",
+						"type": "bit"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_BookingvUpsells_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_ContactvContactParms')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FollCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FollDays",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Type",
+						"type": "char"
+					},
+					{
+						"name": "ReportType",
+						"type": "char"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_ContactvContactParms"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_ContactvContactTypes')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Analysis",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisGroup",
+						"type": "varchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_ContactvContactTypes"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_ContactvContacts_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Notes1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Notes2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Notes3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "FollDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Complete",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "CompleteCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FollCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Value",
+						"type": "decimal",
+						"precision": 6,
+						"scale": 2
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehDesc",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Franchise",
+						"type": "varchar"
+					},
+					{
+						"name": "HeaderId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ItemId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GroupedRAG",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OpNumCreated",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_ContactvContacts_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_Dealers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DealerName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Marque",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DMS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_Dealers"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_Employees')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmployeeNumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmployeeType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_Employees"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupExtStatus')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ExtStatusID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvExtStatus"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvAgents')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Grp",
+						"type": "varchar"
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvAgents"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvApplication_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvApplication_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvDealerRegions')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvDealerRegions"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvEmailLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmailLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "varchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "varchar"
+					},
+					{
+						"name": "Created",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ErrorLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RemoteEmailID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ServiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmailChangedID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvEmailLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvEmailLogNotifications')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "EmailID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EventType",
+						"type": "varchar"
+					},
+					{
+						"name": "SmtpID",
+						"type": "varchar"
+					},
+					{
+						"name": "Response",
+						"type": "varchar"
+					},
+					{
+						"name": "DeliveryAttempt",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BounceType",
+						"type": "varchar"
+					},
+					{
+						"name": "BounceStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "IP",
+						"type": "varchar"
+					},
+					{
+						"name": "UserAgent",
+						"type": "varchar"
+					},
+					{
+						"name": "TimeStamp",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Created",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Dealer",
+						"type": "varchar"
+					},
+					{
+						"name": "EmailLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvEmailLogEventNotifications"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvISSections')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LongName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InUse",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvISSections"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvISSubSections')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "varchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SubSectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DisplaySeq",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "LongName",
+						"type": "varchar"
+					},
+					{
+						"name": "CategoryId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Special",
+						"type": "varchar"
+					},
+					{
+						"name": "InUse",
+						"type": "varchar"
+					},
+					{
+						"name": "Mandatory",
+						"type": "varchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvISSubSections"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvLogFile')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Seq",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Created",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DateIn",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ServCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran1",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran2",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran3",
+						"type": "varchar"
+					},
+					{
+						"name": "TranComm",
+						"type": "varchar"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Account",
+						"type": "varchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PayType",
+						"type": "varchar"
+					},
+					{
+						"name": "OverRide",
+						"type": "varchar"
+					},
+					{
+						"name": "SACA",
+						"type": "varchar"
+					},
+					{
+						"name": "SACU",
+						"type": "varchar"
+					},
+					{
+						"name": "SourceOfBusiness",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastServ",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "NextServ",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "MotDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Campaign",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CampaignPrice",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "TotalValue",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InsertedDate",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvLogFile"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvLogFile_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Seq",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Created",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "DateIn",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ServCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran1",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran2",
+						"type": "varchar"
+					},
+					{
+						"name": "Tran3",
+						"type": "varchar"
+					},
+					{
+						"name": "TranComm",
+						"type": "varchar"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Account",
+						"type": "varchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PayType",
+						"type": "varchar"
+					},
+					{
+						"name": "OverRide",
+						"type": "varchar"
+					},
+					{
+						"name": "SACA",
+						"type": "varchar"
+					},
+					{
+						"name": "SACU",
+						"type": "varchar"
+					},
+					{
+						"name": "SourceOfBusiness",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastServ",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "NextServ",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "MotDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Campaign",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CampaignPrice",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "TotalValue",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InsertedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvLogFile_Merge"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvSMSLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SMSLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LinkSMSID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerID",
+						"type": "varchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BookingID",
+						"type": "varchar"
+					},
+					{
+						"name": "SMSID",
+						"type": "varchar"
+					},
+					{
+						"name": "SendDate",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "Created",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ErrorLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_GroupvSMSLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_GroupvUpsells')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UpsellId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UpsellName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "InsertedDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_BookingvUpsells"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_InspectionISCheckTypes')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DealerID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InUse",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Marque",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CheckSheetType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime2",
+						"scale": 7
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_InspectionISCheckTypes"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLRTCRaw_InspectionISLabour_Merge')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ItemId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LabourId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Details",
+						"type": "varchar"
+					},
+					{
+						"name": "Allowed",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "Price",
+						"type": "varchar"
+					},
+					{
+						"name": "RepairCode",
+						"type": "varchar"
+					},
+					{
+						"name": "Discount",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "NetPrice",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "Rate",
+						"type": "decimal",
+						"precision": 15,
+						"scale": 2
+					},
+					{
+						"name": "LabourRate",
+						"type": "varchar"
+					},
+					{
+						"name": "BookingLineNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UniqueID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "RTCRaw_InspectionvlSLabour_Merge"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

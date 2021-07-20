@@ -1,0 +1,457 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolyticaprod"
+		},
+		"AutolyticaBlobProd_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AutolyticaBlobProd'"
+		},
+		"AutolyticaBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AutolyticaBlobStorage'"
+		},
+		"Autolyticaftp_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Autolyticaftp'"
+		},
+		"RTCDatabase_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'RTCDatabase'"
+		},
+		"RTCVHC_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RTCVHC'"
+		},
+		"VHCHeadersCSV_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VHCHeadersCSV'"
+		},
+		"VHCHeadersCSVFile_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VHCHeadersCSVFile'"
+		},
+		"VehicleStockCSV_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VehicleStockCSV'"
+		},
+		"autolytica_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'autolytica'"
+		},
+		"enquiryMAX_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'enquiryMAX'"
+		},
+		"AutolyticaKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://autolytica.vault.azure.net/"
+		},
+		"Autolyticaftp_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "autolytica.exavault.com"
+		},
+		"Autolyticaftp_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "autolytica"
+		},
+		"RTCVHC_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data%20Sources/Partners/RTC/VHCHeadersE.csv"
+		},
+		"RTCVHC_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"VHCHeadersCSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data Sources/Partners/RTC/VHCHeadersE.csv"
+		},
+		"VHCHeadersCSV_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"VHCHeadersCSVFile_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk"
+		},
+		"VHCHeadersCSVFile_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"VehicleStockCSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data Sources/Vehicle Stock/10000 - Used Car Stock.csv"
+		},
+		"VehicleStockCSV_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "johnlaw@oloi.co.uk"
+		},
+		"enquiryMAX_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data%20Sources/Partners/enquiryMAX"
+		},
+		"enquiryMAX_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "system@autolytica.co.uk"
+		},
+		"PeterVardySOBI1CreatedInBlobStorage_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage"
+		},
+		"trigger1PeterVardySOBI2CreatedInBlobStorage_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "autolyticaprod_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AutolyticaBlobStorage_connectionString": {
+						"value": "[parameters('AutolyticaBlobStorage_connectionString')]"
+					},
+					"Autolyticaftp_password": {
+						"value": "[parameters('Autolyticaftp_password')]"
+					},
+					"RTCVHC_password": {
+						"value": "[parameters('RTCVHC_password')]"
+					},
+					"VHCHeadersCSV_password": {
+						"value": "[parameters('VHCHeadersCSV_password')]"
+					},
+					"VHCHeadersCSVFile_password": {
+						"value": "[parameters('VHCHeadersCSVFile_password')]"
+					},
+					"VehicleStockCSV_password": {
+						"value": "[parameters('VehicleStockCSV_password')]"
+					},
+					"enquiryMAX_password": {
+						"value": "[parameters('enquiryMAX_password')]"
+					},
+					"AutolyticaKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AutolyticaKeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"Autolyticaftp_properties_typeProperties_host": {
+						"value": "[parameters('Autolyticaftp_properties_typeProperties_host')]"
+					},
+					"Autolyticaftp_properties_typeProperties_userName": {
+						"value": "[parameters('Autolyticaftp_properties_typeProperties_userName')]"
+					},
+					"RTCVHC_properties_typeProperties_url": {
+						"value": "[parameters('RTCVHC_properties_typeProperties_url')]"
+					},
+					"RTCVHC_properties_typeProperties_userName": {
+						"value": "[parameters('RTCVHC_properties_typeProperties_userName')]"
+					},
+					"VHCHeadersCSV_properties_typeProperties_url": {
+						"value": "[parameters('VHCHeadersCSV_properties_typeProperties_url')]"
+					},
+					"VHCHeadersCSV_properties_typeProperties_userName": {
+						"value": "[parameters('VHCHeadersCSV_properties_typeProperties_userName')]"
+					},
+					"VHCHeadersCSVFile_properties_typeProperties_host": {
+						"value": "[parameters('VHCHeadersCSVFile_properties_typeProperties_host')]"
+					},
+					"VHCHeadersCSVFile_properties_typeProperties_userId": {
+						"value": "[parameters('VHCHeadersCSVFile_properties_typeProperties_userId')]"
+					},
+					"VehicleStockCSV_properties_typeProperties_url": {
+						"value": "[parameters('VehicleStockCSV_properties_typeProperties_url')]"
+					},
+					"VehicleStockCSV_properties_typeProperties_userName": {
+						"value": "[parameters('VehicleStockCSV_properties_typeProperties_userName')]"
+					},
+					"enquiryMAX_properties_typeProperties_url": {
+						"value": "[parameters('enquiryMAX_properties_typeProperties_url')]"
+					},
+					"enquiryMAX_properties_typeProperties_userName": {
+						"value": "[parameters('enquiryMAX_properties_typeProperties_userName')]"
+					},
+					"PeterVardySOBI1CreatedInBlobStorage_properties_typeProperties_scope": {
+						"value": "[parameters('PeterVardySOBI1CreatedInBlobStorage_properties_typeProperties_scope')]"
+					},
+					"trigger1PeterVardySOBI2CreatedInBlobStorage_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1PeterVardySOBI2CreatedInBlobStorage_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AutolyticaBlobProd_connectionString": {
+						"value": "[parameters('AutolyticaBlobProd_connectionString')]"
+					},
+					"RTCDatabase_connectionString": {
+						"value": "[parameters('RTCDatabase_connectionString')]"
+					},
+					"autolytica_connectionString": {
+						"value": "[parameters('autolytica_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_5')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_7",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_7.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_6')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_8",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_8.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_7')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_9",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_9.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_8')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_10",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_10.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_9')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_11",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_11.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_10')]"
+			]
+		},
+		{
+			"name": "autolyticaprod_ArmTemplate_12",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_12.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'autolyticaprod_ArmTemplate_11')]"
+			]
+		}
+	]
+}

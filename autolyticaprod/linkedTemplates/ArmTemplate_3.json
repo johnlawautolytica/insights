@@ -1,0 +1,1230 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "autolyticaprod"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_EXT_BI_Inspection_VHCType')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "inuse",
+						"type": "char"
+					},
+					{
+						"name": "dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Inspection_vhcType"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_EXT_BI_Inspection_vISCheckTypes')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "char"
+					},
+					{
+						"name": "InUse",
+						"type": "bit"
+					},
+					{
+						"name": "Marque",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CheckSheetType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Inspection_vISCheckTypes"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_EXT_BI_vGroup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GroupName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Enabled",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vGroup"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_BookingStatus')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Code",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BaseCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Booking_vBookingStatus"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Booking_vUpsellDeclinedReasons')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ReasonId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Reason",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Active",
+						"type": "bit"
+					},
+					{
+						"name": "EMail",
+						"type": "bit"
+					},
+					{
+						"name": "AddToBooking",
+						"type": "bit"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Booking_vUpsellDeclinedReasons"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Booking_vUpsellLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Recorded",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpsellId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FreeTextDeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Agent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "Declined",
+						"type": "bit"
+					},
+					{
+						"name": "LogSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Campaign",
+						"type": "bit"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Booking_vUpsellLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Booking_vUpsells')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Recorded",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "UpsellId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FreeTextDeclinedId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Agent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 8,
+						"scale": 2
+					},
+					{
+						"name": "Declined",
+						"type": "bit"
+					},
+					{
+						"name": "LogSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Campaign",
+						"type": "bit"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Booking_vUpsells"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Contact_vContactTypes')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Analysis",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AnalysisGroup",
+						"type": "varchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Contact_vContactTypes"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Contact_vContacts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Notes1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Notes2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Notes3",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FollDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Complete",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CompleteCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FollCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Value",
+						"type": "decimal",
+						"precision": 6,
+						"scale": 2
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Model",
+						"type": "nvarchar"
+					},
+					{
+						"name": "VehDesc",
+						"type": "nvarchar"
+					},
+					{
+						"name": "RegDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Franchise",
+						"type": "varchar"
+					},
+					{
+						"name": "HeaderId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ItemId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GroupedRAG",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OpNumCreated",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Contact_vContacts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Contact_vContactsParms')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ContCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FollCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FollDays",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Type",
+						"type": "char"
+					},
+					{
+						"name": "ReportType",
+						"type": "char"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Contact_vContactParms"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vAgents')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Grp",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vAgents"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vApplication')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ApplicationName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vApplication"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vDealers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Marque",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DMS",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vDealers"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vDealersRegions')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vDealersRegions"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vEmailLog')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmailLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RegNo",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "ContSeqNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ErrorLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sent",
+						"type": "bit"
+					},
+					{
+						"name": "RemoteEmailID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ServiceID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmailChangedID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vEmailLog"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vEmailLogEventNotifications')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "EmailID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EventType",
+						"type": "varchar"
+					},
+					{
+						"name": "SmtpID",
+						"type": "varchar"
+					},
+					{
+						"name": "Response",
+						"type": "varchar"
+					},
+					{
+						"name": "DeliveryAttempt",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "BounceType",
+						"type": "varchar"
+					},
+					{
+						"name": "BounceStatus",
+						"type": "varchar"
+					},
+					{
+						"name": "IP",
+						"type": "varchar"
+					},
+					{
+						"name": "UserAgent",
+						"type": "varchar"
+					},
+					{
+						"name": "TimeStamp",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Created",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmailLogID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vEmailLogEventNotifications"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vEmployee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmpNo",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EmpType",
+						"type": "char"
+					},
+					{
+						"name": "OpNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Updated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vEmployee"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vExtStatus')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ExtStatusID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vExtStatus"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vISSections')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LongName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InUse",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vISSections"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RTC_Ext_BI_Group_vISSubSections')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RTCDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "GroupID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Dealer",
+						"type": "nvarchar"
+					},
+					{
+						"name": "TypeId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SubSectionId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DisplaySeq",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LongName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CategoryId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Special",
+						"type": "nvarchar"
+					},
+					{
+						"name": "InUse",
+						"type": "bit"
+					},
+					{
+						"name": "Mandatory",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BI_Group_vISSubSections"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

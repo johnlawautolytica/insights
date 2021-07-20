@@ -1,0 +1,90 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "autolyticaprod"
+		},
+		"AutolyticaBlobProd_connectionString": {
+			"value": ""
+		},
+		"AutolyticaBlobStorage_connectionString": {
+			"value": ""
+		},
+		"Autolyticaftp_password": {
+			"value": ""
+		},
+		"RTCDatabase_connectionString": {
+			"value": ""
+		},
+		"RTCVHC_password": {
+			"value": ""
+		},
+		"VHCHeadersCSV_password": {
+			"value": ""
+		},
+		"VHCHeadersCSVFile_password": {
+			"value": ""
+		},
+		"VehicleStockCSV_password": {
+			"value": ""
+		},
+		"autolytica_connectionString": {
+			"value": ""
+		},
+		"enquiryMAX_password": {
+			"value": ""
+		},
+		"AutolyticaKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://autolytica.vault.azure.net/"
+		},
+		"Autolyticaftp_properties_typeProperties_host": {
+			"value": "autolytica.exavault.com"
+		},
+		"Autolyticaftp_properties_typeProperties_userName": {
+			"value": "autolytica"
+		},
+		"RTCVHC_properties_typeProperties_url": {
+			"value": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data%20Sources/Partners/RTC/VHCHeadersE.csv"
+		},
+		"RTCVHC_properties_typeProperties_userName": {
+			"value": "johnlaw@oloi.co.uk"
+		},
+		"VHCHeadersCSV_properties_typeProperties_url": {
+			"value": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data Sources/Partners/RTC/VHCHeadersE.csv"
+		},
+		"VHCHeadersCSV_properties_typeProperties_userName": {
+			"value": "johnlaw@oloi.co.uk"
+		},
+		"VHCHeadersCSVFile_properties_typeProperties_host": {
+			"value": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk"
+		},
+		"VHCHeadersCSVFile_properties_typeProperties_userId": {
+			"value": "johnlaw@oloi.co.uk"
+		},
+		"VehicleStockCSV_properties_typeProperties_url": {
+			"value": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data Sources/Vehicle Stock/10000 - Used Car Stock.csv"
+		},
+		"VehicleStockCSV_properties_typeProperties_userName": {
+			"value": "johnlaw@oloi.co.uk"
+		},
+		"enquiryMAX_properties_typeProperties_url": {
+			"value": "https://oloi-my.sharepoint.com/personal/johnlaw_oloi_co_uk/Data%20Sources/Partners/enquiryMAX"
+		},
+		"enquiryMAX_properties_typeProperties_userName": {
+			"value": "system@autolytica.co.uk"
+		},
+		"PeterVardySOBI1CreatedInBlobStorage_properties_typeProperties_scope": {
+			"value": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage"
+		},
+		"trigger1PeterVardySOBI2CreatedInBlobStorage_properties_typeProperties_scope": {
+			"value": "/subscriptions/31e56c5a-448d-4ff8-90db-c2fa4ad36a95/resourceGroups/Autolytica/providers/Microsoft.Storage/storageAccounts/autolyticastorage"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

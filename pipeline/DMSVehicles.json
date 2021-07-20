@@ -99,6 +99,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Registration Number",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "RegistrationNumber",
 									"type": "String",
@@ -106,6 +111,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Registration Date",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "DateofRegistration",
 									"type": "DateTime",
@@ -113,6 +123,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Delivery Date",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "DeliveryDate",
 									"type": "DateTime",
@@ -120,6 +135,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "New or Used",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "NewOrUsed",
 									"type": "String",
@@ -127,6 +147,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Last ServiceDate",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "LastServiceDate",
 									"type": "String",
@@ -134,6 +159,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Next Service Date",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "NextServiceDate",
 									"type": "String",
@@ -141,6 +171,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Last MOT Date",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "LastMOTDate",
 									"type": "String",
@@ -148,6 +183,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Next MOT Date",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "NextMOTDate",
 									"type": "String",
@@ -155,6 +195,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Last Workshop Date",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "LastWorkshopDate",
 									"type": "String",
@@ -162,13 +207,11 @@
 								}
 							},
 							{
-								"sink": {
-									"name": "CapCode",
+								"source": {
+									"name": "Chassis Number",
 									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "ChassisNumber",
 									"type": "String",
@@ -176,6 +219,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Customer ID",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "DriverCustomerID",
 									"type": "Int32",
@@ -183,20 +231,11 @@
 								}
 							},
 							{
-								"sink": {
-									"name": "AftersalesCustomerID",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"sink": {
-									"name": "SalesCustomerID",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
+								"source": {
+									"name": "Status",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "RecordStatus",
 									"type": "String",
@@ -204,6 +243,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Vehicle Type",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "VehicleType",
 									"type": "String",
@@ -223,6 +267,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Engine Size",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "EngineSize",
 									"type": "Int32",
@@ -254,6 +303,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Odometer Type",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "OdometerType",
 									"type": "String",
@@ -285,6 +339,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Generic Colour",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "GenericColour",
 									"type": "String",
@@ -292,6 +351,11 @@
 								}
 							},
 							{
+								"source": {
+									"name": "Specific Colour",
+									"type": "String",
+									"physicalType": "String"
+								},
 								"sink": {
 									"name": "SpecificColour",
 									"type": "String",
@@ -308,13 +372,6 @@
 									"name": "Doors",
 									"type": "Int32",
 									"physicalType": "int"
-								}
-							},
-							{
-								"sink": {
-									"name": "FileName",
-									"type": "String",
-									"physicalType": "varchar"
 								}
 							}
 						],

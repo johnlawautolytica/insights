@@ -111,6 +111,12 @@
 					"referenceName": "RTCCTCInspectionvMediaFile",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "DetailedVehSales",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",

@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyCSVDataToSQL",
+				"name": "CopyCSVToSQL",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -20,6 +20,8 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "Client Folder/*",
+							"wildcardFileName": "DMSVehicles-*.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -28,7 +30,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete from dbo.dmsvehicle where clientid = 10000",
+						"preCopyScript": "truncate table dmsvehicle_merge",
 						"writeBehavior": "insert",
 						"disableMetricsCollection": false
 					},
@@ -38,8 +40,9 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "ClientID",
-									"type": "String"
+									"name": "Client ID",
+									"type": "String",
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "ClientID",
@@ -49,9 +52,9 @@
 							},
 							{
 								"source": {
+									"name": "Vehicle ID",
 									"type": "String",
-									"physicalType": "String",
-									"ordinal": 1
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "VehicleID",
@@ -61,9 +64,9 @@
 							},
 							{
 								"source": {
+									"name": "Make",
 									"type": "String",
-									"physicalType": "String",
-									"ordinal": 2
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "Make",
@@ -73,9 +76,9 @@
 							},
 							{
 								"source": {
+									"name": "Model",
 									"type": "String",
-									"physicalType": "String",
-									"ordinal": 3
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "Model",
@@ -85,9 +88,9 @@
 							},
 							{
 								"source": {
+									"name": "Derative",
 									"type": "String",
-									"physicalType": "String",
-									"ordinal": 4
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "Derivative",
@@ -96,11 +99,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 5
-								},
 								"sink": {
 									"name": "RegistrationNumber",
 									"type": "String",
@@ -108,11 +106,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 6
-								},
 								"sink": {
 									"name": "DateofRegistration",
 									"type": "DateTime",
@@ -120,11 +113,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 7
-								},
 								"sink": {
 									"name": "DeliveryDate",
 									"type": "DateTime",
@@ -132,11 +120,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 8
-								},
 								"sink": {
 									"name": "NewOrUsed",
 									"type": "String",
@@ -144,71 +127,41 @@
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 9
-								},
 								"sink": {
 									"name": "LastServiceDate",
-									"type": "DateTime",
-									"physicalType": "date"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 10
-								},
 								"sink": {
 									"name": "NextServiceDate",
-									"type": "DateTime",
-									"physicalType": "date"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 11
-								},
 								"sink": {
 									"name": "LastMOTDate",
-									"type": "DateTime",
-									"physicalType": "date"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 12
-								},
 								"sink": {
 									"name": "NextMOTDate",
-									"type": "DateTime",
-									"physicalType": "date"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
-								"source": {
-									"type": "Date",
-									"physicalType": "Date",
-									"ordinal": 13
-								},
 								"sink": {
 									"name": "LastWorkshopDate",
-									"type": "DateTime",
-									"physicalType": "date"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 14
-								},
 								"sink": {
 									"name": "CapCode",
 									"type": "String",
@@ -216,11 +169,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 15
-								},
 								"sink": {
 									"name": "ChassisNumber",
 									"type": "String",
@@ -228,11 +176,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 16
-								},
 								"sink": {
 									"name": "DriverCustomerID",
 									"type": "Int32",
@@ -240,11 +183,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 17
-								},
 								"sink": {
 									"name": "AftersalesCustomerID",
 									"type": "Int32",
@@ -252,11 +190,6 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 18
-								},
 								"sink": {
 									"name": "SalesCustomerID",
 									"type": "Int32",
@@ -264,13 +197,122 @@
 								}
 							},
 							{
-								"source": {
-									"type": "String",
-									"physicalType": "String",
-									"ordinal": 19
-								},
 								"sink": {
 									"name": "RecordStatus",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"sink": {
+									"name": "VehicleType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Trim",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Trim",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"sink": {
+									"name": "EngineSize",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Bodystyle",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Bodystyle",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Odometer",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Odometer",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"sink": {
+									"name": "OdometerType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FuelType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FuelType",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Transmission",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Transmission",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"sink": {
+									"name": "GenericColour",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"sink": {
+									"name": "SpecificColour",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Doors",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Doors",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"sink": {
+									"name": "FileName",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -279,8 +321,7 @@
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false,
-							"dateTimeFormat": "dd/MM/yyyy"
+							"treatBooleanAsNumber": false
 						}
 					}
 				},
@@ -292,7 +333,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SQLDMSVehicle",
+						"referenceName": "SQLDMSVehicle_Merge",
 						"type": "DatasetReference"
 					}
 				]

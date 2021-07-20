@@ -17,12 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"name": "ClientID",
-								"value": "10000"
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -35,6 +29,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": "delete from dbo.dmsvehicle where clientid = 10000",
+						"writeBehavior": "insert",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -291,7 +286,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "PeterVardyVehicleCSV",
+						"referenceName": "DMSVehiclesCSV",
 						"type": "DatasetReference"
 					}
 				],

@@ -1,0 +1,135 @@
+{
+	"name": "DMSVehiclesCSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AutolyticaBlobProd",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "autolytica"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Client ID",
+				"type": "String"
+			},
+			{
+				"name": "Vehicle ID",
+				"type": "String"
+			},
+			{
+				"name": "Vehicle Type",
+				"type": "String"
+			},
+			{
+				"name": "Make",
+				"type": "String"
+			},
+			{
+				"name": "Model",
+				"type": "String"
+			},
+			{
+				"name": "Derative",
+				"type": "String"
+			},
+			{
+				"name": "Registration Number",
+				"type": "String"
+			},
+			{
+				"name": "Registration Date",
+				"type": "String"
+			},
+			{
+				"name": "Delivery Date",
+				"type": "String"
+			},
+			{
+				"name": "New or Used",
+				"type": "String"
+			},
+			{
+				"name": "Last ServiceDate",
+				"type": "String"
+			},
+			{
+				"name": "Next Service Date",
+				"type": "String"
+			},
+			{
+				"name": "Last MOT Date",
+				"type": "String"
+			},
+			{
+				"name": "Next MOT Date",
+				"type": "String"
+			},
+			{
+				"name": "Last Workshop Date",
+				"type": "String"
+			},
+			{
+				"name": "Chassis Number",
+				"type": "String"
+			},
+			{
+				"name": "Customer ID",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Trim",
+				"type": "String"
+			},
+			{
+				"name": "Engine Size",
+				"type": "String"
+			},
+			{
+				"name": "Bodystyle",
+				"type": "String"
+			},
+			{
+				"name": "Odometer",
+				"type": "String"
+			},
+			{
+				"name": "Odometer Type",
+				"type": "String"
+			},
+			{
+				"name": "FuelType",
+				"type": "String"
+			},
+			{
+				"name": "Transmission",
+				"type": "String"
+			},
+			{
+				"name": "Generic Colour",
+				"type": "String"
+			},
+			{
+				"name": "Specific Colour",
+				"type": "String"
+			},
+			{
+				"name": "Doors",
+				"type": "String"
+			}
+		]
+	}
+}

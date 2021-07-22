@@ -2,15 +2,15 @@
 	"name": "VehicleStockCSV",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Autolyticaftp",
+			"referenceName": "AutolyticaBlobProd",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "SftpLocation",
-				"folderPath": "/Analytics Data Feeds"
+				"type": "AzureBlobStorageLocation",
+				"container": "autolytica"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

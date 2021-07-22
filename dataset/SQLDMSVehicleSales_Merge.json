@@ -184,6 +184,10 @@
 			{
 				"name": "FileName",
 				"type": "varchar"
+			},
+			{
+				"name": "Sale Type",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {

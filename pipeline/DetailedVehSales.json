@@ -25,6 +25,39 @@
 					},
 					"traceLevel": "Fine"
 				}
+			},
+			{
+				"name": "ReferenceTableUpdate",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DetailedSales",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[DoReferenceTableUpdate]",
+					"storedProcedureParameters": {
+						"SourceSystemID": {
+							"value": "20",
+							"type": "Int64"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "autolytica",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": [],

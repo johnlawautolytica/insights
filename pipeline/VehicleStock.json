@@ -30,6 +30,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": "delete from vehiclestock where clientid <> 10000",
+						"writeBehavior": "insert",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,

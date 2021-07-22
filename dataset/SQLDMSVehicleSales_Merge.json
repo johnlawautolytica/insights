@@ -188,6 +188,70 @@
 			{
 				"name": "Sale Type",
 				"type": "varchar"
+			},
+			{
+				"name": "Accessory Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Reconditioning Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Finance Commission",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Total Gross Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Available Date",
+				"type": "date"
+			},
+			{
+				"name": "Accessory Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Paint Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Warranty Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Gap Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Other Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Bonus",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
 			}
 		],
 		"typeProperties": {

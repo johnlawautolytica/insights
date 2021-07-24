@@ -1,0 +1,263 @@
+{
+	"name": "SQLDMSVehicleSales_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dealer ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer ID",
+				"type": "varchar"
+			},
+			{
+				"name": "New Or Used",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Vehicle Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DMS Vehicle ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Stock Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Registration Number",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Registration Date",
+				"type": "date"
+			},
+			{
+				"name": "Dealership Date In Stock",
+				"type": "date"
+			},
+			{
+				"name": "Mileage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Stock Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Sale Date",
+				"type": "date"
+			},
+			{
+				"name": "Invoice Number",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sales Executive ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Full Invoice Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Paint Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Warranty Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Gap Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Wheel Protection Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Add on Product 1",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Add on Product 2",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Add on Product 3",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Add on Product 4",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Volume Bonus",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Other Bonus",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RFL Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Metal Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Metal Invoice Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Delivery Date",
+				"type": "date"
+			},
+			{
+				"name": "Group Purchase Date",
+				"type": "date"
+			},
+			{
+				"name": "Received Date",
+				"type": "date"
+			},
+			{
+				"name": "Purchase Account",
+				"type": "varchar"
+			},
+			{
+				"name": "Sales Account ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Sales Account Name",
+				"type": "varchar"
+			},
+			{
+				"name": "FileName",
+				"type": "varchar"
+			},
+			{
+				"name": "Sale Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Accessory Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Reconditioning Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Finance Commission",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Total Gross Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Available Date",
+				"type": "date"
+			},
+			{
+				"name": "Accessory Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Paint Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Warranty Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Gap Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Other Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Bonus",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSVehicleSales_Merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

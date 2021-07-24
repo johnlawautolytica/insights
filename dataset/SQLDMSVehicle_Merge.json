@@ -1,0 +1,154 @@
+{
+	"name": "SQLDMSVehicle_Merge",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "autolytica",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ClientID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "VehicleID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Make",
+				"type": "varchar"
+			},
+			{
+				"name": "Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Derivative",
+				"type": "varchar"
+			},
+			{
+				"name": "RegistrationNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "DateofRegistration",
+				"type": "date"
+			},
+			{
+				"name": "DeliveryDate",
+				"type": "date"
+			},
+			{
+				"name": "NewOrUsed",
+				"type": "varchar"
+			},
+			{
+				"name": "LastServiceDate",
+				"type": "varchar"
+			},
+			{
+				"name": "NextServiceDate",
+				"type": "varchar"
+			},
+			{
+				"name": "LastMOTDate",
+				"type": "varchar"
+			},
+			{
+				"name": "NextMOTDate",
+				"type": "varchar"
+			},
+			{
+				"name": "LastWorkshopDate",
+				"type": "varchar"
+			},
+			{
+				"name": "CapCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ChassisNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "DriverCustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AftersalesCustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SalesCustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordStatus",
+				"type": "varchar"
+			},
+			{
+				"name": "VehicleType",
+				"type": "varchar"
+			},
+			{
+				"name": "Trim",
+				"type": "varchar"
+			},
+			{
+				"name": "EngineSize",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Bodystyle",
+				"type": "varchar"
+			},
+			{
+				"name": "Odometer",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OdometerType",
+				"type": "varchar"
+			},
+			{
+				"name": "FuelType",
+				"type": "varchar"
+			},
+			{
+				"name": "Transmission",
+				"type": "varchar"
+			},
+			{
+				"name": "GenericColour",
+				"type": "varchar"
+			},
+			{
+				"name": "SpecificColour",
+				"type": "varchar"
+			},
+			{
+				"name": "Doors",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FileName",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DMSVehicle_merge"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

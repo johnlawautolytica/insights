@@ -1,0 +1,9 @@
+{
+	"name": "autolyticaprod",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "bca15906-b520-4781-8c1e-0ba7899a2673",
+		"tenantId": "747433b5-a6e4-42d1-9d88-1d5e6da48952"
+	}
+}

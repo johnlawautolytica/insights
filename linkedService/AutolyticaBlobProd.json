@@ -1,0 +1,20 @@
+{
+	"name": "AutolyticaBlobProd",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Main production blob storage",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=autolyticastorageprod;",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AutolyticaKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "BlobStorage-autolyticaprod"
+			}
+		}
+	}
+}

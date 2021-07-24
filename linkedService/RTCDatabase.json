@@ -1,0 +1,19 @@
+{
+	"name": "RTCDatabase",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rtc-dwh-prod-sqls-01.database.windows.net;Initial Catalog=\"rtc-dwh-prod-sqld-01 \";User ID=autolytica",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AutolyticaKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQLRTCSecret-autolyticapassword"
+			}
+		}
+	}
+}

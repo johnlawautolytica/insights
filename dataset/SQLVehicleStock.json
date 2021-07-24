@@ -175,6 +175,11 @@
 			{
 				"name": "QuarantineStatus",
 				"type": "varchar"
+			},
+			{
+				"name": "Vehicle ID",
+				"type": "int",
+				"precision": 10
 			}
 		],
 		"typeProperties": {

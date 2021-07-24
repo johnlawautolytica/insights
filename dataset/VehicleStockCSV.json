@@ -39,6 +39,10 @@
 				"type": "String"
 			},
 			{
+				"name": "Vehicle ID",
+				"type": "String"
+			},
+			{
 				"name": "Group Date in Stock",
 				"type": "String"
 			},

@@ -1,11 +1,10 @@
 {
 	"name": "autolytica",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=autolyticaprod.database.windows.net;Initial Catalog=autolytica;User ID=autolytica",
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=autolytica.database.windows.net;Initial Catalog=autolytica;User ID=autolytica",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
@@ -15,5 +14,6 @@
 				"secretName": "SQLAutolyticaSecret-autolyticapassword"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }

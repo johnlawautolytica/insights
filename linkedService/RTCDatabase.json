@@ -5,15 +5,8 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=rtc-dwh-prod-sqls-01.database.windows.net;Initial Catalog=\"rtc-dwh-prod-sqld-01 \";User ID=autolytica",
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "AutolyticaKeyVault",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "SQLRTCSecret-autolyticapassword"
-			}
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=rtc-dwh-prod-sqls-01.database.windows.net;initial catalog=\"rtc-dwh-prod-sqld-01 \";user id=autolytica",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFVVE9MWVRJQ0FfNDkwOTg4ZGUtNWFlMS00NmY3LTllZDEtYzc1MDc4NDE5NGUyIg0KfQ=="
 		}
 	}
 }

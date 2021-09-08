@@ -23,7 +23,7 @@
 								"value": "8"
 							}
 						],
-						"sqlReaderQuery": "select YEAR(updated) as GroupID, month(updated) as ID, COUNT(*) as ValueToCheck\nfrom bi_group_vlogfile\nwhere year(updated) >= 2011\ngroup by YEAR(updated), month(updated)",
+						"sqlReaderQuery": "select \nmax(len([GroupID])), max(len([Seq])), max(len([Dealer])), max(len([Booking])), max(len([Created])), max(len([DateIn])), max(len([ServCode])), max(len([Model])), max(len([Tran1])), max(len([Tran2])), max(len([Tran3])), max(len([TranComm])), max(len([OpNum])), max(len([RegNo])), max(len([RegDate])), max(len([Account])), max(len([ContCode])), max(len([PayType])), max(len([OverRide])), max(len([SACA])), max(len([SACU])), max(len([SourceOfBusiness])), max(len([LastServ])), max(len([NextServ])), max(len([MotDate])), max(len([Campaign])), max(len([CampaignPrice])), max(len([TotalValue])), max(len([ContSeqNo])), max(len([ApplicationId])), max(len([Updated]))\nfrom [dbo].[BI_Group_vLogFile]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -38,7 +38,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "GroupID",
+									"name": "Year",
 									"type": "Int32",
 									"physicalType": "int"
 								},
@@ -50,7 +50,7 @@
 							},
 							{
 								"source": {
-									"name": "ID",
+									"name": "Month",
 									"type": "Int32",
 									"physicalType": "int"
 								},
@@ -72,7 +72,7 @@
 							},
 							{
 								"source": {
-									"name": "ValueToCheck",
+									"name": "TotalRows",
 									"type": "Int32",
 									"physicalType": "int"
 								},

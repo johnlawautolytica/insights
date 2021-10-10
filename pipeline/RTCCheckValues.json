@@ -23,7 +23,7 @@
 								"value": "8"
 							}
 						],
-						"sqlReaderQuery": "select \nmax(len([GroupID])), max(len([Seq])), max(len([Dealer])), max(len([Booking])), max(len([Created])), max(len([DateIn])), max(len([ServCode])), max(len([Model])), max(len([Tran1])), max(len([Tran2])), max(len([Tran3])), max(len([TranComm])), max(len([OpNum])), max(len([RegNo])), max(len([RegDate])), max(len([Account])), max(len([ContCode])), max(len([PayType])), max(len([OverRide])), max(len([SACA])), max(len([SACU])), max(len([SourceOfBusiness])), max(len([LastServ])), max(len([NextServ])), max(len([MotDate])), max(len([Campaign])), max(len([CampaignPrice])), max(len([TotalValue])), max(len([ContSeqNo])), max(len([ApplicationId])), max(len([Updated]))\nfrom [dbo].[BI_Group_vLogFile]",
+						"sqlReaderQuery": "select *\nfrom [dbo].[BI_Inspection_vISheaders] i\nwhere i.groupid = 189 and i.id = 1339392",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},

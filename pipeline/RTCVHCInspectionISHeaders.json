@@ -33,7 +33,9 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table RTCRaw_InspectionvISHeaders_merge",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {

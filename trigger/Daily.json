@@ -84,12 +84,6 @@
 			},
 			{
 				"pipelineReference": {
-					"referenceName": "RTCCTCBookingvUpsellLog",
-					"type": "PipelineReference"
-				}
-			},
-			{
-				"pipelineReference": {
 					"referenceName": "EMAXEnquiryActivity",
 					"type": "PipelineReference"
 				}
